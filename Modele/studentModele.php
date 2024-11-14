@@ -5,7 +5,7 @@ function connect_db()
     return $db;
 }
 
-function register($nom, $prenom, $login, $motdepasse, $motdepasse2)
+function inscription($nom, $prenom, $login, $motdepasse, $motdepasse2)
 {
     // On regarde si les mots de passe correspondent bien
     if ($motdepasse !== $motdepasse2) {
@@ -36,36 +36,28 @@ function register($nom, $prenom, $login, $motdepasse, $motdepasse2)
         return "Inscription réussie. Vous pouvez vous connecter";
     }
 }
-function login($login)
+
+function handleLogin($tab)
 {
-    $db = connect_db();
-    $stmt = $db->prepare("SELECT * FROM utilisateurs WHERE login = :login");
-    $stmt->bindParam(':login', $login, PDO::PARAM_STR);
-    $stmt->execute();
-    return $stmt->fetch(PDO::FETCH_ASSOC);
+    $pdo = connect_db();
+    $query = $pdo->prepare("SELECT id_utilisateurs, login, motdepasse, prenom, nom, photo FROM utilisateurs WHERE login = :login");
+
+    $query->bindParam(':login', $tab['login'], PDO::PARAM_STR);
+    $query->execute();
+
+    $user = $query->fetch(PDO::FETCH_ASSOC);
+
+    // Vérifier si un utilisateur est trouvé et comparer les mdp
+    if ($user && password_verify($tab['mot_de_passe'], $user['mot_de_passe'])) {
+        // Déclaration des variables de sessions utiles pour la suite
+        $_SESSION['user'] = $user['login'];
+        $_SESSION['prenom'] = $user['prenom'];
+        $_SESSION['nom'] = $user['nom'];
+        $_SESSION['user_id'] = $user['id_utilisateurs'];
+        $_SESSION['photo'] = $user['photo'];
+
+        return true;
+    } else {
+        return false;
+    }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-?>
