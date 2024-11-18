@@ -10,7 +10,6 @@ $action = isset($_GET['action']) ? $_GET['action'] : '';
 
 // Switch Case pour procéder avec un modèle MVC
 switch ($action) {
-
     case 'login' :
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $loginSuccessful = handleLogin($_POST);
@@ -18,7 +17,7 @@ switch ($action) {
                 // Include la page d'accueil
             } else {
                 $error = 'Identifiants invalides';
-                include('./Vue/login.php');
+                include('/ENT/Vue/accueil.php');
             }
         } else {
             include('./Vue/login.php');
@@ -27,5 +26,5 @@ switch ($action) {
 
     default :
         include('./Vue/login.php');
-       
+        break;
 }
