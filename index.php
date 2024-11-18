@@ -10,12 +10,6 @@ $action = isset($_GET['action']) ? $_GET['action'] : '';
 
 // Switch Case pour procéder avec un modèle MVC
 switch ($action) {
-    case 'inscription' :
-        if ($_SERVER['REQUEST_METHOD'] === "POST") {
-            $message = inscription($_POST['nom'], $_POST['prenom'], $_POST['login'], $_POST['motdepasse'], $_POST['motdepasse2']);
-            include('./Vue/login.php');
-        }
-        break;
 
     case 'login' :
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -30,5 +24,8 @@ switch ($action) {
             include('./Vue/login.php');
         }
         break;
+
+    default :
+        include('./Vue/login.php');
        
 }
