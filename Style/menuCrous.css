@@ -1,202 +1,196 @@
 /* Style global */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
 }
 
 body {
-    background-color: #f9f9f9;
+  background-color: #f9f9f9;
 }
 
 /* Container principal */
 .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 2rem;
-    margin-top: 2rem;
-    padding: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
+  margin-top: 2rem;
+  padding: 2rem;
 }
 
 /* Section Menu CROUS */
 .menu-crous {
-    border: 1px solid black;
-    border-radius: 8px;
-    padding: 2rem;
-    flex: 3;
-    display: flex;
-    flex-direction: column;
-    background-color: #ffffff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 1px solid black;
+  border-radius: 8px;
+  padding: 2rem;
+  flex: 3;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .menu-header h1 {
-    font-size: 2.5rem;
-    margin-bottom: 0.5rem;
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .menu-header p {
-    font-size: 1.2rem;
-    color: #666;
-    margin-bottom: 2rem;
+  font-size: 1.2rem;
+  color: #666;
+  margin-bottom: 2rem;
 }
 
 /* Liste des jours */
 .menu-days {
-    display: flex;
-    justify-content: space-between;
-    padding: 1.5rem 0;
-    gap: 1rem;
+  display: flex;
+  justify-content: space-between;
+  padding: 1.5rem 0;
+  gap: 1rem;
 }
 
 .day {
-    flex: 1;
-    text-align: center;
-    padding: 2px 2rem;
-    border-right: 2px solid rgba(0, 0, 0, 0.369);
-    position: relative; 
+  flex: 1;
+  text-align: center;
+  padding: 2px 2rem;
+  border-right: 2px solid rgba(0, 0, 0, 0.369);
+  position: relative;
 }
-
 .day:last-child {
-    border-right: none;
+  border-right: none;
 }
-
 .day h2 {
-    font-size: 1.3rem;
-    margin-bottom: 3rem;
+  font-size: 1.3rem;
+  margin-bottom: 3rem;
 }
 .strong-menu {
-    font-size: 1.2rem;
+  font-size: 1.2rem;
 }
-
 .menu-item {
-    position: relative;
-    margin-bottom: 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+  position: relative;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
-
 .menu-item p {
-    margin: 0;
-    position: relative;
-    z-index: 2;
-    font-size: 1rem;
-    color: #333;
-    font-weight: normal;
-    padding-left: 10px; 
+  margin: 0;
+  position: relative;
+  z-index: 2;
+  font-size: 1rem;
+  color: #333;
+  font-weight: normal;
+  padding-left: 10px;
 }
-
 .banderole {
-    width: 100%;
-    background-color: #D9D9D9;
-    padding: 1.4rem;
-    margin-top: 3rem;
-    font-weight: bold;
-    font-size: 1.6rem;
+  width: 100%;
+  background-color: #d9d9d9;
+  padding: 1rem;
+  margin-top: 3rem;
+  font-weight: bold;
+  font-size: 1.6rem;
 }
-
 .menu-item strong {
-    font-weight: bold;
-    margin-right: 0.5rem;
+  font-weight: bold;
+  margin-right: 0.5rem;
 }
-
 .entree-bg {
-    position: absolute;
-    display: block;
-    width: 63%;
-    height: 16px;
-    background-color: #afaeae;
-    border-radius: 14px;
-    z-index: 1;
-    top: 25%;
-    transform: translateY(-50%);
-    left: 24px; 
+  position: absolute;
+  display: block;
+  width: 63%;
+  height: 16px;
+  background-color: #afaeae;
+  border-radius: 14px;
+  z-index: 1;
+  top: 25%;
+  transform: translateY(-50%);
+  left: 24px;
 }
 .plat-bg {
-    position: absolute;
-    display: block;
-    width: 56%;
-    height: 16px;
-    background-color: #afaeae;
-    border-radius: 14px;
-    z-index: 1;
-    top: 23%;
-    transform: translateY(-50%);
-    left: 31px;
+  position: absolute;
+  display: block;
+  width: 56%;
+  height: 16px;
+  background-color: #afaeae;
+  border-radius: 14px;
+  z-index: 1;
+  top: 23%;
+  transform: translateY(-50%);
+  left: 31px;
 }
 .dessert-bg {
-    position: absolute;
-    display: block;
-    width: 73%;
-    height: 16px;
-    background-color: #afaeae;
-    border-radius: 14px;
-    z-index: 1;
-    top: 24%;
-    transform: translateY(-50%);
-    left: 17px;
+  position: absolute;
+  display: block;
+  width: 73%;
+  height: 16px;
+  background-color: #afaeae;
+  border-radius: 14px;
+  z-index: 1;
+  top: 24%;
+  transform: translateY(-50%);
+  left: 17px;
 }
-
 /* Note */
 .note {
-    color: #666;
-    font-size: 1rem;
-    text-align: right;
-    margin-top: 1rem;
+  color: #666;
+  font-size: 1rem;
+  text-align: right;
+  margin-top: 1rem;
 }
-
 /* Section Izly */
 .izly-account {
-    border: 1px solid black;
-    border-radius: 8px;
-    padding: 3rem;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    background-color: #ffffff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 1px solid black;
+  border-radius: 8px;
+  padding: 3rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
-
 .izly-account h2 {
-    font-size: 1.3rem;
-    margin-bottom: 2rem;
+  font-size: 1.3rem;
+  margin-bottom: 2rem;
 }
-
 .balance {
-    margin-bottom: 2rem;
+  margin-bottom: 2rem;
 }
-
 .amount {
-    font-size: 2rem;
-    font-weight: bold;
-    margin-bottom: 0.5rem;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
 }
-
 .qr-code img {
-    width: 150px;
-    height: 150px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    margin-bottom: 2rem;
+  width: 200px;
+  height: 200px;
+  border: 1px solid #000000;
+  margin-bottom: 2rem;
+  padding: 1rem;
 }
-
+.button-container {
+  width: 100%;
+  text-align: center;
+}
+.izly_big_container {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
 button {
-    background-color: #007bff;
-    color: white;
-    padding: 0.8rem 1.2rem;
-    border: none;
-    border-radius: 5px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s;
+  background-color: #586068;
+  color: white;
+  padding: 0.8rem 1.2rem;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
-
 button:hover {
-    background-color: #0056b3;
+  background-color: #0056b3;
 }
