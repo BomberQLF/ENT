@@ -11,15 +11,15 @@
 <body>
     <nav class="navbar">
         <ul>
-            <li class="left"><a href="#">Home</a></li>
+            <li class="left"><a href="#" id="home">Home</a></li>
             <div class="center">
                 <li class="has-submenu">
                     <a href="#">Mon suivi</a>
                     <ul class="submenu">
-                        <li><a href="#">Notes</a></li>
-                        <li><a href="#">Évaluation</a></li>
-                        <li><a href="#">To do list</a></li>
-                        <li><a href="#">Absences et retards</a></li>
+                        <li><a href="#" id="notes">Notes</a></li>
+                        <li><a href="#" id="evaluation">Évaluation</a></li>
+                        <li><a href="#" id="todolist">To do list</a></li>
+                        <li><a href="#" id="absenceRetards">Absences et retards</a></li>
                     </ul>
                 </li>
                 <li class="has-submenu">
