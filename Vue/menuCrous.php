@@ -131,17 +131,21 @@
             </div>
             <p class="note">Le menu est actualisé toutes les semaines</p>
         </section>
-        <section class="izly-account">
-            <h2>Compte Izly</h2>
-            <div class="balance">
-                <p class="amount">+ 5,00 €</p>
-                <p>Solde du 11/11/24</p>
+        <div class="izly_big_container">
+            <section class="izly-account">
+                <h2>Compte Izly</h2>
+                <div class="balance">
+                    <p class="amount">+ 5,00 €</p>
+                    <p>Solde du 11/11/24</p>
+                </div>
+                <div class="qr-code">
+                    <img src="../image/imageSite/qr-code.svg" alt="QR Code">
+                </div>
+            </section>
+            <div class="button-container">
+                <button>Ajouter des fonds sur votre compte Izly</button>
             </div>
-            <div class="qr-code">
-                <img src="qr-code-placeholder.png" alt="QR Code">
-            </div>
-            <button>Ajouter des fonds sur votre compte Izly</button>
-        </section>
+        </div>
     </main>
 </body>
 
