@@ -194,3 +194,50 @@ button {
 button:hover {
   background-color: #0056b3;
 }
+
+
+
+/* CODE A MODIFIER UNIQUEMENT ========================================================================== */
+.semi-circle-container {
+    position: relative;
+    width: 200px;
+    height: 100px; /* La hauteur est la moitié de la largeur pour un arc */
+    margin: 20px auto;
+}
+
+.semi-circle {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%; /* Crée un cercle complet */
+    background: lightgray; /* Couleur de fond pour l'arc */
+    position: absolute;
+    top: 0;
+    left: 0;
+    clip-path: inset(0 0 50% 0); /* Cache la moitié inférieure du cercle */
+}
+
+.semi-circle-overlay {
+    width: 160px;
+    height: 160px;
+    background: white;
+    border-radius: 50%;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+.text-content {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    left: 0;
+    transform: translateY(-30%);
+    text-align: center;
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+}
+
+.text-content .amount {
+    font-weight: bold;
+    font-size: 24px;
+}

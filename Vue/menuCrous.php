@@ -134,9 +134,22 @@
         <div class="izly_big_container">
             <section class="izly-account">
                 <h2>Compte Izly</h2>
-                <div class="balance">
-                    <p class="amount">+ 5,00 €</p>
-                    <p>Solde du 11/11/24</p>
+                <!-- ============================================= -->
+                <div class="semi-circle-container">
+                    <!-- Arc principal -->
+                    <div class="semi-circle">
+                        <!-- Portion grise (segment de l'arc) -->
+                        <div class="semi-circle-segment"></div>
+                        <!-- Overlay blanc pour créer l'arc -->
+                        <div class="semi-circle-overlay"></div>
+                    </div>
+                <!-- ============================================= -->
+
+                    <!-- Texte -->
+                    <div class="text-content">
+                        <p class="amount">+ 5,00 €</p>
+                        <p>Solde du 11/11/24</p>
+                    </div>
                 </div>
                 <div class="qr-code">
                     <img src="../image/imageSite/qr-code.svg" alt="QR Code">
