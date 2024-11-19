@@ -137,13 +137,9 @@
                 <!-- ============================================= -->
                 <div class="semi-circle-container">
                     <!-- Arc principal -->
-                    <div class="semi-circle">
-                        <!-- Portion grise (segment de l'arc) -->
-                        <div class="semi-circle-segment"></div>
-                        <!-- Overlay blanc pour créer l'arc -->
-                        <div class="semi-circle-overlay"></div>
-                    </div>
-                <!-- ============================================= -->
+                    <div class="semi-circle-overlay"></div>
+                    <div class="semi-circle"></div>
+                    <!-- ============================================= -->
 
                     <!-- Texte -->
                     <div class="text-content">

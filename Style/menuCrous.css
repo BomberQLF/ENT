@@ -206,24 +206,29 @@ button:hover {
 }
 
 .semi-circle {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%; /* Crée un cercle complet */
-    background: lightgray; /* Couleur de fond pour l'arc */
-    position: absolute;
-    top: 0;
-    left: 0;
-    clip-path: inset(0 0 50% 0); /* Cache la moitié inférieure du cercle */
+  width: 175px;
+  height: 87px;
+  border-radius: 200px 200px 0 0;
+  background: #ffffff;
+  position: absolute;
+  top: 6px;
+  left: 12px;
+  z-index: 100;
+  border: 2px solid black;
+  border-bottom: none;
 }
 
 .semi-circle-overlay {
-    width: 160px;
-    height: 160px;
-    background: white;
-    border-radius: 50%;
-    position: absolute;
-    top: 20px;
-    left: 20px;
+  width: 236px;
+  height: 118px;
+  border-radius: 200px 200px 0 0;
+  /* Permet de remplir la jauge au niveau du demi cercle */
+  background: linear-gradient(to right top, rgba(122, 122, 122) 25%, transparent 1%);
+  position: absolute;
+  top: -25px;
+  left: -18px;
+  z-index: 4;
+  border: 2px solid;
 }
 
 .text-content {
@@ -235,6 +240,7 @@ button:hover {
     text-align: center;
     font-family: Arial, sans-serif;
     font-size: 18px;
+    z-index: 100;
 }
 
 .text-content .amount {
