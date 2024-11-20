@@ -85,14 +85,6 @@ body {
   font-weight: normal;
   padding-left: 10px;
 }
-.banderole {
-  width: 100%;
-  background-color: #d9d9d9;
-  padding: 1rem;
-  margin-top: 3rem;
-  font-weight: bold;
-  font-size: 1.6rem;
-}
 .menu-item strong {
   font-weight: bold;
   margin-right: 0.5rem;
