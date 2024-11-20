@@ -51,6 +51,11 @@ body {
   gap: 1rem;
 }
 
+.menu .day {
+  display: inline-block;
+  width: calc(100% / 7 - 1rem); /* Ensures 7 columns fit side by side */
+}
+
 .day {
   flex: 1;
   text-align: center;
@@ -163,6 +168,7 @@ body {
   border: 1px solid #000000;
   margin-bottom: 2rem;
   padding: 1rem;
+  margin-top: 2rem;
 }
 .button-container {
   width: 100%;
@@ -189,10 +195,10 @@ button:hover {
 }
 
 .semi-circle-container {
-    position: relative;
-    width: 200px;
-    height: 100px; 
-    margin: 20px auto;
+  position: relative;
+  width: 200px;
+  height: 100px;
+  margin: 20px auto;
 }
 
 .semi-circle {
@@ -212,7 +218,11 @@ button:hover {
   width: 236px;
   height: 118px;
   border-radius: 200px 200px 0 0;
-  background: linear-gradient(to right top, rgba(122, 122, 122) 25%, transparent 1%);
+  background: linear-gradient(
+    to right top,
+    rgba(122, 122, 122) 25%,
+    transparent 1%
+  );
   position: absolute;
   top: -25px;
   left: -18px;
@@ -221,18 +231,44 @@ button:hover {
 }
 
 .text-content {
-    position: absolute;
-    width: 100%;
-    top: 50%;
-    left: 0;
-    transform: translateY(-30%);
-    text-align: center;
-    font-family: Arial, sans-serif;
-    font-size: 18px;
-    z-index: 100;
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  left: 0;
+  transform: translateY(-30%);
+  text-align: center;
+  font-family: Arial, sans-serif;
+  font-size: 18px;
+  z-index: 100;
 }
 
 .text-content .amount {
-    font-weight: bold;
-    font-size: 24px;
+  font-weight: bold;
+  font-size: 24px;
 }
+
+@media (max-width: 1024px) {
+  .day {
+    padding: 0;
+  }
+  .day h2 {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+  .menu-crous {
+    margin-bottom: 5rem;
+  }
+  .strong-menu {
+    font-size: 0.8rem;
+  }
+  .container {
+    display: block;
+  }
+  .menu-item p {
+    font-size: 0.7rem;
+  }
+}
+@media (max-width: 480px) {
+  /* A FAIRE */
+}
+
