@@ -11,63 +11,82 @@
   background-color: #d9d9d9;
   border-bottom-right-radius: 16px;
   border-bottom-left-radius: 16px;
+  position: relative;
 }
+
+#burger-icon {
+  display: none;
+  font-size: 2rem;
+  cursor: pointer;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
 .navbar > ul {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
+
 .center {
   display: flex;
   gap: 5rem;
 }
+
 nav ul li {
   list-style: none;
 }
+
 nav ul li a {
   text-decoration: none;
   color: black;
   display: flex;
   align-items: center;
 }
+
 nav ul li a img {
   height: 50px;
   border-radius: 50%;
   margin-left: 0.5rem;
 }
+
 .navbar .center li a:hover {
   border-bottom: 1px solid black;
 }
+
 /* Sous-menu */
 .has-submenu {
   position: relative;
 }
-.navbar .has-submenu {
-  position: relative;
-}
+
 .submenu {
   position: absolute;
-  top: 100%; /* Change 110% à 100% */
+  top: 100%;
   left: 50%;
   transform: translateX(-50%);
   background-color: #d9d9d9;
-  padding: 2rem;
+  padding: 1rem;
   border-radius: 8px;
   display: none;
   list-style: none;
   width: 200px;
 }
+
 .submenu li {
   margin-bottom: 1rem;
 }
+
 .submenu li:last-child {
   margin-bottom: 0;
 }
+
 .submenu a {
   text-decoration: none;
   color: black;
-  font-size: 1rem;
+  font-size: .8rem;
 }
+
 .has-submenu:hover .submenu {
   display: flex;
   flex-direction: column;
@@ -75,8 +94,113 @@ nav ul li a img {
   align-items: center;
   text-align: center;
 }
-.navbar ul li a::before {
-  content: "";
-  display: inline-block;
-  margin-right: 0.5rem;
+
+/* Entre 800px et 768px */
+@media (max-width: 1024) and (min-width: 769px) {
+  .center {
+    gap: 2rem; /* Réduit l'espacement entre les liens */
+  }
+
+  nav ul li a {
+    font-size: 0.9rem; /* Réduit la taille du texte */
+    padding: 0.5rem; /* Diminue les marges internes */
+  }
+
+  nav ul li a img {
+    height: 40px; /* Ajuste la taille des images */
+    margin-left: 0.3rem;
+  }
+}
+
+/* Responsive déjà existant pour 768px */
+@media (max-width: 768px) {
+  #burger-icon {
+    display: block;
+  }
+
+  .navbar {
+    padding: 2rem;
+  }
+
+  .navbar > ul {
+    flex-direction: column;
+    align-items: flex-start;
+    display: none; /* Masqué par défaut */
+  }
+
+  .navbar.show > ul {
+    display: flex; /* Affiche le menu */
+  }
+
+  .center {
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+  }
+
+  nav ul li a {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    padding: 0.5rem;
+  }
+
+  #burger-icon {
+    font-size: 1.8rem;
+    top: 0.8rem;
+    right: 0.8rem;
+  }
+
+  .navbar > ul {
+    flex-direction: column;
+    align-items: stretch; /* Étire les éléments pour occuper toute la largeur */
+    display: none; /* Masqué par défaut */
+    width: 100%;
+  }
+
+  .navbar.show > ul {
+    display: flex;
+  }
+
+  .center {
+    flex-direction: column;
+    gap: 0.5rem; /* Réduit les espaces entre les items */
+    width: 100%;
+  }
+
+  nav ul li a {
+    padding: 0.8rem 1rem; /* Plus d’espace pour cliquer */
+    font-size: 1rem; /* Ajuste la taille du texte */
+  }
+
+  nav ul li a img {
+    height: 40px; /* Réduit la taille de l'image */
+    margin-left: 0.5rem;
+  }
+
+  .submenu {
+    padding: 1rem;
+    width: 100%; /* Occupe toute la largeur */
+    position: static; /* Fixe l'affichage des sous-menus sous leur parent */
+    transform: none; /* Pas de décalage */
+  }
+
+  .has-submenu:hover .submenu {
+    display: none; /* Supprime le hover pour éviter les bugs */
+  }
+
+  .submenu li {
+    margin-bottom: 0.5rem;
+  }
+
+  .submenu a {
+    font-size: 0.9rem; /* Réduit légèrement la taille */
+  }
+
+  .navbar ul li a:hover {
+    background-color: #e0e0e0; /* Donne un retour visuel au clic */
+  }
 }
