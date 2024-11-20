@@ -7,11 +7,13 @@
     <title>Menu CROUS</title>
     <link rel="stylesheet" href="../Style/navbar.css">
     <link rel="stylesheet" href="../Style/menuCrous.css">
+    <script src="../index.js"></script>
     <link rel="stylesheet" href="">
 </head>
 
 <body>
     <nav class="navbar">
+        <div id="burger-icon">&#9776;</div> <!-- Icône burger -->
         <ul>
             <li class="left"><a href="#">Home</a></li>
             <div class="center">
@@ -45,7 +47,6 @@
             </li>
         </ul>
     </nav>
-    <div class="banderole">Menu Crous</div>
     <main class="container">
         <section class="menu-crous">
             <div class="menu-header">
