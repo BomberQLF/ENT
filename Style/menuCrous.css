@@ -53,14 +53,14 @@ body {
 
 .menu .day {
   display: inline-block;
-  width: calc(100% / 7 - 1rem); /* Ensures 7 columns fit side by side */
+  width: calc(100% / 7 - 1rem);
 }
 
 .day {
   flex: 1;
   text-align: center;
   padding: 2px 2rem;
-  border-right: 2px solid rgba(0, 0, 0, 0.369);
+  border-right: 1px solid rgba(0, 0, 0, 0.369);
   position: relative;
 }
 .day:last-child {
@@ -247,7 +247,7 @@ button:hover {
   font-size: 24px;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1275px) {
   .day {
     padding: 0;
   }
@@ -267,8 +267,49 @@ button:hover {
   .menu-item p {
     font-size: 0.7rem;
   }
+  .menu-header h1 {
+    font-size: 2rem;
+  }
+  .menu-header p {
+    font-size: 1rem;
+  }
 }
 @media (max-width: 480px) {
-  /* A FAIRE */
-}
+  .menu-crous {
+    padding: 2rem; 
+  }
 
+  .menu-header h1 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .menu-header p {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+  }
+
+  .menu-days {
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: space-between; 
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .day {
+    flex: 1 1 calc(33.33% - 0.5rem); 
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  .menu-item {
+    margin-bottom: 1rem;
+    padding: 0.5rem; 
+  }
+
+  .menu-item p {
+    font-size: 0.8rem;
+    margin: 0; 
+  }
+}
