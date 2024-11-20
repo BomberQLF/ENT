@@ -195,13 +195,10 @@ button:hover {
   background-color: #0056b3;
 }
 
-
-
-/* CODE A MODIFIER UNIQUEMENT ========================================================================== */
 .semi-circle-container {
     position: relative;
     width: 200px;
-    height: 100px; /* La hauteur est la moitié de la largeur pour un arc */
+    height: 100px; 
     margin: 20px auto;
 }
 
@@ -222,7 +219,6 @@ button:hover {
   width: 236px;
   height: 118px;
   border-radius: 200px 200px 0 0;
-  /* Permet de remplir la jauge au niveau du demi cercle */
   background: linear-gradient(to right top, rgba(122, 122, 122) 25%, transparent 1%);
   position: absolute;
   top: -25px;
