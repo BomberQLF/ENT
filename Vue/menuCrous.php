@@ -147,7 +147,7 @@
                 </div>
             </section>
             <div class="button-container">
-                <button>Ajouter des fonds sur votre compte Izly</button>
+                <button>Rechargez votre compte Izly</button>
             </div>
         </div>
     </main>
