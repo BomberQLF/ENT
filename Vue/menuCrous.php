@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../Style/navbar.css">
     <link rel="stylesheet" href="../Style/menuCrous.css">
     <script src="../index.js"></script>
+    <script src="./izly.js"></script>
     <link rel="stylesheet" href="">
 </head>
 
@@ -149,6 +150,60 @@
             </section>
             <div class="button-container">
                 <button>Rechargez votre compte Izly</button>
+            </div>
+        </div>
+        <div class="izly-paiement-container">
+            <div class="izly-paiement">
+                <h2 id="recharger-izly">Recharger votre compte Izly</h2>
+                <div class="semi-circle-container">
+                    <div class="semi-circle"></div>
+                    <div class="semi-circle-overlay"></div>
+                    <div class="text-content">
+                        <p id="izly-form-p">+ 10,00 €</p>
+                    </div>
+                </div>
+                <form>
+                    <h2
+                        style="text-align: left; font-weight: 400; border-bottom: 1px solid rgba(0, 0, 0, 0.369); padding-bottom: 8px; margin-bottom: 30px;">
+                        Paiement
+                    </h2>
+                    <div class="pay-with-container">
+                        <div class="pay-with">Payer Avec :</div>
+                        <div class="option-payement">
+                            <div class="pay-with-option">
+                                <label for="carte">Carte</label>
+                                <input type="radio" name="carte" id="carte">
+                            </div>
+                            <div class="pay-with-option">
+                                <label for="carte-enregistree">Carte Enregistrée</label>
+                                <input type="radio" name="carte" id="carte-enregistree">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="cardNumber">Numéro de carte</label>
+                        <input type="text" id="cardNumber" placeholder="1234 5678 9101 1121">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="expirationDate">Date EXP</label>
+                            <input type="text" id="expirationDate" placeholder="MM/YY">
+                        </div>
+                        <div class="form-group">
+                            <label for="cvv">CVV</label>
+                            <input type="text" id="cvv" placeholder="123">
+                        </div>
+                    </div>
+                    <div class="form-group save-card">
+                        <label>
+                            <input type="checkbox">
+                            Sauvegarder les détails de la carte
+                        </label>
+                    </div>
+                    <div class="button-container">
+                        <button type="submit">Payer 10 €</button>
+                    </div>
+                </form>
             </div>
         </div>
     </main>
