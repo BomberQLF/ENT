@@ -162,7 +162,7 @@
                         <p id="izly-form-p">+ 10,00 €</p>
                     </div>
                 </div>
-                <form>
+                <form id="izly-form">
                     <h2
                         style="text-align: left; font-weight: 400; border-bottom: 1px solid rgba(0, 0, 0, 0.369); padding-bottom: 8px; margin-bottom: 30px;">
                         Paiement
@@ -190,7 +190,7 @@
                             <input type="text" id="expirationDate" placeholder="MM/YY">
                         </div>
                         <div class="form-group">
-                            <label for="cvv">CVV</label>
+                            <label for="cvc">CVC</label>
                             <input type="text" id="cvv" placeholder="123">
                         </div>
                     </div>
@@ -201,7 +201,7 @@
                         </label>
                     </div>
                     <div class="button-container">
-                        <button type="submit">Payer 10 €</button>
+                        <button type="submit" id="pay-ok">Payer 10 €</button>
                     </div>
                 </form>
             </div>
