@@ -3,8 +3,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const izlyFirst = document.querySelector(".izly_big_container");
   const button = document.querySelector(".button-container");
   const saveCard = document.querySelector(".save-card");
-  carteEnregistree = document.getElementById("carte-enregistree");
+  const carteEnregistree = document.getElementById("carte-enregistree");
   const carte = document.getElementById("carte");
+  const form = document.getElementById('izly-form'); 
 
   izlyFirst.style.display = "flex";
   izlySecond.style.display = "none";
@@ -29,4 +30,18 @@ document.addEventListener("DOMContentLoaded", () => {
   carte.addEventListener("change", updateDisplay);
   carteEnregistree.addEventListener("change", updateDisplay);
   updateDisplay();
+
+  const cardNumber = document.getElementById('cardNumber');
+  const cardExpirationDate = document.getElementById('expirationDate');
+  const cardCVC = document.getElementById('cvc');
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const cardNumberValue = cardNumber.value;
+    const cardExpirationDateValue = cardExpirationDate.value;
+    const cardCVCValue = cardCVC.value;
+
+    // A CONTINUER POUR AFFICHER DES MESSAGES D'ERREUR SI LE CONTENU N'EST PAS DU TYPEOF VOULU - TOM
+  })
 });
