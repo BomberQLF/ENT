@@ -6,201 +6,277 @@
   padding: 0;
 }
 
-.navbar {
-  padding: 1rem;
-  background-color: #d9d9d9;
-  border-bottom-right-radius: 16px;
-  border-bottom-left-radius: 16px;
-  position: relative;
+html {
+  scroll-behavior: smooth;
 }
 
-#burger-icon {
-  display: none;
-  font-size: 2rem;
-  cursor: pointer;
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-}
-
-.navbar > ul {
+/* =============================================================== */
+/* Barre de navigation  */
+nav {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
+  background-color: #d3d3d3;
+  padding: 10px 20px;
+  height: 70px;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+  border-bottom-style: outset;
+  font-family: Arial, sans-serif;
 }
 
-.center {
+.navbar-home {
   display: flex;
-  gap: 5rem;
+  align-items: center;
+  color: #6e6e6e;
+  font-size: 1rem;
+  text-decoration: none;
 }
 
-nav ul li {
+/* Navbar Items */
+#navbarLinks {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  font-size: 1rem;
   list-style: none;
 }
 
-nav ul li a {
+.navbar-item {
+  color: #6e6e6e;
   text-decoration: none;
+  transition: all 0.5s ease;
+}
+
+.navbar-item:hover {
   color: black;
+}
+
+i {
+  margin-right: 8px;
+  font-size: 16px;
+}
+
+.navbar-item::after,
+.navbar-profile::after {
+  content: '';
+  position: absolute;
+  bottom: 8px;
+  left: 10px;
+  width: 0;
+  height: 2px;
+  background-color: #000000;
+  transition: width 0.5s ease;
+}
+
+.navbar-item:hover::after {
+  width: 90%;
+}
+
+.navbar-profile {
   display: flex;
   align-items: center;
+  color: #6e6e6e;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: all 0.5s ease;
 }
 
-nav ul li a img {
-  height: 50px;
+.navbar-profile:hover {
+  color: black;
+}
+
+.profile-circle {
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  margin-left: 0.5rem;
+  background-color: #888;
+  margin-left: 10px;
 }
 
-.navbar .center li a:hover {
-  border-bottom: 1px solid black;
-}
-
-/* Sous-menu */
-.has-submenu {
+#navbarLinks li {
   position: relative;
+  display: inline-block;
+}
+
+#navbarLinks a {
+  padding: 15px 20px;
+  display: block;
+  text-decoration: none;
+}
+
+#navbarLinks li:hover .submenu {
+  display: block;
 }
 
 .submenu {
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: #d9d9d9;
-  padding: 1rem;
-  border-radius: 8px;
   display: none;
-  list-style: none;
-  width: 200px;
+  position: absolute;
+  left: -12px;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+  background-color: #d3d3d3;
+  min-width: 165px;
+  text-align: center;
+  padding: 15px;
 }
 
 .submenu li {
-  margin-bottom: 1rem;
-}
-
-.submenu li:last-child {
-  margin-bottom: 0;
+  display: block;
 }
 
 .submenu a {
-  text-decoration: none;
+  padding: 10px 20px;
+  color: #6e6e6e;
+}
+
+.submenu li:hover>a {
+  font-weight: bold;
   color: black;
-  font-size: .8rem;
 }
 
-.has-submenu:hover .submenu {
-  display: flex;
+/* ======================BURGER MENU =========================================================================== */
+.hamburger {
+  display: none;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+  gap: 5px;
+  cursor: pointer;
+  background: transparent;
+  border: none;
 }
 
-/* Entre 800px et 768px */
-@media (max-width: 1024) and (min-width: 769px) {
-  .center {
-    gap: 2rem; /* Réduit l'espacement entre les liens */
-  }
-
-  nav ul li a {
-    font-size: 0.9rem; /* Réduit la taille du texte */
-    padding: 0.5rem; /* Diminue les marges internes */
-  }
-
-  nav ul li a img {
-    height: 40px; /* Ajuste la taille des images */
-    margin-left: 0.3rem;
-  }
+.hamburger span {
+  width: 30px;
+  height: 3px;
+  background-color: #6e6e6e;
+  transition: all 0.5s ease;
 }
 
-/* Responsive déjà existant pour 768px */
-@media (max-width: 768px) {
-  #burger-icon {
+.hamburger.open span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.open span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* =================================== SIDE MENU ===================================== */
+.side-menu.open {
+  left: 0;
+}
+
+.side-menu {
+  display: none;
+  position: fixed;
+  left: -250px;
+  width: 250px;
+  top: 58px;
+  height: 100%;
+  background-color: #d3d3d3;
+  color: white;
+  transition: left 0.3s ease-in-out;
+  padding-top: 60px;
+}
+
+.side-menu ul {
+  list-style: none;
+  padding: 0;
+}
+
+.side-menu ul li {
+  padding: 15px 20px;
+  margin-top: 10px;
+}
+
+.side-menu ul li a {
+  color: #6e6e6e;
+  text-decoration: none;
+  transition: all 0.5s ease;
+  display: block;
+  width: 100%;
+}
+
+.side-menu ul li a:hover {
+  color: black;
+}
+
+.side-menu .submenu {
+  display: none;
+  position: relative;
+  text-align: left;
+  padding-left: 20px;
+  margin-top: 10px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.side-menu .has-submenu.open .submenu {
+  display: block;
+  max-height: 300px;
+  /* La hauteur maximale du sous-menu */
+}
+
+/* RESPONSIVE Télephone */
+@media (max-width: 978px) {
+  .side-menu {
     display: block;
   }
 
-  .navbar {
-    padding: 2rem;
+  .navbar-home {
+    display: none;
   }
 
-  .navbar > ul {
+  #navbarLinks {
+    display: none;
     flex-direction: column;
-    align-items: flex-start;
-    display: none; /* Masqué par défaut */
-  }
-
-  .navbar.show > ul {
-    display: flex; /* Affiche le menu */
-  }
-
-  .center {
-    flex-direction: column;
-    gap: 1rem;
     width: 100%;
+    text-align: center;
+    margin-top: 20px;
   }
 
-  nav ul li a {
-    width: 100%;
-  }
-}
-
-@media (max-width: 480px) {
-  .navbar {
-    padding: 0.5rem;
-  }
-
-  #burger-icon {
-    font-size: 1.8rem;
-    top: 0.8rem;
-    right: 0.8rem;
-  }
-
-  .navbar > ul {
-    flex-direction: column;
-    align-items: stretch; /* Étire les éléments pour occuper toute la largeur */
-    display: none; /* Masqué par défaut */
-    width: 100%;
-  }
-
-  .navbar.show > ul {
+  .hamburger {
     display: flex;
   }
 
-  .center {
-    flex-direction: column;
-    gap: 0.5rem; /* Réduit les espaces entre les items */
-    width: 100%;
+  .navbar-profile {
+    margin-left: auto;
   }
 
-  nav ul li a {
-    padding: 0.8rem 1rem; /* Plus d’espace pour cliquer */
-    font-size: 1rem; /* Ajuste la taille du texte */
+  nav {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+/* RESPONSIVE Tablette */
+@media (min-width: 978px) and (max-width: 1144px) {
+  #navbarLinks {
+    gap: 0px;
   }
 
-  nav ul li a img {
-    height: 40px; /* Réduit la taille de l'image */
-    margin-left: 0.5rem;
-  }
-
-  .submenu {
-    padding: 1rem;
-    width: 100%; /* Occupe toute la largeur */
-    position: static; /* Fixe l'affichage des sous-menus sous leur parent */
-    transform: none; /* Pas de décalage */
-  }
-
-  .has-submenu:hover .submenu {
-    display: none; /* Supprime le hover pour éviter les bugs */
-  }
-
-  .submenu li {
-    margin-bottom: 0.5rem;
+  .navbar-item {
+    font-size: 0.9rem;
   }
 
   .submenu a {
-    font-size: 0.9rem; /* Réduit légèrement la taille */
+    font-size: 0.9rem;
   }
 
-  .navbar ul li a:hover {
-    background-color: #e0e0e0; /* Donne un retour visuel au clic */
+  .navbar-profile {
+    font-size: 0.9rem;
+  }
+
+  .side-menu.ul {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    font-size: 1rem;
+    list-style: none;
   }
 }
