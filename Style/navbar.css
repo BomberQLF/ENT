@@ -94,6 +94,10 @@ nav ul li a img {
   align-items: center;
   text-align: center;
 }
+#cvcError, #expirationDateError, #cardNumberError {
+  color: red;
+  margin-top: 12px;
+}
 
 /* Entre 800px et 768px */
 @media (max-width: 1024) and (min-width: 769px) {
