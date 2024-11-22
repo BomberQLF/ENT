@@ -7,8 +7,8 @@
     <title>Menu CROUS</title>
     <link rel="stylesheet" href="../Style/navbar.css">
     <link rel="stylesheet" href="../Style/menuCrous.css">
-    <script src="../index.js"></script>
-    <script src="./izly.js"></script>
+    <script src="../Typescript/index.js"></script>
+    <script src="../Typescript/izly.js"></script>
     <link rel="stylesheet" href="">
 </head>
 
@@ -183,15 +183,18 @@
                     <div class="form-group">
                         <label for="cardNumber">Numéro de carte</label>
                         <input type="text" id="cardNumber" placeholder="1234 5678 9101 1121">
+                        <span id="cardNumberError"></span>
                     </div>
                     <div class="form-row">
                         <div class="form-group">
                             <label for="expirationDate">Date EXP</label>
                             <input type="text" id="expirationDate" placeholder="MM/YY">
+                            <span id="expirationDateError"></span>
                         </div>
                         <div class="form-group">
                             <label for="cvc">CVC</label>
-                            <input type="text" id="cvv" placeholder="123">
+                            <input type="text" id="cvc" placeholder="123">
+                            <span id="cvcError"></span>
                         </div>
                     </div>
                     <div class="form-group save-card">
