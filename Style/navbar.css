@@ -144,6 +144,10 @@ i {
   background: transparent;
   border: none;
 }
+#cvcError, #expirationDateError, #cardNumberError {
+  color: red;
+  margin-top: 12px;
+}
 
 .hamburger span {
   width: 30px;
