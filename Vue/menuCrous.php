@@ -198,10 +198,8 @@
                         </div>
                     </div>
                     <div class="form-group save-card">
-                        <label>
-                            <input type="checkbox">
-                            Sauvegarder les détails de la carte
-                        </label>
+                        <label style="font-size: 14px;">Sauvegarder les détails de la carte</label>
+                        <input type="checkbox">
                     </div>
                     <div class="button-container">
                         <button type="submit" id="pay-ok">Payer 10 €</button>
