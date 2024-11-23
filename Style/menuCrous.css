@@ -152,7 +152,7 @@ body {
 }
 .izly-account h2 {
   font-size: 1.3rem;
-  margin-bottom: 2rem;
+  margin-bottom: 4rem;
 }
 .balance {
   margin-bottom: 2rem;
@@ -193,27 +193,24 @@ body {
 #buttonMenucrous:hover {
   background-color: #0056b3;
 }
-
 .semi-circle-container {
   position: relative;
   width: 200px;
   height: 100px;
   margin: 40px auto;
 }
-
 .semi-circle {
   width: 175px;
   height: 87px;
   border-radius: 200px 200px 0 0;
   background: #ffffff;
   position: absolute;
-  top: 6px;
+  top: -43px;
   left: 12px;
   z-index: 100;
   border: 2px solid black;
   border-bottom: none;
 }
-
 .semi-circle-overlay {
   width: 236px;
   height: 118px;
@@ -224,12 +221,11 @@ body {
     transparent 1%
   );
   position: absolute;
-  top: -25px;
+  top: -74px;
   left: -18px;
   z-index: 4;
   border: 2px solid;
 }
-
 .text-content {
   position: absolute;
   width: 100%;
@@ -241,12 +237,132 @@ body {
   font-size: 18px;
   z-index: 100;
 }
-
 .text-content .amount {
   font-weight: bold;
   font-size: 24px;
 }
+/* Formulaire Izly Paiement */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 9; 
+  display: none;
+}
+.izly-paiement-container {
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border: 1px solid black;
+  border-radius: 8px;
+  padding: 2rem;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
+.pay-with {
+  font-weight: bolder;
+}
+.form-group.save-card {
+  display: flex; 
+  align-items: center; 
+}
 
+.form-group.save-card input[type="checkbox"] {
+  margin-right: 0.5rem; 
+  transform: scale(1.2); 
+  align-self: flex-start;
+}
+#recharger-izly {
+  display: flex;
+  font-size: 2rem;
+  text-transform: uppercase;
+}
+#izly-form-p {
+  font-size: 1.5rem;
+  font-weight: bolder;
+  position: relative;
+  top: -30px;
+  left: 48px;
+  width: fit-content;
+}
+#izly-form {
+  width: 32rem;
+}
+.pay-with-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.option-payement {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 25px;
+}
+.form-row {
+  display: flex;
+  gap: 3rem;
+  align-items: center;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-weight: bold;
+  margin-bottom: 0.5rem; 
+  color: #333;
+}
+
+.form-group input {
+  padding: 0.8rem;
+  border: 1px solid #ccc; 
+  border-radius: 5px; 
+  width: 100%;
+  font-size: 1rem;
+  transition: border-color 0.3s; 
+}
+
+.form-group input:focus {
+  border-color: #586068; 
+  outline: none; 
+}
+
+.button-container {
+  text-align: center; 
+}
+.upper-izly-text {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.flex-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 10rem;
+}
+.semi-circle-containers {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 11rem 0 0 6rem;
+  position: relative;
+  width: 200px;
+  height: 100px;
+}
+.izly-form-container {
+  flex: 2;
+}
 @media (max-width: 1275px) {
   .day {
     padding: 0;
@@ -312,87 +428,4 @@ body {
     font-size: 0.8rem;
     margin: 0;
   }
-}
-
-/* form */
-/* Formulaire Izly Paiement */
-.izly-paiement {
-  border: 1px solid black;
-  border-radius: 8px;
-  padding: 2rem 2rem .8rem 2rem;
-  background-color: #ffffff;
-  width: 298px;
-}
-.izly-paiement-container {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-.pay-with {
-  font-weight: bolder;
-}
-.form-group.save-card {
-  display: flex; /* Utilisation de flexbox pour l'alignement */
-  align-items: center; /* Aligne verticalement les éléments au centre */
-}
-
-.form-group.save-card input[type="checkbox"] {
-  margin-right: 0.5rem; /* Espacement à droite de la checkbox */
-  transform: scale(1.2); /* Optionnel : agrandir légèrement la checkbox */
-  align-self: flex-start; /* Aligne le checkbox en haut pour éviter qu'il soit centré */
-}
-#recharger-izly {
-  display: flex;
-  font-size: 0.9rem;
-  width: 140px;
-}
-#izly-form-p {
-  font-size: 1.5rem;
-  padding: 2rem;
-  font-weight: bolder;
-}
-.pay-with-container {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-.option-payement {
-  display: flex;
-  gap: 2rem;
-  margin-bottom: 25px;
-}
-.form-row {
-  display: flex;
-  gap: 3rem;
-  align-items: center;
-}
-
-.form-group {
-  margin-bottom: 1.5rem;
-  display: flex;
-  flex-direction: column;
-}
-
-.form-group label {
-  font-weight: bold; /* Texte en gras pour les labels */
-  margin-bottom: 0.5rem; /* Espacement sous les labels */
-  color: #333; /* Couleur du texte */
-}
-
-.form-group input {
-  padding: 0.8rem; /* Espacement intérieur des champs de saisie */
-  border: 1px solid #ccc; /* Bordure légère */
-  border-radius: 5px; /* Coins arrondis */
-  width: 100%; /* Largeur pleine */
-  font-size: 1rem; /* Taille de police cohérente */
-  transition: border-color 0.3s; /* Transition pour le focus */
-}
-
-.form-group input:focus {
-  border-color: #586068; /* Couleur de bordure au focus */
-  outline: none; /* Suppression de l'outline par défaut */
-}
-
-.button-container {
-  text-align: center; /* Centrer le bouton */
 }
