@@ -94,8 +94,8 @@ document.addEventListener("DOMContentLoaded", function () {
   function hideIzlyPayment() {
     console.log("Fermeture du popup"); // Debug
     document.getElementById("overlay").style.display = "none"; 
-    document.getElementById("izly-paiement-container").style.display = "none"; 
-    document.querySelector(".izly_big_container").style.display = "block";
+    document.getElementById("izly-paiement-container").style.display = "none";
+    document.querySelector(".izly_big_container").style.display = "block"; 
   }
 
   // Écouteur d'événements pour fermer le popup en cliquant en dehors
