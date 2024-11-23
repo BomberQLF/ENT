@@ -190,59 +190,71 @@
                 <button id="buttonMenucrous">Rechargez votre compte Izly</button>
             </div>
         </div>
-        <div class="izly-paiement-container">
-            <div class="izly-paiement">
+        <div class="overlay" id="overlay"></div>
+        <div class="izly-paiement-container" id="izly-paiement-container">
+            <!-- Texte supérieur couvrant toute la largeur -->
+            <div class="upper-izly-text">
                 <h2 id="recharger-izly">Recharger votre compte Izly</h2>
-                <div class="semi-circle-container">
+                <p style="text-align: left;">Mettez le montant que vous souhaitez ci-dessous</p>
+            </div>
+
+            <!-- Conteneur principal pour les deux sections -->
+            <div class="flex-container">
+                <!-- Conteneur pour le semi-cercle -->
+                <div class="semi-circle-containers">
                     <div class="semi-circle"></div>
                     <div class="semi-circle-overlay"></div>
                     <div class="text-content">
-                        <p id="izly-form-p">+ 10,00 €</p>
+                        <p id="izly-form-p">+ 00,00 €</p>
                     </div>
                 </div>
-                <form id="izly-form">
-                    <h2
-                        style="text-align: left; font-weight: 400; border-bottom: 1px solid rgba(0, 0, 0, 0.369); padding-bottom: 8px; margin-bottom: 30px;">
-                        Paiement
-                    </h2>
-                    <div class="pay-with-container">
-                        <div class="pay-with">Payer Avec :</div>
-                        <div class="option-payement">
-                            <div class="pay-with-option">
-                                <label for="carte">Carte</label>
-                                <input type="radio" name="carte" id="carte">
+
+                <!-- Conteneur pour le formulaire Izly -->
+                <div class="izly-form-container">
+                    <form id="izly-form">
+                        <h2
+                            style="text-align: left; font-weight: 400; border-bottom: 1px solid rgba(0, 0, 0, 0.369); padding-bottom: 8px; margin-bottom: 30px;">
+                            Paiement
+                        </h2>
+                        <div class="pay-with-container">
+                            <div class="pay-with">Payer Avec :</div>
+                            <div class="option-payement">
+                                <div class="pay-with-option">
+                                    <label for="carte">Carte</label>
+                                    <input type="radio" name="carte" id="carte">
+                                </div>
+                                <div class="pay-with-option">
+                                    <label for="carte-enregistree">Carte Enregistrée</label>
+                                    <input type="radio" name="carte" id="carte-enregistree">
+                                </div>
                             </div>
-                            <div class="pay-with-option">
-                                <label for="carte-enregistree">Carte Enregistrée</label>
-                                <input type="radio" name="carte" id="carte-enregistree">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="cardNumber">Numéro de carte</label>
-                        <input type="text" id="cardNumber" placeholder="1234 5678 9101 1121">
-                        <span id="cardNumberError"></span>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="expirationDate">Date EXP</label>
-                            <input type="text" id="expirationDate" placeholder="MM/YY">
-                            <span id="expirationDateError"></span>
                         </div>
                         <div class="form-group">
-                            <label for="cvc">CVC</label>
-                            <input type="text" id="cvc" placeholder="123">
-                            <span id="cvcError"></span>
+                            <label for="cardNumber">Numéro de carte</label>
+                            <input type="text" id="cardNumber" placeholder="1234 5678 9101 1121">
+                            <span id="cardNumberError"></span>
                         </div>
-                    </div>
-                    <div class="form-group save-card">
-                        <label style="font-size: 14px;">Sauvegarder les détails de la carte</label>
-                        <input type="checkbox">
-                    </div>
-                    <div class="button-container">
-                        <button id="buttonMenucrous" type="submit" id="pay-ok">Payer 10 €</button>
-                    </div>
-                </form>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="expirationDate">Date EXP</label>
+                                <input type="text" id="expirationDate" placeholder="MM/YY">
+                                <span id="expirationDateError"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="cvc">CVC</label>
+                                <input type="text" id="cvc" placeholder="123">
+                                <span id="cvcError"></span>
+                            </div>
+                        </div>
+                        <div class="form-group save-card">
+                            <label style="font-size: 14px;">Sauvegarder les détails de la carte</label>
+                            <input type="checkbox">
+                        </div>
+                        <div class="button-container">
+                            <button id="buttonMenucrous" type="submit" id="pay-ok">Payer 10 €</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </main>
