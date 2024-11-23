@@ -1,10 +1,38 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const burgerIcon = document.getElementById("burger-icon");
-    const navbar = document.querySelector(".navbar");
-    
-    burgerIcon.addEventListener("click", () => {
-      navbar.classList.toggle("show");
-    });
 
-    console.log("yo");
+  // Script de la barre de navigation =================================================================================
+  const hamburger = document.getElementById('hamburger');
+  const sideMenu = document.getElementById('sideMenu');
+  const submenuLinks = document.querySelectorAll('.has-submenu > a');
+
+  // Ouvrir/fermer le menu latéral
+  hamburger.addEventListener('click', () => {
+    sideMenu.classList.toggle('open');
+    hamburger.classList.toggle('open');
+  });
+
+  // Ouvrir/fermer les sous-menus
+  submenuLinks.forEach(link => {
+    // Ajoute un écouteur d'événement pour chaque lien principal de sous-menu
+    link.addEventListener('click', (e) => {
+      // Empêche le comportement par défaut du lien (navigation vers une autre page)
+      e.preventDefault();
+
+      const parent = link.parentElement;
+
+      // Fermer tous les autres sous-menus
+      document.querySelectorAll('.has-submenu').forEach(submenu => {
+        // si le sous-menu actuel n'est pas le même que le parent du lien cliqué alors on le ferme
+        if (submenu !== parent) {
+          submenu.classList.remove('open');
+        }
+      });
+
+      // Ouvrir/fermer le sous-menu actuel
+      parent.classList.toggle('open');
+    });
+  });
+
+  // =================================================================================
+
 })
