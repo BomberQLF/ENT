@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu du Crous</title>
+    <style>
+        .container {
+            border: 1px solid #000;
+            display: flex;
+            height: 319.44px;
+            width: 465px;
+            border-radius: 8px;
+        }
+
+        .menu {
+            border-right: 1px solid #000;
+            padding: 10px;
+            font-weight: 900;
+        }
+
+        .menu button {
+            display: block;
+            background: none;
+            border: none;
+            padding: 10px;
+            font-size: 1.188rem;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .menu button.active {
+            color: black;
+            font-weight: bold;
+            transform: scale(1.1);
+            transition: all 0.3s ease;
+        }
+
+        .menu button:not(.active) {
+            color: grey;
+        }
+
+        .menu-contenu {
+            width: 50%;
+            padding: 20px;
+            display: none;
+            text-align: center;
+        }
+
+        .menu-contenu.active {
+            display: block;
+        }
+
+        .menu-contenu div {
+            margin-bottom: 15px;
+        }
+
+        .menu p {
+            font-size: 1.5rem;
+            z-index: 100;
+        }
+
+        .menu-contenu span {
+            background-color: #ddd;
+            border-radius: 32px;
+            width: 78px;
+            height: 14px;
+            position: relative;
+            display: block;
+            left: 90px;
+            top: 20px;
+        }
+
+        .menu-titre {
+            font-weight: bold;
+        }
+
+        .menu-contenu p {
+            margin: 5px 0 0 0;
+            font-size: 1.2rem;
+            position: relative;
+        }
+        .autre {
+            padding-left: 25px;
+        }
+    </style>
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="menu">
+            <p>MENU DU CROUS</p>
+            <button id="esiee">▶ ESIEE</button>
+            <button id="copernic" class="active">▶ COPERNIC</button>
+            <button id="autre1">▶ AUTRE</button>
+            <button id="autre2">▶AUTRE</button>
+        </div>
+        <div class="menu-contenu" id="menu-copernic" style="display: block;">
+            <div>
+                <span></span>
+                <p class="menu-titre">Entrée</p>
+                <p class="autre">Tomates</p>
+            </div>
+            <div>
+                <span></span>
+                <p class="menu-titre">Plat</p>
+                <p class="autre">Pierogi</p>
+            </div>
+            <div>
+                <span></span>
+                <p class="menu-titre">Dessert</p>
+                <p class="autre">Tarte aux pommes</p>
+            </div>
+        </div>
+        <div class="menu-contenu" id="menu-esiee">
+            <div>
+                <span></span>
+                <p class="menu-titre">Entrée</p>
+                <p class="autre">Tomates</p>
+            </div>
+            <div>
+                <span></span>
+                <p class="menu-titre">Plat</p>
+                <p class="autre">Steack haché</p>
+            </div>
+            <div>
+                <span></span>
+                <p class="menu-titre">Dessert</p>
+                <p class="autre">Beignet à la fraise</p>
+            </div>
+        </div>
+        <div class="menu-contenu" id="menu-autre">
+            <p>Aucun menu disponible</p>
+        </div>
+    </div>
+
+    <script>
+
+        const menuButtons = document.querySelectorAll('.menu button');
+        const menucontenus = document.querySelectorAll('.menu-contenu');
+
+        // on fait une boucle sur les boutons
+        menuButtons.forEach(button => {
+
+            button.addEventListener('click', () => {
+                // on cache tous les contenus
+                menuButtons.forEach(btn => btn.classList.remove('active'));
+                // on ajoute la classe active au bouton cliqué
+                button.classList.add('active');
+
+                // on cache tous les contenus
+                menucontenus.forEach(contenu => {
+                    contenu.style.display = 'none';
+                });
+
+                // on crée un objet qui contient les correspondances entre les ID des boutons et les ID des contenus
+                const AllMenu = {
+                    copernic: 'menu-copernic',
+                    esiee: 'menu-esiee'
+                };
+
+                // Vérifie si l'ID du bouton a une correspondance, sinon utiliser 'menu-autre'
+                const contenuId = AllMenu[button.id] || 'menu-autre';
+
+                // on affiche le contenu correspondant au bouton cliqué
+                document.getElementById(contenuId).style.display = 'block';
+            });
+        });
+    </script>
+</body>
+
+</html>
