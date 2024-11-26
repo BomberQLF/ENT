@@ -88,9 +88,16 @@
     </nav>
     <main class="container">
         <section class="menu-crous">
-            <div class="menu-header">
-                <h1>MENU CROUS</h1>
-                <p>de la semaine du 11 novembre 2024</p>
+            <div class="menu-header-container">
+                <div class="menu-header">
+                    <h1>MENU CROUS</h1>
+                    <p>de la semaine du 11 novembre 2024</p>
+                </div>
+                <div class="crous-option">
+                    <div class="esiee"><span class="fleche">▶</span> ESIEE</div>
+                    <div class="coppernic"><span class="fleche">▶</span> COPPERNIC</div>
+
+                </div>
             </div>
             <div class="menu-days">
                 <div class="day">
