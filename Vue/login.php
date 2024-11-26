@@ -11,7 +11,7 @@
 <body class="login-body">
     <div class="login-container">
         <div class="choice-login-container">
-            <h1>Bienvenue sur l'ENT</h1>
+            <h1>Bienvenue sur l'ENT Gustave Eiffel</h1>
             <p>Veuillez choisir votre statut</p>
         </div>
         <div class="form-login-container">
@@ -19,10 +19,10 @@
                 <h2 id="connecter-login">Se connecter</h2>
 
                 <label for="login">Login</label>
-                <input type="text" name="login" class="login" placeholder="Tapez votre login">
+                <input type="text" name="login" class="login" placeholder="Tapez votre login" required>
                 <div class="mdp-container">
-                    <label for="motdepasse">Mot de passe</label>
-                    <input type="password" name="motdepasse" class="motdepasse" placeholder="Tapez votre mot de passe">
+                    <label for="mot_de_passe">Mot de passe</label>
+                    <input type="password" name="mot_de_passe" class="mot_de_passe" placeholder="Tapez votre mot de passe" required>
                 </div>
 
                 <a href="#">Mot de passe oublié ?</a>
