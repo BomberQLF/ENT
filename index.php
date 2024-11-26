@@ -14,10 +14,11 @@ switch ($action) {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $loginSuccessful = handleLogin($_POST);
             if ($loginSuccessful) {
-                // Include la page d'accueil
+                include('./Vue/accueil.php');
             } else {
                 $error = 'Identifiants invalides';
-                include('/ENT/Vue/accueil.php');
+                var_dump($_POST);
+                include('./Vue/login.php');
             }
         } else {
             include('./Vue/login.php');
