@@ -32,6 +32,7 @@ body {
   font-size: 2rem;
   margin-bottom: 1rem;
   text-align: center;
+  width: 23rem;
 }
 
 .choice-login-container p {
@@ -83,6 +84,7 @@ form a {
   color: #6E6E6E;
   align-self: flex-end;
   margin-top: -0.5rem;
+  text-decoration: underline;
 }
 
 form a:hover {
