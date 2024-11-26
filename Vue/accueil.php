@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../Style/navbar.css">
+    <link rel="stylesheet" href="./Style/navbar.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" />
     <title>Accueil - ENT</title>
 </head>
@@ -45,7 +45,7 @@
 
 
         <a href="#" class="navbar-profile">
-            <span>Bienvenue, Anastasia</span>
+            <span>Bienvenue, <?= $_SESSION['prenom']; ?></span>
             <div class="profile-circle"></div>
         </a>
 
@@ -79,8 +79,9 @@
                 <li><a href="#"><i class="fa-solid fa-comment"></i>Messagerie</a></li>
             </ul>
         </div>
-
     </nav>
+
+
     <script src="../index.js"></script>
 </body>
 
