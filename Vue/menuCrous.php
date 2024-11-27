@@ -29,7 +29,7 @@
             <li><a href="#" class="navbar-item"><i class="fa-solid fa-book"></i>Mon suivi</a>
                 <ul class="submenu">
                     <li><a href="#">Notes</a></li>
-                    <li><a href="#">To do list</a></li>
+                    <li><a href="./index.php?action=todoListPage">To do list</a></li>
                     <li><a href="#">Absences et retards</a></li>
                 </ul>
             </li>
