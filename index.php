@@ -25,6 +25,14 @@ switch ($action) {
         }
         break;
 
+    case 'menuCrous' :
+        isLoggedIn() ? include('./Vue/menuCrous.php') : include('./Vue/login.php');
+        break;
+
+    case 'accueil' :
+    isLoggedIn() ? include('./Vue/accueil.php') : include('./Vue/login.php');
+    break;
+
     default :
         include('./Vue/login.php');
         break;
