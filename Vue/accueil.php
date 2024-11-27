@@ -11,7 +11,7 @@
 
 <body>
     <nav>
-        <a href="#" class="navbar-home"><i class="fa-solid fa-house"></i></a>
+        <a href="./index.php?action=accueil" class="navbar-home"><i class="fa-solid fa-house"></i></a>
         <button class="hamburger" id="hamburger">
             <span></span>
             <span></span>
@@ -36,7 +36,7 @@
             </li>
             <li><a href="#" class="navbar-item"><i class="fa-solid fa-graduation-cap"></i>Vie étudiante</a>
                 <ul class="submenu">
-                    <li><a href="#">Crous et mon IZLY</a></li>
+                    <li><a href="./index.php?action=menuCrous">Crous et mon IZLY</a></li>
                     <li><a href="#">Événements</a></li>
                 </ul>
             </li>
