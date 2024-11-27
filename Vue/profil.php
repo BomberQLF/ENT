@@ -1,60 +1,86 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profil</title>
-    <link rel="stylesheet" href="../Style/navbar.css">
+    <title>Document</title>
 </head>
+
 <body>
-    <nav class="navbar">
-        <ul>
-            <li class="left"><a href="#">Home</a></li>
-            <div class="center">
+    <nav>
+        <a href="./index.php?action=accueil" class="navbar-home"><i class="fa-solid fa-house"></i></a>
+        <button class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <!-- Barre de navigation d'origine -->
+
+        <ul id="navbarLinks">
+            <li><a href="#" class="navbar-item"><i class="fa-solid fa-book"></i>Mon suivi</a>
+                <ul class="submenu">
+                    <li><a href="#">Notes</a></li>
+                    <li><a href="#">To do list</a></li>
+                    <li><a href="#">Absences et retards</a></li>
+                </ul>
+            </li>
+            <li><a href="#" class="navbar-item"><i class="fa-solid fa-calendar-days"></i>Planning et réservation</a>
+                <ul class="submenu">
+                    <li><a href="#">Emploi du temps</a></li>
+                    <li><a href="#">Réservation salles et matériels</a></li>
+                </ul>
+            </li>
+            <li><a href="#" class="navbar-item"><i class="fa-solid fa-graduation-cap"></i>Vie étudiante</a>
+                <ul class="submenu">
+                    <li><a href="./index.php?action=menuCrous">Crous et mon IZLY</a></li>
+                    <li><a href="#">Événements</a></li>
+                </ul>
+            </li>
+            <li><a href="#" class="navbar-item"><i class="fa-solid fa-comment"></i>Messagerie</a></li>
+        </ul>
+
+
+        <a href="#" class="navbar-profile">
+            <span>Bienvenue, <?= $_SESSION['prenom']; ?></span>
+            <div class="profile-circle"></div>
+        </a>
+
+        <!-- Barre de navigation version téléphone -->
+
+        <div class="side-menu" id="sideMenu">
+            <ul>
+                <li><a href="#"><i class="fa-solid fa-house"></i>Accueil</a></li>
                 <li class="has-submenu">
-                    <a href="#">Mon suivi</a>
+                    <a href=""><i class="fa-solid fa-book"></i>Mon suivi</a>
                     <ul class="submenu">
                         <li><a href="#">Notes</a></li>
-                        <li><a href="#">Évaluation</a></li>
                         <li><a href="#">To do list</a></li>
                         <li><a href="#">Absences et retards</a></li>
                     </ul>
                 </li>
                 <li class="has-submenu">
-                    <a href="#">Planning et réservation</a>
+                    <a href=""><i class="fa-solid fa-calendar-days"></i>Planning et réservation</a>
                     <ul class="submenu">
                         <li><a href="#">Emploi du temps</a></li>
-                        <li><a href="#">Salles et Matériels</a></li>
+                        <li><a href="#">Réservation salles et matériels</a></li>
                     </ul>
                 </li>
                 <li class="has-submenu">
-                    <a href="#">Vie étudiante</a>
+                    <a href=""><i class="fa-solid fa-graduation-cap"></i>Vie étudiante</a>
                     <ul class="submenu">
                         <li><a href="#">Crous et mon IZLY</a></li>
                         <li><a href="#">Événements</a></li>
                     </ul>
                 </li>
-                <li><a href="#">Messagerie</a></li>
-            </div>
-            <li class="right">
-                <a href="#">Bonjour, Tom <img src="../image/uploads/photo_default.png" alt="Photo de profil"></a>
-            </li>
-        </ul>
-    </nav>
-    <section>
-        <div>Mon Profil</div>
-    </section>
-    <div>
-        <div>
-            <div>
-                <img src="" alt="">
-            </div>
-            <div>
-                <p></p>
-                <p></p>
-                <p></p>
-            </div>
+                <li><a href="#"><i class="fa-solid fa-comment"></i>Messagerie</a></li>
+            </ul>
         </div>
-    </div>
+    </nav>
+
+
+    <script src="../index.js"></script>
 </body>
+
 </html>
