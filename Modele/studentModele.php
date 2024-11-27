@@ -31,3 +31,8 @@ function handleLogin($tab)
         return false;
     }
 }
+
+function isLoggedIn() 
+{
+    return isset($_SESSION['login']);
+}
