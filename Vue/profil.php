@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./Style/navbar.css">
     <title>Document</title>
 </head>
 
@@ -22,7 +23,7 @@
             <li><a href="#" class="navbar-item"><i class="fa-solid fa-book"></i>Mon suivi</a>
                 <ul class="submenu">
                     <li><a href="#">Notes</a></li>
-                    <li><a href="#">To do list</a></li>
+                    <li><a href="./index.php?action=todoListPage">To do list</a></li>
                     <li><a href="#">Absences et retards</a></li>
                 </ul>
             </li>
