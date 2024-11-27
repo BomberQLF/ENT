@@ -33,6 +33,10 @@ switch ($action) {
     isLoggedIn() ? include('./Vue/accueil.php') : include('./Vue/login.php');
     break;
 
+    case 'todoListPage' : 
+        isLoggedIn() ? include('./Vue/todoList.php') : include('./Vue/login.php');
+        break;
+
     default :
         include('./Vue/login.php');
         break;
