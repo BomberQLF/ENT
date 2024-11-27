@@ -1,0 +1,99 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+  padding: 0;
+  margin: 0;
+}
+.page-content {
+  display: flex;
+  justify-content: space-between;
+}
+.suivi {
+  text-decoration: none;
+  color: #7a7a7a;
+}
+.upper-page-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem 0 1rem 4rem;
+}
+#tâches {
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  color: white;
+}
+.right-side {
+  padding: 0.4rem 3rem;
+  background-color: #8f6255;
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+}
+.todolist-container {
+  padding: 2rem 4rem;
+  border: 1px solid #000000;
+  margin: 20px 0 0 4rem;
+  width: 660px;
+  height: 690px;
+}
+.todolist-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+.btn-week {
+  background: none;
+  border: none;
+  margin: 0 1rem;
+}
+.calendar {
+  width: 320px;
+  background-color: white;
+  border-radius: 8px;
+  margin: 20px 9rem 0 0;
+  padding: 16px;
+  border: 1px solid black;
+  height: fit-content;
+}
+.month {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+.nav-btn {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+.days,
+.dates {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  font-size: 14px;
+}
+.days div {
+  font-weight: bold;
+  color: #666;
+}
+.dates div {
+    padding: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.2); 
+    box-sizing: border-box;
+  }
+.dates div:not(.highlight) {
+  color: #333;
+}
+.highlight {
+  background-color: #d1d5db;
+  color: black;
+}
+.dates div:hover {
+  background-color: #ececec;
+}
