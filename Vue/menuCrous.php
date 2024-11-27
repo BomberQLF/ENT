@@ -5,18 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu CROUS</title>
-    <link rel="stylesheet" href="../Style/navbar.css">
-    <link rel="stylesheet" href="../Style/menuCrous.css">
-    <script src="../Typescript/index.js"></script>
-    <script src="../Typescript/izly.js"></script>
+    <link rel="stylesheet" href="./Style/navbar.css">
+    <link rel="stylesheet" href="./Style/menuCrous.css">
+    <script src="./Typescript/index.js"></script>
+    <script src="./Typescript/izly.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" />
-    <script src="../index.js"></script>
+    <script src="./index.js"></script>
 
 </head>
 
 <body>
     <nav>
-        <a href="#" class="navbar-home"><i class="fa-solid fa-house"></i></a>
+        <a href="./index.php?action=accueil" class="navbar-home"><i class="fa-solid fa-house"></i></a>
         <button class="hamburger" id="hamburger">
             <span></span>
             <span></span>
@@ -41,7 +41,7 @@
             </li>
             <li><a href="#" class="navbar-item"><i class="fa-solid fa-graduation-cap"></i>Vie étudiante</a>
                 <ul class="submenu">
-                    <li><a href="#">Crous et mon IZLY</a></li>
+                    <li><a href="./index.php?action=menuCrous">Crous et mon IZLY</a></li>
                     <li><a href="#">Événements</a></li>
                 </ul>
             </li>
@@ -190,7 +190,7 @@
                     </div>
                 </div>
                 <div class="qr-code">
-                    <img src="../image/imageSite/qr-code.svg" alt="QR Code">
+                    <img src="./image/imageSite/qr-code.svg" alt="QR Code">
                 </div>
             </section>
             <div class="button-container">
