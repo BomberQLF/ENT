@@ -182,7 +182,7 @@
                             <span class="details-collaborateurs">SAE 3.02A, SAE 3.03, Audiovisuel</span>
                         </div>
                     </div>
-                    <div class="add-todo-container"><img src="./image/uploads/add-todo.svg" alt=""></div>
+                    <div class="add-todo-container"><a href="#"><img src="./image/uploads/add-todo.svg" alt=""></a></div>
                 </div>
             </div>
         </div>
