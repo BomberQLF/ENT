@@ -53,7 +53,7 @@
   background-color: white;
   border-radius: 8px;
   margin: 20px 9rem 0 0;
-  padding: 16px;
+  padding: 32px;
   border: 1px solid black;
   height: fit-content;
 }
@@ -62,13 +62,13 @@
   justify-content: space-between;
   align-items: center;
   font-weight: bold;
-  font-size: 18px;
+  font-size: 1.1rem;
   margin-bottom: 8px;
 }
 .nav-btn {
   background: none;
   border: none;
-  font-size: 20px;
+  font-size: 1.2rem;
   cursor: pointer;
 }
 .days,
@@ -76,17 +76,17 @@
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   text-align: center;
-  font-size: 14px;
+  font-size: .9rem;
 }
 .days div {
   font-weight: bold;
   color: #666;
 }
 .dates div {
-    padding: 8px;
-    border: 1px solid rgba(0, 0, 0, 0.2); 
-    box-sizing: border-box;
-  }
+  padding: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+}
 .dates div:not(.highlight) {
   color: #333;
 }
@@ -96,4 +96,46 @@
 }
 .dates div:hover {
   background-color: #ececec;
+}
+.btn-week:hover {
+  cursor: pointer;
+}
+/* Collaborateurs */
+.collaborateurs-container {
+  margin-top: 3rem;
+  padding: 32px 42px;
+  border: 1px solid black;
+  border-radius: 8px;
+  width: fit-content;
+  background-color: #777E90;
+}
+.content-collaborateurs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.3rem;
+}
+#collab-title {
+  padding-bottom: 1rem;
+  border-bottom: 1px solid white;
+  color: white;
+  margin-bottom: 2rem;
+  text-align: center;
+  font-size: 1.2rem;
+}
+.nom-collaborateurs {
+  color: white;
+}
+.details-collaborateurs {
+  font-weight: 100;
+  color: white;
+}
+.img-collaborateurs {
+  width: 24px;
+  height: 24px;
+}
+.add-todo-container {
+  text-align: right;
+  margin-top: 12px;
 }
