@@ -139,3 +139,6 @@
   text-align: right;
   margin-top: 12px;
 }
+.add-todo-container img {
+  cursor: pointer;
+}
