@@ -103,58 +103,86 @@
                 </div>
                 <hr>
             </div>
-            <div class="calendar">
-                <div class="month">
-                    <button class="nav-btn">&#9664;</button>
-                    <span>Décembre</span>
-                    <button class="nav-btn">&#9654;</button>
+            <div class="right-side-wrapper">
+                <div class="calendar">
+                    <div class="calendar-wrapper">
+                        <div class="month">
+                            <button class="nav-btn">&#9664;</button>
+                            <span>Décembre</span>
+                            <button class="nav-btn">&#9654;</button>
+                        </div>
+                        <div class="days">
+                            <div>L</div>
+                            <div>M</div>
+                            <div>M</div>
+                            <div>J</div>
+                            <div>V</div>
+                            <div>S</div>
+                            <div>D</div>
+                        </div>
+                        <div class="dates">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div>1</div>
+                            <div>2</div>
+                            <div>3</div>
+                            <div>4</div>
+                            <div>5</div>
+                            <div>6</div>
+                            <div>7</div>
+                            <div>8</div>
+                            <div>9</div>
+                            <div>10</div>
+                            <div class="highlight">11</div>
+                            <div class="highlight">12</div>
+                            <div class="highlight">13</div>
+                            <div class="highlight">14</div>
+                            <div class="highlight">15</div>
+                            <div class="highlight">16</div>
+                            <div class="highlight">17</div>
+                            <div class="highlight">18</div>
+                            <div>19</div>
+                            <div>20</div>
+                            <div>21</div>
+                            <div>22</div>
+                            <div>23</div>
+                            <div>24</div>
+                            <div>25</div>
+                            <div>26</div>
+                            <div>27</div>
+                            <div>28</div>
+                            <div>29</div>
+                            <div>30</div>
+                            <div>1</div>
+                        </div>
+                    </div>
                 </div>
-                <div class="days">
-                    <div>L</div>
-                    <div>M</div>
-                    <div>M</div>
-                    <div>J</div>
-                    <div>V</div>
-                    <div>S</div>
-                    <div>D</div>
-                </div>
-                <div class="dates">
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div>1</div>
-                    <div>2</div>
-                    <div>3</div>
-                    <div>4</div>
-                    <div>5</div>
-                    <div>6</div>
-                    <div>7</div>
-                    <div>8</div>
-                    <div>9</div>
-                    <div>10</div>
-                    <div class="highlight">11</div>
-                    <div class="highlight">12</div>
-                    <div class="highlight">13</div>
-                    <div class="highlight">14</div>
-                    <div class="highlight">15</div>
-                    <div class="highlight">16</div>
-                    <div class="highlight">17</div>
-                    <div class="highlight">18</div>
-                    <div>19</div>
-                    <div>20</div>
-                    <div>21</div>
-                    <div>22</div>
-                    <div>23</div>
-                    <div>24</div>
-                    <div>25</div>
-                    <div>26</div>
-                    <div>27</div>
-                    <div>28</div>
-                    <div>29</div>
-                    <div>30</div>
-                    <div>1</div>
+                <div class="collaborateurs-container">
+                    <div class="upper-collaborateurs">
+                        <h2 id="collab-title">Vos collaborateurs</h2>
+                    </div>
+                    <div class="content-collaborateurs">
+                        <div class="img-collaborateurs">
+                            <img src="./image/uploads/Profile.svg" alt="">
+                        </div>
+                        <div class="info-collaborateurs">
+                            <p class="nom-collaborateurs">Anastasia</p>
+                            <span class="details-collaborateurs">SAE 3.02A, SAE 3.03, Audiovisuel</span>
+                        </div>
+                    </div>
+                    <div class="content-collaborateurs">
+                        <div class="img-collaborateurs">
+                            <img src="./image/uploads/Profile.svg" alt="">
+                        </div>
+                        <div class="info-collaborateurs">
+                            <p class="nom-collaborateurs">Anastasia</p>
+                            <span class="details-collaborateurs">SAE 3.02A, SAE 3.03, Audiovisuel</span>
+                        </div>
+                    </div>
+                    <div class="add-todo-container"><img src="./image/uploads/add-todo.svg" alt=""></div>
                 </div>
             </div>
         </div>
