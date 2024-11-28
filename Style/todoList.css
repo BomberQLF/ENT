@@ -34,7 +34,7 @@
   padding: 2rem 4rem;
   border: 1px solid #000000;
   margin: 20px 0 0 4rem;
-  width: 660px;
+  width: 751px;
   height: 690px;
 }
 .todolist-header {
@@ -52,7 +52,7 @@
   width: 320px;
   background-color: white;
   border-radius: 8px;
-  margin: 20px 9rem 0 0;
+  margin: 20px 13rem 0 0;
   padding: 32px;
   border: 1px solid black;
   height: fit-content;
