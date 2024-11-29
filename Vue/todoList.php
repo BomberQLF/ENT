@@ -102,6 +102,13 @@
                     <button class="next-week btn-week">&#9654;</button>
                 </div>
                 <hr>
+                <div class="todolist-boxes">
+                    <div class="todolist-box">
+                        <div class="todolist-box-header">
+                            <h3>17/12</h3>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="right-side-wrapper">
                 <div class="calendar">
@@ -182,7 +189,8 @@
                             <span class="details-collaborateurs">SAE 3.02A, SAE 3.03, Audiovisuel</span>
                         </div>
                     </div>
-                    <div class="add-todo-container"><a href="#"><img src="./image/uploads/add-todo.svg" alt=""></a></div>
+                    <div class="add-todo-container"><a href="#"><img src="./image/uploads/add-todo.svg" alt=""></a>
+                    </div>
                 </div>
             </div>
         </div>

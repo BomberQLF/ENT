@@ -142,3 +142,13 @@
 .add-todo-container img {
   cursor: pointer;
 }
+/* Boites todolist */
+.todolist-boxes {
+  margin-top: 2rem;
+}
+.todolist-box{
+  border: 1px solid #000000;
+  border-radius: 8px;
+  width: fit-content;
+  padding: 1rem;
+}
