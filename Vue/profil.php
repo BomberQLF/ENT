@@ -81,6 +81,8 @@
     </nav>
     <!-- section profil -->
      <section class="profil-container">
+        <p>Lorem, ipsum dolor.</p>
+
         
      </section>
 
