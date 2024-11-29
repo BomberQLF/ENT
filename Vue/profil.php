@@ -80,6 +80,9 @@
         </div>
     </nav>
     <!-- section profil -->
+     <section class="profil-container">
+        
+     </section>
 
 
     <script src="../index.js"></script>
