@@ -79,6 +79,7 @@
             </ul>
         </div>
     </nav>
+    <!-- section profil -->
 
 
     <script src="../index.js"></script>
