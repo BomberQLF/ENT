@@ -48,4 +48,25 @@ document.querySelector(".previous-week").addEventListener("click", () => changeW
 // =============== POPUP ==================
 // Sélection des éléments DOM de la popup
 
+const overlayAddTask = document.getElementById("overlay-add-task");
+    const addTaskContainer = document.getElementById("add-task-container");
+    const closePopupButton = document.getElementById("close-popup");
+    
+    // Fonction pour afficher la popup
+    function showAddTaskPopup() {
+        overlayAddTask.style.display = "block";
+        addTaskContainer.style.display = "flex";
+    }
+
+    // Fonction pour cacher la popup
+    function hideAddTaskPopup() {
+        overlayAddTask.style.display = "none";
+        addTaskContainer.style.display = "none";
+    }
+
+    // Écouteur d'événement pour le bouton d'annulation
+    closePopupButton.addEventListener("click", hideAddTaskPopup);
+    
+    // Optionnel : Afficher la popup lorsque le bouton d'ajout de tâche est cliqué
+    document.getElementById("add-todo-container").addEventListener("click", showAddTaskPopup);
 })
