@@ -94,6 +94,7 @@
     <div class="page-container">
         <div class="page-content">
             <div class="todolist-container">
+                <img id="add-todo-container" src="./image/imageSite/add-todolist-container.svg" alt="">
                 <div class="todolist-header">
                     <button class="previous-week btn-week">&#9664;</button>
                     <h2>Semaine du <span id="starting-date">11</span>/<span id="starting-month">12</span>
@@ -105,8 +106,38 @@
                 <div class="todolist-boxes">
                     <div class="todolist-box">
                         <div class="todolist-box-header">
-                            <h3>17/12</h3>
+                            <h3 class="todolist-date">17/12</h3>
                             <!-- Reste -->
+                        </div>
+                        <div class="todolist-box-content">
+                            <div class="task-title">
+                                <h4 class="todolist-title">Javascript</h4>
+                                <p class="todolist-description">À rendre pour la semaine prochaine</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="todolist-box">
+                        <div class="todolist-box-header">
+                            <h3 class="todolist-date">17/12</h3>
+                            <!-- Reste -->
+                        </div>
+                        <div class="todolist-box-content">
+                            <div class="task-title">
+                                <h4 class="todolist-title">Javascript</h4>
+                                <p class="todolist-description">À rendre pour la semaine prochaine</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="todolist-box">
+                        <div class="todolist-box-header">
+                            <h3 class="todolist-date">17/12</h3>
+                            <!-- Reste -->
+                        </div>
+                        <div class="todolist-box-content">
+                            <div class="task-title">
+                                <h4 class="todolist-title">Javascript</h4>
+                                <p class="todolist-description">À rendre pour la semaine prochaine</p>
+                            </div>
                         </div>
                     </div>
                 </div>

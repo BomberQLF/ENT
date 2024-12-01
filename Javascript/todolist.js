@@ -44,4 +44,8 @@ function changeWeek(daysToAdd) {
 // Ajouter des écouteurs d'événements pour les boutons
 document.querySelector(".next-week").addEventListener("click", () => changeWeek(7));
 document.querySelector(".previous-week").addEventListener("click", () => changeWeek(-7));
+
+// =============== POPUP ==================
+// Sélection des éléments DOM de la popup
+
 })
