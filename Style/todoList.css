@@ -8,7 +8,7 @@
 }
 .page-content {
   display: flex;
-  justify-content: space-between;
+  gap: 7rem;
 }
 .suivi {
   text-decoration: none;
@@ -26,7 +26,7 @@
 }
 .right-side {
   padding: 0.4rem 3rem;
-  background-color: #8f6255;
+  background-color: #3E567E;
   border-top-left-radius: 12px;
   border-bottom-left-radius: 12px;
 }
@@ -192,11 +192,13 @@
   top: 50%;
   transform: translate(-50%, -50%);
   z-index: 10;
-  width: 300px;
+  width: 580px;
 }
 
 .form-group {
   margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .form-group label {

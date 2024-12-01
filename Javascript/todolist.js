@@ -56,6 +56,7 @@ const overlayAddTask = document.getElementById("overlay-add-task");
     function showAddTaskPopup() {
         overlayAddTask.style.display = "block";
         addTaskContainer.style.display = "flex";
+        addTaskContainer.style.gap = "2rem";
     }
 
     // Fonction pour cacher la popup

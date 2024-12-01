@@ -100,14 +100,19 @@
                 <div class="overlay" id="overlay-add-task" style="display: none;"></div>
                 <div class="add-task-container" id="add-task-container" style="display: none;">
                     <h2>Ajouter une tâche</h2>
-                    <form id="add-task-form">
+                    <form id="add-task-form" action="index.php?action=add-task" method="POST">
                         <div class="form-group">
-                            <label for="task-title">Titre de la tâche</label>
-                            <input type="text" id="task-title" required>
+                            <label for="date_tache">Date de la tâche</label>
+                            <input type="text" id="task-date" name="date_tache" placeholder="DD/MM" required>
                         </div>
                         <div class="form-group">
-                            <label for="task-description">Description</label>
-                            <textarea id="task-description" rows="4" required></textarea>
+                            <label for="titre">Titre de la tâche</label>
+                            <input type="text" id="task-title" name="titre" placeholder="PHP" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <textarea id="task-description" name="description" rows="4" required></textarea>
+                            <input type="hidden" value="<?= $_SESSION['id_utilisateur'] ?>">
                         </div>
                         <div class="button-container">
                             <button type="submit">Ajouter</button>
