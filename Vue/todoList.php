@@ -95,6 +95,26 @@
         <div class="page-content">
             <div class="todolist-container">
                 <img id="add-todo-container" src="./image/imageSite/add-todolist-container.svg" alt="">
+                <!-- Popup pour ajouter une tâche -->
+                <!-- Popup pour ajouter une tâche -->
+                <div class="overlay" id="overlay-add-task" style="display: none;"></div>
+                <div class="add-task-container" id="add-task-container" style="display: none;">
+                    <h2>Ajouter une tâche</h2>
+                    <form id="add-task-form">
+                        <div class="form-group">
+                            <label for="task-title">Titre de la tâche</label>
+                            <input type="text" id="task-title" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="task-description">Description</label>
+                            <textarea id="task-description" rows="4" required></textarea>
+                        </div>
+                        <div class="button-container">
+                            <button type="submit">Ajouter</button>
+                            <button type="button" id="close-popup">Annuler</button>
+                        </div>
+                    </form>
+                </div>
                 <div class="todolist-header">
                     <button class="previous-week btn-week">&#9664;</button>
                     <h2>Semaine du <span id="starting-date">11</span>/<span id="starting-month">12</span>
