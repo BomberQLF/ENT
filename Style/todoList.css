@@ -76,7 +76,7 @@
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   text-align: center;
-  font-size: .9rem;
+  font-size: 0.9rem;
 }
 .days div {
   font-weight: bold;
@@ -103,11 +103,11 @@
 /* Collaborateurs */
 .collaborateurs-container {
   margin-top: 3rem;
-  padding: 32px 42px;
+  padding: 32px 16px;
   border: 1px solid black;
   border-radius: 8px;
   width: fit-content;
-  background-color: #777E90;
+  background-color: #777e90;
 }
 .content-collaborateurs {
   display: flex;
@@ -145,10 +145,30 @@
 /* Boites todolist */
 .todolist-boxes {
   margin-top: 2rem;
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
 }
-.todolist-box{
+.todolist-box {
   border: 1px solid #000000;
   border-radius: 8px;
   width: fit-content;
   padding: 1rem;
+}
+.todolist-date {
+  text-align: center;
+}
+.todolist-title {
+  /*  */
+}
+.todolist-description {
+  font-weight: 100;
+}
+#add-todo-container {
+  position: absolute;
+  bottom: 7%;
+  right: 48%;
+}
+#add-todo-container:hover {
+  cursor: pointer;
 }
