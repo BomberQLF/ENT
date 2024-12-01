@@ -36,3 +36,8 @@ function isLoggedIn()
 {
     return isset($_SESSION['login']);
 }
+
+function addTask()
+{
+    $pdo = connect_db();
+}
