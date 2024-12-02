@@ -1,11 +1,11 @@
 <?php
-function connect_db()
+function connect_db(): PDO
 {
     $db = new PDO('mysql:host=localhost;dbname=ent;port=8888', 'root', 'root');
     return $db;
 }
 
-function handleLogin($tab)
+function handleLogin($tab): bool
 {
     $pdo = connect_db();
     $query = $pdo->prepare("SELECT * FROM utilisateurs WHERE login = :login");
@@ -32,12 +32,20 @@ function handleLogin($tab)
     }
 }
 
-function isLoggedIn() 
+function isLoggedIn(): bool 
 {
     return isset($_SESSION['login']);
 }
 
-function addTask()
+function addTask($date_tache, $titre, $description, $id_utilisateur): bool
 {
     $pdo = connect_db();
+    $query = $pdo->prepare("INSERT INTO taches (id_tache, date_tache, titre, description, id_utilisateur) VALUES (NULL, :date_tache, :titre, :description, :id_utilisateur)");
+    $query -> bindParam(":date_tache", $date_tache, PDO::PARAM_STR);
+    $query -> bindParam(":titre", $titre, PDO::PARAM_STR);
+    $query -> bindParam(":description", $description, pdo::PARAM_STR);
+    $query -> bindParam(":id_utilisateur", $id_utilisateur, PDO::PARAM_STR);
+    $ajoutReussi = $query->execute();
+
+    return $ajoutReussi;
 }

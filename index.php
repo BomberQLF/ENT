@@ -37,6 +37,19 @@ switch ($action) {
         isLoggedIn() ? include('./Vue/todoList.php') : include('./Vue/login.php');
         break;
 
+    case 'add-task' :
+        if (isLoggedIn()) {
+            if ($_SERVER['REQUEST_METHOD'] === "POST") {
+                $taskAdded = addTask($_POST['date_tache'], $_POST['titre'], $_POST['description'], $_POST['id_utilisateur']);
+                if ($taskAdded) {
+                    include('./Vue/todoList.php');
+                } else {
+                    include('./Vue/login.php');
+                }
+            }
+        }
+        break;
+
     default :
         include('./Vue/login.php');
         break;

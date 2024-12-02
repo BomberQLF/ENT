@@ -82,6 +82,7 @@
             </ul>
         </div>
     </nav>
+    <?php echo $_SESSION['id_utilisateur'];?>
 
     <!-- File d'arianne -->
     <div class="upper-page-container">
@@ -112,7 +113,7 @@
                         <div class="form-group">
                             <label for="description">Description</label>
                             <textarea id="task-description" name="description" rows="4" required></textarea>
-                            <input type="hidden" value="<?= $_SESSION['id_utilisateur'] ?>">
+                            <input type="hidden" name="id_utilisateur" value="<?= $_SESSION['id_utilisateur']; ?>">
                         </div>
                         <div class="button-container">
                             <button type="submit">Ajouter</button>
