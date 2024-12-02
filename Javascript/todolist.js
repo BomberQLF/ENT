@@ -70,4 +70,31 @@ const overlayAddTask = document.getElementById("overlay-add-task");
     
     // Optionnel : Afficher la popup lorsque le bouton d'ajout de tâche est cliqué
     document.getElementById("add-todo-container").addEventListener("click", showAddTaskPopup);
+
+    // Sélection des éléments nécessaires
+const modifyTaskButton = document.querySelector('.fa-pen-nib'); // Assurez-vous que ce sélecteur correspond à votre bouton
+const modifyTaskContainer = document.getElementById('modify-task-container');
+const overlayModifyTask = document.getElementById('overlay-add-task');
+const closePopupButtonModify = document.getElementById('close-popup');
+
+// Fonction pour afficher le popup
+function showModifyTaskPopup() {
+    modifyTaskContainer.style.display = 'block';
+    overlayModifyTask.style.display = 'block';
+}
+
+// Fonction pour masquer le popup
+function hideModifyTaskPopup() {
+    modifyTaskContainer.style.display = 'none';
+    overlayModifyTask.style.display = 'none';
+}
+
+// Événement pour afficher le popup lorsque le bouton est cliqué
+modifyTaskButton.addEventListener('click', showModifyTaskPopup);
+
+// Événement pour masquer le popup lorsque le bouton "Annuler" est cliqué
+closePopupButtonModify.addEventListener('click', hideModifyTaskPopup);
+
+// Événement pour masquer le popup lorsque l'overlay est cliqué
+overlayModifyTask.addEventListener('click', hideModifyTaskPopup);
 })
