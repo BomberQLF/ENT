@@ -75,7 +75,7 @@ const overlayAddTask = document.getElementById("overlay-add-task");
 const modifyTaskButton = document.querySelector('.fa-pen-nib'); // Assurez-vous que ce sélecteur correspond à votre bouton
 const modifyTaskContainer = document.getElementById('modify-task-container');
 const overlayModifyTask = document.getElementById('overlay-add-task');
-const closePopupButtonModify = document.getElementById('close-popup');
+const closePopupButtonMod = document.getElementById('close-popup-mod');
 
 // Fonction pour afficher le popup
 function showModifyTaskPopup() {
@@ -93,7 +93,7 @@ function hideModifyTaskPopup() {
 modifyTaskButton.addEventListener('click', showModifyTaskPopup);
 
 // Événement pour masquer le popup lorsque le bouton "Annuler" est cliqué
-closePopupButtonModify.addEventListener('click', hideModifyTaskPopup);
+closePopupButtonMod.addEventListener('click', hideModifyTaskPopup);
 
 // Événement pour masquer le popup lorsque l'overlay est cliqué
 overlayModifyTask.addEventListener('click', hideModifyTaskPopup);
