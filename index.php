@@ -50,6 +50,24 @@ switch ($action) {
         }
         break;
 
+    case 'modify-task' :
+        if (isLoggedIn()) {
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $taskModified = updateTask($_POST['date_tache'], $_POST['titre'], $_POST['description'], $_POST['id_tache']);
+                if ($taskModified) {
+                    $successMessage = "Votre tâche a été modifié avec succès !";
+                    include('./Vue/todoList.php');
+                } else {
+                    include('./Vue/login.php');
+                }
+            } else {
+                include('./Vue/login.php');
+            }
+        } else {
+            include('./Vue/login.php');
+        }
+        break;
+
     default :
         include('./Vue/login.php');
         break;

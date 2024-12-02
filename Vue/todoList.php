@@ -130,6 +130,9 @@
                 <hr>
                 <div class="todolist-boxes">
                     <!-- SCRIPT ICI POUR BOUCLER LES TACHES DANS LA BDD -->
+                    <?php if(isset($successMessage)) {
+                                    echo '<p class="success-message">' . $successMessage . '</p>';
+                                } ?>
                     <?php $tasks = showTasks(); ?>
                     <?php foreach ($tasks as $task): ?>
                         <div class="todolist-box">
@@ -142,7 +145,8 @@
                                     <h4 class="todolist-title"><?= $task['titre'] ?></h4>
                                     <p class="todolist-description"><?= $task['description'] ?></p>
                                 </div>
-                                <i class="fa-solid fa-pen-nib" onclick="showModifyTaskPopup(<?= $task['id_tache']; ?>)"></i>                            </div>
+                                <i class="fa-solid fa-pen-nib" onclick="showModifyTaskPopup(<?= $task['id_tache']; ?>)"></i>
+                            </div>
                         </div>
                         <!-- Modifier une tâche -->
                         <!-- Modifier une tâche -->
@@ -162,6 +166,7 @@
                                     <label for="description">Description</label>
                                     <textarea id="task-description" name="description" rows="4"><?= $task["description"]; ?></textarea>
                                     <input type="hidden" name="id_utilisateur" value="<?= $_SESSION['id_utilisateur']; ?>">
+                                    <input type="hidden" name="id_tache" value="<?= $task['id_tache'] ?>">
                                 </div>
                                 <div class="button-container">
                                     <button type="submit">Ajouter</button>
