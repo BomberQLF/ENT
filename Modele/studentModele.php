@@ -32,7 +32,7 @@ function handleLogin($tab): bool
     }
 }
 
-function isLoggedIn(): bool 
+function isLoggedIn(): bool
 {
     return isset($_SESSION['login']);
 }
@@ -41,11 +41,21 @@ function addTask($date_tache, $titre, $description, $id_utilisateur): bool
 {
     $pdo = connect_db();
     $query = $pdo->prepare("INSERT INTO taches (id_tache, date_tache, titre, description, id_utilisateur) VALUES (NULL, :date_tache, :titre, :description, :id_utilisateur)");
-    $query -> bindParam(":date_tache", $date_tache, PDO::PARAM_STR);
-    $query -> bindParam(":titre", $titre, PDO::PARAM_STR);
-    $query -> bindParam(":description", $description, pdo::PARAM_STR);
-    $query -> bindParam(":id_utilisateur", $id_utilisateur, PDO::PARAM_STR);
+    $query->bindParam(":date_tache", $date_tache, PDO::PARAM_STR);
+    $query->bindParam(":titre", $titre, PDO::PARAM_STR);
+    $query->bindParam(":description", $description, pdo::PARAM_STR);
+    $query->bindParam(":id_utilisateur", $id_utilisateur, PDO::PARAM_STR);
     $ajoutReussi = $query->execute();
 
     return $ajoutReussi;
+}
+
+function showTasks()
+{
+    $pdo = connect_db();
+    $query = $pdo->prepare("SELECT * FROM taches");
+    $query->execute();
+    $tasks = $query->fetchAll(PDO::FETCH_ASSOC);
+
+    return $tasks;
 }

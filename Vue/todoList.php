@@ -82,7 +82,6 @@
             </ul>
         </div>
     </nav>
-    <?php echo $_SESSION['id_utilisateur'];?>
 
     <!-- File d'arianne -->
     <div class="upper-page-container">
@@ -130,42 +129,22 @@
                 </div>
                 <hr>
                 <div class="todolist-boxes">
-                    <div class="todolist-box">
-                        <div class="todolist-box-header">
-                            <h3 class="todolist-date">17/12</h3>
-                            <!-- Reste -->
-                        </div>
-                        <div class="todolist-box-content">
-                            <div class="task-title">
-                                <h4 class="todolist-title">Javascript</h4>
-                                <p class="todolist-description">À rendre pour la semaine prochaine</p>
+                    <!-- SCRIPT ICI POUR BOUCLER LES TACHES DANS LA BDD -->
+                    <?php $tasks = showTasks(); ?>
+                    <?php foreach($tasks as $task): ?>
+                        <div class="todolist-box">
+                            <div class="todolist-box-header">
+                                <h3 class="todolist-date"><?= $task['date_tache'] ?></h3>
+                                <!-- Reste -->
+                            </div>
+                            <div class="todolist-box-content">
+                                <div class="task-title">
+                                    <h4 class="todolist-title"><?= $task['titre'] ?></h4>
+                                    <p class="todolist-description"><?= $task['description'] ?></p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="todolist-box">
-                        <div class="todolist-box-header">
-                            <h3 class="todolist-date">17/12</h3>
-                            <!-- Reste -->
-                        </div>
-                        <div class="todolist-box-content">
-                            <div class="task-title">
-                                <h4 class="todolist-title">Javascript</h4>
-                                <p class="todolist-description">À rendre pour la semaine prochaine</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="todolist-box">
-                        <div class="todolist-box-header">
-                            <h3 class="todolist-date">17/12</h3>
-                            <!-- Reste -->
-                        </div>
-                        <div class="todolist-box-content">
-                            <div class="task-title">
-                                <h4 class="todolist-title">Javascript</h4>
-                                <p class="todolist-description">À rendre pour la semaine prochaine</p>
-                            </div>
-                        </div>
-                    </div>
+                    <?php endforeach; ?>
                 </div>
             </div>
             <div class="right-side-wrapper">
