@@ -251,3 +251,7 @@
   z-index: 1200;
   width: 580px;
 }
+.success-message {
+  position: absolute;
+  bottom: 60px;
+}
