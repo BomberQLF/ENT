@@ -50,7 +50,7 @@ function addTask($date_tache, $titre, $description, $id_utilisateur): bool
     return $ajoutReussi;
 }
 
-function showTasks()
+function showTasks(): array
 {
     $pdo = connect_db();
     $query = $pdo->prepare("SELECT * FROM taches");
@@ -58,4 +58,17 @@ function showTasks()
     $tasks = $query->fetchAll(PDO::FETCH_ASSOC);
 
     return $tasks;
+}
+
+function updateTask(): bool
+{
+    $pdo = connect_db();
+    $query = $pdo->prepare("UPDATE taches SET date_tache = :date_tache ,titre = :titre, description = :description WHERE id_tache = :id_tache");
+    $query->bindParam(":date_tache", $date_tache, PDO::PARAM_STR);
+    $query->bindParam(":titre", $titre, PDO::PARAM_STR);
+    $query->bindParam(":description", $description, PDO::PARAM_STR);
+    $query->bindParam(":id_tache", $id_tache, PDO::PARAM_STR);
+    $updateReussi = $query->execute();
+
+    return $updateReussi;
 }

@@ -142,6 +142,7 @@
                                     <h4 class="todolist-title"><?= $task['titre'] ?></h4>
                                     <p class="todolist-description"><?= $task['description'] ?></p>
                                 </div>
+                                <i class="fa-solid fa-pen-nib"></i>
                             </div>
                         </div>
                     <?php endforeach; ?>
