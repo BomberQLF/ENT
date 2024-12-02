@@ -120,6 +120,31 @@
                         </div>
                     </form>
                 </div>
+                <!-- Modifier une tâche -->
+                <!-- Modifier une tâche -->
+                <div class="overlay" id="overlay-add-task" style="display: none;"></div>
+                <div class="modify-task-container" id="modify-task-container" style="display: none;">
+                    <h2>Ajouter une tâche</h2>
+                    <form id="add-task-form" action="index.php?action=add-task" method="POST">
+                        <div class="form-group">
+                            <label for="date_tache">Date de la tâche</label>
+                            <input type="text" id="task-date" name="date_tache" placeholder="DD/MM" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="titre">Titre de la tâche</label>
+                            <input type="text" id="task-title" name="titre" placeholder="PHP" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <textarea id="task-description" name="description" rows="4" required></textarea>
+                            <input type="hidden" name="id_utilisateur" value="<?= $_SESSION['id_utilisateur']; ?>">
+                        </div>
+                        <div class="button-container">
+                            <button type="submit">Ajouter</button>
+                            <button type="button" id="close-popup">Annuler</button>
+                        </div>
+                    </form>
+                </div>
                 <div class="todolist-header">
                     <button class="previous-week btn-week">&#9664;</button>
                     <h2>Semaine du <span id="starting-date">11</span>/<span id="starting-month">12</span>
