@@ -47,7 +47,7 @@
 
 
         <a href="#" class="navbar-profile">
-            <span>Bienvenue, <?= $_SESSION['prenom']; ?></span>
+            <span>Bienvenue, Anastasia</span>
             <div class="profile-circle"></div>
         </a>
 
@@ -60,27 +60,28 @@
                     <a href=""><i class="fa-solid fa-book"></i>Mon suivi</a>
                     <ul class="submenu">
                         <li><a href="#">Notes</a></li>
-                        <li><a href="#">To do list</a></li>
+                        <li><a href="index.php?action=todoListPage">To do list</a></li>
                         <li><a href="#">Absences et retards</a></li>
                     </ul>
                 </li>
                 <li class="has-submenu">
                     <a href=""><i class="fa-solid fa-calendar-days"></i>Planning et réservation</a>
                     <ul class="submenu">
-                        <li><a href="#">Emploi du temps</a></li>
+                        <li><a href="index.php?action=emploiDuTemps&week=0">Emploi du temps</a></li>
                         <li><a href="#">Réservation salles et matériels</a></li>
                     </ul>
                 </li>
                 <li class="has-submenu">
                     <a href=""><i class="fa-solid fa-graduation-cap"></i>Vie étudiante</a>
                     <ul class="submenu">
-                        <li><a href="#">Crous et mon IZLY</a></li>
+                        <li><a href="index.php?acion=menuCrous">Crous et mon IZLY</a></li>
                         <li><a href="#">Événements</a></li>
                     </ul>
                 </li>
                 <li><a href="#"><i class="fa-solid fa-comment"></i>Messagerie</a></li>
             </ul>
         </div>
+
     </nav>
 
     <!-- File d'arianne -->
@@ -130,9 +131,9 @@
                 <hr>
                 <div class="todolist-boxes">
                     <!-- SCRIPT ICI POUR BOUCLER LES TACHES DANS LA BDD -->
-                    <?php if(isset($successMessage)) {
-                                    echo '<p class="success-message">' . $successMessage . '</p>';
-                                } ?>
+                    <?php if (isset($successMessage)) {
+                        echo '<p class="success-message">' . $successMessage . '</p>';
+                    } ?>
                     <?php $tasks = showTasks(); ?>
                     <?php foreach ($tasks as $task): ?>
                         <div class="todolist-box">
@@ -151,9 +152,11 @@
                         <!-- Modifier une tâche -->
                         <!-- Modifier une tâche -->
                         <div class="overlay" id="overlay-add-task" style="display: none;"></div>
-                        <div class="modify-task-container-<?php echo $task['id_tache'] ?>" id="modify-task-container" style="display: none;">
+                        <div class="modify-task-container-<?php echo $task['id_tache'] ?>" id="modify-task-container"
+                            style="display: none;">
                             <h2>Modifier une tâche</h2>
-                            <form id="modify-task-form-<?= $task['id_tache'] ?>" action="index.php?action=modify-task" method="POST">
+                            <form id="modify-task-form-<?= $task['id_tache'] ?>" action="index.php?action=modify-task"
+                                method="POST">
                                 <div class="form-group">
                                     <label for="date_tache">Date de la tâche</label>
                                     <input type="text" id="task-date" name="date_tache" value="<?= $task["date_tache"]; ?>">
@@ -164,7 +167,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="description">Description</label>
-                                    <textarea id="task-description" name="description" rows="4"><?= $task["description"]; ?></textarea>
+                                    <textarea id="task-description" name="description"
+                                        rows="4"><?= $task["description"]; ?></textarea>
                                     <input type="hidden" name="id_utilisateur" value="<?= $_SESSION['id_utilisateur']; ?>">
                                     <input type="hidden" name="id_tache" value="<?= $task['id_tache'] ?>">
                                 </div>

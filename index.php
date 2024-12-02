@@ -30,6 +30,14 @@ switch ($action) {
         break;
 
     case 'accueil':
+        isLoggedIn() ? include('./Vue/accueil.php') : include('./Vue/login.php');
+        break;
+
+    case 'todoListPage':
+        isLoggedIn() ? include('./Vue/todoList.php') : include('./Vue/login.php');
+        break;
+
+    case 'emploiDuTemps':
         if (isLoggedIn()) {
             require_once('./Modele/emploiDuTempsModele.php');
             // Obtenir la semaine actuelle
@@ -37,14 +45,10 @@ switch ($action) {
 
             // Récupérer les événements de l'emploi du temps
             $events = getEmploiDuTemps($currentWeek);
-            include('./Vue/accueil.php');
+            include('./Vue/emploiDuTemps.php');
         } else {
             include('./Vue/login.php');
         }
-        break;
-
-    case 'todoListPage':
-        isLoggedIn() ? include('./Vue/todoList.php') : include('./Vue/login.php');
         break;
 
     case 'add-task':
