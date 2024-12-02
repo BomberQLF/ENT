@@ -1,7 +1,7 @@
 <?php
 function connect_db(): PDO
 {
-    $db = new PDO('mysql:host=localhost;dbname=ent;port=8888', 'root', 'root');
+    $db = new PDO('mysql:host=localhost;dbname=ent;port=3306', 'root', '');
     return $db;
 }
 
