@@ -10,7 +10,7 @@ $action = isset($_GET['action']) ? $_GET['action'] : '';
 
 // Switch Case pour procéder avec un modèle MVC
 switch ($action) {
-    case 'login' :
+    case 'login':
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $loginSuccessful = handleLogin($_POST);
             if ($loginSuccessful) {
@@ -25,19 +25,29 @@ switch ($action) {
         }
         break;
 
-    case 'menuCrous' :
+    case 'menuCrous':
         isLoggedIn() ? include('./Vue/menuCrous.php') : include('./Vue/login.php');
         break;
 
-    case 'accueil' :
-    isLoggedIn() ? include('./Vue/accueil.php') : include('./Vue/login.php');
-    break;
+    case 'accueil':
+        if (isLoggedIn()) {
+            require_once('./Modele/emploiDuTempsModele.php');
+            // Obtenir la semaine actuelle
+            $currentWeek = isset($_GET['week']) ? (int) $_GET['week'] : 0;
 
-    case 'todoListPage' : 
+            // Récupérer les événements de l'emploi du temps
+            $events = getEmploiDuTemps($currentWeek);
+            include('./Vue/accueil.php');
+        } else {
+            include('./Vue/login.php');
+        }
+        break;
+
+    case 'todoListPage':
         isLoggedIn() ? include('./Vue/todoList.php') : include('./Vue/login.php');
         break;
 
-    case 'add-task' :
+    case 'add-task':
         if (isLoggedIn()) {
             if ($_SERVER['REQUEST_METHOD'] === "POST") {
                 $taskAdded = addTask($_POST['date_tache'], $_POST['titre'], $_POST['description'], $_POST['id_utilisateur']);
@@ -50,7 +60,7 @@ switch ($action) {
         }
         break;
 
-    case 'modify-task' :
+    case 'modify-task':
         if (isLoggedIn()) {
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $taskModified = updateTask($_POST['date_tache'], $_POST['titre'], $_POST['description'], $_POST['id_tache']);
@@ -68,7 +78,7 @@ switch ($action) {
         }
         break;
 
-    default :
+    default:
         include('./Vue/login.php');
         break;
 }
