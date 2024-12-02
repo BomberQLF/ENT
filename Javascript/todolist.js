@@ -48,53 +48,44 @@ document.querySelector(".previous-week").addEventListener("click", () => changeW
 // =============== POPUP ==================
 // Sélection des éléments DOM de la popup
 
-const overlayAddTask = document.getElementById("overlay-add-task");
-    const addTaskContainer = document.getElementById("add-task-container");
-    const closePopupButton = document.getElementById("close-popup");
-    
-    // Fonction pour afficher la popup
-    function showAddTaskPopup() {
-        overlayAddTask.style.display = "block";
-        addTaskContainer.style.display = "flex";
-        addTaskContainer.style.gap = "2rem";
-    }
-
-    // Fonction pour cacher la popup
-    function hideAddTaskPopup() {
-        overlayAddTask.style.display = "none";
-        addTaskContainer.style.display = "none";
-    }
-
-    // Écouteur d'événement pour le bouton d'annulation
-    closePopupButton.addEventListener("click", hideAddTaskPopup);
-    
-    // Optionnel : Afficher la popup lorsque le bouton d'ajout de tâche est cliqué
-    document.getElementById("add-todo-container").addEventListener("click", showAddTaskPopup);
-
-    // Sélection des éléments nécessaires
-const modifyTaskButton = document.querySelector('.fa-pen-nib'); // Assurez-vous que ce sélecteur correspond à votre bouton
-const modifyTaskContainer = document.getElementById('modify-task-container');
+// Sélection des éléments nécessaires
 const overlayModifyTask = document.getElementById('overlay-add-task');
-const closePopupButtonMod = document.getElementById('close-popup-mod');
 
 // Fonction pour afficher le popup
-function showModifyTaskPopup() {
+function showModifyTaskPopup(taskId) {
+    const modifyTaskContainer = document.querySelector(`.modify-task-container-${taskId}`);
     modifyTaskContainer.style.display = 'block';
     overlayModifyTask.style.display = 'block';
 }
 
 // Fonction pour masquer le popup
-function hideModifyTaskPopup() {
+function hideModifyTaskPopup(taskId) {
+    const modifyTaskContainer = document.querySelector(`.modify-task-container-${taskId}`);
     modifyTaskContainer.style.display = 'none';
     overlayModifyTask.style.display = 'none';
 }
 
-// Événement pour afficher le popup lorsque le bouton est cliqué
-modifyTaskButton.addEventListener('click', showModifyTaskPopup);
+// Ajouter des écouteurs d'événement pour chaque icône de modification
+document.querySelectorAll('.fa-pen-nib').forEach((button, index) => {
+    button.addEventListener('click', () => {
+        const taskId = button.getAttribute('onclick').match(/\d+/)[0]; // Extraire l'id
+        showModifyTaskPopup(taskId);
+    });
+});
 
 // Événement pour masquer le popup lorsque le bouton "Annuler" est cliqué
-closePopupButtonMod.addEventListener('click', hideModifyTaskPopup);
+document.querySelectorAll('#close-popup-mod').forEach((button, index) => {
+    button.addEventListener('click', (event) => {
+        const taskId = event.target.closest('form').id.match(/\d+/)[0]; // Récupérer l'ID
+        hideModifyTaskPopup(taskId);
+    });
+});
 
 // Événement pour masquer le popup lorsque l'overlay est cliqué
-overlayModifyTask.addEventListener('click', hideModifyTaskPopup);
-})
+overlayModifyTask.addEventListener('click', () => {
+    document.querySelectorAll('[id^="modify-task-container-"]').forEach(container => {
+        container.style.display = 'none';
+    });
+    overlayModifyTask.style.display = 'none';
+});
+});

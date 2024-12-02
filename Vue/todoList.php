@@ -142,13 +142,12 @@
                                     <h4 class="todolist-title"><?= $task['titre'] ?></h4>
                                     <p class="todolist-description"><?= $task['description'] ?></p>
                                 </div>
-                                <i class="fa-solid fa-pen-nib" onclick="showUpdateForm(<?php $task['id_tache']; ?>)"></i>
-                            </div>
+                                <i class="fa-solid fa-pen-nib" onclick="showModifyTaskPopup(<?= $task['id_tache']; ?>)"></i>                            </div>
                         </div>
                         <!-- Modifier une tâche -->
                         <!-- Modifier une tâche -->
                         <div class="overlay" id="overlay-add-task" style="display: none;"></div>
-                        <div class="modify-task-container" id="modify-task-container" style="display: none;">
+                        <div class="modify-task-container-<?php echo $task['id_tache'] ?>" id="modify-task-container" style="display: none;">
                             <h2>Modifier une tâche</h2>
                             <form id="modify-task-form-<?= $task['id_tache'] ?>" action="index.php?action=modify-task" method="POST">
                                 <div class="form-group">

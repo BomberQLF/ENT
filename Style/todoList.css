@@ -176,9 +176,9 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5); /* Couleur de fond semi-transparente */
-  display: none; /* Masqué par défaut */
-  z-index: 999; /* Assurez-vous qu'il est au-dessus des autres éléments */
+  background: rgba(0, 0, 0, 0.5);
+  display: none; 
+  z-index: 1200;
 }
 
 .add-task-container {
@@ -237,7 +237,7 @@
 .fa-pen-nib:hover {
   cursor: pointer;
 }
-.modify-task-container {
+#modify-task-container {
   display: flex;
   flex-direction: column;
   background: #ffffff;
@@ -248,6 +248,6 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  z-index: 1000;
+  z-index: 1200;
   width: 580px;
 }
