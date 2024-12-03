@@ -32,7 +32,7 @@
             </li>
             <li><a href="#" class="navbar-item"><i class="fa-solid fa-calendar-days"></i>Planning et réservation</a>
                 <ul class="submenu">
-                    <li><a href="#">Emploi du temps</a></li>
+                    <li><a href="index.php?action=emploiDuTemps&week=0">Emploi du temps</a></li>
                     <li><a href="#">Réservation salles et matériels</a></li>
                 </ul>
             </li>
