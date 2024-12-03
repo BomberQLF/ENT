@@ -10,7 +10,7 @@ $action = isset($_GET['action']) ? $_GET['action'] : '';
 
 // Switch Case pour procéder avec un modèle MVC
 switch ($action) {
-    case 'login' :
+    case 'login':
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $loginSuccessful = handleLogin($_POST);
             if ($loginSuccessful) {
@@ -25,19 +25,33 @@ switch ($action) {
         }
         break;
 
-    case 'menuCrous' :
+    case 'menuCrous':
         isLoggedIn() ? include('./Vue/menuCrous.php') : include('./Vue/login.php');
         break;
 
-    case 'accueil' :
-    isLoggedIn() ? include('./Vue/accueil.php') : include('./Vue/login.php');
-    break;
+    case 'accueil':
+        isLoggedIn() ? include('./Vue/accueil.php') : include('./Vue/login.php');
+        break;
 
-    case 'todoListPage' : 
+    case 'todoListPage':
         isLoggedIn() ? include('./Vue/todoList.php') : include('./Vue/login.php');
         break;
 
-    case 'add-task' :
+    case 'emploiDuTemps':
+        if (isLoggedIn()) {
+            require_once('./Modele/emploiDuTempsModele.php');
+            // Obtenir la semaine actuelle
+            $currentWeek = isset($_GET['week']) ? (int) $_GET['week'] : 0;
+
+            // Récupérer les événements de l'emploi du temps
+            $events = getEmploiDuTemps($currentWeek);
+            include('./Vue/emploiDuTemps.php');
+        } else {
+            include('./Vue/login.php');
+        }
+        break;
+
+    case 'add-task':
         if (isLoggedIn()) {
             if ($_SERVER['REQUEST_METHOD'] === "POST") {
                 $taskAdded = addTask($_POST['date_tache'], $_POST['titre'], $_POST['description'], $_POST['id_utilisateur']);
@@ -50,7 +64,25 @@ switch ($action) {
         }
         break;
 
-    default :
+    case 'modify-task':
+        if (isLoggedIn()) {
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $taskModified = updateTask($_POST['date_tache'], $_POST['titre'], $_POST['description'], $_POST['id_tache']);
+                if ($taskModified) {
+                    $successMessage = "Votre tâche a été modifié avec succès !";
+                    include('./Vue/todoList.php');
+                } else {
+                    include('./Vue/login.php');
+                }
+            } else {
+                include('./Vue/login.php');
+            }
+        } else {
+            include('./Vue/login.php');
+        }
+        break;
+
+    default:
         include('./Vue/login.php');
         break;
 }

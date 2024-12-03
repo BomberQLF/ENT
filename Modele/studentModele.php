@@ -60,7 +60,7 @@ function showTasks(): array
     return $tasks;
 }
 
-function updateTask(): bool
+function updateTask($date_tache, $titre, $description, $id_tache): bool
 {
     $pdo = connect_db();
     $query = $pdo->prepare("UPDATE taches SET date_tache = :date_tache ,titre = :titre, description = :description WHERE id_tache = :id_tache");
