@@ -10,25 +10,32 @@ html {
   scroll-behavior: smooth;
 }
 
+:root {
+  --main-color: #3E567E;
+  --second-color: #FFFFFF;
+  --hover-color: #556F9B;
+}
+
 /* =============================================================== */
 /* Barre de navigation  */
 nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #d3d3d3;
+  background-color: var(--main-color);
   padding: 10px 20px;
   height: 70px;
   border-bottom-left-radius: 16px;
   border-bottom-right-radius: 16px;
   border-bottom-style: outset;
   font-family: Arial, sans-serif;
+
 }
 
 .navbar-home {
   display: flex;
   align-items: center;
-  color: #6e6e6e;
+  color: var(--second-color);
   font-size: 1rem;
   text-decoration: none;
 }
@@ -43,13 +50,13 @@ nav {
 }
 
 .navbar-item {
-  color: #6e6e6e;
+  color: var(--second-color);
   text-decoration: none;
   transition: all 0.5s ease;
 }
 
 .navbar-item:hover {
-  color: black;
+  font-weight: bold;
 }
 
 i {
@@ -65,7 +72,7 @@ i {
   left: 10px;
   width: 0;
   height: 2px;
-  background-color: #000000;
+  background-color: var(--second-color);
   transition: width 0.5s ease;
 }
 
@@ -76,21 +83,23 @@ i {
 .navbar-profile {
   display: flex;
   align-items: center;
-  color: #6e6e6e;
+  color: var(--second-color);
   font-size: 1rem;
   text-decoration: none;
   transition: all 0.5s ease;
+  margin-right: 20px;
 }
 
 .navbar-profile:hover {
-  color: black;
+  font-weight: bold;
 }
 
 .profile-circle {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background-color: #888;
+  background-color: var(--main-color);
+  border: 2px solid var(--second-color);
   margin-left: 10px;
 }
 
@@ -115,7 +124,7 @@ i {
   left: -12px;
   border-bottom-left-radius: 16px;
   border-bottom-right-radius: 16px;
-  background-color: #d3d3d3;
+  background-color: var(--main-color);
   min-width: 165px;
   text-align: center;
   padding: 15px;
@@ -127,12 +136,88 @@ i {
 
 .submenu a {
   padding: 10px 20px;
-  color: #6e6e6e;
+  color: var(--second-color);
 }
 
 .submenu li:hover>a {
   font-weight: bold;
-  color: black;
+}
+
+.fa-right-from-bracket {
+  font-size: 1.5rem;
+  color: var(--second-color);
+  transition: all 0.5s ease;
+}
+.fa-right-from-bracket:hover {
+  transform: translateX(5px);
+}
+.profilandexit {
+  display: flex;
+  align-items: center;
+}
+
+/* ============================POP PUP NAVBAR DECO============================================= */
+#openPopup {
+  border: none;
+  background: transparent;
+}
+
+.popup {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.popup-content {
+  background-color: var(--second-color);
+  margin: 15% auto;
+  padding: 20px;
+  max-width: 500px;
+  border-radius: 16px;
+}
+
+.closepopup {
+  color: #000000;
+  float: right;
+  font-size: 2rem;
+  font-weight: bold;
+  background: transparent;
+  border: none;
+  transition: all 0.5s ease;
+}
+.closepopup:hover {
+  color: rgb(191, 0, 0);
+  transform: scale(1.1);
+}
+
+.popup-content p {
+  font-size: 1.2rem;
+  margin-top: 10px;
+  margin-bottom: 10%;
+  text-align: start;
+}
+
+.popupButtondeco {
+  display: flex;
+  background-color: var(--main-color);
+  border-radius: 16px;
+  color: var(--second-color);
+  padding: 10px;
+  text-decoration: none;
+  margin: 20px;
+  height: 48px;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.5s ease;
+}
+.popupButtondeco:hover {
+  background-color: var(--hover-color);
+  transform: scale(1.05);
 }
 
 /* ======================BURGER MENU =========================================================================== */
@@ -144,7 +229,10 @@ i {
   background: transparent;
   border: none;
 }
-#cvcError, #expirationDateError, #cardNumberError {
+
+#cvcError,
+#expirationDateError,
+#cardNumberError {
   color: red;
   margin-top: 12px;
 }
@@ -152,7 +240,7 @@ i {
 .hamburger span {
   width: 30px;
   height: 3px;
-  background-color: #6e6e6e;
+  background-color: var(--second-color);
   transition: all 0.5s ease;
 }
 
@@ -181,8 +269,7 @@ i {
   width: 250px;
   top: 58px;
   height: 100%;
-  background-color: #d3d3d3;
-  color: white;
+  background-color: var(--main-color);
   transition: left 0.3s ease-in-out;
   padding-top: 60px;
 }
@@ -198,7 +285,7 @@ i {
 }
 
 .side-menu ul li a {
-  color: #6e6e6e;
+  color: var(--second-color);
   text-decoration: none;
   transition: all 0.5s ease;
   display: block;
@@ -206,7 +293,7 @@ i {
 }
 
 .side-menu ul li a:hover {
-  color: black;
+  font-weight: bold;
 }
 
 .side-menu .submenu {

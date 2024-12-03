@@ -32,6 +32,14 @@ document.addEventListener('DOMContentLoaded', () => {
       parent.classList.toggle('open');
     });
   });
+  // script de la pop pup =================================================================================
+  document.getElementById('openPopup').addEventListener('click', function () {
+    document.getElementById('popup').style.display = 'block';
+  });
+
+  document.querySelector('.closepopup').addEventListener('click', function () {
+    document.getElementById('popup').style.display = 'none';
+  });
 
   // =================================================================================
 

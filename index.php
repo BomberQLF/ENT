@@ -25,6 +25,13 @@ switch ($action) {
         }
         break;
 
+        case 'logout':
+            // on détruit la session et on redirige l'utilisateur vers la page d'accueil
+            $_SESSION = array();
+            session_destroy();
+            header('Location: index.php');
+            break;
+            
     case 'menuCrous':
         isLoggedIn() ? include('./Vue/menuCrous.php') : include('./Vue/login.php');
         break;

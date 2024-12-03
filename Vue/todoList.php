@@ -12,7 +12,7 @@
 
 <body>
     <nav>
-        <a href="./index.php?action=accueil" class="navbar-home"><i class="fa-solid fa-house"></i></a>
+        <a href="#" class="navbar-home"><i class="fa-solid fa-house"></i></a>
         <button class="hamburger" id="hamburger">
             <span></span>
             <span></span>
@@ -22,7 +22,7 @@
         <!-- Barre de navigation d'origine -->
 
         <ul id="navbarLinks">
-            <li><a href="#" class="navbar-item"><i class="fa-solid fa-book"></i>Mon suivi</a>
+            <li><a href="#" class="navbar-item"><i class="fa-solid fa-graduation-cap"></i>Mon suivi</a>
                 <ul class="submenu">
                     <li><a href="#">Notes</a></li>
                     <li><a href="./index.php?action=todoListPage">To do list</a></li>
@@ -31,11 +31,11 @@
             </li>
             <li><a href="#" class="navbar-item"><i class="fa-solid fa-calendar-days"></i>Planning et réservation</a>
                 <ul class="submenu">
-                    <li><a href="#">Emploi du temps</a></li>
+                    <li><a href="index.php?action=emploiDuTemps&week=0">Emploi du temps</a></li>
                     <li><a href="#">Réservation salles et matériels</a></li>
                 </ul>
             </li>
-            <li><a href="#" class="navbar-item"><i class="fa-solid fa-graduation-cap"></i>Vie étudiante</a>
+            <li><a href="#" class="navbar-item"><i class="fa-solid fa-school"></i>Vie étudiante</a>
                 <ul class="submenu">
                     <li><a href="./index.php?action=menuCrous">Crous et mon IZLY</a></li>
                     <li><a href="#">Événements</a></li>
@@ -45,10 +45,13 @@
         </ul>
 
 
-        <a href="#" class="navbar-profile">
-            <span>Bienvenue, Anastasia</span>
-            <div class="profile-circle"></div>
-        </a>
+        <div class="profilandexit">
+            <a href="#" class="navbar-profile">
+                <span>Bienvenue, Anastasia</span>
+                <div class="profile-circle"></div>
+            </a>
+            <a href="./index.php?action=logout"><i class="fa-solid fa-right-from-bracket"></i></a>
+        </div>
 
         <!-- Barre de navigation version téléphone -->
 
@@ -56,10 +59,10 @@
             <ul>
                 <li><a href="#"><i class="fa-solid fa-house"></i>Accueil</a></li>
                 <li class="has-submenu">
-                    <a href=""><i class="fa-solid fa-book"></i>Mon suivi</a>
+                    <a href=""><i class="fa-solid fa-graduation-cap"></i>Mon suivi</a>
                     <ul class="submenu">
                         <li><a href="#">Notes</a></li>
-                        <li><a href="index.php?action=todoListPage">To do list</a></li>
+                        <li><a href="./index.php?action=todoListPage">To do list</a></li>
                         <li><a href="#">Absences et retards</a></li>
                     </ul>
                 </li>
@@ -71,9 +74,9 @@
                     </ul>
                 </li>
                 <li class="has-submenu">
-                    <a href=""><i class="fa-solid fa-graduation-cap"></i>Vie étudiante</a>
+                    <a href=""><i class="fa-solid fa-school"></i>Vie étudiante</a>
                     <ul class="submenu">
-                        <li><a href="index.php?acion=menuCrous">Crous et mon IZLY</a></li>
+                        <li><a href="./index.php?action=menuCrous">Crous et mon IZLY</a></li>
                         <li><a href="#">Événements</a></li>
                     </ul>
                 </li>
