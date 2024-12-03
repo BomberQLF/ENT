@@ -139,16 +139,18 @@
                     <?php $tasks = showTasks(); ?>
                     <?php foreach ($tasks as $task): ?>
                         <div class="todolist-box">
-                            <div class="todolist-box-header">
-                                <h3 class="todolist-date"><?= $task['date_tache'] ?></h3>
-                                <!-- Reste -->
-                            </div>
                             <div class="todolist-box-content">
-                                <div class="task-title">
-                                    <h4 class="todolist-title"><?= $task['titre'] ?></h4>
-                                    <p class="todolist-description"><?= $task['description'] ?></p>
-                                </div>
-                                <i class="fa-solid fa-pen-nib" onclick="showModifyTaskPopup(<?= $task['id_tache']; ?>)"></i>
+                                <form method="POST" action="index.php?action=update-task-state" class="task-form">
+                                    <input type="hidden" name="id_tache" value="<?= $task['id_tache'] ?>">
+                                    <label class="task-label">
+                                        <input type="checkbox" name="etat_tache" class="circle-checkbox"
+                                            <?= $task['etat_tache'] ? 'checked' : '' ?> onchange="this.form.submit()" />
+                                        <div class="task-info">
+                                            <h4 class="todolist-title"><?= $task['titre'] ?></h4>
+                                            <p class="todolist-description"><?= $task['description'] ?></p>
+                                        </div>
+                                    </label>
+                                </form>
                             </div>
                         </div>
                         <!-- Modifier une tâche -->

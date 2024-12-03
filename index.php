@@ -89,6 +89,24 @@ switch ($action) {
         }
         break;
 
+    case 'update-task-state':
+        if (isLoggedIn()) {
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $id_tache = $_POST['id_tache'];
+                // Si la checkbox est cochée, on envoie 1, sinon 0
+                $etat_tache = isset($_POST['etat_tache']) ? 1 : 0;
+
+                // Appelle la fonction du modèle pour mettre à jour l'état
+                $taskUpdated = updateTaskState($id_tache, $etat_tache);
+
+                if ($taskUpdated) {
+                    include('./Vue/todoList.php');
+                    exit;
+                }
+            }
+        }
+        break;
+
     default:
         include('./Vue/login.php');
         break;

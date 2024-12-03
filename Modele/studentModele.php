@@ -72,3 +72,15 @@ function updateTask($date_tache, $titre, $description, $id_tache): bool
 
     return $updateReussi;
 }
+
+function updateTaskState($id_tache, $etat_tache) {
+        $pdo = connect_db();
+
+        // Prépare la requête SQL pour mettre à jour l'état de la tâche
+        $stmt = $pdo->prepare('UPDATE taches SET etat_tache = :etat_tache WHERE id_tache = :id_tache');
+        $stmt->bindParam(':etat_tache', $etat_tache, PDO::PARAM_INT);
+        $stmt->bindParam(':id_tache', $id_tache, PDO::PARAM_INT);
+
+        // Exécute la requête et retourne le résultat
+        return $stmt->execute();
+}
