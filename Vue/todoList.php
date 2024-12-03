@@ -130,30 +130,34 @@
                 <hr>
                 <div class="todolist-boxes">
                     <!-- SCRIPT ICI POUR BOUCLER LES TACHES DANS LA BDD -->
-                    <?php if(isset($successMessage)) {
-                                    echo '<p class="success-message">' . $successMessage . '</p>';
-                                } ?>
+                    <?php if (isset($successMessage)) {
+                        echo '<p class="success-message">' . $successMessage . '</p>';
+                    } ?>
                     <?php $tasks = showTasks(); ?>
                     <?php foreach ($tasks as $task): ?>
                         <div class="todolist-box">
-                            <div class="todolist-box-header">
-                                <h3 class="todolist-date"><?= $task['date_tache'] ?></h3>
-                                <!-- Reste -->
-                            </div>
                             <div class="todolist-box-content">
-                                <div class="task-title">
-                                    <h4 class="todolist-title"><?= $task['titre'] ?></h4>
-                                    <p class="todolist-description"><?= $task['description'] ?></p>
-                                </div>
-                                <i class="fa-solid fa-pen-nib" onclick="showModifyTaskPopup(<?= $task['id_tache']; ?>)"></i>
+                                <form method="POST" action="index.php?action=update-task-state" class="task-form">
+                                    <input type="hidden" name="id_tache" value="<?= $task['id_tache'] ?>">
+                                    <label class="task-label">
+                                        <input type="checkbox" name="etat_tache" class="circle-checkbox"
+                                            <?= $task['etat_tache'] ? 'checked' : '' ?> onchange="this.form.submit()" />
+                                        <div class="task-info">
+                                            <h4 class="todolist-title"><?= $task['titre'] ?></h4>
+                                            <p class="todolist-description"><?= $task['description'] ?></p>
+                                        </div>
+                                    </label>
+                                </form>
                             </div>
                         </div>
                         <!-- Modifier une tâche -->
                         <!-- Modifier une tâche -->
                         <div class="overlay" id="overlay-add-task" style="display: none;"></div>
-                        <div class="modify-task-container-<?php echo $task['id_tache'] ?>" id="modify-task-container" style="display: none;">
+                        <div class="modify-task-container-<?php echo $task['id_tache'] ?>" id="modify-task-container"
+                            style="display: none;">
                             <h2>Modifier une tâche</h2>
-                            <form id="modify-task-form-<?= $task['id_tache'] ?>" action="index.php?action=modify-task" method="POST">
+                            <form id="modify-task-form-<?= $task['id_tache'] ?>" action="index.php?action=modify-task"
+                                method="POST">
                                 <div class="form-group">
                                     <label for="date_tache">Date de la tâche</label>
                                     <input type="text" id="task-date" name="date_tache" value="<?= $task["date_tache"]; ?>">
@@ -164,7 +168,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="description">Description</label>
-                                    <textarea id="task-description" name="description" rows="4"><?= $task["description"]; ?></textarea>
+                                    <textarea id="task-description" name="description"
+                                        rows="4"><?= $task["description"]; ?></textarea>
                                     <input type="hidden" name="id_utilisateur" value="<?= $_SESSION['id_utilisateur']; ?>">
                                     <input type="hidden" name="id_tache" value="<?= $task['id_tache'] ?>">
                                 </div>

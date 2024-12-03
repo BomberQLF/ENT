@@ -10,7 +10,7 @@ $action = isset($_GET['action']) ? $_GET['action'] : '';
 
 // Switch Case pour procéder avec un modèle MVC
 switch ($action) {
-    case 'login' :
+    case 'login':
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $loginSuccessful = handleLogin($_POST);
             if ($loginSuccessful) {
@@ -25,19 +25,19 @@ switch ($action) {
         }
         break;
 
-    case 'menuCrous' :
+    case 'menuCrous':
         isLoggedIn() ? include('./Vue/menuCrous.php') : include('./Vue/login.php');
         break;
 
-    case 'accueil' :
-    isLoggedIn() ? include('./Vue/accueil.php') : include('./Vue/login.php');
-    break;
+    case 'accueil':
+        isLoggedIn() ? include('./Vue/accueil.php') : include('./Vue/login.php');
+        break;
 
-    case 'todoListPage' : 
+    case 'todoListPage':
         isLoggedIn() ? include('./Vue/todoList.php') : include('./Vue/login.php');
         break;
 
-    case 'add-task' :
+    case 'add-task':
         if (isLoggedIn()) {
             if ($_SERVER['REQUEST_METHOD'] === "POST") {
                 $taskAdded = addTask($_POST['date_tache'], $_POST['titre'], $_POST['description'], $_POST['id_utilisateur']);
@@ -50,7 +50,7 @@ switch ($action) {
         }
         break;
 
-    case 'modify-task' :
+    case 'modify-task':
         if (isLoggedIn()) {
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $taskModified = updateTask($_POST['date_tache'], $_POST['titre'], $_POST['description'], $_POST['id_tache']);
@@ -68,7 +68,25 @@ switch ($action) {
         }
         break;
 
-    default :
+    case 'update-task-state':
+        if (isLoggedIn()) {
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $id_tache = $_POST['id_tache'];
+                // Si la checkbox est cochée, on envoie 1, sinon 0
+                $etat_tache = isset($_POST['etat_tache']) ? 1 : 0;
+
+                // Appelle la fonction du modèle pour mettre à jour l'état
+                $taskUpdated = updateTaskState($id_tache, $etat_tache);
+
+                if ($taskUpdated) {
+                    include('./Vue/todoList.php');
+                    exit;
+                }
+            }
+        }
+        break;
+
+    default:
         include('./Vue/login.php');
         break;
 }
