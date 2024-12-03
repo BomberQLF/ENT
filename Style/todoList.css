@@ -2,9 +2,11 @@
 *::before,
 *::after {
   box-sizing: border-box;
-  font-family: Arial, sans-serif;
   padding: 0;
   margin: 0;
+}
+body {
+  font-family: Arial, sans-serif;
 }
 .page-content {
   display: flex;

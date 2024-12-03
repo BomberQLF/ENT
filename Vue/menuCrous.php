@@ -63,21 +63,21 @@
                     <a href=""><i class="fa-solid fa-book"></i>Mon suivi</a>
                     <ul class="submenu">
                         <li><a href="#">Notes</a></li>
-                        <li><a href="#">To do list</a></li>
+                        <li><a href="index.php?action=todoListPage">To do list</a></li>
                         <li><a href="#">Absences et retards</a></li>
                     </ul>
                 </li>
                 <li class="has-submenu">
                     <a href=""><i class="fa-solid fa-calendar-days"></i>Planning et réservation</a>
                     <ul class="submenu">
-                        <li><a href="#">Emploi du temps</a></li>
+                        <li><a href="index.php?action=emploiDuTemps&week=0">Emploi du temps</a></li>
                         <li><a href="#">Réservation salles et matériels</a></li>
                     </ul>
                 </li>
                 <li class="has-submenu">
                     <a href=""><i class="fa-solid fa-graduation-cap"></i>Vie étudiante</a>
                     <ul class="submenu">
-                        <li><a href="#">Crous et mon IZLY</a></li>
+                        <li><a href="index.php?acion=menuCrous">Crous et mon IZLY</a></li>
                         <li><a href="#">Événements</a></li>
                     </ul>
                 </li>

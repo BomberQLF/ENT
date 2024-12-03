@@ -4,11 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" />
     <link rel="stylesheet" href="./Style/navbar.css">
     <link rel="stylesheet" href="./Style/todoList.css">
-    <script src="./Javascript/todolist.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" />
-    <title>Document</title>
 </head>
 
 <body>
@@ -47,7 +46,7 @@
 
 
         <a href="#" class="navbar-profile">
-            <span>Bienvenue, <?= $_SESSION['prenom']; ?></span>
+            <span>Bienvenue, Anastasia</span>
             <div class="profile-circle"></div>
         </a>
 
@@ -60,27 +59,28 @@
                     <a href=""><i class="fa-solid fa-book"></i>Mon suivi</a>
                     <ul class="submenu">
                         <li><a href="#">Notes</a></li>
-                        <li><a href="#">To do list</a></li>
+                        <li><a href="index.php?action=todoListPage">To do list</a></li>
                         <li><a href="#">Absences et retards</a></li>
                     </ul>
                 </li>
                 <li class="has-submenu">
                     <a href=""><i class="fa-solid fa-calendar-days"></i>Planning et réservation</a>
                     <ul class="submenu">
-                        <li><a href="#">Emploi du temps</a></li>
+                        <li><a href="index.php?action=emploiDuTemps&week=0">Emploi du temps</a></li>
                         <li><a href="#">Réservation salles et matériels</a></li>
                     </ul>
                 </li>
                 <li class="has-submenu">
                     <a href=""><i class="fa-solid fa-graduation-cap"></i>Vie étudiante</a>
                     <ul class="submenu">
-                        <li><a href="#">Crous et mon IZLY</a></li>
+                        <li><a href="index.php?acion=menuCrous">Crous et mon IZLY</a></li>
                         <li><a href="#">Événements</a></li>
                     </ul>
                 </li>
                 <li><a href="#"><i class="fa-solid fa-comment"></i>Messagerie</a></li>
             </ul>
         </div>
+
     </nav>
 
     <!-- File d'arianne -->
@@ -268,7 +268,8 @@
         </div>
     </div>
 
-    <script src="../index.js"></script>
+    <script src="./index.js"></script>
+    <script src="./Javascript/todolist.js"></script>
 </body>
 
 </html>
