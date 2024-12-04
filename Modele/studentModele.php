@@ -37,17 +37,21 @@ function isLoggedIn(): bool
     return isset($_SESSION['login']);
 }
 
-function addTask($date_tache, $titre, $description, $id_utilisateur): bool
+function addTask($date_tache, $titre, $description, $etat_tache, $id_utilisateur): bool
 {
     $pdo = connect_db();
-    $query = $pdo->prepare("INSERT INTO taches (id_tache, date_tache, titre, description, id_utilisateur) VALUES (NULL, :date_tache, :titre, :description, :id_utilisateur)");
-    $query->bindParam(":date_tache", $date_tache, PDO::PARAM_STR);
-    $query->bindParam(":titre", $titre, PDO::PARAM_STR);
-    $query->bindParam(":description", $description, pdo::PARAM_STR);
-    $query->bindParam(":id_utilisateur", $id_utilisateur, PDO::PARAM_STR);
-    $ajoutReussi = $query->execute();
+    $query = $pdo->prepare(
+        "INSERT INTO taches (date_tache, titre, description, etat_tache, id_utilisateur) 
+        VALUES (:date_tache, :titre, :description, :etat_tache, :id_utilisateur)"
+    );
 
-    return $ajoutReussi;
+    $query->bindParam(":date_tache", $date_tache);
+    $query->bindParam(":titre", $titre);
+    $query->bindParam(":description", $description);
+    $query->bindParam(":etat_tache", $etat_tache, PDO::PARAM_INT);
+    $query->bindParam(":id_utilisateur", $id_utilisateur, PDO::PARAM_INT);
+
+    return $query->execute();
 }
 
 function showTasks(): array
@@ -73,14 +77,22 @@ function updateTask($date_tache, $titre, $description, $id_tache): bool
     return $updateReussi;
 }
 
-function updateTaskState($id_tache, $etat_tache) {
-        $pdo = connect_db();
+function updateTaskState($id_tache, $etat_tache): bool
+{
+    $pdo = connect_db();
 
-        // Prépare la requête SQL pour mettre à jour l'état de la tâche
-        $stmt = $pdo->prepare('UPDATE taches SET etat_tache = :etat_tache WHERE id_tache = :id_tache');
-        $stmt->bindParam(':etat_tache', $etat_tache, PDO::PARAM_INT);
-        $stmt->bindParam(':id_tache', $id_tache, PDO::PARAM_INT);
+    $stmt = $pdo->prepare('UPDATE taches SET etat_tache = :etat_tache WHERE id_tache = :id_tache');
+    $stmt->bindParam(':etat_tache', $etat_tache, PDO::PARAM_INT);
+    $stmt->bindParam(':id_tache', $id_tache, PDO::PARAM_INT);
 
-        // Exécute la requête et retourne le résultat
-        return $stmt->execute();
+    return $stmt->execute();
+}
+
+function deleteTask($id_tache): bool
+{
+    $pdo = connect_db();
+    $query = $pdo->prepare("DELETE FROM taches WHERE id_tache = :id_tache");
+    $query->bindParam(":id_tache", $id_tache, PDO::PARAM_INT);
+    $deleteReussi = $query->execute();
+    return $deleteReussi;
 }
