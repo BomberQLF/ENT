@@ -17,7 +17,6 @@ switch ($action) {
                 include('./Vue/accueil.php');
             } else {
                 $error = 'Identifiants invalides';
-                var_dump($_POST);
                 include('./Vue/login.php');
             }
         } else {

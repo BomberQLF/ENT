@@ -147,9 +147,7 @@ body {
 /* Boites todolist */
 .todolist-boxes {
   margin-top: 2rem;
-  display: flex;
   gap: 2rem;
-  flex-wrap: wrap;
 }
 .todolist-box {
   display: flex;
@@ -158,7 +156,6 @@ body {
   background-color: #f4f4f4;
   border-radius: 8px;
   margin: 10px 0;
-  width: 11rem;
 }
 .todolist-date {
   text-align: center;
