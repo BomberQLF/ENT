@@ -294,3 +294,7 @@ body {
 .pencil-container {
   text-align: right;
 }
+#trash-todo {
+  text-decoration: none;
+  color: black;
+}

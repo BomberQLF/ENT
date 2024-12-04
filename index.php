@@ -24,13 +24,13 @@ switch ($action) {
         }
         break;
 
-        case 'logout':
-            // on détruit la session et on redirige l'utilisateur vers la page d'accueil
-            $_SESSION = array();
-            session_destroy();
-            header('Location: index.php');
-            break;
-            
+    case 'logout':
+        // on détruit la session et on redirige l'utilisateur vers la page d'accueil
+        $_SESSION = array();
+        session_destroy();
+        header('Location: index.php');
+        break;
+
     case 'menuCrous':
         isLoggedIn() ? include('./Vue/menuCrous.php') : include('./Vue/login.php');
         break;
@@ -60,11 +60,21 @@ switch ($action) {
     case 'add-task':
         if (isLoggedIn()) {
             if ($_SERVER['REQUEST_METHOD'] === "POST") {
-                $taskAdded = addTask($_POST['date_tache'], $_POST['titre'], $_POST['description'], $_POST['id_utilisateur']);
-                if ($taskAdded) {
-                    include('./Vue/todoList.php');
+                $date_tache = $_POST['date_tache'] ?? null;
+                $titre = $_POST['titre'] ?? null;
+                $description = $_POST['description'] ?? null;
+                $etat_tache = $_POST['etat_tache'] ?? 0;
+                $id_utilisateur = $_POST['id_utilisateur'] ?? null;
+
+                if ($date_tache && $titre && $description && $id_utilisateur) {
+                    $taskAdded = addTask($date_tache, $titre, $description, $etat_tache, $id_utilisateur);
+                    if ($taskAdded) {
+                        include('./Vue/todoList.php');
+                    } else {
+                        echo "Erreur lors de l'ajout de la tâche.";
+                    }
                 } else {
-                    include('./Vue/login.php');
+                    echo "Tous les champs sont requis.";
                 }
             }
         }
@@ -102,6 +112,16 @@ switch ($action) {
                     include('./Vue/todoList.php');
                     exit;
                 }
+            }
+        }
+        break;
+
+    case 'deleteTask':
+        if (isLoggedIn()) {
+            $id_tache = $_GET['id'];
+            if ($id_tache) {
+                deleteTask($id_tache);
+                include('./Vue/todoList.php');
             }
         }
         break;

@@ -104,6 +104,10 @@
                 <div class="add-task-container" id="add-task-container" style="display: none;">
                     <h2>Ajouter une tâche</h2>
                     <form id="add-task-form" action="index.php?action=add-task" method="POST">
+                    <?php $tasks = showTasks(); ?>
+                        <?php if (!empty($tasks)) : ?>
+                            <input type="hidden" value="<?= $tasks[0]['etat_tache']; ?>">
+                        <?php endif; ?>                        
                         <div class="form-group">
                             <label for="date_tache">Date de la tâche</label>
                             <input type="text" id="task-date" name="date_tache" placeholder="DD/MM" required>
@@ -153,7 +157,7 @@
                                     </label>
                                 </form>
                                 <div class="pencil-container">
-                                    <i class="fa fa-trash"></i>
+                                    <a id="trash-todo" href="index.php?action=deleteTask&id=<?= $task['id_tache']; ?>"><i class="fa fa-trash"></i></a>
                                     <i class="fa fa-pen-nib" onclick="showModifyTaskPopup(<?= $task['id_tache'] ?>)"></i>
                                 </div>
                             </div>
