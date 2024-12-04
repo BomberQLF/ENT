@@ -153,6 +153,7 @@
                                     </label>
                                 </form>
                                 <div class="pencil-container">
+                                    <i class="fa fa-trash"></i>
                                     <i class="fa fa-pen-nib" onclick="showModifyTaskPopup(<?= $task['id_tache'] ?>)"></i>
                                 </div>
                             </div>
