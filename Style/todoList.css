@@ -150,8 +150,6 @@ body {
   gap: 2rem;
 }
 .todolist-box {
-  display: flex;
-  align-items: center;
   padding: 10px;
   background-color: #f4f4f4;
   border-radius: 8px;
@@ -293,4 +291,6 @@ body {
   position: relative;
   flex-shrink: 0; 
 }
-
+.pencil-container {
+  text-align: right;
+}

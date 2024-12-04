@@ -146,11 +146,15 @@
                                         <input type="checkbox" name="etat_tache" class="circle-checkbox"
                                             <?= $task['etat_tache'] ? 'checked' : '' ?> onchange="this.form.submit()" />
                                         <div class="task-info">
+                                            <h3><?= $task['date_tache'] ?></h3>
                                             <h4 class="todolist-title"><?= $task['titre'] ?></h4>
                                             <p class="todolist-description"><?= $task['description'] ?></p>
                                         </div>
                                     </label>
                                 </form>
+                                <div class="pencil-container">
+                                    <i class="fa fa-pen-nib" onclick="showModifyTaskPopup(<?= $task['id_tache'] ?>)"></i>
+                                </div>
                             </div>
                         </div>
                         <!-- Modifier une tâche -->
