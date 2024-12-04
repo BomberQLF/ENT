@@ -158,6 +158,7 @@ body {
   background-color: #f4f4f4;
   border-radius: 8px;
   margin: 10px 0;
+  width: 11rem;
 }
 .todolist-date {
   text-align: center;
@@ -286,25 +287,13 @@ body {
   bottom: 60px;
 }
 .circle-checkbox {
-  appearance: none;
-  width: 24px; /* Taille fixe */
-  height: 24px; /* Taille fixe */
+  width: 24px; 
+  height: 24px; 
   border: 2px solid black;
   border-radius: 50%;
   margin-right: 15px;
   cursor: pointer;
   position: relative;
-  flex-shrink: 0; /* Empêche la réduction de la taille de la checkbox */
+  flex-shrink: 0; 
 }
 
-/* Style de la partie cochée (cercle intérieur) */
-.circle-checkbox:checked::before {
-  content: '';
-  position: absolute;
-  width: 14px; /* Taille fixe du cercle intérieur */
-  height: 14px; /* Taille fixe du cercle intérieur */
-  background-color: black;
-  border-radius: 50%;
-  top: 4px;
-  left: 4px;
-}
