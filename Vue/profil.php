@@ -1,11 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./Style/navbar.css">
     <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" />
+    <link rel="stylesheet" href="./Style/navbar.css">
+    <style>
+        .page-content {
+            display: flex;
+            gap: 7rem;
+        }
+
+        .suivi {
+            text-decoration: none;
+            color: #7a7a7a;
+        }
+
+        .upper-page-container {
+            display: flex;
+            justify-content: space-between;
+            padding: 2rem 0 1rem 4rem;
+        }
+
+        #profil {
+            text-transform: uppercase;
+            font-size: 1.2rem;
+            color: white;
+        }
+
+        .right-side {
+            padding: 0.4rem 3rem;
+            background-color: #3e567e;
+            border-top-left-radius: 12px;
+            border-bottom-left-radius: 12px;
+        }
+
+        .profil-container {
+            background-color: blue;
+            height: 100vh;
+        }
+
+    </style>
 </head>
 
 <body>
@@ -99,10 +136,35 @@
         </div>
 
     </nav>
+
+    <div class="upper-page-container">
+        <div class="left-side">
+            <a href="./index.php?action=accueil" class="suivi">Accueil </a><span class="suivi">> Mon profil</span>
+        </div>
+        <div class="right-side">
+            <h1 id="profil">Mon profil</h1>
+        </div>
+    </div>
+
     <!-- section profil -->
     <section class="profil-container">
-        <p>Lorem, ipsum dolor.</p>
+        <div class="profil-section">
+            <div><img src="./image/uploads/photo_default.png" alt=""></div>
+            <div>
+                <h2>Bienvenue, prenom nom</h2>
+                <p><i class="fa-solid fa-school"></i> - IUT Marne la Valée</p>
+                <p><i class="fa-solid fa-user"></i> - étudiante en BUT MMI 2 - TPB</p>
+            </div>
 
+        </div>
+
+
+        <div class="profil-img"><img src="./image/uploads/photo_default.png" alt=""></div>
+        <div class="profil-info-gauche">
+            <h2>Bienvenue, prenom nom</h2>
+            <p><i class="fa-solid fa-school"></i> - IUT Marne la Valée</p>
+            <p><i class="fa-solid fa-user"></i> - étudiante en BUT MMI 2 - TPB</p>
+        </div>
 
     </section>
 

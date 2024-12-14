@@ -125,6 +125,13 @@ switch ($action) {
             }
         }
         break;
+    case 'profil':
+        if (isLoggedIn()) {
+            include('./Vue/profil.php');
+        } else {
+            include('./Vue/login.php');
+        }
+        break;
 
     default:
         include('./Vue/login.php');
