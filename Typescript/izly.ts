@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const carteEnregistree = document.getElementById("carte-enregistree") as HTMLInputElement;
   const carte = document.getElementById("carte") as HTMLInputElement;
   const form = document.getElementById('izly-form') as HTMLFormElement;
+  const closeButton = document.querySelector('.close-button') as HTMLButtonElement;
 
   // Elements de validation des messages d'erreur
   const errorCardNumber = document.getElementById('cardNumberError') as HTMLSpanElement;
@@ -23,6 +24,12 @@ document.addEventListener("DOMContentLoaded", () => {
   button.onclick = () => {
     showPaiement(izlyFirst, izlySecond);
   };
+
+  // Ajoute la logique pour fermer le conteneur
+  closeButton.addEventListener('click', () => {
+    izlySecond.style.display = 'none';
+    izlyFirst.style.display = 'flex';
+  });
 
   const updateDisplay = () => {
     if (carteEnregistree.checked) {
@@ -96,4 +103,58 @@ document.addEventListener("DOMContentLoaded", () => {
       console.log("Il y a des erreurs dans le formulaire.");
     }
   });
+
+  const esieeDiv = document.querySelector(".esiee") as HTMLElement;
+  const coppernicDiv = document.querySelector(".coppernic") as HTMLElement;
+
+  // Menus spécifiques pour chaque établissement
+  const esieeMenu = {
+      entree: "Tomates",
+      plat: "Bolognaise",
+      dessert: "Tarte aux pommes",
+  };
+
+  const coppernicMenu = {
+      entree: "Salade verte",
+      plat: "Poulet rôti",
+      dessert: "Crème brûlée",
+  };
+
+  // Fonction pour mettre à jour les menus
+  const updateMenu = (menuData: { entree: string; plat: string; dessert: string }) => {
+      const days = ["lundi", "mardi", "mercredi", "jeudi", "vendredi"];
+      days.forEach((dayId) => {
+          const dayElement = document.getElementById(dayId) as HTMLElement;
+          const entreeElement = dayElement.querySelector(".entree p") as HTMLElement;
+          const platElement = dayElement.querySelector(".plat p") as HTMLElement;
+          const dessertElement = dayElement.querySelector(".dessert p") as HTMLElement;
+
+          // Mise à jour des contenus
+          entreeElement.innerHTML = `<strong class="strong-menu">Entrée :</strong><br><br> ${menuData.entree}`;
+          platElement.innerHTML = `<strong class="strong-menu">Plat :</strong><br><br> ${menuData.plat}`;
+          dessertElement.innerHTML = `<strong class="strong-menu">Dessert :</strong><br><br> ${menuData.dessert}`;
+      });
+  };
+
+  // Fonction pour gérer la classe active
+  const setActiveMenu = (activeElement: HTMLElement, otherElement: HTMLElement) => {
+      activeElement.classList.add("active-menu");
+      otherElement.classList.remove("active-menu");
+  };
+
+  // Par défaut, afficher le menu de l'ESIEE et ajouter la classe active
+  updateMenu(esieeMenu);
+  setActiveMenu(esieeDiv, coppernicDiv);
+
+  // Ajout des événements sur les divs
+  esieeDiv.addEventListener("click", () => {
+      updateMenu(esieeMenu);
+      setActiveMenu(esieeDiv, coppernicDiv);
+  });
+
+  coppernicDiv.addEventListener("click", () => {
+      updateMenu(coppernicMenu);
+      setActiveMenu(coppernicDiv, esieeDiv);
+  });
+
 });
