@@ -116,83 +116,82 @@
                 <div class="crous-option">
                     <div class="esiee"><span class="fleche">▶</span> ESIEE</div>
                     <div class="coppernic"><span class="fleche">▶</span> COPPERNIC</div>
-
                 </div>
             </div>
             <div class="menu-days">
-                <div class="day">
-                    <h2>Lundi</h2>
-                    <div class="menu-item">
+                <div class="menu-day" id="lundi">
+                    <h3>Lundi</h3>
+                    <div class="menu-item entree">
                         <span class="entree-bg"></span>
-                        <p><strong class="strong-menu">Entrée :</strong><br><br> Tomates</p>
+                        <p><strong class="strong-menu">Entrée :</strong><br><br> --</p>
                     </div>
-                    <div class="menu-item">
+                    <div class="menu-item plat">
                         <span class="plat-bg"></span>
-                        <p><strong class="strong-menu">Plat :</strong><br><br> Bolognaise</p>
+                        <p><strong class="strong-menu">Plat :</strong><br><br> --</p>
                     </div>
-                    <div class="menu-item">
+                    <div class="menu-item dessert">
                         <span class="dessert-bg"></span>
-                        <p><strong class="strong-menu">Dessert :</strong><br><br> Tarte aux pommes</p>
+                        <p><strong class="strong-menu">Dessert :</strong><br><br> --</p>
                     </div>
                 </div>
-                <div class="day">
-                    <h2>Lundi</h2>
-                    <div class="menu-item">
+                <div class="menu-day" id="mardi">
+                    <h3>Mardi</h3>
+                    <div class="menu-item entree">
                         <span class="entree-bg"></span>
-                        <p><strong class="strong-menu">Entrée :</strong><br><br> Tomates</p>
+                        <p><strong class="strong-menu">Entrée :</strong><br><br> --</p>
                     </div>
-                    <div class="menu-item">
+                    <div class="menu-item plat">
                         <span class="plat-bg"></span>
-                        <p><strong class="strong-menu">Plat :</strong><br><br> Bolognaise</p>
+                        <p><strong class="strong-menu">Plat :</strong><br><br> --</p>
                     </div>
-                    <div class="menu-item">
+                    <div class="menu-item dessert">
                         <span class="dessert-bg"></span>
-                        <p><strong class="strong-menu">Dessert :</strong><br><br> Tarte aux pommes</p>
+                        <p><strong class="strong-menu">Dessert :</strong><br><br> --</p>
                     </div>
                 </div>
-                <div class="day">
-                    <h2>Lundi</h2>
-                    <div class="menu-item">
+                <div class="menu-day" id="mercredi">
+                    <h3>Mercredi</h3>
+                    <div class="menu-item entree">
                         <span class="entree-bg"></span>
-                        <p><strong class="strong-menu">Entrée :</strong><br><br> Tomates</p>
+                        <p><strong class="strong-menu">Entrée :</strong><br><br> --</p>
                     </div>
-                    <div class="menu-item">
+                    <div class="menu-item plat">
                         <span class="plat-bg"></span>
-                        <p><strong class="strong-menu">Plat :</strong><br><br> Bolognaise</p>
+                        <p><strong class="strong-menu">Plat :</strong><br><br> --</p>
                     </div>
-                    <div class="menu-item">
+                    <div class="menu-item dessert">
                         <span class="dessert-bg"></span>
-                        <p><strong class="strong-menu">Dessert :</strong><br><br> Tarte aux pommes</p>
+                        <p><strong class="strong-menu">Dessert :</strong><br><br> --</p>
                     </div>
                 </div>
-                <div class="day">
-                    <h2>Lundi</h2>
-                    <div class="menu-item">
+                <div class="menu-day" id="jeudi">
+                    <h3>Jeudi</h3>
+                    <div class="menu-item entree">
                         <span class="entree-bg"></span>
-                        <p><strong class="strong-menu">Entrée :</strong><br><br> Tomates</p>
+                        <p><strong class="strong-menu">Entrée :</strong><br><br> --</p>
                     </div>
-                    <div class="menu-item">
+                    <div class="menu-item plat">
                         <span class="plat-bg"></span>
-                        <p><strong class="strong-menu">Plat :</strong><br><br> Bolognaise</p>
+                        <p><strong class="strong-menu">Plat :</strong><br><br> --</p>
                     </div>
-                    <div class="menu-item">
+                    <div class="menu-item dessert">
                         <span class="dessert-bg"></span>
-                        <p><strong class="strong-menu">Dessert :</strong><br><br> Tarte aux pommes</p>
+                        <p><strong class="strong-menu">Dessert :</strong><br><br> --</p>
                     </div>
                 </div>
-                <div class="day">
-                    <h2>Lundi</h2>
-                    <div class="menu-item">
+                <div class="menu-day" id="vendredi">
+                    <h3>Vendredi</h3>
+                    <div class="menu-item entree">
                         <span class="entree-bg"></span>
-                        <p><strong class="strong-menu">Entrée :</strong><br><br> Tomates</p>
+                        <p><strong class="strong-menu">Entrée :</strong><br><br> --</p>
                     </div>
-                    <div class="menu-item">
+                    <div class="menu-item plat">
                         <span class="plat-bg"></span>
-                        <p><strong class="strong-menu">Plat :</strong><br><br> Bolognaise</p>
+                        <p><strong class="strong-menu">Plat :</strong><br><br> --</p>
                     </div>
-                    <div class="menu-item">
+                    <div class="menu-item dessert">
                         <span class="dessert-bg"></span>
-                        <p><strong class="strong-menu">Dessert :</strong><br><br> Tarte aux pommes</p>
+                        <p><strong class="strong-menu">Dessert :</strong><br><br> --</p>
                     </div>
                 </div>
             </div>
@@ -219,6 +218,8 @@
         </div>
         <div class="overlay" id="overlay"></div>
         <div class="izly-paiement-container" id="izly-paiement-container">
+            <button class="close-button">×</button>
+
             <!-- Texte supérieur couvrant toute la largeur -->
             <div class="upper-izly-text">
                 <h2 id="recharger-izly">Recharger votre compte Izly</h2>
