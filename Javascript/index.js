@@ -40,7 +40,12 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelector('.closepopup').addEventListener('click', function () {
     document.getElementById('popup').style.display = 'none';
   });
+  window.addEventListener('click', (event) => {
+    if (event.target == popup) {
+      popup.style.display = 'none';
+    }
 
+  });
   // =================================================================================
 
 })
