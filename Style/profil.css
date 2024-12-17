@@ -1,0 +1,172 @@
+.page-content {
+    display: flex;
+    gap: 7rem;
+}
+
+.suivi {
+    text-decoration: none;
+    color: #7a7a7a;
+}
+
+.upper-page-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 2rem 0 1rem 4rem;
+}
+
+#profil {
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    color: white;
+}
+
+.right-side {
+    padding: 0.4rem 3rem;
+    background-color: #3e567e;
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+}
+
+/* ================================================================================================ */
+.profil {
+    height: 79vh;
+    background-color: var(--second-color);
+    display: flex;
+
+}
+
+.overlap-group {
+    width: 166px;
+    height: 166px;
+    background-color: #d9d9d9;
+    border-radius: 50%;
+}
+
+.group {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    top: 133px;
+    left: 120px;
+    background-color: #3e567e;
+    border-radius: 50%;
+}
+
+
+.profil-content-gauche {
+    display: flex;
+    gap: 40px;
+    padding: 10px;
+    width: 500px;
+}
+
+.Profil-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    width: 100%;
+}
+
+/* ===================================================== */
+.form-container-profil,
+.form-container-profilmotdepasse {
+    padding: 20px;
+    border-radius: 8px;
+    width: 747px;
+    border: solid 2px black;
+}
+
+.form-container-profil .row,
+.form-container-profilmotdepasse .row {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 15px;
+}
+
+.form-container-profil .row input,
+.form-container-profilmotdepasse .row input {
+    padding: 10px;
+    border: 1px solid #000000;
+    border-radius: 8px;
+    font-size: 1rem;
+    width: 313px;
+}
+
+.form-container-profilmotdepasse .row input {
+    border: 2px dotted #000000;
+}
+
+.form-container-profil .row label,
+.form-container-profilmotdepasse .row label {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.submit-boutton {
+    background-color: var(  --main-color);
+    color: white;
+    font-size: 1rem;
+    padding: 10px;
+    width: 100%;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.submit-boutton:hover {
+    background: var(--hover-color);
+}
+
+.divinput {
+    display: flex;
+    justify-content: space-between;
+}
+
+.divformdroite {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.profil-text p {
+    margin-top: 20px;
+}
+
+.profil-text i {
+    font-size: 1.5rem;
+    /* width: 100%; */
+}
+
+.fa-pencil {
+    position: absolute;
+    left: 7px;
+    top: 7px;
+    color: var(--second-color);
+}
+
+.passwordchange {
+    padding: 10px;
+    border: 2px dotted #000000;
+    border-radius: 8px;
+    font-size: 1rem;
+    width: 313px;
+    background: transparent;
+    text-align: start;
+    display: flex;
+    transition: all 0.5s ease;
+    cursor: pointer;
+    display: none;
+}
+
+.passwordchange:hover {
+    background: #3366CC;
+    color: white;
+}
+
+#changemotdepasseform {
+    display: none;
+}

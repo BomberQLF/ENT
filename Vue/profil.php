@@ -7,42 +7,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" />
     <link rel="stylesheet" href="./Style/navbar.css">
-    <style>
-        .page-content {
-            display: flex;
-            gap: 7rem;
-        }
-
-        .suivi {
-            text-decoration: none;
-            color: #7a7a7a;
-        }
-
-        .upper-page-container {
-            display: flex;
-            justify-content: space-between;
-            padding: 2rem 0 1rem 4rem;
-        }
-
-        #profil {
-            text-transform: uppercase;
-            font-size: 1.2rem;
-            color: white;
-        }
-
-        .right-side {
-            padding: 0.4rem 3rem;
-            background-color: #3e567e;
-            border-top-left-radius: 12px;
-            border-bottom-left-radius: 12px;
-        }
-
-        .profil-container {
-            background-color: blue;
-            height: 100vh;
-        }
-
-    </style>
+    <link rel="stylesheet" href="./Style/profil.css">
 </head>
 
 <body>
@@ -85,7 +50,7 @@
 
         <div class="profilandexit">
             <a href="./index.php?action=profil" class="navbar-profile">
-                <span>Bienvenue, Anastasia</span>
+                <?php echo " <span>Bienvenue {$_SESSION['prenom']}</span>" ?>
                 <div class="profile-circle"></div>
             </a>
             <button id="openPopup" aria-label="Se déconnecter"><i class="fa-solid fa-right-from-bracket"></i></button>
@@ -146,29 +111,71 @@
         </div>
     </div>
 
-    <!-- section profil -->
-    <section class="profil-container">
-        <div class="profil-section">
-            <div><img src="./image/uploads/photo_default.png" alt=""></div>
-            <div>
-                <h2>Bienvenue, prenom nom</h2>
-                <p><i class="fa-solid fa-school"></i> - IUT Marne la Valée</p>
-                <p><i class="fa-solid fa-user"></i> - étudiante en BUT MMI 2 - TPB</p>
+    <section class="profil">
+        <div class="Profil-content">
+            <div class="profil-content-gauche">
+                <div class="overlap-group">
+                    <div class="group"><i class="fa-solid fa-pencil"></i></div>
+                </div>
+                <div class="profil-text">
+                    <?php
+                    echo "<h2>Bienvenue, <br> {$_SESSION['prenom']} {$_SESSION['nom']} </h2>
+                    <p><i class='fa-solid fa-user'></i>- Iut marne la valée</p>
+                    <p><i class='fa-solid fa-school'></i>- Étudiante en BUT MMI 2 - TP{$_SESSION['tp']}</p> ";
+                    ?>
+                </div>
             </div>
-
+            <div class="divformdroite">
+                <div class="form-container-profil" id="formprofil">
+                    <div class="divinput">
+                        <div class="row">
+                            <label for="nom">Votre nom</label>
+                            <input id="nom" type="text" placeholder="Votre Nom" disabled
+                                value="<?php echo $_SESSION['nom'] ?>">
+                        </div>
+                        <div class="row">
+                            <label for="telephone">Téléphone</label>
+                            <input id="telephone" type="text" placeholder="Téléphone" disabled
+                                value="<?php echo $_SESSION['telephone'] ?>">
+                        </div>
+                    </div>
+                    <div class="divinput">
+                        <div class="row">
+                            <label for="email">Email</label>
+                            <input id="email" type="email" placeholder="Email" disabled
+                                value="<?php echo $_SESSION['login'] ?>">
+                        </div>
+                        <div class="row">
+                            <label for="password">Mot de passe</label>
+                            <input id="password" type="password" placeholder="********" disabled>
+                            <button id="passwordButton" class="passwordchange">Changer le mot de passe</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-container-profilmotdepasse" id="changemotdepasseform">
+                    <div class="divinput">
+                        <div class="row">
+                            <label for="nom">Votre ancien mot de passe</label>
+                            <input id="nom" type="text" placeholder="ancien mot de passe">
+                        </div>
+                        <div class="row">
+                            <label for="telephone">Réécrivez votre nouveau mot de passe</label>
+                            <input id="telephone" type="text" placeholder="nouveau mot de passe">
+                        </div>
+                    </div>
+                    <div class="divinput">
+                        <div class="row">
+                            <label for="email">Votre nouveau mot de passe</label>
+                            <input id="email" type="text" placeholder="nouveau mot de passe">
+                        </div>
+                    </div>
+                </div>
+                <button class="submit-boutton" id="editProfileButton">Modifier votre profil</button>
+            </div>
         </div>
-
-
-        <div class="profil-img"><img src="./image/uploads/photo_default.png" alt=""></div>
-        <div class="profil-info-gauche">
-            <h2>Bienvenue, prenom nom</h2>
-            <p><i class="fa-solid fa-school"></i> - IUT Marne la Valée</p>
-            <p><i class="fa-solid fa-user"></i> - étudiante en BUT MMI 2 - TPB</p>
-        </div>
-
     </section>
-
     <script src="./Javascript/index.js"></script>
+    <script src="./Javascript/profil.js"></script>
 </body>
 
 </html>

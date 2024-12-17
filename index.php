@@ -127,12 +127,21 @@ switch ($action) {
         break;
     case 'profil':
         if (isLoggedIn()) {
+            handleLogin($_POST);
             include('./Vue/profil.php');
         } else {
             include('./Vue/login.php');
         }
         break;
 
+    case 'updateuser':
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if(isset($_SESSION['login']) && $_SESSION['login'] == $_SESSION["login"] ){
+                
+            }
+
+        }
+        break;
     default:
         include('./Vue/login.php');
         break;
