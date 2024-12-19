@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --main-color: #3E567E;
+            --second-color: #FFFFFF;
+            --hover-color: #556F9B;
+        }
+
+        body {
+            margin: 0;
+        }
+
+        /* ========================================================================== */
+        .profil {
+            height: 100vh;
+            background-color: aqua;
+            display: flex;
+
+        }
+
+        .overlap-group {
+            width: 166px;
+            height: 166px;
+            background-color: #d9d9d9;
+            border-radius: 50%;
+        }
+
+        .group {
+            position: relative;
+            width: 30px;
+            height: 30px;
+            top: 133px;
+            left: 120px;
+            background-color: #3e567e;
+            border-radius: 50%;
+        }
+
+
+        .profil-content-gauche {
+            display: flex;
+            gap: 40px;
+            padding: 10px;
+            width: 500px;
+        }
+
+        .Profil-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            width: 100%;
+        }
+
+        /* ===================================================== */
+        .form-container-profil {
+            padding: 20px;
+            border-radius: 8px;
+            width: 747px;
+            border: solid 2px black;
+        }
+
+        .form-container-profil .row {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            margin-bottom: 15px;
+        }
+
+        .form-container-profil .row input {
+            padding: 10px;
+            border: 1px solid #000000;
+            border-radius: 8px;
+            font-size: 1rem;
+            width: 313px;
+        }
+
+        .form-container-profil .row label {
+            font-size: 1rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .submit-boutton {
+            background: #3366CC;
+            color: white;
+            font-size: 1rem;
+            padding: 10px;
+            width: 100%;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+        }
+
+        .submit-boutton:hover {
+            background: #254d99;
+        }
+
+        .divinput {
+            display: flex;
+            justify-content: space-between;
+        }
+        .azer {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="profil">
+        <div class="Profil-content">
+            <div class="profil-content-gauche">
+                <div class="overlap-group">
+                    <div class="group"><img class="pencil-alt" src="img/pencil-alt-1.svg" /></div>
+                </div>
+                <div>
+                    <h2>Bienvenue, <br> Anastasia gawryluk</h2>
+                    <p>iut marne la valée</p>
+                    <p>Étudiante en BUT MMI 2 - TPB</p>
+                </div>
+            </div>
+            <div class="azer">
+                <div class="form-container-profil">
+                    <div class="divinput">
+                        <div class="row">
+                            <label for="nom">Votre nom</label>
+                            <input id="nom" type="text" placeholder="👤 Votre Nom">
+                        </div>
+                        <div class="row">
+                            <label for="telephone">Téléphone</label>
+                            <input id="telephone" type="text" placeholder="📞 Téléphone">
+                        </div>
+                    </div>
+                    <div class="divinput">
+                        <div class="row">
+                            <label for="email">Email</label>
+                            <input id="email" type="email" placeholder="✉️ Email">
+                        </div>
+                        <div class="row">
+                            <label for="password">Mot de passe</label>
+                            <input id="password" type="password" placeholder="🔒 Mot de passe">
+                        </div>
+                    </div>
+                </div>
+                <button class="submit-boutton">Modifier votre profil</button>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

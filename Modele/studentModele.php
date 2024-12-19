@@ -25,6 +25,7 @@ function handleLogin($tab): bool
         $_SESSION['photo'] = $user['photo_profil'];
         $_SESSION['tp'] = $user['tp'];
         $_SESSION['role'] = $user['admin'];
+        $_SESSION['telephone'] = $user['telephone'];
 
         return true;
     } else {

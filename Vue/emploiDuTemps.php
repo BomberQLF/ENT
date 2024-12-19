@@ -51,7 +51,7 @@
 
         <div class="profilandexit">
             <a href="./index.php?action=profil" class="navbar-profile">
-                <span>Bienvenue, Anastasia</span>
+            <?php echo " <span>Bienvenue {$_SESSION['prenom']}</span>" ?>
                 <div class="profile-circle"></div>
             </a>
             <button id="openPopup" aria-label="Se déconnecter"><i class="fa-solid fa-right-from-bracket"></i></button>

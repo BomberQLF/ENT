@@ -186,6 +186,7 @@ i {
 #openPopup {
   border: none;
   background: transparent;
+  cursor: pointer;
 }
 
 .popup {
@@ -215,6 +216,7 @@ i {
   background: transparent;
   border: none;
   transition: all 0.5s ease;
+  cursor: pointer;
 }
 .closepopup:hover {
   color: rgb(191, 0, 0);
