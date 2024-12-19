@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" />
     <link rel="stylesheet" href="./Style/navbar.css">
-    <link rel="stylesheet" href="./Style/profil.css">
+    <link rel="stylesheet" href="./Style/notes.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" />
+    <title>Notes</title>
 </head>
 
 <body>
@@ -50,7 +50,7 @@
 
         <div class="profilandexit">
             <a href="./index.php?action=profil" class="navbar-profile">
-                <?php echo " <span>Bienvenue {$_SESSION['prenom']}</span>" ?>
+                <span>Bienvenue, Anastasia</span>
                 <div class="profile-circle"></div>
             </a>
             <button id="openPopup" aria-label="Se déconnecter"><i class="fa-solid fa-right-from-bracket"></i></button>
@@ -99,83 +99,50 @@
                 <li><a href="#"><i class="fa-solid fa-comment"></i>Messagerie</a></li>
             </ul>
         </div>
-
     </nav>
-
+    <!-- Fil ariane -->
     <div class="upper-page-container">
-        <div class="left-side">
-            <a href="./index.php?action=accueil" class="suivi">Accueil </a><span class="suivi">> Mon profil</span>
-        </div>
+        <div class="left-side"><a href="./index.php?action=accueil" class="suivi">Accueil </a><span class="suivi">>
+                Notes</span></div>
         <div class="right-side">
-            <h1 id="profil">Mon profil</h1>
+            <h1 id="notes">Mes notes</h1>
         </div>
     </div>
 
-    <section class="profil">
-        <div class="Profil-content">
-            <div class="profil-content-gauche">
-                <div class="overlap-group">
-                    <div class="group"><i class="fa-solid fa-pencil"></i></div>
+    <div class="notes-container">
+        <div class="notes-filterbar">
+            <form method="POST" class="notes-tri">
+                <div class="select-filter">
+                    <label for="sort-select">Trier par :</label>
+                    <select name="orderBy" id="sort-select" onchange="this.form.submit()">
+                        <option value="date_attribution" <?= $orderBy === 'date_attribution' ? 'selected' : '' ?>>Plus
+                            récent</option>
+                        <option value="matiere" <?= $orderBy === 'matiere' ? 'selected' : '' ?>>Ordre Alphabétique</option>
+                    </select>
                 </div>
-                <div class="profil-text">
-                    <?php
-                    echo "<h2>Bienvenue, <br> {$_SESSION['prenom']} {$_SESSION['nom']} </h2>
-                    <p><i class='fa-solid fa-user'></i>- Iut marne la valée</p>
-                    <p><i class='fa-solid fa-school'></i>- Étudiante en BUT MMI 2 - TP{$_SESSION['tp']}</p> ";
-                    ?>
-                </div>
-            </div>
-            <div class="divformdroite">
-                <div class="form-container-profil" id="formprofil">
-                    <div class="divinput">
-                        <div class="row">
-                            <label for="nom">Votre nom</label>
-                            <input id="nom" type="text" placeholder="Votre Nom" disabled
-                                value="<?php echo $_SESSION['nom'] ?>">
-                        </div>
-                        <div class="row">
-                            <label for="telephone">Téléphone</label>
-                            <input id="telephone" type="text" placeholder="Téléphone" disabled
-                                value="<?php echo $_SESSION['telephone'] ?>">
-                        </div>
-                    </div>
-                    <div class="divinput">
-                        <div class="row">
-                            <label for="email">Email</label>
-                            <input id="email" type="email" placeholder="Email" disabled
-                                value="<?php echo $_SESSION['login'] ?>">
-                        </div>
-                        <div class="row">
-                            <label for="password">Mot de passe</label>
-                            <input id="password" type="password" placeholder="********" disabled>
-                            <button id="passwordButton" class="passwordchange">Changer le mot de passe</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-container-profilmotdepasse" id="changemotdepasseform">
-                    <div class="divinput">
-                        <div class="row">
-                            <label for="nom">Votre ancien mot de passe</label>
-                            <input id="nom" type="text" placeholder="ancien mot de passe">
-                        </div>
-                        <div class="row">
-                            <label for="telephone">Réécrivez votre nouveau mot de passe</label>
-                            <input id="telephone" type="text" placeholder="nouveau mot de passe">
-                        </div>
-                    </div>
-                    <div class="divinput">
-                        <div class="row">
-                            <label for="email">Votre nouveau mot de passe</label>
-                            <input id="email" type="text" placeholder="nouveau mot de passe">
-                        </div>
-                    </div>
-                </div>
-                <button class="submit-boutton" id="editProfileButton">Modifier votre profil</button>
-            </div>
+            </form>
         </div>
-    </section>
-    <script src="./Javascript/index.js"></script>
-    <script src="./Javascript/profil.js"></script>
+
+        <div class="notes-wrapper">
+            <div class="notes-title">
+                <p>Matières</p>
+                <p>Professeur</p>
+                <p>Note</p>
+                <p>Moyenne de classe</p>
+                <p>Date</p>
+            </div>
+            <?php foreach ($notes as $note): ?>
+                <div class="notes-contenu">
+                    <p style="width: 5rem;"><?= $note['matiere'] ?></p>
+                    <p><?= $note['professeur'] ?></p>
+                    <p><?= $note['note'] ?></p>
+                    <p><?= $note['moyenne_classe'] ?></p>
+                    <p><?= $note['date_attribution'] ?></p>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+
 </body>
 
 </html>

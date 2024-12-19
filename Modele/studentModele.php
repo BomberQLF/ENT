@@ -97,3 +97,18 @@ function deleteTask($id_tache): bool
     $deleteReussi = $query->execute();
     return $deleteReussi;
 }
+
+function showNotes($orderBy = 'matiere')
+{
+    $pdo = connect_db();
+    if ($orderBy === 'date_attribution') {
+        $orderDirection = 'DESC';
+    } else {
+        $orderDirection = 'ASC';
+    }
+    $query = $pdo->prepare("SELECT * FROM notes ORDER BY $orderBy $orderDirection");
+    $query->execute();
+    $notes = $query->fetchAll(PDO::FETCH_ASSOC);
+
+    return $notes;
+}
