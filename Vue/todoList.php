@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
@@ -26,7 +26,7 @@
         <ul id="navbarLinks">
             <li><a href="#" class="navbar-item"><i class="fa-solid fa-graduation-cap"></i>Mon suivi</a>
                 <ul class="submenu">
-                    <li><a href="#">Notes</a></li>
+                    <li><a href="./index.php?action=notesPage">Notes</a></li>
                     <li><a href="./index.php?action=todoListPage">To do list</a></li>
                     <li><a href="#">Absences et retards</a></li>
                 </ul>
@@ -104,7 +104,7 @@
 
     <!-- File d'arianne -->
     <div class="upper-page-container">
-        <div class="left-side"><a href="#" class="suivi">Mon suivi </a><span class="suivi">> To do list</span></div>
+        <div class="left-side"><a href="./index.php?action=accueil" class="suivi">Accueil </a><span class="suivi">> To do list</span></div>
         <div class="right-side">
             <h1 id="tâches">Mes tâches</h1>
         </div>
@@ -120,10 +120,10 @@
                 <div class="add-task-container" id="add-task-container" style="display: none;">
                     <h2>Ajouter une tâche</h2>
                     <form id="add-task-form" action="index.php?action=add-task" method="POST">
-                    <?php $tasks = showTasks(); ?>
-                        <?php if (!empty($tasks)) : ?>
+                        <?php $tasks = showTasks(); ?>
+                        <?php if (!empty($tasks)): ?>
                             <input type="hidden" value="<?= $tasks[0]['etat_tache']; ?>">
-                        <?php endif; ?>                        
+                        <?php endif; ?>
                         <div class="form-group">
                             <label for="date_tache">Date de la tâche</label>
                             <input type="text" id="task-date" name="date_tache" placeholder="DD/MM" required>
@@ -173,7 +173,8 @@
                                     </label>
                                 </form>
                                 <div class="pencil-container">
-                                    <a id="trash-todo" href="index.php?action=deleteTask&id=<?= $task['id_tache']; ?>"><i class="fa fa-trash"></i></a>
+                                    <a id="trash-todo" href="index.php?action=deleteTask&id=<?= $task['id_tache']; ?>"><i
+                                            class="fa fa-trash"></i></a>
                                     <i class="fa fa-pen-nib" onclick="showModifyTaskPopup(<?= $task['id_tache'] ?>)"></i>
                                 </div>
                             </div>

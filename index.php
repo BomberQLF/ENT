@@ -25,10 +25,9 @@ switch ($action) {
         break;
 
     case 'logout':
-        // on détruit la session et on redirige l'utilisateur vers la page d'accueil
         $_SESSION = array();
         session_destroy();
-        header('Location: index.php');
+        include('./Vue/login.php');
         break;
 
     case 'menuCrous':
@@ -123,6 +122,14 @@ switch ($action) {
                 deleteTask($id_tache);
                 include('./Vue/todoList.php');
             }
+        }
+        break;
+
+    case 'notesPage':
+        if (isLoggedIn()) {
+            $orderBy = $_POST['orderBy'] ?? 'matiere';
+            $notes = showNotes($orderBy);
+            include('./Vue/notes.php');
         }
         break;
 

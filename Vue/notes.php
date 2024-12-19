@@ -5,10 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./Style/navbar.css">
-    <link rel="stylesheet" href="./Style/emploiDuTemps.css">
-    <link rel="stylesheet" href=".Style/accueil.css">
+    <link rel="stylesheet" href="./Style/notes.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" />
-    <title>Accueil - ENT</title>
+    <title>Notes</title>
 </head>
 
 <body>
@@ -100,11 +99,50 @@
                 <li><a href="#"><i class="fa-solid fa-comment"></i>Messagerie</a></li>
             </ul>
         </div>
-
     </nav>
+    <!-- Fil ariane -->
+    <div class="upper-page-container">
+        <div class="left-side"><a href="./index.php?action=accueil" class="suivi">Accueil </a><span class="suivi">>
+                Notes</span></div>
+        <div class="right-side">
+            <h1 id="notes">Mes notes</h1>
+        </div>
+    </div>
 
-    <script src="./Javascript/index.js">
-    </script>
+    <div class="notes-container">
+        <div class="notes-filterbar">
+            <form method="POST" class="notes-tri">
+                <div class="select-filter">
+                    <label for="sort-select">Trier par :</label>
+                    <select name="orderBy" id="sort-select" onchange="this.form.submit()">
+                        <option value="date_attribution" <?= $orderBy === 'date_attribution' ? 'selected' : '' ?>>Plus
+                            récent</option>
+                        <option value="matiere" <?= $orderBy === 'matiere' ? 'selected' : '' ?>>Ordre Alphabétique</option>
+                    </select>
+                </div>
+            </form>
+        </div>
+
+        <div class="notes-wrapper">
+            <div class="notes-title">
+                <p>Matières</p>
+                <p>Professeur</p>
+                <p>Note</p>
+                <p>Moyenne de classe</p>
+                <p>Date</p>
+            </div>
+            <?php foreach ($notes as $note): ?>
+                <div class="notes-contenu">
+                    <p style="width: 5rem;"><?= $note['matiere'] ?></p>
+                    <p><?= $note['professeur'] ?></p>
+                    <p><?= $note['note'] ?></p>
+                    <p><?= $note['moyenne_classe'] ?></p>
+                    <p><?= $note['date_attribution'] ?></p>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+
 </body>
 
 </html>
