@@ -111,6 +111,11 @@
         </div>
     </div>
 
+    <?php if (isset($_SESSION['modifusermsg'])) {
+        echo "<p class='billetmessage'>{$_SESSION['modifusermsg']}</p>";
+        unset($_SESSION['modifusermsg']); // Supprime le message après affichage
+    } ?>
+
     <section class="profil">
         <div class="Profil-content">
             <div class="profil-content-gauche">
@@ -126,50 +131,53 @@
                 </div>
             </div>
             <div class="divformdroite">
-                <div class="form-container-profil" id="formprofil">
-                    <div class="divinput">
-                        <div class="row">
-                            <label for="nom">Votre nom</label>
-                            <input id="nom" type="text" placeholder="Votre Nom" disabled
-                                value="<?php echo $_SESSION['nom'] ?>">
+                <form action="index.php?action=updateuser" method="POST">
+                    <div class="form-container-profil" id="formprofil">
+                        <div class="divinput">
+                            <div class="row">
+                                <label for="nom">Votre nom</label>
+                                <input id="nom" name="nom" type="text" placeholder="Votre Nom" disabled
+                                    value="<?php echo $_SESSION['nom'] ?>" required>
+                            </div>
+                            <div class="row">
+                                <label for="telephone">Téléphone</label>
+                                <input id="telephone" name="telephone" type="text" placeholder="Téléphone" disabled
+                                    value="<?php echo $_SESSION['telephone'] ?>" required>
+                            </div>
                         </div>
-                        <div class="row">
-                            <label for="telephone">Téléphone</label>
-                            <input id="telephone" type="text" placeholder="Téléphone" disabled
-                                value="<?php echo $_SESSION['telephone'] ?>">
-                        </div>
-                    </div>
-                    <div class="divinput">
-                        <div class="row">
-                            <label for="email">Email</label>
-                            <input id="email" type="email" placeholder="Email" disabled
-                                value="<?php echo $_SESSION['login'] ?>">
-                        </div>
-                        <div class="row">
-                            <label for="password">Mot de passe</label>
-                            <input id="password" type="password" placeholder="********" disabled>
-                            <button id="passwordButton" class="passwordchange">Changer le mot de passe</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-container-profilmotdepasse" id="changemotdepasseform">
-                    <div class="divinput">
-                        <div class="row">
-                            <label for="nom">Votre ancien mot de passe</label>
-                            <input id="nom" type="text" placeholder="ancien mot de passe">
-                        </div>
-                        <div class="row">
-                            <label for="telephone">Réécrivez votre nouveau mot de passe</label>
-                            <input id="telephone" type="text" placeholder="nouveau mot de passe">
+                        <div class="divinput">
+                            <div class="row">
+                                <label for="login">Email</label>
+                                <input id="login" name="login" type="email" placeholder="Email" disabled
+                                    value="<?php echo $_SESSION['login'] ?>" required>
+                            </div>
+                            <div class="row">
+                                <label for="password">Mot de passe</label>
+                                <input id="password" type="password" placeholder="********" disabled>
+                                <button id="passwordButton" class="passwordchange">Changer le mot de passe</button>
+                            </div>
                         </div>
                     </div>
-                    <div class="divinput">
-                        <div class="row">
-                            <label for="email">Votre nouveau mot de passe</label>
-                            <input id="email" type="text" placeholder="nouveau mot de passe">
+                    <div class="form-container-profilmotdepasse" id="changemotdepasseform">
+                        <div class="divinput">
+                            <div class="row">
+                                <label for="oldPassword">Votre ancien mot de passe</label>
+                                <input id="oldPassword" type="password" placeholder="ancien mot de passe">
+                            </div>
+                            <div class="row">
+                                <label for="newPassword">Réécrivez votre nouveau mot de passe</label>
+                                <input id="newPassword" type="password" placeholder="nouveau mot de passe">
+                            </div>
+                        </div>
+                        <div class="divinput">
+                            <div class="row">
+                                <label for="confirmPassword">Votre nouveau mot de passe</label>
+                                <input id="confirmPassword" type="password" placeholder="confirmer le mot de passe">
+                            </div>
                         </div>
                     </div>
-                </div>
+                    <input type="submit" class="submit-boutton-input" value="Enregistrer les modifications">
+                </form>
                 <button class="submit-boutton" id="editProfileButton">Modifier votre profil</button>
             </div>
         </div>

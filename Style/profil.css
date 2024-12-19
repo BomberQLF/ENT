@@ -105,6 +105,21 @@
     color: #333;
     margin-bottom: 5px;
 }
+.submit-boutton-input{
+    background-color: var(  --main-color);
+    color: white;
+    font-size: 1rem;
+    padding: 10px;
+    width: 100%;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    margin-top: 40px;
+    display: none;
+}
+.submit-boutton-input:hover {
+    background: var(--hover-color);
+}
 
 .submit-boutton {
     background-color: var(  --main-color);
@@ -115,6 +130,7 @@
     border: none;
     border-radius: 50px;
     cursor: pointer;
+    margin-top: 40px;
 }
 
 .submit-boutton:hover {
@@ -129,7 +145,6 @@
 .divformdroite {
     display: flex;
     flex-direction: column;
-    gap: 40px;
 }
 
 .profil-text p {

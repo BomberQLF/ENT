@@ -1,7 +1,7 @@
 <?php
 function connect_db(): PDO
 {
-    $db = new PDO('mysql:host=localhost;dbname=ent;', 'root', 'root');
+    $db = new PDO('mysql:host=localhost;dbname=ent;', 'root', '');
     return $db;
 }
 
@@ -96,4 +96,20 @@ function deleteTask($id_tache): bool
     $query->bindParam(":id_tache", $id_tache, PDO::PARAM_INT);
     $deleteReussi = $query->execute();
     return $deleteReussi;
+}
+
+function modifUser($nom, $telephone, $login, $id_utilisateur) {
+    $pdo = connect_db();
+
+    $requete = $pdo->prepare("UPDATE utilisateurs SET nom = :nom, login = :login, telephone = :telephone WHERE id_utilisateur = :id_utilisateur");
+
+    $requete->bindParam(':nom', $nom, PDO::PARAM_STR);
+    $requete->bindParam(':login', $login, PDO::PARAM_STR);
+    $requete->bindParam(':telephone', $telephone, PDO::PARAM_STR);
+    $requete->bindParam(':id_utilisateur', $id_utilisateur, PDO::PARAM_INT);
+    $requete->execute();
+
+    $_SESSION['nom'] = $nom;
+    $_SESSION['login'] = $login;
+    $_SESSION['telephone'] = $telephone;
 }

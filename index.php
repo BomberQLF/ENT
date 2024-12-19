@@ -133,15 +133,17 @@ switch ($action) {
             include('./Vue/login.php');
         }
         break;
-
-    case 'updateuser':
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if(isset($_SESSION['login']) && $_SESSION['login'] == $_SESSION["login"] ){
-                
+        case 'updateuser':
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $nom = $_POST['nom'];
+                $login = $_POST['login'];
+                $telephone = $_POST['telephone'];
+                $id_utilisateur = $_SESSION['id_utilisateur'];
+                modifUser($nom, $telephone, $login, $id_utilisateur);
+                $_SESSION['modifusermsg'] = "Utilisateur $login a été modifié avec succès.";
+                include('./Vue/profil.php');
             }
-
-        }
-        break;
+            break;
     default:
         include('./Vue/login.php');
         break;
