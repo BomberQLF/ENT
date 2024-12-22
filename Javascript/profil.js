@@ -39,4 +39,17 @@ document.addEventListener("DOMContentLoaded", () => {
         inputsmotdepasse.style.display = 'block';
         fromprofil.style.display = 'none';
     });
+    document.getElementById('openPopupimgfichier').addEventListener('click', function () {
+        document.getElementById('popupimgfichier').style.display = 'block';
+      });
+    
+      document.querySelector('.closepopupimgfichier').addEventListener('click', function () {
+        document.getElementById('popupimgfichier').style.display = 'none';
+      });
+      window.addEventListener('click', (event) => {
+        if (event.target == popupimgfichier) {
+            popupimgfichier.style.display = 'none';
+        }
+    
+      });
 });

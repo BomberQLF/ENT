@@ -22,7 +22,7 @@ function handleLogin($tab): bool
         $_SESSION['prenom'] = $user['prenom'];
         $_SESSION['nom'] = $user['nom'];
         $_SESSION['id_utilisateur'] = $user['id_utilisateur'];
-        $_SESSION['photo'] = $user['photo_profil'];
+        $_SESSION['photo_profil'] = $user['photo_profil'];
         $_SESSION['tp'] = $user['tp'];
         $_SESSION['role'] = $user['admin'];
         $_SESSION['telephone'] = $user['telephone'];
@@ -112,4 +112,14 @@ function modifUser($nom, $telephone, $login, $id_utilisateur) {
     $_SESSION['nom'] = $nom;
     $_SESSION['login'] = $login;
     $_SESSION['telephone'] = $telephone;
+}
+function updateUserPhoto($user, $target_file)
+{
+    $db = connect_db();
+    $stmt = $db->prepare("UPDATE utilisateurs SET photo_profil = :photo_profil WHERE id_utilisateur = :id_utilisateur");
+    $stmt->bindParam(':photo_profil', $target_file, PDO::PARAM_STR);
+    $stmt->bindParam(':id_utilisateur', $user, PDO::PARAM_INT);
+    $stmt->execute();
+
+    $_SESSION['photo_profil'] = $target_file;
 }

@@ -133,7 +133,8 @@ switch ($action) {
             include('./Vue/login.php');
         }
         break;
-        case 'updateuser':
+    case 'updateuser':
+        if (isLoggedIn()) {
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $nom = $_POST['nom'];
                 $login = $_POST['login'];
@@ -143,7 +144,59 @@ switch ($action) {
                 $_SESSION['modifusermsg'] = "Utilisateur $login a été modifié avec succès.";
                 include('./Vue/profil.php');
             }
-            break;
+        }
+        break;
+    case 'upload_Photo':
+        if (isset($_FILES['photo_profil'])) {
+            if (isset($_SESSION['login'])) {
+                $login = $_SESSION['login'];
+                // on récupère les informations de l'utilisateur connecté
+                $user = isLoggedIn();
+
+                // Si l'utilisateur est connecté
+                if ($user) {
+                    // On récupère l'id de l'utilisateur
+                    // On créer le chemin du fichier dans lequel l'image sera uploader
+                    $target_dir = "image/uploads/";
+                    // On récupère l'extension du fichier
+                    $imageFileType = strtolower(pathinfo($_FILES['photo_profil']['name'], PATHINFO_EXTENSION));
+                    // On créer le chemin complet du fichier
+                    $target_file = $target_dir . "profil_" . $user . "." . $imageFileType;
+                    // On initialise la variable $uploadOk à 1
+                    $uploadOk = 1;
+
+                    // Limite la taille du fichier (1 Mo ici)
+                    if ($_FILES['photo_profil']['size'] > 1000000) {
+                        $_SESSION['modifusermsg'] = "Désolé, votre fichier est supérieur à 1Mo.";
+                        $uploadOk = 0;
+                    }
+
+                    // Limite les formats de fichiers
+                    if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
+                        $_SESSION['modifusermsg'] = "Désolé, seul les formats JPG, JPEG, PNG & GIF sont autorisée.";
+                        $uploadOk = 0;
+                    }
+
+                    // Supprimer l'ancien fichier s'il existe
+                    if (file_exists($target_file)) {
+                        // Supprime le fichier
+                        unlink($target_file);
+                    }
+
+                    // Si tout est ok, uploade le fichier
+                    if ($uploadOk && move_uploaded_file($_FILES['photo_profil']['tmp_name'], $target_file)) {
+                        // On appelle la fonction updateUserPhoto pour mettre à jour la photo de profil de l'utilisateur
+                        updateUserPhoto($user, $target_file);
+                        $_SESSION['modifusermsg'] = "La photo de profil a été mise à jour avec succès.";
+
+                    }
+                }
+            } else {
+                $_SESSION['modifusermsg'] = "Vous devez être connectée pour uploader une photo de profil.";
+            }
+        }
+        include('./Vue/profil.php');
+        break;
     default:
         include('./Vue/login.php');
         break;

@@ -50,8 +50,13 @@
 
         <div class="profilandexit">
             <a href="./index.php?action=profil" class="navbar-profile">
-                <?php echo " <span>Bienvenue {$_SESSION['prenom']}</span>" ?>
-                <div class="profile-circle"></div>
+                <?php echo " <span>Bienvenue {$_SESSION['prenom']}</span>
+                <div class='profile-circle'>
+                <img src='{$_SESSION['photo_profil']}' alt='photo de profil' class='photoprofil'>
+                
+                </div>
+
+                " ?>
             </a>
             <button id="openPopup" aria-label="Se déconnecter"><i class="fa-solid fa-right-from-bracket"></i></button>
 
@@ -64,6 +69,20 @@
                 <button class="closepopup" aria-label="Femrer la popup">X</button>
                 <p>Se déconnecter de votre session</p>
                 <a href="./index.php?action='logout'" class="popupButtondeco">Se déconnecter</a>
+            </div>
+        </div>
+
+        <div id="popupimgfichier" class="popupimgfichier">
+            <div class="popupimgfichier-content">
+                <button class="closepopupimgfichier" aria-label="Femrer la popup">X</button>
+                <i class="fa-solid fa-file-arrow-up"></i>
+                <p>Joindre votre image ci-dessous</p>
+                <p>format acceptés:SVG,JPG,PNG</p>
+                <form action="index.php?action=upload_Photo" method="POST" enctype="multipart/form-data">
+                    <label for="photo_profil"></label>
+                    <input type="file" name="photo_profil" id="photo_profil" required>
+                    <input type="submit" name="submit" class="popupimgfichierdeco" value="Sauvergarder">
+                </form>
             </div>
         </div>
 
@@ -120,7 +139,8 @@
         <div class="Profil-content">
             <div class="profil-content-gauche">
                 <div class="overlap-group">
-                    <div class="group"><i class="fa-solid fa-pencil"></i></div>
+                    <?php echo "<img src='{$_SESSION['photo_profil']}' alt='Photo de profil' class='photoprofil'>"; ?>
+                    <button class="group" id='openPopupimgfichier'><i class="fa-solid fa-pencil"></i></button>
                 </div>
                 <div class="profil-text">
                     <?php
@@ -162,7 +182,8 @@
                         <div class="divinput">
                             <div class="row">
                                 <label for="oldPassword">Votre ancien mot de passe</label>
-                                <input id="oldPassword" type="password" placeholder="ancien mot de passe">
+                                <input id="oldPassword" name="oldPassword" type="password"
+                                    placeholder="ancien mot de passe">
                             </div>
                             <div class="row">
                                 <label for="newPassword">Réécrivez votre nouveau mot de passe</label>
