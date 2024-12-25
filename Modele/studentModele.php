@@ -98,7 +98,7 @@ function deleteTask($id_tache): bool
     return $deleteReussi;
 }
 
-function showNotes($orderBy = 'matiere'): array
+function showNotes($id_utilisateur, $orderBy = 'matiere')
 {
     $pdo = connect_db();
     if ($orderBy === 'date_attribution') {
@@ -106,7 +106,9 @@ function showNotes($orderBy = 'matiere'): array
     } else {
         $orderDirection = 'ASC';
     }
-    $query = $pdo->prepare("SELECT * FROM notes ORDER BY $orderBy $orderDirection");
+
+    $query = $pdo->prepare("SELECT * FROM notes WHERE id_utilisateur = :id_utilisateur ORDER BY $orderBy $orderDirection");
+    $query->bindParam(":id_utilisateur", $id_utilisateur, PDO::PARAM_INT);
     $query->execute();
     $notes = $query->fetchAll(PDO::FETCH_ASSOC);
 

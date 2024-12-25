@@ -136,13 +136,14 @@
                 <p>Moyenne de classe</p>
                 <p>Date</p>
             </div>
-            <?php foreach ($notes as $note): ?>
+            <?php $noteEleves = showNotes($_SESSION['id_utilisateur']); ?>
+            <?php foreach ($noteEleves as $note): ?>
                 <div class="notes-contenu">
-                    <p style="width: 5rem;"><?= $note['matiere'] ?></p>
-                    <p><?= $note['professeur'] ?></p>
-                    <p><?= $note['note'] ?></p>
-                    <p><?= $note['moyenne_classe'] ?></p>
-                    <p><?= $note['date_attribution'] ?></p>
+                    <p style="width: 5rem;"><?= htmlspecialchars($note['matiere']) ?></p>
+                    <p><?= htmlspecialchars($note['professeur']) ?></p>
+                    <p><?= htmlspecialchars($note['note']) ?></p>
+                    <p><?= htmlspecialchars($note['moyenne_classe']) ?></p>
+                    <p><?= htmlspecialchars($note['date_attribution']) ?></p>
                 </div>
             <?php endforeach; ?>
         </div>
