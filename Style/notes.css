@@ -46,7 +46,7 @@ select {
 }
 
 .notes-wrapper {
-    margin-top: 3rem;
+    margin-top: 2rem;
     background-color: #F1F1F1;
     border-radius: 8px;
 }
@@ -67,4 +67,12 @@ select {
     justify-content: space-around;
     border-bottom: 1px solid black;
     align-items: center;
+}
+.average-container {
+    margin: 2rem 1rem 1rem 0rem;
+}
+.average-container > span {
+    padding: .78rem 2rem;
+    background: #F1F1F1;
+    border-radius: 8px;
 }
