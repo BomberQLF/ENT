@@ -123,6 +123,11 @@
             </form>
         </div>
 
+        <div class="average-container">
+            <?php $average = showAverage($_SESSION['id_utilisateur']) ?>
+            <span><?= "Moyenne : " . " " . $average . "/20" ?></span>
+        </div>
+
         <div class="notes-wrapper">
             <div class="notes-title">
                 <p>Matières</p>

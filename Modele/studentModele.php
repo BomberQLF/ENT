@@ -98,7 +98,7 @@ function deleteTask($id_tache): bool
     return $deleteReussi;
 }
 
-function showNotes($orderBy = 'matiere')
+function showNotes($orderBy = 'matiere'): array
 {
     $pdo = connect_db();
     if ($orderBy === 'date_attribution') {
@@ -111,4 +111,16 @@ function showNotes($orderBy = 'matiere')
     $notes = $query->fetchAll(PDO::FETCH_ASSOC);
 
     return $notes;
+}
+
+function showAverage($id_utilisateur)
+{
+    $pdo = connect_db();
+    $query = $pdo->prepare("SELECT note FROM notes WHERE id_utilisateur = :id_utilisateur");
+    $query->bindParam(':id_utilisateur', $id_utilisateur, PDO::PARAM_STR);
+    $query->execute();
+    $notes = $query->fetchAll(PDO::FETCH_ASSOC);
+
+    $average = array_sum(array_column($notes, 'note')) / count($notes);
+    return $average;
 }
