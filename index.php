@@ -177,6 +177,18 @@ switch ($action) {
         }
         break;
 
+        case 'deleteNote':
+            if (isAdmin()) { 
+                $id_note = $_GET['id']; 
+                if ($id_note) {
+                    deleteNote($id_note);
+                }
+                include('./Vue/backOffice.php');
+            } else {
+                include('./Vue/login.php');
+            }
+            break;
+
     default:
         include('./Vue/login.php');
         break;
