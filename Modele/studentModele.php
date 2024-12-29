@@ -55,6 +55,13 @@ function addTask($date_tache, $titre, $description, $etat_tache, $id_utilisateur
     return $query->execute();
 }
 
+function isAdmin() 
+{
+    if ($_SESSION['role'] === 1) {
+        return true;
+    } return false;
+}
+
 function showTasks(): array
 {
     $pdo = connect_db();
