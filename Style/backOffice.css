@@ -58,8 +58,6 @@ input {
     padding: 1rem;
 }
 .backoffice-btn {
-    position: absolute;
-    bottom: -169px;
     border: none;
     background-color: transparent;
     border-radius: 8px;
@@ -68,4 +66,9 @@ input {
 }
 .btn-container {
     margin-bottom: 3rem;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+.hidden {
+  display: none;
 }

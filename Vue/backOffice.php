@@ -142,7 +142,7 @@
     <!------------------------ FAIRE EN SORTE QUE LE BACKFOFFICE MARCHE EN FONCTION DE L'ELEVE QU'ON CHOISIT  ------------------------>
 
     <!-- ADMINISTRATION NOTES -->
-    <div class="notes-container" style="padding: 0 4rem 4rem 4rem">
+    <div class="notes-container hidden" style="padding: 0 4rem 4rem 4rem">
         <div class="average-container">
             <?php $average = showAverage($_SESSION['id_utilisateur']) ?>
             <span><?= "Moyenne : " . " " . $average . "/20" ?></span>
@@ -157,9 +157,11 @@
                 <p>Date</p>
             </div>
             <?php $noteEleves = showNotes($_SESSION['id_utilisateur']); ?>
-            <form action="./index.php?action=modifyNotes" method="POST">
-                <?php foreach ($noteEleves as $note): ?>
+            <?php foreach ($noteEleves as $note): ?>
+                <form action="./index.php?action=modifyNotes" method="POST">
                     <div class="notes-contenu">
+                        <input type="hidden" name="id_note" value="<?= htmlspecialchars($note['id_note']) ?>">
+
                         <label class="hideLabel" for="matiere"></label>
                         <input type="text" name="matiere" id="matiere" value="<?= htmlspecialchars($note['matiere']) ?>">
 
@@ -167,23 +169,22 @@
                         <input type="text" name="professeur" id="professeur"
                             value="<?= htmlspecialchars($note['professeur']) ?>">
 
-                        <label for="note" class="hideLabel"></label>
+                        <label class="hideLabel" for="note"></label>
                         <input type="text" name="note" id="note" value="<?= htmlspecialchars($note['note']) ?>">
 
-                        <label for="moyenne_classe" class="hideLabel"></label>
+                        <label class="hideLabel" for="moyenne_classe"></label>
                         <input type="text" name="moyenne_classe" id="moyenne_classe"
                             value="<?= htmlspecialchars($note['moyenne_classe']) ?>">
 
-                        <label for="date_attributation" class="hideLabel"></label>
+                        <label class="hideLabel" for="date_attribution"></label>
                         <input type="date" name="date_attribution" id="date_attribution"
                             value="<?= htmlspecialchars($note['date_attribution']) ?>">
+                        <div class="btn-container">
+                            <input type="submit" class="backoffice-btn">
+                        </div>
                     </div>
-                <?php endforeach; ?>
-                <div class="btn-container">
-                    <input type="submit" style="padding: .8rem 1.5rem" class="backoffice-btn">
-                </div>
-            </form>
-
+                </form>
+            <?php endforeach; ?>
         </div>
     </div>
 </body>
