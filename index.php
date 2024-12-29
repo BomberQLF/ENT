@@ -143,31 +143,31 @@ switch ($action) {
 
     case 'updateuser':
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if(isset($_SESSION['login']) && $_SESSION['login'] == $_SESSION["login"] ){ 
+            if (isset($_SESSION['login']) && $_SESSION['login'] == $_SESSION["login"]) {
 
             }
 
         }
         break;
 
-    case 'backoffice' : 
+    case 'backoffice':
         isAdmin() ? include('./Vue/backOffice.php') : include('./Vue/login.php');
         break;
 
-    case 'modifyNotes' : 
+    case 'modifyNotes':
         if (isAdmin()) {
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $id_note = intval($_POST['id_note']);
                 $matiere = htmlspecialchars($_POST['matiere']);
                 $note = htmlspecialchars($_POST['note']);
                 $professeur = htmlspecialchars($_POST['professeur']);
                 $moyenne_classe = htmlspecialchars($_POST['moyenne_classe']);
                 $date_attribution = htmlspecialchars($_POST['date_attribution']);
 
-
-
-                if (updateNotes($matiere, $note, $professeur, $moyenne_classe, $date_attribution) === true) {
+                if (updateNotes($id_note, $matiere, $note, $professeur, $moyenne_classe, $date_attribution) === true) {
                     include('./Vue/backOffice.php');
-                    echo "uppppp";
+                } else {
+                    include('./Vue/backOffice.php');
                 }
             } else {
                 include('./Vue/login.php');
@@ -177,7 +177,7 @@ switch ($action) {
         }
         break;
 
-  default:
+    default:
         include('./Vue/login.php');
         break;
 }
