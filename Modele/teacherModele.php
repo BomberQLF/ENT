@@ -19,3 +19,11 @@ function updateNotes($id_note, $matiere, $note, $professeur, $moyenne_classe, $d
 
     return $query->execute();
 }
+
+function deleteNote($id_note): bool
+{
+    $pdo = connect_db(); 
+    $query = $pdo->prepare("DELETE FROM notes WHERE id_note = :id_note"); 
+    $query->bindParam(":id_note", $id_note, PDO::PARAM_INT);
+    return $query->execute(); 
+}
