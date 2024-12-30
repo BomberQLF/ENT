@@ -1,7 +1,7 @@
 <?php
 function connect_db(): PDO
 {
-    $db = new PDO('mysql:host=localhost;dbname=ent;', 'root', 'root');
+    $db = new PDO('mysql:host=localhost;dbname=ent;', 'root', '');
     return $db;
 }
 
@@ -22,7 +22,7 @@ function handleLogin($tab): bool
         $_SESSION['prenom'] = $user['prenom'];
         $_SESSION['nom'] = $user['nom'];
         $_SESSION['id_utilisateur'] = $user['id_utilisateur'];
-        $_SESSION['photo'] = $user['photo_profil'];
+        $_SESSION['photo_profil'] = $user['photo_profil'];
         $_SESSION['tp'] = $user['tp'];
         $_SESSION['role'] = $user['admin'];
         $_SESSION['telephone'] = $user['telephone'];
@@ -103,6 +103,32 @@ function deleteTask($id_tache): bool
     $query->bindParam(":id_tache", $id_tache, PDO::PARAM_INT);
     $deleteReussi = $query->execute();
     return $deleteReussi;
+}
+
+function modifUser($nom, $telephone, $login, $id_utilisateur) {
+    $pdo = connect_db();
+
+    $requete = $pdo->prepare("UPDATE utilisateurs SET nom = :nom, login = :login, telephone = :telephone WHERE id_utilisateur = :id_utilisateur");
+
+    $requete->bindParam(':nom', $nom, PDO::PARAM_STR);
+    $requete->bindParam(':login', $login, PDO::PARAM_STR);
+    $requete->bindParam(':telephone', $telephone, PDO::PARAM_STR);
+    $requete->bindParam(':id_utilisateur', $id_utilisateur, PDO::PARAM_INT);
+    $requete->execute();
+
+    $_SESSION['nom'] = $nom;
+    $_SESSION['login'] = $login;
+    $_SESSION['telephone'] = $telephone;
+}
+function updateUserPhoto($user, $target_file)
+{
+    $db = connect_db();
+    $stmt = $db->prepare("UPDATE utilisateurs SET photo_profil = :photo_profil WHERE id_utilisateur = :id_utilisateur");
+    $stmt->bindParam(':photo_profil', $target_file, PDO::PARAM_STR);
+    $stmt->bindParam(':id_utilisateur', $user, PDO::PARAM_INT);
+    $stmt->execute();
+
+    $_SESSION['photo_profil'] = $target_file;
 }
 
 function showNotes($id_utilisateur, $orderBy = 'matiere')

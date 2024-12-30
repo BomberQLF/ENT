@@ -340,6 +340,11 @@ i {
   max-height: 300px;
   /* La hauteur maximale du sous-menu */
 }
+.photoprofil {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
 
 /* RESPONSIVE Télephone */
 @media (max-width: 978px) {

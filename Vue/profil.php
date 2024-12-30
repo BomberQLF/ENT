@@ -51,8 +51,13 @@
 
         <div class="profilandexit">
             <a href="./index.php?action=profil" class="navbar-profile">
-                <?php echo " <span>Bienvenue {$_SESSION['prenom']}</span>" ?>
-                <div class="profile-circle"></div>
+                <?php echo " <span>Bienvenue {$_SESSION['prenom']}</span>
+                <div class='profile-circle'>
+                <img src='{$_SESSION['photo_profil']}' alt='photo de profil' class='photoprofil'>
+                
+                </div>
+
+                " ?>
             </a>
             <button id="openPopup" aria-label="Se déconnecter"><i class="fa-solid fa-right-from-bracket"></i></button>
 
@@ -65,6 +70,20 @@
                 <button class="closepopup" aria-label="Femrer la popup">X</button>
                 <p>Se déconnecter de votre session</p>
                 <a href="./index.php?action='logout'" class="popupButtondeco">Se déconnecter</a>
+            </div>
+        </div>
+
+        <div id="popupimgfichier" class="popupimgfichier">
+            <div class="popupimgfichier-content">
+                <button class="closepopupimgfichier" aria-label="Femrer la popup">X</button>
+                <i class="fa-solid fa-file-arrow-up"></i>
+                <p>Joindre votre image ci-dessous</p>
+                <p>format acceptés:SVG,JPG,PNG</p>
+                <form action="index.php?action=upload_Photo" method="POST" enctype="multipart/form-data">
+                    <label for="photo_profil"></label>
+                    <input type="file" name="photo_profil" id="photo_profil" required>
+                    <input type="submit" name="submit" class="popupimgfichierdeco" value="Sauvergarder">
+                </form>
             </div>
         </div>
 
@@ -113,11 +132,17 @@
         </div>
     </div>
 
+    <?php if (isset($_SESSION['modifusermsg'])) {
+        echo "<p class='billetmessage'>{$_SESSION['modifusermsg']}</p>";
+        unset($_SESSION['modifusermsg']); // Supprime le message après affichage
+    } ?>
+
     <section class="profil">
         <div class="Profil-content">
             <div class="profil-content-gauche">
                 <div class="overlap-group">
-                    <div class="group"><i class="fa-solid fa-pencil"></i></div>
+                    <?php echo "<img src='{$_SESSION['photo_profil']}' alt='Photo de profil' class='photoprofil'>"; ?>
+                    <button class="group" id='openPopupimgfichier'><i class="fa-solid fa-pencil"></i></button>
                 </div>
                 <div class="profil-text">
                     <?php
@@ -128,50 +153,54 @@
                 </div>
             </div>
             <div class="divformdroite">
-                <div class="form-container-profil" id="formprofil">
-                    <div class="divinput">
-                        <div class="row">
-                            <label for="nom">Votre nom</label>
-                            <input id="nom" type="text" placeholder="Votre Nom" disabled
-                                value="<?php echo $_SESSION['nom'] ?>">
+                <form action="index.php?action=updateuser" method="POST">
+                    <div class="form-container-profil" id="formprofil">
+                        <div class="divinput">
+                            <div class="row">
+                                <label for="nom">Votre nom</label>
+                                <input id="nom" name="nom" type="text" placeholder="Votre Nom" disabled
+                                    value="<?php echo $_SESSION['nom'] ?>" required>
+                            </div>
+                            <div class="row">
+                                <label for="telephone">Téléphone</label>
+                                <input id="telephone" name="telephone" type="text" placeholder="Téléphone" disabled
+                                    value="<?php echo $_SESSION['telephone'] ?>" required>
+                            </div>
                         </div>
-                        <div class="row">
-                            <label for="telephone">Téléphone</label>
-                            <input id="telephone" type="text" placeholder="Téléphone" disabled
-                                value="<?php echo $_SESSION['telephone'] ?>">
-                        </div>
-                    </div>
-                    <div class="divinput">
-                        <div class="row">
-                            <label for="email">Email</label>
-                            <input id="email" type="email" placeholder="Email" disabled
-                                value="<?php echo $_SESSION['login'] ?>">
-                        </div>
-                        <div class="row">
-                            <label for="password">Mot de passe</label>
-                            <input id="password" type="password" placeholder="********" disabled>
-                            <button id="passwordButton" class="passwordchange">Changer le mot de passe</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-container-profilmotdepasse" id="changemotdepasseform">
-                    <div class="divinput">
-                        <div class="row">
-                            <label for="nom">Votre ancien mot de passe</label>
-                            <input id="nom" type="text" placeholder="ancien mot de passe">
-                        </div>
-                        <div class="row">
-                            <label for="telephone">Réécrivez votre nouveau mot de passe</label>
-                            <input id="telephone" type="text" placeholder="nouveau mot de passe">
+                        <div class="divinput">
+                            <div class="row">
+                                <label for="login">Email</label>
+                                <input id="login" name="login" type="email" placeholder="Email" disabled
+                                    value="<?php echo $_SESSION['login'] ?>" required>
+                            </div>
+                            <div class="row">
+                                <label for="password">Mot de passe</label>
+                                <input id="password" type="password" placeholder="********" disabled>
+                                <button id="passwordButton" class="passwordchange">Changer le mot de passe</button>
+                            </div>
                         </div>
                     </div>
-                    <div class="divinput">
-                        <div class="row">
-                            <label for="email">Votre nouveau mot de passe</label>
-                            <input id="email" type="text" placeholder="nouveau mot de passe">
+                    <div class="form-container-profilmotdepasse" id="changemotdepasseform">
+                        <div class="divinput">
+                            <div class="row">
+                                <label for="oldPassword">Votre ancien mot de passe</label>
+                                <input id="oldPassword" name="oldPassword" type="password"
+                                    placeholder="ancien mot de passe">
+                            </div>
+                            <div class="row">
+                                <label for="newPassword">Réécrivez votre nouveau mot de passe</label>
+                                <input id="newPassword" type="password" placeholder="nouveau mot de passe">
+                            </div>
+                        </div>
+                        <div class="divinput">
+                            <div class="row">
+                                <label for="confirmPassword">Votre nouveau mot de passe</label>
+                                <input id="confirmPassword" type="password" placeholder="confirmer le mot de passe">
+                            </div>
                         </div>
                     </div>
-                </div>
+                    <input type="submit" class="submit-boutton-input" value="Enregistrer les modifications">
+                </form>
                 <button class="submit-boutton" id="editProfileButton">Modifier votre profil</button>
             </div>
         </div>

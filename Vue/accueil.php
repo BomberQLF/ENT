@@ -51,9 +51,14 @@
 
 
         <div class="profilandexit">
-            <a href="./index.php?action=profil" class="navbar-profile">
-            <?php echo " <span>Bienvenue {$_SESSION['prenom']}</span>" ?>
-                <div class="profile-circle"></div>
+        <a href="./index.php?action=profil" class="navbar-profile">
+                <?php echo " <span>Bienvenue {$_SESSION['prenom']}</span>
+                <div class='profile-circle'>
+                <img src='{$_SESSION['photo_profil']}' alt='photo de profil' class='photoprofil'>
+                
+                </div>
+
+                " ?>
             </a>
             <button id="openPopup" aria-label="Se déconnecter"><i class="fa-solid fa-right-from-bracket"></i></button>
 
