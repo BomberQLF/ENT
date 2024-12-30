@@ -71,6 +71,7 @@
     justify-content: center;
     padding: 20px;
     width: 100%;
+    flex-wrap: wrap;
 }
 
 /* ===================================================== */
@@ -220,6 +221,9 @@
     flex-direction: column;
     text-align: center;
 }
+.popupimgfichier-content form input[type="file"] {
+    margin: 10px auto auto;
+}
 
 .closepopupimgfichier {
     color: #000000;
@@ -284,3 +288,17 @@
     color: red;
     font-weight: bold;
 }
+@media (max-width: 800px) {
+    .divinput  {
+        display: block;
+    }
+    .photoprofil {
+        height: inherit;
+    }
+    .overlap-group {
+        background: none;
+    }
+    .form-container-profil, .form-container-profilmotdepasse {
+        width: 100%;
+    }
+  }
