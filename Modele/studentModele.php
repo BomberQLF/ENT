@@ -55,6 +55,13 @@ function addTask($date_tache, $titre, $description, $etat_tache, $id_utilisateur
     return $query->execute();
 }
 
+function isAdmin() 
+{
+    if ($_SESSION['role'] === 1) {
+        return true;
+    } return false;
+}
+
 function showTasks(): array
 {
     $pdo = connect_db();
@@ -122,4 +129,33 @@ function updateUserPhoto($user, $target_file)
     $stmt->execute();
 
     $_SESSION['photo_profil'] = $target_file;
+}
+
+function showNotes($id_utilisateur, $orderBy = 'matiere')
+{
+    $pdo = connect_db();
+    if ($orderBy === 'date_attribution') {
+        $orderDirection = 'DESC';
+    } else {
+        $orderDirection = 'ASC';
+    }
+
+    $query = $pdo->prepare("SELECT * FROM notes WHERE id_utilisateur = :id_utilisateur ORDER BY $orderBy $orderDirection");
+    $query->bindParam(":id_utilisateur", $id_utilisateur, PDO::PARAM_INT);
+    $query->execute();
+    $notes = $query->fetchAll(PDO::FETCH_ASSOC);
+
+    return $notes;
+}
+
+function showAverage($id_utilisateur)
+{
+    $pdo = connect_db();
+    $query = $pdo->prepare("SELECT note FROM notes WHERE id_utilisateur = :id_utilisateur");
+    $query->bindParam(':id_utilisateur', $id_utilisateur, PDO::PARAM_STR);
+    $query->execute();
+    $notes = $query->fetchAll(PDO::FETCH_ASSOC);
+
+    $average = array_sum(array_column($notes, 'note')) / count($notes);
+    return $average;
 }

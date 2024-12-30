@@ -25,10 +25,9 @@ switch ($action) {
         break;
 
     case 'logout':
-        // on détruit la session et on redirige l'utilisateur vers la page d'accueil
         $_SESSION = array();
         session_destroy();
-        header('Location: index.php');
+        include('./Vue/login.php');
         break;
 
     case 'menuCrous':
@@ -133,6 +132,7 @@ switch ($action) {
             include('./Vue/login.php');
         }
         break;
+
     case 'updateuser':
         if (isLoggedIn()) {
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -143,6 +143,19 @@ switch ($action) {
                 modifUser($nom, $telephone, $login, $id_utilisateur);
                 $_SESSION['modifusermsg'] = "Utilisateur $login a été modifié avec succès.";
                 include('./Vue/profil.php');
+
+    case 'notesPage':
+        if (isLoggedIn()) {
+            $orderBy = $_POST['orderBy'] ?? 'matiere';
+            $notes = showNotes($orderBy);
+            include('./Vue/notes.php');
+        }
+        break;
+
+    case 'updateuser':
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (isset($_SESSION['login']) && $_SESSION['login'] == $_SESSION["login"]) {
+
             }
         }
         break;
@@ -197,6 +210,46 @@ switch ($action) {
         }
         include('./Vue/profil.php');
         break;
+
+    case 'backoffice':
+        isAdmin() ? include('./Vue/backOffice.php') : include('./Vue/login.php');
+        break;
+
+    case 'modifyNotes':
+        if (isAdmin()) {
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $id_note = intval($_POST['id_note']);
+                $matiere = htmlspecialchars($_POST['matiere']);
+                $note = htmlspecialchars($_POST['note']);
+                $professeur = htmlspecialchars($_POST['professeur']);
+                $moyenne_classe = htmlspecialchars($_POST['moyenne_classe']);
+                $date_attribution = htmlspecialchars($_POST['date_attribution']);
+
+                if (updateNotes($id_note, $matiere, $note, $professeur, $moyenne_classe, $date_attribution) === true) {
+                    include('./Vue/backOffice.php');
+                } else {
+                    include('./Vue/backOffice.php');
+                }
+            } else {
+                include('./Vue/login.php');
+            }
+        } else {
+            include('./Vue/login.php');
+        }
+        break;
+
+        case 'deleteNote':
+            if (isAdmin()) { 
+                $id_note = $_GET['id']; 
+                if ($id_note) {
+                    deleteNote($id_note);
+                }
+                include('./Vue/backOffice.php');
+            } else {
+                include('./Vue/login.php');
+            }
+            break;
+
     default:
         include('./Vue/login.php');
         break;

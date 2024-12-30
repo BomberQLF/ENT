@@ -4,10 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" />
     <link rel="stylesheet" href="./Style/navbar.css">
+    <link rel="stylesheet" href="./Style/backOffice.css">
+    <link rel="stylesheet" href="./Style/notes.css">
     <link rel="stylesheet" href="./Style/todoList.css">
+    <script src="./Javascript/todolist.js"></script>
+    <script src="./Javascript/backOffice.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" />
+
+    <title>Back Office</title>
 </head>
 
 <body>
@@ -50,14 +55,9 @@
 
 
         <div class="profilandexit">
-        <a href="./index.php?action=profil" class="navbar-profile">
-                <?php echo " <span>Bienvenue {$_SESSION['prenom']}</span>
-                <div class='profile-circle'>
-                <img src='{$_SESSION['photo_profil']}' alt='photo de profil' class='photoprofil'>
-                
-                </div>
-
-                " ?>
+            <a href="./index.php?action=profil" class="navbar-profile">
+                <?php echo " <span>Bienvenue {$_SESSION['prenom']}</span>" ?>
+                <div class="profile-circle"></div>
             </a>
             <button id="openPopup" aria-label="Se déconnecter"><i class="fa-solid fa-right-from-bracket"></i></button>
 
@@ -106,59 +106,96 @@
                 <li><a href="./index.php?action=backoffice" class="navbar-item">Administration</a></li>
             </ul>
         </div>
-
     </nav>
 
-    <!-- File d'arianne -->
+
+    <!-- Fil ariane -->
     <div class="upper-page-container">
-        <div class="left-side"><a href="./index.php?action=accueil" class="suivi">Accueil </a><span class="suivi">> To do list</span></div>
+        <div class="left-side"><a href="./index.php?action=accueil" class="suivi">Accueil </a><span class="suivi">>
+                Backoffice</span></div>
         <div class="right-side">
-            <h1 id="tâches">Mes tâches</h1>
+            <h1 id="notes">Backoffice</h1>
         </div>
     </div>
-    <!-- Contenu de la page -->
-    <div class="page-container">
-        <div class="page-content">
-            <div class="todolist-container">
-                <img id="add-todo-container" src="./image/imageSite/add-todolist-container.svg" alt="">
-                <!-- Popup pour ajouter une tâche -->
-                <!-- Popup pour ajouter une tâche -->
-                <div class="overlay" id="overlay-add-task" style="display: none;"></div>
-                <div class="add-task-container" id="add-task-container" style="display: none;">
-                    <h2>Ajouter une tâche</h2>
-                    <form id="add-task-form" action="index.php?action=add-task" method="POST">
-                        <?php $tasks = showTasks(); ?>
-                        <?php if (!empty($tasks)): ?>
-                            <input type="hidden" value="<?= $tasks[0]['etat_tache']; ?>">
-                        <?php endif; ?>
-                        <div class="form-group">
-                            <label for="date_tache">Date de la tâche</label>
-                            <input type="text" id="task-date" name="date_tache" placeholder="DD/MM" required>
+
+    <!-- FILTRES -->
+    <div class="backoffice-container">
+        <div class="filterbar-backoffice">
+            <ul class="filters">
+                <li><span class="ftr">Notes</span></li>
+            </ul>
+            <ul class="filters">
+                <li><span class="ftr">Todolist</span></li>
+            </ul>
+            <ul class="filters">
+                <li><span class="ftr">Absences</span></li>
+            </ul>
+            <ul class="filters">
+                <li><span class="ftr">Utilisateurs</span></li>
+            </ul>
+            <ul class="filters">
+                <li><span class="ftr">Messagerie</span></li>
+            </ul>
+        </div>
+    </div>
+
+    <!------------------------ FAIRE EN SORTE QUE LE BACKFOFFICE MARCHE EN FONCTION DE L'ELEVE QU'ON CHOISIT  ------------------------>
+    <!------------------------ FAIRE EN SORTE QUE LE BACKFOFFICE MARCHE EN FONCTION DE L'ELEVE QU'ON CHOISIT  ------------------------>
+    <!------------------------ FAIRE EN SORTE QUE LE BACKFOFFICE MARCHE EN FONCTION DE L'ELEVE QU'ON CHOISIT  ------------------------>
+    <!------------------------ FAIRE EN SORTE QUE LE BACKFOFFICE MARCHE EN FONCTION DE L'ELEVE QU'ON CHOISIT  ------------------------>
+
+    <!-- ADMINISTRATION NOTES -->
+    <div class="notes-container hidden" style="padding: 0 4rem 4rem 4rem">
+        <div class="average-container">
+            <?php $average = showAverage($_SESSION['id_utilisateur']) ?>
+            <span><?= "Moyenne : " . " " . $average . "/20" ?></span>
+        </div>
+
+        <div class="notes-wrapper">
+            <div class="notes-title">
+                <p>Matières</p>
+                <p>Professeur</p>
+                <p>Note</p>
+                <p>Moyenne de classe</p>
+                <p>Date</p>
+            </div>
+            <?php $noteEleves = showNotes($_SESSION['id_utilisateur']); ?>
+            <?php foreach ($noteEleves as $note): ?>
+                <form action="./index.php?action=modifyNotes" method="POST">
+                    <div class="notes-contenu">
+                        <a href="index.php?action=deleteNote&id=<?= $note['id_note']; ?>" class="delete-note">
+                            <i class="fa fa-trash"></i>
+                        </a>
+                        <input type="hidden" name="id_note" value="<?= htmlspecialchars($note['id_note']) ?>">
+
+                        <label class="hideLabel" for="matiere"></label>
+                        <input type="text" name="matiere" id="matiere" value="<?= htmlspecialchars($note['matiere']) ?>">
+
+                        <label class="hideLabel" for="professeur"></label>
+                        <input type="text" name="professeur" id="professeur"
+                            value="<?= htmlspecialchars($note['professeur']) ?>">
+
+                        <label class="hideLabel" for="note"></label>
+                        <input type="text" name="note" id="note" value="<?= htmlspecialchars($note['note']) ?>">
+
+                        <label class="hideLabel" for="moyenne_classe"></label>
+                        <input type="text" name="moyenne_classe" id="moyenne_classe"
+                            value="<?= htmlspecialchars($note['moyenne_classe']) ?>">
+
+                        <label class="hideLabel" for="date_attribution"></label>
+                        <input type="date" name="date_attribution" id="date_attribution"
+                            value="<?= htmlspecialchars($note['date_attribution']) ?>">
+                        <div class="btn-container">
+                            <input type="submit" class="backoffice-btn">
                         </div>
-                        <div class="form-group">
-                            <label for="titre">Titre de la tâche</label>
-                            <input type="text" id="task-title" name="titre" placeholder="PHP" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="description">Description</label>
-                            <textarea id="task-description" name="description" rows="4" required></textarea>
-                            <input type="hidden" name="id_utilisateur" value="<?= $_SESSION['id_utilisateur']; ?>">
-                        </div>
-                        <div class="button-container">
-                            <button type="submit">Ajouter</button>
-                            <button type="button" id="close-popup">Annuler</button>
-                        </div>
-                    </form>
-                </div>
-                <div class="todolist-header">
-                    <button class="previous-week btn-week">&#9664;</button>
-                    <h2>Semaine du <span id="starting-date">11</span>/<span id="starting-month">12</span>
-                        au <span id="finishing-date">18</span>/<span id="finishing-month">12</span>
-                    </h2>
-                    <button class="next-week btn-week">&#9654;</button>
-                </div>
-                <hr>
-                <div class="todolist-boxes">
+                    </div>
+                </form>
+            <?php endforeach; ?>
+        </div>
+    </div>
+
+    <div class="todolist-container hidden" style="padding: 0 4rem 4rem 4rem">
+        <div class="todolist-boxes">
                     <!-- SCRIPT ICI POUR BOUCLER LES TACHES DANS LA BDD -->
                     <?php if (isset($successMessage)) {
                         echo '<p class="success-message">' . $successMessage . '</p>';
@@ -217,95 +254,7 @@
                         </div>
                     <?php endforeach; ?>
                 </div>
-            </div>
-            <div class="right-side-wrapper">
-                <div class="calendar">
-                    <div class="calendar-wrapper">
-                        <div class="month">
-                            <button class="nav-btn">&#9664;</button>
-                            <span>Décembre</span>
-                            <button class="nav-btn">&#9654;</button>
-                        </div>
-                        <div class="days">
-                            <div>L</div>
-                            <div>M</div>
-                            <div>M</div>
-                            <div>J</div>
-                            <div>V</div>
-                            <div>S</div>
-                            <div>D</div>
-                        </div>
-                        <div class="dates">
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div>1</div>
-                            <div>2</div>
-                            <div>3</div>
-                            <div>4</div>
-                            <div>5</div>
-                            <div>6</div>
-                            <div>7</div>
-                            <div>8</div>
-                            <div>9</div>
-                            <div>10</div>
-                            <div class="highlight">11</div>
-                            <div class="highlight">12</div>
-                            <div class="highlight">13</div>
-                            <div class="highlight">14</div>
-                            <div class="highlight">15</div>
-                            <div class="highlight">16</div>
-                            <div class="highlight">17</div>
-                            <div class="highlight">18</div>
-                            <div>19</div>
-                            <div>20</div>
-                            <div>21</div>
-                            <div>22</div>
-                            <div>23</div>
-                            <div>24</div>
-                            <div>25</div>
-                            <div>26</div>
-                            <div>27</div>
-                            <div>28</div>
-                            <div>29</div>
-                            <div>30</div>
-                            <div>1</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="collaborateurs-container">
-                    <div class="upper-collaborateurs">
-                        <h2 id="collab-title">Vos collaborateurs</h2>
-                    </div>
-                    <div class="content-collaborateurs">
-                        <div class="img-collaborateurs">
-                            <img src="./image/uploads/Profile.svg" alt="">
-                        </div>
-                        <div class="info-collaborateurs">
-                            <p class="nom-collaborateurs">Anastasia</p>
-                            <span class="details-collaborateurs">SAE 3.02A, SAE 3.03, Audiovisuel</span>
-                        </div>
-                    </div>
-                    <div class="content-collaborateurs">
-                        <div class="img-collaborateurs">
-                            <img src="./image/uploads/Profile.svg" alt="">
-                        </div>
-                        <div class="info-collaborateurs">
-                            <p class="nom-collaborateurs">Anastasia</p>
-                            <span class="details-collaborateurs">SAE 3.02A, SAE 3.03, Audiovisuel</span>
-                        </div>
-                    </div>
-                    <div class="add-todo-container"><a href="#"><img src="./image/uploads/add-todo.svg" alt=""></a>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
-
-    <script src="./Javascript/index.js"></script>
-    <script src="./Javascript/todolist.js"></script>
 </body>
 
 </html>

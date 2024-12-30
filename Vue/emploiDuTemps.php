@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./Style/navbar.css">
     <link rel="stylesheet" href="./Style/emploiDuTemps.css">
-    <link rel="stylesheet" href=".Style/accueil.css">
+    <link rel="stylesheet" href="./Style/accueil.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" />
     <title>Accueil - ENT</title>
 </head>
@@ -27,7 +27,7 @@
         <ul id="navbarLinks">
             <li><a href="#" class="navbar-item"><i class="fa-solid fa-graduation-cap"></i>Mon suivi</a>
                 <ul class="submenu">
-                    <li><a href="#">Notes</a></li>
+                    <li><a href="./index.php?action=notesPage">Notes</a></li>
                     <li><a href="./index.php?action=todoListPage">To do list</a></li>
                     <li><a href="#">Absences et retards</a></li>
                 </ul>
@@ -46,6 +46,7 @@
                 </ul>
             </li>
             <li><a href="#" class="navbar-item"><i class="fa-solid fa-comment"></i>Messagerie</a></li>
+            <li><a href="./index.php?action=backoffice" class="navbar-item">Administration</a></li>
         </ul>
 
 
@@ -103,6 +104,7 @@
                     </ul>
                 </li>
                 <li><a href="#"><i class="fa-solid fa-comment"></i>Messagerie</a></li>
+                <li><a href="./index.php?action=backoffice" class="navbar-item">Administration</a></li>
             </ul>
         </div>
 
