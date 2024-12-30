@@ -143,6 +143,9 @@ switch ($action) {
                 modifUser($nom, $telephone, $login, $id_utilisateur);
                 $_SESSION['modifusermsg'] = "Utilisateur $login a été modifié avec succès.";
                 include('./Vue/profil.php');
+            }
+        }
+        break;
 
     case 'notesPage':
         if (isLoggedIn()) {
@@ -152,13 +155,6 @@ switch ($action) {
         }
         break;
 
-    case 'updateuser':
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if (isset($_SESSION['login']) && $_SESSION['login'] == $_SESSION["login"]) {
-
-            }
-        }
-        break;
     case 'upload_Photo':
         if (isset($_FILES['photo_profil'])) {
             if (isset($_SESSION['login'])) {
