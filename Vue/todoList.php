@@ -45,7 +45,9 @@
                 </ul>
             </li>
             <li><a href="#" class="navbar-item"><i class="fa-solid fa-comment"></i>Messagerie</a></li>
-            <li><a href="./index.php?action=backoffice" class="navbar-item">Administration</a></li>
+            <?php if(isAdmin()): ?>
+                <li><a href="./index.php?action=backoffice" class="navbar-item">Administration</a></li>
+            <?php endif; ?>
         </ul>
 
 
@@ -103,8 +105,10 @@
                     </ul>
                 </li>
                 <li><a href="#"><i class="fa-solid fa-comment"></i>Messagerie</a></li>
+                <?php if(isAdmin()): ?>
                 <li><a href="./index.php?action=backoffice" class="navbar-item">Administration</a></li>
-            </ul>
+            <?php endif; ?>
+        </ul>
         </div>
 
     </nav>

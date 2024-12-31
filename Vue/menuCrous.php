@@ -30,7 +30,7 @@
         <ul id="navbarLinks">
             <li><a href="#" class="navbar-item"><i class="fa-solid fa-graduation-cap"></i>Mon suivi</a>
                 <ul class="submenu">
-                <li><a href="./index.php?action=notesPage">Notes</a></li>
+                    <li><a href="./index.php?action=notesPage">Notes</a></li>
                     <li><a href="./index.php?action=todoListPage">To do list</a></li>
                     <li><a href="#">Absences et retards</a></li>
                 </ul>
@@ -49,12 +49,14 @@
                 </ul>
             </li>
             <li><a href="#" class="navbar-item"><i class="fa-solid fa-comment"></i>Messagerie</a></li>
-            <li><a href="./index.php?action=backoffice" class="navbar-item">Administration</a></li>
+            <?php if (isAdmin()): ?>
+                <li><a href="./index.php?action=backoffice" class="navbar-item">Administration</a></li>
+            <?php endif; ?>
         </ul>
 
 
         <div class="profilandexit">
-        <a href="./index.php?action=profil" class="navbar-profile">
+            <a href="./index.php?action=profil" class="navbar-profile">
                 <?php echo " <span>Bienvenue {$_SESSION['prenom']}</span>
                 <div class='profile-circle'>
                 <img src='{$_SESSION['photo_profil']}' alt='photo de profil' class='photoprofil'>
@@ -107,7 +109,9 @@
                     </ul>
                 </li>
                 <li><a href="#"><i class="fa-solid fa-comment"></i>Messagerie</a></li>
-                <li><a href="./index.php?action=backoffice" class="navbar-item">Administration</a></li>
+                <?php if (isAdmin()): ?>
+                    <li><a href="./index.php?action=backoffice" class="navbar-item">Administration</a></li>
+                <?php endif; ?>
             </ul>
         </div>
 
