@@ -9,94 +9,6 @@
     <link rel="stylesheet" href="./Style/accueil.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" />
     <title>Accueil - ENT</title>
-    <style>
-        .calendar {
-            width: 320px;
-            background-color: white;
-            border-radius: 8px;
-            padding: 32px;
-            border: 1px solid black;
-            height: fit-content;
-            grid-area: 1 / 2 / 2 / 3;
-        }
-
-        .month {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: bold;
-            font-size: 1.1rem;
-            margin-bottom: 8px;
-        }
-
-        .nav-btn {
-            background: none;
-            border: none;
-            font-size: 1.2rem;
-            cursor: pointer;
-        }
-
-        .days,
-        .dates {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            text-align: center;
-            font-size: 0.9rem;
-        }
-
-        .days div {
-            font-weight: bold;
-            color: #666;
-        }
-
-        .dates div {
-            padding: 8px;
-            border: 1px solid rgba(0, 0, 0, 0.2);
-            box-sizing: border-box;
-        }
-
-        .dates div:not(.highlight) {
-            color: #333;
-        }
-
-        .highlight {
-            background-color: #d1d5db;
-            color: black;
-        }
-
-        .dates div:hover {
-            background-color: #ececec;
-        }
-
-        .btn-week:hover {
-            cursor: pointer;
-        }
-
-        span.today {
-            background-color: #bababa;
-            color: #000;
-            font-weight: bold;
-            padding: 2px 5px;
-            border-radius: 50px;
-        }
-
-        .time-column {
-            padding: 0px 20px 0px 20px;
-            border: 1px solid black;
-        }
-
-        .main-container {
-            display: grid;
-            grid-template-columns: 1fr 0.3fr;
-            grid-template-rows: repeat(2, 1fr);
-            grid-column-gap: 40px;
-            margin-top: 50px;
-        }
-
-        .time-header {
-            border-top-left-radius: 7px;
-        }
-    </style>
 </head>
 
 <body>
@@ -166,7 +78,7 @@
 
         <div class="side-menu" id="sideMenu">
             <ul>
-                <li><a href="#"><i class="fa-solid fa-house"></i>Accueil</a></li>
+                <li><a href="./index.php?action=accueil"><i class="fa-solid fa-house"></i>Accueil</a></li>
 
                 <li class="has-submenu">
                     <a href=""><i class="fa-solid fa-graduation-cap"></i>Mon suivi</a>
@@ -252,7 +164,6 @@
                         $dayLetter = $daysTranslation[$day]; // Lettre correspondant au jour en français
                         $dayNumber = $date->format('d'); // Numéro du jour
                         $formattedDate = $date->format('Y-m-d');
-                        $monthName = $date->format('F');
                         $todayClass = ($formattedDate === $currentDate) ? 'today' : '';
                         ?>
                         <div class="day-header">
@@ -350,8 +261,23 @@
                 ?>
             </div>
             <div class="navigation">
-                <a href="?action=emploiDuTemps&week=<?= $currentWeek - 1 ?>">Semaine Précédente</a>
-                <a href="?action=emploiDuTemps&week=<?= $currentWeek + 1 ?>">Semaine Suivante</a>
+                <a href="?action=emploiDuTemps&week=<?= $currentWeek - 1 ?>"><</a>
+
+                        <div class="daybasdiv">
+                            <?php
+                            $daysOfWeekFR = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi'];
+                            foreach ($daysOfWeekFR as $i => $day) {
+                                $date = new DateTime("Monday this week +$i days");
+                                $dayNumber = $date->format('d'); // Numéro du jour
+                                $formattedDate = $date->format('Y-m-d');
+                                $todayClass = ($formattedDate === $currentDate) ? 'today' : '';
+                                echo "<div class='day-bas'>
+                            <strong> $day $dayNumber $monthName</strong>
+                        </div>";
+                            }
+                            ?>
+                        </div>
+                        <a href="?action=emploiDuTemps&week=<?= $currentWeek + 1 ?>">></a>
             </div>
         </div>
         <div class="calendar">
