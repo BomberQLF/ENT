@@ -1,7 +1,7 @@
 <?php
 function connect_db(): PDO
 {
-    $db = new PDO('mysql:host=localhost;dbname=ent;', 'root', '');
+    $db = new PDO('mysql:host=localhost;dbname=ent;', 'root', 'root');
     return $db;
 }
 
@@ -38,6 +38,11 @@ function isLoggedIn(): bool
     return isset($_SESSION['login']);
 }
 
+function isAdmin(): bool 
+{
+    return isLoggedIn() && $_SESSION['role'] == 1;
+}
+
 function addTask($date_tache, $titre, $description, $etat_tache, $id_utilisateur): bool
 {
     $pdo = connect_db();
@@ -53,13 +58,6 @@ function addTask($date_tache, $titre, $description, $etat_tache, $id_utilisateur
     $query->bindParam(":id_utilisateur", $id_utilisateur, PDO::PARAM_INT);
 
     return $query->execute();
-}
-
-function isAdmin() 
-{
-    if ($_SESSION['role'] === 1) {
-        return true;
-    } return false;
 }
 
 function showTasks(): array

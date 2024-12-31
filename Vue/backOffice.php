@@ -139,11 +139,6 @@
         </div>
     </div>
 
-    <!------------------------ FAIRE EN SORTE QUE LE BACKFOFFICE MARCHE EN FONCTION DE L'ELEVE QU'ON CHOISIT  ------------------------>
-    <!------------------------ FAIRE EN SORTE QUE LE BACKFOFFICE MARCHE EN FONCTION DE L'ELEVE QU'ON CHOISIT  ------------------------>
-    <!------------------------ FAIRE EN SORTE QUE LE BACKFOFFICE MARCHE EN FONCTION DE L'ELEVE QU'ON CHOISIT  ------------------------>
-    <!------------------------ FAIRE EN SORTE QUE LE BACKFOFFICE MARCHE EN FONCTION DE L'ELEVE QU'ON CHOISIT  ------------------------>
-
     <!-- ADMINISTRATION NOTES -->
     <div class="notes-container hidden" style="padding: 0 4rem 4rem 4rem">
         <div class="average-container">
@@ -194,7 +189,7 @@
         </div>
     </div>
 
-    <div class="todolist-container hidden" style="padding: 0 4rem 4rem 4rem">
+    <div class="todolist-container hidden" style="padding: 0 4rem 4rem 4rem; border: none; margin: 0;" >
         <div class="todolist-boxes">
                     <!-- SCRIPT ICI POUR BOUCLER LES TACHES DANS LA BDD -->
                     <?php if (isset($successMessage)) {
