@@ -16,7 +16,7 @@
 
 <body>
     <nav>
-        <a href="#header-website" class="skip-link">Aller au contenu</a>
+        <a href="#container" class="skip-link">Aller au contenu</a>
 
         <a href="./index.php?action=accueil" class="navbar-home" aria-label="menu"><i class="fa-solid fa-house"></i></a>
         <button class="hamburger" id="hamburger" aria-label="menu de sélection">
@@ -112,6 +112,14 @@
         </div>
 
     </nav>
+    <div class="upper-page-container">
+        <div class="left-side">
+            <a href="./index.php?action=accueil" class="suivi">Accueil </a><span class="suivi">> Crous et mon IZLY</span>
+        </div>
+        <div class="right-side">
+            <h1 id="profil">Crous et mon IZLY</h1>
+        </div>
+    </div>
 
     <main class="container">
         <section class="menu-crous">

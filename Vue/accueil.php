@@ -109,6 +109,14 @@
         </div>
 
     </nav>
+    <div class="upper-page-container">
+        <div class="left-side">
+            <a href="./index.php?action=accueil" class="suivi">Accueil </a><span class="suivi">></span>
+        </div>
+        <div class="right-side">
+            <h1 id="profil">Accueil</h1>
+        </div>
+    </div>
 
     <script src="./Javascript/index.js">
     </script>

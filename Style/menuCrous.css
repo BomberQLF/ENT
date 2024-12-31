@@ -10,6 +10,36 @@ body {
   background-color: #f9f9f9;
 }
 
+.page-content {
+  display: flex;
+  gap: 7rem;
+}
+
+.suivi {
+  text-decoration: none;
+  color: #7a7a7a;
+}
+
+.upper-page-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem 0 1rem 4rem;
+}
+
+#profil {
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  color: white;
+}
+
+.right-side {
+  padding: 0.4rem 3rem;
+  background-color: #3e567e;
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+}
+
+
 /* Container principal */
 .container {
   display: flex;
@@ -210,7 +240,7 @@ h3 {
   border-radius: 200px 200px 0 0;
   background: linear-gradient(
     to right top,
-    rgba(122, 122, 122) 25%,
+    rgba(62, 86, 126) 25%,
     transparent 1%
   );
   position: absolute;
