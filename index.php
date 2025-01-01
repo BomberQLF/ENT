@@ -101,17 +101,17 @@ switch ($action) {
         if (isLoggedIn()) {
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $id_tache = $_POST['id_tache'];
-                // Si la checkbox est cochée, on envoie 1, sinon 0
                 $etat_tache = isset($_POST['etat_tache']) ? 1 : 0;
 
-                // Appelle la fonction du modèle pour mettre à jour l'état
+                $taskModified = updateTask($_POST['date_tache'], $_POST['titre'], $_POST['description'], $id_tache);
+
                 $taskUpdated = updateTaskState($id_tache, $etat_tache);
 
-                if ($taskUpdated) {
-                    include('./Vue/todoList.php');
-                    exit;
-                }
+                include('./Vue/backOffice.php');
+                exit;
             }
+        } else {
+            include('./Vue/login.php');
         }
         break;
 
@@ -124,6 +124,18 @@ switch ($action) {
             }
         }
         break;
+
+    case 'boDeleteTask':
+        if (isAdmin()) {
+            $id_tache = $_GET['id'];
+            if ($id_tache) {
+                deleteTask($id_tache);
+                include('./Vue/backOffice.php');
+            }
+        }
+        break;
+
+
     case 'profil':
         if (isLoggedIn()) {
             handleLogin($_POST);
@@ -234,17 +246,17 @@ switch ($action) {
         }
         break;
 
-        case 'deleteNote':
-            if (isAdmin()) { 
-                $id_note = $_GET['id']; 
-                if ($id_note) {
-                    deleteNote($id_note);
-                }
-                include('./Vue/backOffice.php');
-            } else {
-                include('./Vue/login.php');
+    case 'deleteNote':
+        if (isAdmin()) {
+            $id_note = $_GET['id'];
+            if ($id_note) {
+                deleteNote($id_note);
             }
-            break;
+            include('./Vue/backOffice.php');
+        } else {
+            include('./Vue/login.php');
+        }
+        break;
 
     default:
         include('./Vue/login.php');
