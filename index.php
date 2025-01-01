@@ -258,6 +258,14 @@ switch ($action) {
         }
         break;
 
+    case 'evenement':
+        if (isLoggedIn()) {
+            include('./Vue/evenement.php');
+        } else {
+            include('./Vue/login.php');
+        }
+        break;
+
     default:
         include('./Vue/login.php');
         break;
