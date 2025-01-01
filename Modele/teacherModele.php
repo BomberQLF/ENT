@@ -27,3 +27,12 @@ function deleteNote($id_note): bool
     $query->bindParam(":id_note", $id_note, PDO::PARAM_INT);
     return $query->execute(); 
 }
+
+function showAllNotes(): array 
+{
+    $pdo = connect_db();
+    $query = $pdo->prepare("SELECT * FROM notes");
+    $query->execute();
+    $notes = $query->fetchAll();
+    return $notes;
+}
