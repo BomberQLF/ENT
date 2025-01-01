@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
         users: document.querySelector('.users-container'),
         messaging: document.querySelector('.messaging-container')
     };
+    console.log('backOffice.js is loaded');
 
     // Fonction pour cacher toutes les sections
     function hideAllSections() {

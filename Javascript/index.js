@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const hamburger = document.getElementById('hamburger');
   const sideMenu = document.getElementById('sideMenu');
   const submenuLinks = document.querySelectorAll('.has-submenu > a');
+  console.log('index.js is loaded');
 
   // Ouvrir/fermer le menu latéral
   hamburger.addEventListener('click', () => {

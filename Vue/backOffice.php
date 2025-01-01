@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="./Style/backOffice.css">
     <link rel="stylesheet" href="./Style/notes.css">
     <link rel="stylesheet" href="./Style/todoList.css">
-    <script src="./Javascript/todolist.js"></script>
+    <script src="./Javascript/index.js"></script>
     <script src="./Javascript/backOffice.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" />
 
@@ -194,30 +194,33 @@
                     <?php foreach ($tasks as $task): ?>
                         <div class="todolist-box">
                             <div class="todolist-box-content">
-                                <form method="POST" action="index.php?action=update-task-state" class="task-form">
+                                <form method="POST" action="index.php?action=update-task-state" class="task-form" style="display:block;">
                                     <input type="hidden" name="id_tache" value="<?= $task['id_tache'] ?>">
-                                    <label class="task-label">
+                                    <label class="task-label" style="display:block;">
                                         <input type="checkbox" name="etat_tache" class="circle-checkbox"
                                             <?= $task['etat_tache'] ? 'checked' : '' ?> onchange="this.form.submit()" />
                                         <div class="task-info">
-                                            <h3><?= $task['date_tache'] ?></h3>
-                                            <h4 class="todolist-title"><?= $task['titre'] ?></h4>
-                                            <p class="todolist-description"><?= $task['description'] ?></p>
+                                            <label for="date_tache"></label>
+                                            <input type="text" name="date_tache" id="date_tache" value="<?= $task['date_tache'] ?>">
+                                            <label for="description"></label>
+                                            <input type="text" name="description" id="description" value="<?= $task['description'] ?>">
+                                            <label for="titre"></label>
+                                            <input type="text" name="titre" id="titre" value="<?= $task['titre'] ?>">
                                         </div>
                                     </label>
+                                    <input type="submit" value="Mettre à jour" class="submit-button">
                                 </form>
                                 <div class="pencil-container">
-                                    <a id="trash-todo" href="index.php?action=deleteTask&id=<?= $task['id_tache']; ?>"><i
+                                    <a id="trash-todo" href="index.php?action=boDeleteTask&id=<?= $task['id_tache']; ?>"><i
                                             class="fa fa-trash"></i></a>
-                                    <i class="fa fa-pen-nib" onclick="showModifyTaskPopup(<?= $task['id_tache'] ?>)"></i>
                                 </div>
                             </div>
                         </div>
                         <!-- Modifier une tâche -->
                         <!-- Modifier une tâche -->
                         <div class="overlay" id="overlay-add-task" style="display: none;"></div>
-                        <div class="modify-task-container-<?php echo $task['id_tache'] ?>" id="modify-task-container"
-                            style="display: none;">
+                        <div class="modify-task-container-<?php echo $task['id_tache'] ?>" id="modify-task-container-<?php echo $task['id_tache'] ?>"
+    style="display: none;">
                             <h2>Modifier une tâche</h2>
                             <form id="modify-task-form-<?= $task['id_tache'] ?>" action="index.php?action=modify-task"
                                 method="POST">
@@ -245,6 +248,9 @@
                     <?php endforeach; ?>
                 </div>
     </div>
+
+
+    <script src="./Javascript/todolist.js"></script>
 </body>
 
 </html>
