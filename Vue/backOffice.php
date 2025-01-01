@@ -141,11 +141,6 @@
 
     <!-- ADMINISTRATION NOTES -->
     <div class="notes-container hidden" style="padding: 0 4rem 4rem 4rem">
-        <div class="average-container">
-            <?php $average = showAverage($_SESSION['id_utilisateur']) ?>
-            <span><?= "Moyenne : " . " " . $average . "/20" ?></span>
-        </div>
-
         <div class="notes-wrapper">
             <div class="notes-title">
                 <p>Matières</p>
@@ -154,7 +149,7 @@
                 <p>Moyenne de classe</p>
                 <p>Date</p>
             </div>
-            <?php $noteEleves = showNotes($_SESSION['id_utilisateur']); ?>
+            <?php $noteEleves = showAllNotes(); ?>
             <?php foreach ($noteEleves as $note): ?>
                 <form action="./index.php?action=modifyNotes" method="POST">
                     <div class="notes-contenu">
