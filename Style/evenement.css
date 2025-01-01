@@ -1,0 +1,15 @@
+
+
+
+
+/* ======================= SUIVI ================================ */
+.suivi {
+    text-decoration: none;
+    color: #7a7a7a;
+}
+
+.upper-page-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 2rem 0 1rem 4rem;
+}
