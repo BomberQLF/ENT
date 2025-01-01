@@ -1,8 +1,7 @@
-
-
-
-
 /* ======================= SUIVI ================================ */
+body {
+    font-family: Arial, sans-serif;
+}
 .suivi {
     text-decoration: none;
     color: #7a7a7a;
@@ -12,4 +11,386 @@
     display: flex;
     justify-content: space-between;
     padding: 2rem 0 1rem 4rem;
+}
+
+/* CSS */
+.evenement-content {
+    height: 60vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-container {
+    background-color: #496A9E;
+    padding: 50px 50px 100px 50px;
+    border-radius: 8px;
+    text-align: center;
+    color: white;
+    max-width: 1200px;
+    width: 100%;
+}
+
+.search-container h1 {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+    text-align: start;
+    font-weight: bold;
+}
+
+.search-container h2 {
+    font-size: 1.5rem;
+    margin-bottom: 50px;
+    text-align: start;
+    font-weight: bold;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border-radius: 16px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.search-bar input {
+    border: none;
+    outline: none;
+    flex: 1;
+    padding: 20px;
+    border-radius: 16px;
+    font-size: 1.2rem;
+}
+
+.search-bar .location {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-left: 1px solid #ddd;
+    border-radius: 16px;
+}
+
+.search-bar .location select {
+    border: none;
+    font-size: 1.2rem;
+}
+
+.fa-location-dot {
+    margin-right: 30px;
+    color: black;
+    font-size: 1.5rem;
+}
+
+.search-bar .dropdown {
+    cursor: pointer;
+}
+
+.fa-magnifying-glass {
+    color: black;
+    font-size: 1.5rem;
+}
+
+/*=================================== Categories Section ===============================================*/
+.categories-section {
+    height: 40vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.categories-container {
+    max-width: 1200px;
+    width: 100%;
+}
+
+.categories-container h3 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.categories {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 50px;
+}
+
+.category {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+.category:hover {
+    transform: scale(1.1);
+}
+
+.category img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: fill;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+}
+
+.category span {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #333;
+}
+
+/*=================================== evenement populaire ===============================================*/
+.evenement-populaire {
+    padding: 50px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.popu-container {
+    text-align: start;
+    max-width: 1200px;
+    width: 100%;
+}
+
+.popu-container h3 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.popuevenement {
+    display: flex;
+    justify-content: space-around;
+    gap: 50px;
+    flex-wrap: wrap;
+}
+
+.event-card {
+    width: 250px;
+    border: 1px solid black;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-bottom-left-radius: 16px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    background-color: transparent;
+    text-align: start;
+}
+
+.event-card:hover {
+    transform: scale(1.1);
+}
+.event-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: fill;
+    border-radius: 9px;
+}
+
+.event-card .event-info {
+    padding: 15px;
+}
+
+.event-card .event-info h4 {
+    font-size: 1.125rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.event-card .event-info p {
+    font-size: 0.875rem;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+/* ==================== CSS DETAILS ======================= */
+
+.img-details {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.img-container {
+    background-color: #496A9E;
+    border-radius: 8px;
+    text-align: center;
+    height: 400px;
+    max-width: 1200px;
+    width: 100%;
+}
+.card {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 40px;
+}
+
+.desccontent {
+    padding-top: 40px;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.desccontent h3 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.left h1 {
+    font-size: 2rem;
+    margin: 0;
+    color: #333;
+}
+
+.left h2 {
+    font-size: 2rem;
+    margin: 0;
+    color: #333;
+}
+
+.right {
+    text-align: right;
+    font-size: 1.2rem;
+}
+
+.back-button {
+    border: none;
+    background: transparent;
+    margin: 10px 0px 0px 70px;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.plefttwo {
+    color: black;
+    font-size: 1.2rem;
+    margin-top: 10px;
+}
+
+.pleftone {
+    color: #666;
+    font-size: 1.2rem;
+    margin-top: 10px;
+
+}
+
+.left img {
+    width: 400px;
+    margin-top: 20px;
+}
+
+.fakeboutton {
+    background-color: #3E567E;
+    padding: 10px;
+    color: white;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1.2rem;
+    text-decoration: none;
+}
+
+.fakeboutton:hover {
+    background-color: gold;
+}
+
+.texteinfoticket {
+    font-size: 1.2rem;
+    color: #000000;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.texteinfoticket2 {
+    font-size: 1rem;
+    color: #666;
+    margin-top: 10px;
+}
+#detailPage {
+    display: none;
+}
+#description {
+    margin-bottom: 50px;
+}
+
+footer {
+    background-color: #7A7A7A;
+    height: 70px;
+}
+/* ======================================================= */
+@media (max-width: 978px) {
+    .categories-section {
+        height: 100%;
+    }
+    .search-bar {
+        flex-wrap: wrap;
+    }
+    .location {
+        justify-content: center;
+    }
+    .img-container {
+        width: 90%;
+        height: 200px;
+    }
+    .right {
+        margin-top: 30px;
+        text-align: start;
+    }
+    .card {
+        flex-direction: column;
+        align-items: start;
+        margin-left: 50px;
+    }
+    .left img {
+        width: 300px;
+    }
+    .desccontent {
+        width: 90%;
+        margin: 20px 50px 0px 50px;
+    }
+    .img-details {
+        width: 90%;
+    }
+}
+@media (min-width: 978px) and (max-width: 1144px) { 
+    .search-container {
+        margin: 50px;
+    }
+    .categories-container {
+        margin: 50px;
+    }
+    .popu-container {
+        margin: 50px;
+    }
+    .categories-container h3 {
+        margin: 50px;
+    }
+    .img-container {
+        width: 90%;
+    }
+    .card {
+        width: 90%;
+    }
+    .desccontent {
+        width: 90%;
+    }
 }
