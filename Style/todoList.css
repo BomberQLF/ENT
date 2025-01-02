@@ -257,6 +257,21 @@ body {
   transition: background-color 0.3s;
 }
 
+.button-container a {
+  background-color: #586068;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-size: 0.85rem;
+  text-decoration: none;
+}
+.button-container a:hover {
+  background-color: rgb(122, 46, 46);
+}
+
 .button-container button:hover {
   background-color: #0056b3;
 }

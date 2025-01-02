@@ -249,6 +249,51 @@
                 </div>
     </div>
 
+    <?php $allUsers = showUsers() ?>
+    <div class="all-users-container hidden">
+    <?php foreach ($allUsers as $user) : ?>
+        <div class="users-container" style="padding: 0 4rem 4rem 4rem;">
+            <form action="./index.php?action=modifyUserBo" method="POST">
+                <div class="form-group">
+                    <label for="id_utilisateur">ID Utilisateur</label>
+                    <input type="text" id="id_utilisateur" name="id_utilisateur" value="<?= $user['id_utilisateur'] ?>">
+                </div>
+                <div class="form-group">
+                    <label for="nom">Nom</label>
+                    <input type="text" id="nom" name="nom" value="<?= $user['nom'] ?>">
+                </div>
+                <div class="form-group">
+                    <label for="prenom">Prénom</label>
+                    <input type="text" id="prenom" name="prenom" value="<?= $user['prenom'] ?>">
+                </div>
+                <div class="form-group">
+                    <label for="login">Login</label>
+                    <input type="text" id="login" name="login" value="<?= $user['login'] ?>">
+                </div>
+                <div class="form-group">
+                    <label for="telephone">Téléphone</label>
+                    <input type="text" id="telephone" name="telephone" value="<?= $user['telephone'] ?>">
+                </div>
+                <div class="form-group">
+                    <label for="tp">TP</label>
+                    <input type="text" id="tp" name="tp" value="<?= $user['tp'] ?>">
+                </div>
+                <div class="form-group">
+                    <label for="admin">Admin</label>
+                    <select id="admin" name="admin">
+                        <option value="0" <?= $user['admin'] == 0 ? 'selected' : '' ?>>Non</option>
+                        <option value="1" <?= $user['admin'] == 1 ? 'selected' : '' ?>>Oui</option>
+                    </select>
+                </div>
+                <div class="button-container" style="display: block;">
+                    <button type="submit">Modifier</button>
+                    <a href="index.php?action=deleteUser&id=<?= $user['id_utilisateur'] ?>">Supprimer</a>
+                </div>
+            </form>
+        </div>
+    <?php endforeach;?>
+    </div>
+
 
     <script src="./Javascript/todolist.js"></script>
 </body>
