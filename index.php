@@ -266,6 +266,42 @@ switch ($action) {
         }
         break;
 
+    case 'modifyUserBo':
+        if (isAdmin()) {
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $id_utilisateur = $_POST['id_utilisateur'];
+                $nom = $_POST['nom'];
+                $prenom = $_POST['prenom'];
+                $login = $_POST['login'];
+                $telephone = $_POST['telephone'];
+                $tp = $_POST['tp'];
+                $admin = $_POST['admin'];
+
+                $userModified = userBackOffice($id_utilisateur, $nom, $prenom, $login, $telephone, $tp, $admin);
+
+                if ($userModified) {
+                    include('./Vue/backOffice.php');
+                } else {
+                    include('./Vue/login.php');
+                }
+            }
+        } else {
+            include('./Vue/login.php');
+        }
+        break;
+
+    case 'deleteUser' :
+        if (isAdmin()) {
+            $id_utilisateur = $_GET['id'];
+            if ($id_utilisateur) {
+                deleteUsers($id_utilisateur);
+                include('./Vue/backOffice.php');
+            }
+        } else {
+            include('./Vue/login.php');
+        }
+        break;
+
     default:
         include('./Vue/login.php');
         break;
