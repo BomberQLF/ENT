@@ -141,48 +141,68 @@
 
     <!-- ADMINISTRATION NOTES -->
     <div class="notes-container hidden" style="padding: 0 4rem 4rem 4rem">
-        <div class="notes-wrapper">
-            <div class="notes-title">
-                <p>Matières</p>
-                <p>Professeur</p>
-                <p>Note</p>
-                <p>Moyenne de classe</p>
-                <p>Date</p>
-            </div>
-            <?php $noteEleves = showAllNotes(); ?>
-            <?php foreach ($noteEleves as $note): ?>
-                <form action="./index.php?action=modifyNotes" method="POST">
-                    <div class="notes-contenu">
-                        <a href="index.php?action=deleteNote&id=<?= $note['id_note']; ?>" class="delete-note">
-                            <i class="fa fa-trash"></i>
-                        </a>
-                        <input type="hidden" name="id_note" value="<?= htmlspecialchars($note['id_note']) ?>">
-
-                        <label class="hideLabel" for="matiere"></label>
-                        <input type="text" name="matiere" id="matiere" value="<?= htmlspecialchars($note['matiere']) ?>">
-
-                        <label class="hideLabel" for="professeur"></label>
-                        <input type="text" name="professeur" id="professeur"
-                            value="<?= htmlspecialchars($note['professeur']) ?>">
-
-                        <label class="hideLabel" for="note"></label>
-                        <input type="text" name="note" id="note" value="<?= htmlspecialchars($note['note']) ?>">
-
-                        <label class="hideLabel" for="moyenne_classe"></label>
-                        <input type="text" name="moyenne_classe" id="moyenne_classe"
-                            value="<?= htmlspecialchars($note['moyenne_classe']) ?>">
-
-                        <label class="hideLabel" for="date_attribution"></label>
-                        <input type="date" name="date_attribution" id="date_attribution"
-                            value="<?= htmlspecialchars($note['date_attribution']) ?>">
-                        <div class="btn-container">
-                            <input type="submit" class="backoffice-btn">
-                        </div>
-                    </div>
-                </form>
+    <!-- Formulaire de sélection pour filtrer les notes -->
+    <form action="./index.php" method="GET" class="filter-form">
+        <input type="hidden" name="action" value="viewNotes">
+        <label for="student">Filtrer par élève :</label>
+        <select name="student" id="student" onchange="this.form.submit()">
+            <option value="">Tous les élèves</option>
+            <?php 
+            $students = showUsers(); // Récupère la liste des élèves
+            foreach ($students as $student): ?>
+                <option value="<?= htmlspecialchars($student['prenom']) ?>"
+                    <?= (isset($_GET['student']) && $_GET['student'] === $student['prenom']) ? 'selected' : '' ?>>
+                    <?= htmlspecialchars($student['prenom']) ?>
+                </option>
             <?php endforeach; ?>
+        </select>
+    </form>
+
+    <div class="notes-wrapper">
+        <div class="notes-title">
+            <p>Matières</p>
+            <p>Professeur</p>
+            <p>Note</p>
+            <p>Moyenne de classe</p>
+            <p>Date</p>
         </div>
+        <?php if (!empty($noteEleves) && is_array($noteEleves)): ?>
+    <?php foreach ($noteEleves as $note): ?>
+        <form action="./index.php?action=modifyNotes" method="POST">
+            <div class="notes-contenu">
+                <a href="index.php?action=deleteNote&id=<?= $note['id_note']; ?>" class="delete-note">
+                    <i class="fa fa-trash"></i>
+                </a>
+                <input type="hidden" name="id_note" value="<?= htmlspecialchars($note['id_note']) ?>">
+
+                <label class="hideLabel" for="matiere"></label>
+                <input type="text" name="matiere" id="matiere" value="<?= htmlspecialchars($note['matiere']) ?>">
+
+                <label class="hideLabel" for="professeur"></label>
+                <input type="text" name="professeur" id="professeur"
+                    value="<?= htmlspecialchars($note['professeur']) ?>">
+
+                <label class="hideLabel" for="note"></label>
+                <input type="text" name="note" id="note" value="<?= htmlspecialchars($note['note']) ?>">
+
+                <label class="hideLabel" for="moyenne_classe"></label>
+                <input type="text" name="moyenne_classe" id="moyenne_classe"
+                    value="<?= htmlspecialchars($note['moyenne_classe']) ?>">
+
+                <label class="hideLabel" for="date_attribution"></label>
+                <input type="date" name="date_attribution" id="date_attribution"
+                    value="<?= htmlspecialchars($note['date_attribution']) ?>">
+                <div class="btn-container">
+                    <input type="submit" class="backoffice-btn">
+                </div>
+            </div>
+        </form>
+    <?php endforeach; ?>
+<?php else: ?>
+    <p>Aucune note trouvée.</p>
+<?php endif; ?>
     </div>
+</div>
 
     <div class="todolist-container hidden" style="padding: 0 4rem 4rem 4rem; border: none; margin: 0;" >
         <div class="todolist-boxes">
