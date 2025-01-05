@@ -201,6 +201,31 @@
 <?php else: ?>
     <p>Aucune note trouvée.</p>
 <?php endif; ?>
+
+<!-- Formulaire pour ajouter une nouvelle note -->
+<?php if (isset($_GET['student']) && $_GET['student'] !== ''): ?>
+    <form action="./index.php?action=addNote" method="POST" class="add-note-form">
+        <input type="hidden" name="id_utilisateur" value="<?= htmlspecialchars(getUserIdByFirstName($_GET['student'])) ?>">
+        <label for="matiere">Matière :</label>
+        <input type="text" name="matiere" id="matiere" required>
+
+        <label for="professeur">Professeur :</label>
+        <input type="text" name="professeur" id="professeur" required>
+
+        <label for="note">Note :</label>
+        <input type="text" name="note" id="note" required>
+
+        <label for="moyenne_classe">Moyenne de classe :</label>
+        <input type="text" name="moyenne_classe" id="moyenne_classe" required>
+
+        <label for="date_attribution">Date :</label>
+        <input type="date" name="date_attribution" id="date_attribution" required>
+
+        <button type="submit" style="padding:1rem;" class="backoffice-btn">Ajouter une note</button>
+    </form>
+<?php else: ?>
+    <p style="padding:1rem;">Veuillez sélectionner un élève pour ajouter une note.</p>
+<?php endif; ?>
     </div>
 </div>
 
