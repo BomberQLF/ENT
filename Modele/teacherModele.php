@@ -36,3 +36,23 @@ function showAllNotes(): array
     $notes = $query->fetchAll();
     return $notes;
 }
+
+function showNotesByStudent($id_utilisateur): array
+{
+    $pdo = connect_db();
+    $query = $pdo->prepare("SELECT * FROM notes WHERE id_utilisateur = :id_utilisateur");
+    $query->bindParam(":id_utilisateur", $id_utilisateur, PDO::PARAM_INT);
+    $query->execute();
+    return $query->fetchAll(PDO::FETCH_ASSOC);
+}
+
+function getUserIdByFirstName($prenom): ?int
+{
+    $pdo = connect_db();
+    $query = $pdo->prepare("SELECT id_utilisateur FROM utilisateurs WHERE prenom = :prenom");
+    $query->bindParam(":prenom", $prenom, PDO::PARAM_STR);
+    $query->execute();
+    $result = $query->fetch(PDO::FETCH_ASSOC);
+
+    return $result['id_utilisateur'] ?? null; 
+}

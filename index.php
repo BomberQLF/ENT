@@ -162,7 +162,7 @@ switch ($action) {
     case 'notesPage':
         if (isLoggedIn()) {
             $orderBy = $_POST['orderBy'] ?? 'matiere';
-            $notes = showNotes($orderBy);
+            $notes = showNotes($_SESSION['id_utilisateur'],$orderBy);
             include('./Vue/notes.php');
         }
         break;
@@ -258,6 +258,25 @@ switch ($action) {
         }
         break;
 
+    case 'viewNotes':
+        if (isLoggedIn()) {
+            $student = $_GET['student'] ?? null;
+            if ($student) {
+                $id_utilisateur = getUserIdByFirstName($student);
+                if ($id_utilisateur) {
+                    $noteEleves = showNotesByStudent($id_utilisateur);
+                } else {
+                    $noteEleves = [];
+                }
+            } else {
+                $noteEleves = showAllNotes();
+            }
+            include('./Vue/backOffice.php');
+        } else {
+            include('./Vue/login.php');
+        }
+        break;
+
     case 'evenement':
         if (isLoggedIn()) {
             include('./Vue/evenement.php');
@@ -290,7 +309,7 @@ switch ($action) {
         }
         break;
 
-    case 'deleteUser' :
+    case 'deleteUser':
         if (isAdmin()) {
             $id_utilisateur = $_GET['id'];
             if ($id_utilisateur) {
