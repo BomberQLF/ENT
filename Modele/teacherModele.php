@@ -56,3 +56,20 @@ function getUserIdByFirstName($prenom): ?int
 
     return $result['id_utilisateur'] ?? null; 
 }
+
+function addNote($id_utilisateur, $matiere, $professeur, $note, $moyenne_classe, $date_attribution): bool
+{
+    $pdo = connect_db();
+    $query = $pdo->prepare("
+        INSERT INTO notes (id_utilisateur, matiere, professeur, note, moyenne_classe, date_attribution)
+        VALUES (:id_utilisateur, :matiere, :professeur, :note, :moyenne_classe, :date_attribution)
+    ");
+    $query->bindParam(":id_utilisateur", $id_utilisateur, PDO::PARAM_INT);
+    $query->bindParam(":matiere", $matiere, PDO::PARAM_STR);
+    $query->bindParam(":professeur", $professeur, PDO::PARAM_STR);
+    $query->bindParam(":note", $note, PDO::PARAM_STR);
+    $query->bindParam(":moyenne_classe", $moyenne_classe, PDO::PARAM_STR);
+    $query->bindParam(":date_attribution", $date_attribution, PDO::PARAM_STR);
+
+    return $query->execute();
+}

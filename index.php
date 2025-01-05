@@ -162,8 +162,27 @@ switch ($action) {
     case 'notesPage':
         if (isLoggedIn()) {
             $orderBy = $_POST['orderBy'] ?? 'matiere';
-            $notes = showNotes($_SESSION['id_utilisateur'],$orderBy);
+            $notes = showNotes($_SESSION['id_utilisateur'], $orderBy);
             include('./Vue/notes.php');
+        }
+        break;
+
+    case 'addNote':
+        if (isAdmin()) {
+            $id_utilisateur = $_POST['id_utilisateur'];
+            $matiere = $_POST['matiere'];
+            $professeur = $_POST['professeur'];
+            $note = $_POST['note'];
+            $moyenne_classe = $_POST['moyenne_classe'];
+            $date_attribution = $_POST['date_attribution'];
+
+            if ($id_utilisateur && $matiere && $professeur && $note && $moyenne_classe && $date_attribution) {
+                addNote($id_utilisateur, $matiere, $professeur, $note, $moyenne_classe, $date_attribution);
+            }
+            header("Location: ./index.php?action=viewNotes&student=" . urlencode($_GET['student']));
+            exit;
+        } else {
+            include('./Vue/login.php');
         }
         break;
 
