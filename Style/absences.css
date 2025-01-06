@@ -1,0 +1,157 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.page-content {
+    display: flex;
+    gap: 7rem;
+}
+
+.suivi {
+    text-decoration: none;
+    color: #7a7a7a;
+}
+
+.upper-page-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 2rem 0 1rem 4rem;
+}
+
+#profil {
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    color: white;
+}
+
+.right-side {
+    padding: 0.4rem 3rem;
+    background-color: #3e567e;
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+}
+
+/* PAGE ABSENCES ET RETARDS ========================================================================= */
+.abcences-container {
+    width: 100%;
+    padding: 20px 100px 20px 100px;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    background-color: var(--main-color);
+    color: white;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.header select {
+    padding: 3px;
+    width: 200px;
+    font-size: 1rem;
+    border-radius: 8px;
+}
+
+.stats {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+    background-color: white;
+    border-radius: 0px 0px 8px 8px;
+    padding: 20px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.stat {
+    background-color: #777E90;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    color: white;
+}
+
+h2 {
+    font-size: 1.2rem;
+    background: white;
+    padding: 10px;
+    border-radius: 8px 8px 0px 0px;
+}
+
+.Partie-absences {
+    display: block;
+}
+
+.Partie-retards {
+    display: none;
+}
+
+.stat h3 {
+    font-size: 1.2em;
+    margin-bottom: 5px;
+}
+
+.stat p {
+    font-size: 1.4em;
+    font-weight: bold;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+table th,
+table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #ccc;
+    background-color: white;
+}
+
+table th {
+    background-color: white;
+}
+
+.barre-justification {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+.barre-justification p {
+    font-size: 0.9em;
+    color: #666;
+}
+
+.barre-justification button {
+    padding: 10px 50px;
+    font-size: 16px;
+    color: white;
+    background-color: var(--hover-color);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.barre-justification button:hover {
+    background-color: var(--main-color);
+}

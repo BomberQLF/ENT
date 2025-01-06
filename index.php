@@ -266,6 +266,13 @@ switch ($action) {
         }
         break;
 
+    case 'absence':
+        if (isLoggedIn()) {
+            include('./Vue/absence.php');
+        } else {
+            include('./Vue/login.php');
+        }
+        break;
     default:
         include('./Vue/login.php');
         break;

@@ -157,3 +157,22 @@ function showAverage($id_utilisateur)
     $average = array_sum(array_column($notes, 'note')) / count($notes);
     return $average;
 }
+function getabsences($id_utilisateur)
+{
+    $pdo = connect_db();
+    $query = $pdo->prepare("SELECT * FROM absences_retards WHERE id_utilisateur = :id_utilisateur AND absence = 1 ORDER BY date DESC");
+    $query->bindParam(':id_utilisateur', $id_utilisateur, PDO::PARAM_INT);
+    $query->execute();
+    $absences = $query->fetchAll(PDO::FETCH_ASSOC);
+    return $absences;
+}
+function getretards($id_utilisateur)
+{
+    $pdo = connect_db();
+    $query = $pdo->prepare("SELECT * FROM absences_retards WHERE id_utilisateur = :id_utilisateur AND absence = 0 ORDER BY date DESC");
+    $query->bindParam(':id_utilisateur', $id_utilisateur, PDO::PARAM_INT);
+    $query->execute();
+    $retards = $query->fetchAll(PDO::FETCH_ASSOC);
+    return $retards;
+
+}
