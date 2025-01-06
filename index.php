@@ -273,6 +273,13 @@ switch ($action) {
             include('./Vue/login.php');
         }
         break;
+    case 'azert':
+        if (isLoggedIn()) {
+            include('./Vue/azert.php');
+        } else {
+            include('./Vue/login.php');
+        }
+        break;
     default:
         include('./Vue/login.php');
         break;

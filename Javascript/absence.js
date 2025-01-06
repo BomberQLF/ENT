@@ -20,3 +20,27 @@ selecteur.addEventListener('change', (event) => {
         profilinfo.textContent = 'Mes absences'
     }
 });
+
+
+// Script pour les checkbox (design)
+
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+
+    // Ajouter un événement sur chaque checkbox
+    checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+            const row = this.closest('tr'); // Récupère la ligne <tr> de l'input checkbox
+            const cells = row.querySelectorAll('td'); // Sélectionne toutes les cellules de la ligne
+
+            // Applique ou enlève la couleur de fond bleu selon que le checkbox est coché ou non
+            if (this.checked) {
+                cells.forEach(cell => {
+                    cell.style.backgroundColor = 'rgba(119, 126, 144, 0.25)'; 
+                });
+            } else {
+                cells.forEach(cell => {
+                    cell.style.backgroundColor = '';
+                });
+            }
+        });
+    });
