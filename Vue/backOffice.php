@@ -204,7 +204,7 @@
 
 <!-- Formulaire pour ajouter une nouvelle note -->
 <?php if (isset($_GET['student']) && $_GET['student'] !== ''): ?>
-    <form action="./index.php?action=addNote" method="POST" class="add-note-form">
+    <form action="./index.php?action=addNote" method="POST" class="add-note-form" style="padding:2rem;">
         <input type="hidden" name="id_utilisateur" value="<?= htmlspecialchars(getUserIdByFirstName($_GET['student'])) ?>">
         <label for="matiere">Matière :</label>
         <input type="text" name="matiere" id="matiere" required>
