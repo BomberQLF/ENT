@@ -155,3 +155,48 @@ table th {
 .barre-justification button:hover {
     background-color: var(--main-color);
 }
+
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+/* RESPONSIVE ============================================================= */
+
+@media screen and (max-width: 1200px) {
+
+    .stats {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .stat {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .barre-justification {
+        flex-direction: column;
+    }
+
+}
+
+@media screen and (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .header select {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    table th,
+    table td {
+        padding: 10px;
+    }
+    .abcences-container {
+        padding: 20px;
+    }
+}

@@ -184,61 +184,60 @@
                     ?></p>
                 </div>
             </div>
-            <table>
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th>Matière</th>
-                        <th>Professeur</th>
-                        <th>Total</th>
-                        <th>Date</th>
-                        <th>Statut</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-
-                    // Sépare les absences injustifié et les absences justifiées
-                    $absencesAJustifier = [];
-                    $absencesJustifiees = [];
-                    foreach ($absences as $absence) {
-                        if (trim(strtolower($absence['statut'])) === 'injustifié') {
-                            $absencesAJustifier[] = $absence;
-                        } elseif (trim(strtolower($absence['statut'])) === 'justifiée') {
-                            $absencesJustifiees[] = $absence;
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Matière</th>
+                            <th>Professeur</th>
+                            <th>Total</th>
+                            <th>Date</th>
+                            <th>Statut</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        // Sépare les absences injustifié et les absences justifiées
+                        $absencesAJustifier = [];
+                        $absencesJustifiees = [];
+                        foreach ($absences as $absence) {
+                            if (trim(strtolower($absence['statut'])) === 'injustifié') {
+                                $absencesAJustifier[] = $absence;
+                            } elseif (trim(strtolower($absence['statut'])) === 'justifiée') {
+                                $absencesJustifiees[] = $absence;
+                            }
                         }
-                    }
-
-                    // Afficher les absences à justifier
-                    foreach ($absencesAJustifier as $absence) {
-                        $date = new DateTime($absence['date']);
-                        $formattedDate = $date->format('m/d/Y');
-                        echo '<tr>
-                            <td><input type="checkbox"></td>
-                            <td>' . $absence['matiere'] . '</td>
-                            <td>' . $absence['professeur'] . '</td>
-                            <td>' . $absence['duree_minutes'] . " h" . '</td>
-                            <td>' . $formattedDate . '</td>
-                            <td>' . $absence['statut'] . '</td>
-                        </tr>';
-                    }
-
-                    // Afficher les absences justifiées après celles à justifier
-                    foreach ($absencesJustifiees as $absence) {
-                        $date = new DateTime($absence['date']);
-                        $formattedDate = $date->format('m/d/Y');
-                        echo '<tr>
-                            <td><input type="checkbox" disabled></td>
-                            <td>' . $absence['matiere'] . '</td>
-                            <td>' . $absence['professeur'] . '</td>
-                            <td>' . $absence['duree_minutes'] . " h" . '</td>
-                            <td>' . $formattedDate . '</td>
-                            <td>' . $absence['statut'] . '</td>
-                        </tr>';
-                    }
-                    ?>
-                </tbody>
-            </table>
+                        // Afficher les absences à justifier
+                        foreach ($absencesAJustifier as $absence) {
+                            $date = new DateTime($absence['date']);
+                            $formattedDate = $date->format('d/m/Y');
+                            echo '<tr>
+                                <td><input type="checkbox"></td>
+                                <td>' . $absence['matiere'] . '</td>
+                                <td>' . $absence['professeur'] . '</td>
+                                <td>' . $absence['duree_minutes'] . " h" . '</td>
+                                <td>' . $formattedDate . '</td>
+                                <td>' . $absence['statut'] . '</td>
+                            </tr>';
+                        }
+                        // Afficher les absences justifiées après celles à justifier
+                        foreach ($absencesJustifiees as $absence) {
+                            $date = new DateTime($absence['date']);
+                            $formattedDate = $date->format('d/m/Y');
+                            echo '<tr>
+                                <td><input type="checkbox" disabled></td>
+                                <td>' . $absence['matiere'] . '</td>
+                                <td>' . $absence['professeur'] . '</td>
+                                <td>' . $absence['duree_minutes'] . " h" . '</td>
+                                <td>' . $formattedDate . '</td>
+                                <td>' . $absence['statut'] . '</td>
+                            </tr>';
+                        }
+                        ?>
+                    </tbody>
+                </table>
+            </div>
             <div class="barre-justification">
                 <p>Sélectionnez vos absences afin de justifier plusieurs absences en même temps.<br><span
                         style="color:red;">Attention : si vous sélectionnez plusieurs absences à la fois, il est attendu
@@ -271,7 +270,7 @@
                         if ($totalCoursMinutes > 0) {
                             $tauxretard = ($totalretard / $totalCoursMinutes) * 100;
                         } else {
-                            $tauxretard= 0;
+                            $tauxretard = 0;
                         }
                         echo number_format($tauxretard, 1) . '%';
                         ?>
@@ -302,65 +301,64 @@
                     ?></p>
                 </div>
             </div>
-            <table>
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th>Matière</th>
-                        <th>Professeur</th>
-                        <th>Total</th>
-                        <th>Date</th>
-                        <th>Statut</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-
-                    // Sépare les absences injustifié et les absences justifiées
-                    $retardsAJustifier = [];
-                    $retardsJustifiees = [];
-                    foreach ($retards as $retard) {
-                        if (trim(strtolower($retard['statut'])) === 'injustifié') {
-                            $retardsAJustifier[] = $retard;
-                        } elseif (trim(strtolower($retard['statut'])) === 'justifiée') {
-                            $retardsJustifiees[] = $retard;
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Matière</th>
+                            <th>Professeur</th>
+                            <th>Total</th>
+                            <th>Date</th>
+                            <th>Statut</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        // Sépare les absences injustifié et les absences justifiées
+                        $retardsAJustifier = [];
+                        $retardsJustifiees = [];
+                        foreach ($retards as $retard) {
+                            if (trim(strtolower($retard['statut'])) === 'injustifié') {
+                                $retardsAJustifier[] = $retard;
+                            } elseif (trim(strtolower($retard['statut'])) === 'justifiée') {
+                                $retardsJustifiees[] = $retard;
+                            }
                         }
-                    }
-
-                    // Afficher les absences à justifier
-                    foreach ($retardsAJustifier as $retard) {
-                        $date = new DateTime($retard['date']);
-                        $formattedDate = $date->format('m/d/Y');
-                        echo '<tr>
-                            <td><input type="checkbox"></td>
-                            <td>' . $retard['matiere'] . '</td>
-                            <td>' . $retard['professeur'] . '</td>
-                            <td>' . $retard['duree_minutes'] . " h" . '</td>
-                            <td>' . $formattedDate . '</td>
-                            <td>' . $retard['statut'] . '</td>
-                        </tr>';
-                    }
-
-                    // Afficher les absences justifiées après celles à justifier
-                    foreach ($retardsJustifiees as $retard) {
-                        $date = new DateTime($retard['date']);
-                        $formattedDate = $date->format('m/d/Y');
-                        echo '<tr>
-                            <td><input type="checkbox" disabled></td>
-                            <td>' . $retard['matiere'] . '</td>
-                            <td>' . $retard['professeur'] . '</td>
-                            <td>' . $retard['duree_minutes'] . " h" . '</td>
-                            <td>' . $formattedDate . '</td>
-                            <td>' . $retard['statut'] . '</td>
-                        </tr>';
-                    }
-                    ?>
-                </tbody>
-            </table>
+                        // Afficher les absences à justifier
+                        foreach ($retardsAJustifier as $retard) {
+                            $date = new DateTime($retard['date']);
+                            $formattedDate = $date->format('d/m/Y');
+                            echo '<tr>
+                                <td><input type="checkbox"></td>
+                                <td>' . $retard['matiere'] . '</td>
+                                <td>' . $retard['professeur'] . '</td>
+                                <td>' . $retard['duree_minutes'] . " h" . '</td>
+                                <td>' . $formattedDate . '</td>
+                                <td>' . $retard['statut'] . '</td>
+                            </tr>';
+                        }
+                        // Afficher les absences justifiées après celles à justifier
+                        foreach ($retardsJustifiees as $retard) {
+                            $date = new DateTime($retard['date']);
+                            $formattedDate = $date->format('d/m/Y');
+                            echo '<tr>
+                                <td><input type="checkbox" disabled></td>
+                                <td>' . $retard['matiere'] . '</td>
+                                <td>' . $retard['professeur'] . '</td>
+                                <td>' . $retard['duree_minutes'] . " h" . '</td>
+                                <td>' . $formattedDate . '</td>
+                                <td>' . $retard['statut'] . '</td>
+                            </tr>';
+                        }
+                        ?>
+                    </tbody>
+                </table>
+            </div>
             <div class="barre-justification">
-                <p>Sélectionnez vos absences afin de justifier plusieurs absences en même temps.<br><span
-                        style="color:red;">Attention : si vous sélectionnez plusieurs absences à la fois, il est attendu
-                        que vous fournissiez un justificatif unique couvrant l’ensemble de ces absences.</span></p>
+                <p>Sélectionnez vos retards afin de justifier plusieurs retards en même temps.<br><span
+                        style="color:red;">Attention : si vous sélectionnez plusieurs retards à la fois, il est attendu
+                        que vous fournissiez un justificatif unique couvrant l’ensemble de ces retards.</span></p>
                 <button>Justification</button>
             </div>
         </div>
