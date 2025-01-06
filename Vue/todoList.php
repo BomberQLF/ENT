@@ -45,14 +45,14 @@
                 </ul>
             </li>
             <li><a href="#" class="navbar-item"><i class="fa-solid fa-comment"></i>Messagerie</a></li>
-            <?php if(isAdmin()): ?>
+            <?php if (isAdmin()): ?>
                 <li><a href="./index.php?action=backoffice" class="navbar-item">Administration</a></li>
             <?php endif; ?>
         </ul>
 
 
         <div class="profilandexit">
-        <a href="./index.php?action=profil" class="navbar-profile">
+            <a href="./index.php?action=profil" class="navbar-profile">
                 <?php echo " <span>Bienvenue {$_SESSION['prenom']}</span>
                 <div class='profile-circle'>
                 <img src='{$_SESSION['photo_profil']}' alt='photo de profil' class='photoprofil'>
@@ -105,17 +105,18 @@
                     </ul>
                 </li>
                 <li><a href="#"><i class="fa-solid fa-comment"></i>Messagerie</a></li>
-                <?php if(isAdmin()): ?>
-                <li><a href="./index.php?action=backoffice" class="navbar-item">Administration</a></li>
-            <?php endif; ?>
-        </ul>
+                <?php if (isAdmin()): ?>
+                    <li><a href="./index.php?action=backoffice" class="navbar-item">Administration</a></li>
+                <?php endif; ?>
+            </ul>
         </div>
 
     </nav>
 
     <!-- File d'arianne -->
     <div class="upper-page-container">
-        <div class="left-side"><a href="./index.php?action=accueil" class="suivi">Accueil </a><span class="suivi">> To do list</span></div>
+        <div class="left-side"><a href="./index.php?action=accueil" class="suivi">Accueil </a><span class="suivi">> To
+                do list</span></div>
         <div class="right-side">
             <h1 id="tâches">Mes tâches</h1>
         </div>
@@ -162,150 +163,170 @@
                     <button class="next-week btn-week">&#9654;</button>
                 </div>
                 <hr>
-                <div class="todolist-boxes">
-                    <!-- SCRIPT ICI POUR BOUCLER LES TACHES DANS LA BDD -->
-                    <?php if (isset($successMessage)) {
-                        echo '<p class="success-message">' . $successMessage . '</p>';
-                    } ?>
-                    <?php $tasks = showTasks(); ?>
+                <?php
+                // Vérifiez si l'utilisateur est connecté via la session
+                if (isset($_SESSION['id_utilisateur'])) {
+                    $id_utilisateur = $_SESSION['id_utilisateur'];
+
+                    // Récupère uniquement les tâches de l'utilisateur connecté
+                    $tasks = showTasksByStudent($id_utilisateur);
+                } else {
+                    // Si aucun utilisateur n'est connecté, afficher un message ou rediriger
+                    echo "<p>Veuillez vous connecter pour accéder à vos tâches.</p>";
+                    exit;
+                }
+
+                // Vérifie et affiche les tâches si elles existent
+                if (!empty($tasks) && is_array($tasks)): ?>
                     <?php foreach ($tasks as $task): ?>
                         <div class="todolist-box">
                             <div class="todolist-box-content">
-                                <form method="POST" action="index.php?action=update-task-state" class="task-form">
-                                    <input type="hidden" name="id_tache" value="<?= $task['id_tache'] ?>">
-                                    <label class="task-label">
-                                        <input type="checkbox" name="etat_tache" class="circle-checkbox"
-                                            <?= $task['etat_tache'] ? 'checked' : '' ?> onchange="this.form.submit()" />
+                                <form method="POST" action="index.php?action=update-task-state" class="task-form"
+                                    style="display:block;">
+                                    <input type="hidden" name="id_tache" value="<?= htmlspecialchars($task['id_tache']) ?>">
+                                    <input type="hidden" name="date_tache" value="<?= htmlspecialchars($task['date_tache']) ?>">
+                                    <input type="hidden" name="titre" value="<?= htmlspecialchars($task['titre']) ?>">
+                                    <input type="hidden" name="description"
+                                        value="<?= htmlspecialchars($task['description']) ?>">
+                                    <label class="task-label" style="display:block;">
+                                        <input type="checkbox" name="etat_tache" class="circle-checkbox" <?= $task['etat_tache'] ? 'checked' : '' ?> onchange="this.form.submit()" />
                                         <div class="task-info">
-                                            <h3><?= $task['date_tache'] ?></h3>
-                                            <h4 class="todolist-title"><?= $task['titre'] ?></h4>
-                                            <p class="todolist-description"><?= $task['description'] ?></p>
+                                            <h3><?= htmlspecialchars($task['date_tache']) ?></h3>
+                                            <h4 class="todolist-title"><?= htmlspecialchars($task['titre']) ?></h4>
+                                            <p class="todolist-description"><?= htmlspecialchars($task['description']) ?></p>
                                         </div>
                                     </label>
                                 </form>
                                 <div class="pencil-container">
-                                    <a id="trash-todo" href="index.php?action=deleteTask&id=<?= $task['id_tache']; ?>"><i
-                                            class="fa fa-trash"></i></a>
-                                    <i class="fa fa-pen-nib" onclick="showModifyTaskPopup(<?= $task['id_tache'] ?>)"></i>
+                                    <a id="trash-todo"
+                                        href="index.php?action=deleteTask&id=<?= htmlspecialchars($task['id_tache']); ?>">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
+                                    <i class="fa fa-pen-nib"
+                                        onclick="showModifyTaskPopup(<?= htmlspecialchars($task['id_tache']) ?>)"></i>
                                 </div>
                             </div>
                         </div>
-                        <!-- Modifier une tâche -->
-                        <!-- Modifier une tâche -->
-                        <div class="overlay" id="overlay-add-task" style="display: none;"></div>
-                        <div class="modify-task-container-<?php echo $task['id_tache'] ?>" id="modify-task-container"
-                            style="display: none;">
-                            <h2>Modifier une tâche</h2>
-                            <form id="modify-task-form-<?= $task['id_tache'] ?>" action="index.php?action=modify-task"
-                                method="POST">
-                                <div class="form-group">
-                                    <label for="date_tache">Date de la tâche</label>
-                                    <input type="text" id="task-date" name="date_tache" value="<?= $task["date_tache"]; ?>">
-                                </div>
-                                <div class="form-group">
-                                    <label for="titre">Titre de la tâche</label>
-                                    <input type="text" id="task-title" name="titre" value="<?= $task['titre']; ?>">
-                                </div>
-                                <div class="form-group">
-                                    <label for="description">Description</label>
-                                    <textarea id="task-description" name="description"
-                                        rows="4"><?= $task["description"]; ?></textarea>
-                                    <input type="hidden" name="id_utilisateur" value="<?= $_SESSION['id_utilisateur']; ?>">
-                                    <input type="hidden" name="id_tache" value="<?= $task['id_tache'] ?>">
-                                </div>
-                                <div class="button-container">
-                                    <button type="submit">Ajouter</button>
-                                    <button type="button" id="close-popup-mod">Annuler</button>
-                                </div>
-                            </form>
-                        </div>
                     <?php endforeach; ?>
-                </div>
-            </div>
-            <div class="right-side-wrapper">
-                <div class="calendar">
-                    <div class="calendar-wrapper">
-                        <div class="month">
-                            <button class="nav-btn">&#9664;</button>
-                            <span>Décembre</span>
-                            <button class="nav-btn">&#9654;</button>
+                <?php else: ?>
+                    <p>Aucune tâche trouvée.</p>
+                <?php endif; ?>
+
+                <!-- Modifier une tâche -->
+                <!-- Modifier une tâche -->
+                <div class="overlay" id="overlay-add-task" style="display: none;"></div>
+                <div class="modify-task-container-<?php echo $task['id_tache'] ?>" id="modify-task-container"
+                    style="display: none;">
+                    <h2>Modifier une tâche</h2>
+                    <form id="modify-task-form-<?= $task['id_tache'] ?>" action="index.php?action=modify-task"
+                        method="POST">
+                        <div class="form-group">
+                            <label for="date_tache">Date de la tâche</label>
+                            <input type="text" id="task-date" name="date_tache" value="<?= $task["date_tache"]; ?>">
                         </div>
-                        <div class="days">
-                            <div>L</div>
-                            <div>M</div>
-                            <div>M</div>
-                            <div>J</div>
-                            <div>V</div>
-                            <div>S</div>
-                            <div>D</div>
+                        <div class="form-group">
+                            <label for="titre">Titre de la tâche</label>
+                            <input type="text" id="task-title" name="titre" value="<?= $task['titre']; ?>">
                         </div>
-                        <div class="dates">
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div>1</div>
-                            <div>2</div>
-                            <div>3</div>
-                            <div>4</div>
-                            <div>5</div>
-                            <div>6</div>
-                            <div>7</div>
-                            <div>8</div>
-                            <div>9</div>
-                            <div>10</div>
-                            <div class="highlight">11</div>
-                            <div class="highlight">12</div>
-                            <div class="highlight">13</div>
-                            <div class="highlight">14</div>
-                            <div class="highlight">15</div>
-                            <div class="highlight">16</div>
-                            <div class="highlight">17</div>
-                            <div class="highlight">18</div>
-                            <div>19</div>
-                            <div>20</div>
-                            <div>21</div>
-                            <div>22</div>
-                            <div>23</div>
-                            <div>24</div>
-                            <div>25</div>
-                            <div>26</div>
-                            <div>27</div>
-                            <div>28</div>
-                            <div>29</div>
-                            <div>30</div>
-                            <div>1</div>
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <textarea id="task-description" name="description"
+                                rows="4"><?= $task["description"]; ?></textarea>
+                            <input type="hidden" name="id_utilisateur" value="<?= $_SESSION['id_utilisateur']; ?>">
+                            <input type="hidden" name="id_tache" value="<?= $task['id_tache'] ?>">
                         </div>
-                    </div>
-                </div>
-                <div class="collaborateurs-container">
-                    <div class="upper-collaborateurs">
-                        <h2 id="collab-title">Vos collaborateurs</h2>
-                    </div>
-                    <div class="content-collaborateurs">
-                        <div class="img-collaborateurs">
-                            <img src="./image/uploads/Profile.svg" alt="">
+                        <div class="button-container">
+                            <button type="submit">Ajouter</button>
+                            <button type="button" id="close-popup-mod">Annuler</button>
                         </div>
-                        <div class="info-collaborateurs">
-                            <p class="nom-collaborateurs">Anastasia</p>
-                            <span class="details-collaborateurs">SAE 3.02A, SAE 3.03, Audiovisuel</span>
-                        </div>
-                    </div>
-                    <div class="content-collaborateurs">
-                        <div class="img-collaborateurs">
-                            <img src="./image/uploads/Profile.svg" alt="">
-                        </div>
-                        <div class="info-collaborateurs">
-                            <p class="nom-collaborateurs">Anastasia</p>
-                            <span class="details-collaborateurs">SAE 3.02A, SAE 3.03, Audiovisuel</span>
-                        </div>
-                    </div>
-                    <div class="add-todo-container"><a href="#"><img src="./image/uploads/add-todo.svg" alt=""></a>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
+        <div class="right-side-wrapper">
+            <div class="calendar">
+                <div class="calendar-wrapper">
+                    <div class="month">
+                        <button class="nav-btn">&#9664;</button>
+                        <span>Décembre</span>
+                        <button class="nav-btn">&#9654;</button>
+                    </div>
+                    <div class="days">
+                        <div>L</div>
+                        <div>M</div>
+                        <div>M</div>
+                        <div>J</div>
+                        <div>V</div>
+                        <div>S</div>
+                        <div>D</div>
+                    </div>
+                    <div class="dates">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div>1</div>
+                        <div>2</div>
+                        <div>3</div>
+                        <div>4</div>
+                        <div>5</div>
+                        <div>6</div>
+                        <div>7</div>
+                        <div>8</div>
+                        <div>9</div>
+                        <div>10</div>
+                        <div class="highlight">11</div>
+                        <div class="highlight">12</div>
+                        <div class="highlight">13</div>
+                        <div class="highlight">14</div>
+                        <div class="highlight">15</div>
+                        <div class="highlight">16</div>
+                        <div class="highlight">17</div>
+                        <div class="highlight">18</div>
+                        <div>19</div>
+                        <div>20</div>
+                        <div>21</div>
+                        <div>22</div>
+                        <div>23</div>
+                        <div>24</div>
+                        <div>25</div>
+                        <div>26</div>
+                        <div>27</div>
+                        <div>28</div>
+                        <div>29</div>
+                        <div>30</div>
+                        <div>1</div>
+                    </div>
+                </div>
+            </div>
+            <div class="collaborateurs-container">
+                <div class="upper-collaborateurs">
+                    <h2 id="collab-title">Vos collaborateurs</h2>
+                </div>
+                <div class="content-collaborateurs">
+                    <div class="img-collaborateurs">
+                        <img src="./image/uploads/Profile.svg" alt="">
+                    </div>
+                    <div class="info-collaborateurs">
+                        <p class="nom-collaborateurs">Anastasia</p>
+                        <span class="details-collaborateurs">SAE 3.02A, SAE 3.03, Audiovisuel</span>
+                    </div>
+                </div>
+                <div class="content-collaborateurs">
+                    <div class="img-collaborateurs">
+                        <img src="./image/uploads/Profile.svg" alt="">
+                    </div>
+                    <div class="info-collaborateurs">
+                        <p class="nom-collaborateurs">Anastasia</p>
+                        <span class="details-collaborateurs">SAE 3.02A, SAE 3.03, Audiovisuel</span>
+                    </div>
+                </div>
+                <div class="add-todo-container"><a href="#"><img src="./image/uploads/add-todo.svg" alt=""></a>
+                </div>
+            </div>
+        </div>
+    </div>
     </div>
 
     <script src="./Javascript/index.js"></script>
