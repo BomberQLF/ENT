@@ -73,3 +73,19 @@ function addNote($id_utilisateur, $matiere, $professeur, $note, $moyenne_classe,
 
     return $query->execute();
 }
+
+function showTasksByStudent($id_utilisateur)
+{
+    $pdo = connect_db();
+    $query = $pdo->prepare("SELECT * FROM taches WHERE id_utilisateur = :id_utilisateur");
+    $query->bindParam(':id_utilisateur', $id_utilisateur, PDO::PARAM_INT);
+    $query->execute();
+    return $query->fetchAll(PDO::FETCH_ASSOC);
+}
+
+function isTaskOwnedByUser($id_tache, $id_utilisateur) {
+    global $pdo;
+    $query = $pdo->prepare("SELECT COUNT(*) FROM tasks WHERE id_tache = :id_tache AND id_utilisateur = :id_utilisateur");
+    $query->execute(['id_tache' => $id_tache, 'id_utilisateur' => $id_utilisateur]);
+    return $query->fetchColumn() > 0;
+}

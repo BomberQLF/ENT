@@ -97,7 +97,7 @@ switch ($action) {
         }
         break;
 
-    case 'update-task-state':
+    case 'update-task-stateBo':
         if (isLoggedIn()) {
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $id_tache = $_POST['id_tache'];
@@ -108,6 +108,46 @@ switch ($action) {
                 $taskUpdated = updateTaskState($id_tache, $etat_tache);
 
                 include('./Vue/backOffice.php');
+                exit;
+            }
+        } else {
+            include('./Vue/login.php');
+        }
+        break;
+
+    case 'addTaskBo':
+        if (isset($_POST['id_utilisateur'], $_POST['date_tache'], $_POST['titre'], $_POST['description'])) {
+            $id_utilisateur = intval($_POST['id_utilisateur']);
+            $date_tache = htmlspecialchars($_POST['date_tache']);
+            $titre = htmlspecialchars($_POST['titre']);
+            $description = htmlspecialchars($_POST['description']);
+
+            // Appeler la fonction d'ajout
+            $result = addTask($date_tache, $titre, $description, 0, $id_utilisateur);
+
+            if ($result) {
+                // Redirection vers le backoffice
+                include('./Vue/backOffice.php');
+                exit;
+            } else {
+                include('./Vue/login.php');
+            }
+        } else {
+            include('./Vue/login.php');
+        }
+        break;
+
+    case 'update-task-state':
+        if (isLoggedIn()) {
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $id_tache = $_POST['id_tache'];
+                $etat_tache = isset($_POST['etat_tache']) ? 1 : 0;
+
+                $taskModified = updateTask($_POST['date_tache'], $_POST['titre'], $_POST['description'], $id_tache);
+
+                $taskUpdated = updateTaskState($id_tache, $etat_tache);
+
+                include('./Vue/todoList.php');
                 exit;
             }
         } else {
@@ -270,6 +310,25 @@ switch ($action) {
             $id_note = $_GET['id'];
             if ($id_note) {
                 deleteNote($id_note);
+            }
+            include('./Vue/backOffice.php');
+        } else {
+            include('./Vue/login.php');
+        }
+        break;
+
+    case 'viewTasks':
+        if (isLoggedIn()) {
+            $student = $_GET['student'] ?? null;
+            if ($student) {
+                $id_utilisateur = getUserIdByFirstName($student);
+                if ($id_utilisateur) {
+                    $tasks = showTasksByStudent($id_utilisateur);
+                } else {
+                    $tasks = [];
+                }
+            } else {
+                $tasks = showTasks();
             }
             include('./Vue/backOffice.php');
         } else {

@@ -229,70 +229,95 @@
     </div>
 </div>
 
-    <div class="todolist-container hidden" style="padding: 0 4rem 4rem 4rem; border: none; margin: 0;" >
-        <div class="todolist-boxes">
-                    <!-- SCRIPT ICI POUR BOUCLER LES TACHES DANS LA BDD -->
-                    <?php if (isset($successMessage)) {
-                        echo '<p class="success-message">' . $successMessage . '</p>';
-                    } ?>
-                    <?php $tasks = showTasks(); ?>
-                    <?php foreach ($tasks as $task): ?>
-                        <div class="todolist-box">
-                            <div class="todolist-box-content">
-                                <form method="POST" action="index.php?action=update-task-state" class="task-form" style="display:block;">
-                                    <input type="hidden" name="id_tache" value="<?= $task['id_tache'] ?>">
-                                    <label class="task-label" style="display:block;">
-                                        <input type="checkbox" name="etat_tache" class="circle-checkbox"
-                                            <?= $task['etat_tache'] ? 'checked' : '' ?> onchange="this.form.submit()" />
-                                        <div class="task-info">
-                                            <label for="date_tache"></label>
-                                            <input type="text" name="date_tache" id="date_tache" value="<?= $task['date_tache'] ?>">
-                                            <label for="description"></label>
-                                            <input type="text" name="description" id="description" value="<?= $task['description'] ?>">
-                                            <label for="titre"></label>
-                                            <input type="text" name="titre" id="titre" value="<?= $task['titre'] ?>">
-                                        </div>
-                                    </label>
-                                    <input type="submit" value="Mettre à jour" class="submit-button">
-                                </form>
-                                <div class="pencil-container">
-                                    <a id="trash-todo" href="index.php?action=boDeleteTask&id=<?= $task['id_tache']; ?>"><i
-                                            class="fa fa-trash"></i></a>
+<div class="todolist-container hidden" style="padding: 0 4rem 4rem 4rem; border: none; margin: 0;">
+    <!-- Formulaire pour sélectionner un élève -->
+    <form action="./index.php" method="GET" class="filter-form">
+        <input type="hidden" name="action" value="viewTasks">
+        <label for="student">Filtrer par élève :</label>
+        <select name="student" id="student" onchange="this.form.submit()">
+            <option value="">Tous les élèves</option>
+            <?php 
+            $students = showUsers(); 
+            foreach ($students as $student): ?>
+                <option value="<?= htmlspecialchars($student['id_utilisateur']) ?>"
+                    <?= (isset($_GET['student']) && $_GET['student'] == $student['id_utilisateur']) ? 'selected' : '' ?>>
+                    <?= htmlspecialchars($student['prenom']) ?>
+                </option>
+            <?php endforeach; ?>
+        </select>
+    </form>
+
+    <!-- Liste des tâches filtrées -->
+    <div class="todolist-boxes">
+        <?php 
+        $tasks = isset($_GET['student']) && $_GET['student'] !== '' 
+            ? showTasksByStudent($_GET['student']) 
+            : showTasks(); // Récupère les tâches en fonction de l'élève sélectionné
+
+        if (!empty($tasks) && is_array($tasks)): ?>
+            <?php foreach ($tasks as $task): ?>
+                <div class="todolist-box">
+                    <div class="todolist-box-content">
+                        <form method="POST" action="index.php?action=update-task-stateBo" class="task-form" style="display:block;">
+                            <input type="hidden" name="id_tache" value="<?= $task['id_tache'] ?>">
+                            <label class="task-label" style="display:block;">
+                                <input type="checkbox" name="etat_tache" class="circle-checkbox"
+                                    <?= $task['etat_tache'] ? 'checked' : '' ?> onchange="this.form.submit()" />
+                                <div class="task-info">
+                                    <label for="date_tache"></label>
+                                    <input type="text" name="date_tache" id="date_tache" value="<?= $task['date_tache'] ?>">
+                                    <label for="titre"></label>
+                                    <input type="text" name="titre" id="titre" value="<?= $task['titre'] ?>">
+                                    <label for="description"></label>
+                                    <input type="text" name="description" id="description" value="<?= $task['description'] ?>">
                                 </div>
-                            </div>
+                            </label>
+                            <input type="submit" value="Mettre à jour" class="submit-button">
+                        </form>
+                        <div class="pencil-container">
+                            <a id="trash-todo" href="index.php?action=boDeleteTask&id=<?= $task['id_tache']; ?>"><i
+                                    class="fa fa-trash"></i></a>
                         </div>
-                        <!-- Modifier une tâche -->
-                        <!-- Modifier une tâche -->
-                        <div class="overlay" id="overlay-add-task" style="display: none;"></div>
-                        <div class="modify-task-container-<?php echo $task['id_tache'] ?>" id="modify-task-container-<?php echo $task['id_tache'] ?>"
-    style="display: none;">
-                            <h2>Modifier une tâche</h2>
-                            <form id="modify-task-form-<?= $task['id_tache'] ?>" action="index.php?action=modify-task"
-                                method="POST">
-                                <div class="form-group">
-                                    <label for="date_tache">Date de la tâche</label>
-                                    <input type="text" id="task-date" name="date_tache" value="<?= $task["date_tache"]; ?>">
-                                </div>
-                                <div class="form-group">
-                                    <label for="titre">Titre de la tâche</label>
-                                    <input type="text" id="task-title" name="titre" value="<?= $task['titre']; ?>">
-                                </div>
-                                <div class="form-group">
-                                    <label for="description">Description</label>
-                                    <textarea id="task-description" name="description"
-                                        rows="4"><?= $task["description"]; ?></textarea>
-                                    <input type="hidden" name="id_utilisateur" value="<?= $_SESSION['id_utilisateur']; ?>">
-                                    <input type="hidden" name="id_tache" value="<?= $task['id_tache'] ?>">
-                                </div>
-                                <div class="button-container">
-                                    <button type="submit">Ajouter</button>
-                                    <button type="button" id="close-popup-mod">Annuler</button>
-                                </div>
-                            </form>
-                        </div>
-                    <?php endforeach; ?>
+                    </div>
                 </div>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <p>Aucune tâche trouvée.</p>
+        <?php endif; ?>
     </div>
+
+    <!-- Formulaire pour ajouter une nouvelle tâche -->
+    <?php if (isset($_GET['student']) && $_GET['student'] !== ''): ?>
+    <form action="./index.php?action=addTaskBo" method="POST" class="add-task-form" style="padding-bottom: 2rem;">
+        <input type="hidden" name="id_utilisateur" value="<?= htmlspecialchars($_GET['student']) ?>">
+        
+        <!-- Date de la tâche -->
+        <div class="form-group">
+            <label for="date_tache">Date de la tâche :</label>
+            <input type="date" name="date_tache" id="date_tache" required>
+        </div>
+        
+        <!-- Titre -->
+        <div class="form-group">
+            <label for="titre">Titre :</label>
+            <input type="text" name="titre" id="titre" required>
+        </div>
+        
+        <!-- Description -->
+        <div class="form-group">
+            <label for="description">Description :</label>
+            <textarea name="description" id="description" rows="4" required></textarea>
+        </div>
+        
+        <!-- Bouton de soumission -->
+        <div class="form-group">
+            <button type="submit" style="padding:1rem;" class="backoffice-btn">Ajouter une tâche</button>
+        </div>
+    </form>
+<?php else: ?>
+    <p>Veuillez sélectionner un élève pour ajouter une tâche.</p>
+<?php endif; ?>
+</div>
 
     <?php $allUsers = showUsers() ?>
     <div class="all-users-container hidden">
