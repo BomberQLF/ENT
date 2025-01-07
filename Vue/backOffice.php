@@ -141,112 +141,245 @@
 
     <!-- ADMINISTRATION NOTES -->
     <div class="notes-container hidden" style="padding: 0 4rem 4rem 4rem">
-        <div class="notes-wrapper">
-            <div class="notes-title">
-                <p>Matières</p>
-                <p>Professeur</p>
-                <p>Note</p>
-                <p>Moyenne de classe</p>
-                <p>Date</p>
-            </div>
-            <?php $noteEleves = showAllNotes(); ?>
-            <?php foreach ($noteEleves as $note): ?>
-                <form action="./index.php?action=modifyNotes" method="POST">
-                    <div class="notes-contenu">
-                        <a href="index.php?action=deleteNote&id=<?= $note['id_note']; ?>" class="delete-note">
-                            <i class="fa fa-trash"></i>
-                        </a>
-                        <input type="hidden" name="id_note" value="<?= htmlspecialchars($note['id_note']) ?>">
+    <!-- Formulaire de sélection pour filtrer les notes -->
+    <form action="./index.php" method="GET" class="filter-form">
+        <input type="hidden" name="action" value="viewNotes">
+        <label for="student">Filtrer par élève :</label>
+        <select name="student" id="student" onchange="this.form.submit()">
+            <option value="">Tous les élèves</option>
+            <?php 
+            $students = showUsers(); // Récupère la liste des élèves
+            foreach ($students as $student): ?>
+                <option value="<?= htmlspecialchars($student['prenom']) ?>"
+                    <?= (isset($_GET['student']) && $_GET['student'] === $student['prenom']) ? 'selected' : '' ?>>
+                    <?= htmlspecialchars($student['prenom']) ?>
+                </option>
+            <?php endforeach; ?>
+        </select>
+    </form>
 
-                        <label class="hideLabel" for="matiere"></label>
-                        <input type="text" name="matiere" id="matiere" value="<?= htmlspecialchars($note['matiere']) ?>">
+    <div class="notes-table-wrapper">
+    <?php if (!empty($noteEleves) && is_array($noteEleves)): ?>
+        <table class="notes-table">
+            <thead>
+                <tr>
+                    <th>Action</th>
+                    <th>Matières</th>
+                    <th>Professeur</th>
+                    <th>Note</th>
+                    <th>Moyenne de classe</th>
+                    <th>Date</th>
+                    <th>Enregistrer</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($noteEleves as $note): ?>
+                    <tr>
+                        <td>
+                            <a href="index.php?action=deleteNote&id=<?= $note['id_note']; ?>" class="delete-note">
+                                <i class="fa fa-trash"></i>
+                            </a>
+                        </td>
+                        <form action="./index.php?action=modifyNotes" method="POST">
+                            <input type="hidden" name="id_note" value="<?= htmlspecialchars($note['id_note']) ?>">
+                            <td>
+                                <input type="text" name="matiere" id="matiere" value="<?= htmlspecialchars($note['matiere']) ?>">
+                            </td>
+                            <td>
+                                <input type="text" name="professeur" id="professeur" value="<?= htmlspecialchars($note['professeur']) ?>">
+                            </td>
+                            <td>
+                                <input type="text" name="note" id="note" value="<?= htmlspecialchars($note['note']) ?>">
+                            </td>
+                            <td>
+                                <input type="text" name="moyenne_classe" id="moyenne_classe" value="<?= htmlspecialchars($note['moyenne_classe']) ?>">
+                            </td>
+                            <td>
+                                <input type="date" name="date_attribution" id="date_attribution" value="<?= htmlspecialchars($note['date_attribution']) ?>">
+                            </td>
+                            <td>
+                                <input type="submit" class="backoffice-btn" value="Enregistrer">
+                            </td>
+                        </form>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    <?php else: ?>
+        <p>Aucune note trouvée.</p>
+    <?php endif; ?>
+</div>
 
-                        <label class="hideLabel" for="professeur"></label>
-                        <input type="text" name="professeur" id="professeur"
-                            value="<?= htmlspecialchars($note['professeur']) ?>">
+<!-- Formulaire pour ajouter une nouvelle note -->
+<?php if (isset($_GET['student']) && $_GET['student'] !== ''): ?>
+    <div class="notes-horizontal-table-wrapper">
+        <form action="./index.php?action=addNote" method="POST" class="add-note-form">
+            <table class="notes-horizontal-table">
+                <thead>
+                    <tr>
+                        <th>Matière</th>
+                        <th>Professeur</th>
+                        <th>Note</th>
+                        <th>Moyenne de classe</th>
+                        <th>Date</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="text" name="matiere" id="matiere" required></td>
+                        <td><input type="text" name="professeur" id="professeur" required></td>
+                        <td><input type="text" name="note" id="note" required></td>
+                        <td><input type="text" name="moyenne_classe" id="moyenne_classe" required></td>
+                        <td><input type="date" name="date_attribution" id="date_attribution" required></td>
+                        <td>
+                            <input type="hidden" name="id_utilisateur" value="<?= htmlspecialchars(getUserIdByFirstName($_GET['student'])) ?>">
+                            <button type="submit" class="backoffice-btn">Ajouter</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
+<?php else: ?>
+    <p class="notes-horizontal-table-wrapper" style="padding:1rem;">Veuillez sélectionner un élève pour ajouter une note.</p>
+<?php endif; ?>
+    </div>
+</div>
 
-                        <label class="hideLabel" for="note"></label>
-                        <input type="text" name="note" id="note" value="<?= htmlspecialchars($note['note']) ?>">
+<div class="todolist-container hidden" style="padding: 0 4rem 4rem 4rem; border: none; margin: 0;">
+    <!-- Formulaire pour sélectionner un élève -->
+    <form action="./index.php" method="GET" class="filter-form">
+        <input type="hidden" name="action" value="viewTasks">
+        <label for="student">Filtrer par élève :</label>
+        <select name="student" id="student" onchange="this.form.submit()">
+            <option value="">Tous les élèves</option>
+            <?php 
+            $students = showUsers(); 
+            foreach ($students as $student): ?>
+                <option value="<?= htmlspecialchars($student['id_utilisateur']) ?>"
+                    <?= (isset($_GET['student']) && $_GET['student'] == $student['id_utilisateur']) ? 'selected' : '' ?>>
+                    <?= htmlspecialchars($student['prenom']) ?>
+                </option>
+            <?php endforeach; ?>
+        </select>
+    </form>
 
-                        <label class="hideLabel" for="moyenne_classe"></label>
-                        <input type="text" name="moyenne_classe" id="moyenne_classe"
-                            value="<?= htmlspecialchars($note['moyenne_classe']) ?>">
+    <!-- Liste des tâches filtrées -->
+    <div class="todolist-boxes">
+        <?php 
+        $tasks = isset($_GET['student']) && $_GET['student'] !== '' 
+            ? showTasksByStudent($_GET['student']) 
+            : showTasks(); // Récupère les tâches en fonction de l'élève sélectionné
 
-                        <label class="hideLabel" for="date_attribution"></label>
-                        <input type="date" name="date_attribution" id="date_attribution"
-                            value="<?= htmlspecialchars($note['date_attribution']) ?>">
-                        <div class="btn-container">
-                            <input type="submit" class="backoffice-btn">
+        if (!empty($tasks) && is_array($tasks)): ?>
+            <?php foreach ($tasks as $task): ?>
+                <div class="todolist-box">
+                    <div class="todolist-box-content">
+                        <form method="POST" action="index.php?action=update-task-stateBo" class="task-form" style="display:block;">
+                            <input type="hidden" name="id_tache" value="<?= $task['id_tache'] ?>">
+                            <label class="task-label" style="display:block;">
+                                <input type="checkbox" name="etat_tache" class="circle-checkbox"
+                                    <?= $task['etat_tache'] ? 'checked' : '' ?> onchange="this.form.submit()" />
+                                <div class="task-info">
+                                    <label for="date_tache"></label>
+                                    <input type="text" name="date_tache" id="date_tache" value="<?= $task['date_tache'] ?>">
+                                    <label for="titre"></label>
+                                    <input type="text" name="titre" id="titre" value="<?= $task['titre'] ?>">
+                                    <label for="description"></label>
+                                    <input type="text" name="description" id="description" value="<?= $task['description'] ?>">
+                                </div>
+                            </label>
+                            <input type="submit" value="Mettre à jour" class="submit-button">
+                        </form>
+                        <div class="pencil-container">
+                            <a id="trash-todo" href="index.php?action=boDeleteTask&id=<?= $task['id_tache']; ?>"><i
+                                    class="fa fa-trash"></i></a>
                         </div>
                     </div>
-                </form>
+                </div>
             <?php endforeach; ?>
-        </div>
+        <?php else: ?>
+            <p>Aucune tâche trouvée.</p>
+        <?php endif; ?>
     </div>
 
-    <div class="todolist-container hidden" style="padding: 0 4rem 4rem 4rem; border: none; margin: 0;" >
-        <div class="todolist-boxes">
-                    <!-- SCRIPT ICI POUR BOUCLER LES TACHES DANS LA BDD -->
-                    <?php if (isset($successMessage)) {
-                        echo '<p class="success-message">' . $successMessage . '</p>';
-                    } ?>
-                    <?php $tasks = showTasks(); ?>
-                    <?php foreach ($tasks as $task): ?>
-                        <div class="todolist-box">
-                            <div class="todolist-box-content">
-                                <form method="POST" action="index.php?action=update-task-state" class="task-form" style="display:block;">
-                                    <input type="hidden" name="id_tache" value="<?= $task['id_tache'] ?>">
-                                    <label class="task-label" style="display:block;">
-                                        <input type="checkbox" name="etat_tache" class="circle-checkbox"
-                                            <?= $task['etat_tache'] ? 'checked' : '' ?> onchange="this.form.submit()" />
-                                        <div class="task-info">
-                                            <label for="date_tache"></label>
-                                            <input type="text" name="date_tache" id="date_tache" value="<?= $task['date_tache'] ?>">
-                                            <label for="description"></label>
-                                            <input type="text" name="description" id="description" value="<?= $task['description'] ?>">
-                                            <label for="titre"></label>
-                                            <input type="text" name="titre" id="titre" value="<?= $task['titre'] ?>">
-                                        </div>
-                                    </label>
-                                    <input type="submit" value="Mettre à jour" class="submit-button">
-                                </form>
-                                <div class="pencil-container">
-                                    <a id="trash-todo" href="index.php?action=boDeleteTask&id=<?= $task['id_tache']; ?>"><i
-                                            class="fa fa-trash"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Modifier une tâche -->
-                        <!-- Modifier une tâche -->
-                        <div class="overlay" id="overlay-add-task" style="display: none;"></div>
-                        <div class="modify-task-container-<?php echo $task['id_tache'] ?>" id="modify-task-container-<?php echo $task['id_tache'] ?>"
-    style="display: none;">
-                            <h2>Modifier une tâche</h2>
-                            <form id="modify-task-form-<?= $task['id_tache'] ?>" action="index.php?action=modify-task"
-                                method="POST">
-                                <div class="form-group">
-                                    <label for="date_tache">Date de la tâche</label>
-                                    <input type="text" id="task-date" name="date_tache" value="<?= $task["date_tache"]; ?>">
-                                </div>
-                                <div class="form-group">
-                                    <label for="titre">Titre de la tâche</label>
-                                    <input type="text" id="task-title" name="titre" value="<?= $task['titre']; ?>">
-                                </div>
-                                <div class="form-group">
-                                    <label for="description">Description</label>
-                                    <textarea id="task-description" name="description"
-                                        rows="4"><?= $task["description"]; ?></textarea>
-                                    <input type="hidden" name="id_utilisateur" value="<?= $_SESSION['id_utilisateur']; ?>">
-                                    <input type="hidden" name="id_tache" value="<?= $task['id_tache'] ?>">
-                                </div>
-                                <div class="button-container">
-                                    <button type="submit">Ajouter</button>
-                                    <button type="button" id="close-popup-mod">Annuler</button>
-                                </div>
-                            </form>
-                        </div>
-                    <?php endforeach; ?>
+    <!-- Formulaire pour ajouter une nouvelle tâche -->
+    <?php if (isset($_GET['student']) && $_GET['student'] !== ''): ?>
+    <form action="./index.php?action=addTaskBo" method="POST" class="add-task-form" style="padding-bottom: 2rem;">
+        <input type="hidden" name="id_utilisateur" value="<?= htmlspecialchars($_GET['student']) ?>">
+        
+        <!-- Date de la tâche -->
+        <div class="form-group">
+            <label for="date_tache">Date de la tâche :</label>
+            <input type="date" name="date_tache" id="date_tache" required>
+        </div>
+        
+        <!-- Titre -->
+        <div class="form-group">
+            <label for="titre">Titre :</label>
+            <input type="text" name="titre" id="titre" required>
+        </div>
+        
+        <!-- Description -->
+        <div class="form-group">
+            <label for="description">Description :</label>
+            <textarea name="description" id="description" rows="4" required></textarea>
+        </div>
+        
+        <!-- Bouton de soumission -->
+        <div class="form-group">
+            <button type="submit" style="padding:1rem;" class="backoffice-btn">Ajouter une tâche</button>
+        </div>
+    </form>
+<?php else: ?>
+    <p>Veuillez sélectionner un élève pour ajouter une tâche.</p>
+<?php endif; ?>
+</div>
+
+    <?php $allUsers = showUsers() ?>
+    <div class="all-users-container hidden">
+    <?php foreach ($allUsers as $user) : ?>
+        <div class="users-container" style="padding: 0 4rem 4rem 4rem;">
+            <form action="./index.php?action=modifyUserBo" method="POST">
+                <div class="form-group">
+                    <label for="id_utilisateur">ID Utilisateur</label>
+                    <input type="text" id="id_utilisateur" name="id_utilisateur" value="<?= $user['id_utilisateur'] ?>">
                 </div>
+                <div class="form-group">
+                    <label for="nom">Nom</label>
+                    <input type="text" id="nom" name="nom" value="<?= $user['nom'] ?>">
+                </div>
+                <div class="form-group">
+                    <label for="prenom">Prénom</label>
+                    <input type="text" id="prenom" name="prenom" value="<?= $user['prenom'] ?>">
+                </div>
+                <div class="form-group">
+                    <label for="login">Login</label>
+                    <input type="text" id="login" name="login" value="<?= $user['login'] ?>">
+                </div>
+                <div class="form-group">
+                    <label for="telephone">Téléphone</label>
+                    <input type="text" id="telephone" name="telephone" value="<?= $user['telephone'] ?>">
+                </div>
+                <div class="form-group">
+                    <label for="tp">TP</label>
+                    <input type="text" id="tp" name="tp" value="<?= $user['tp'] ?>">
+                </div>
+                <div class="form-group">
+                    <label for="admin">Admin</label>
+                    <select id="admin" name="admin">
+                        <option value="0" <?= $user['admin'] == 0 ? 'selected' : '' ?>>Non</option>
+                        <option value="1" <?= $user['admin'] == 1 ? 'selected' : '' ?>>Oui</option>
+                    </select>
+                </div>
+                <div class="button-container" style="display: block;">
+                    <button type="submit">Modifier</button>
+                    <a href="index.php?action=deleteUser&id=<?= $user['id_utilisateur'] ?>">Supprimer</a>
+                </div>
+            </form>
+        </div>
+    <?php endforeach;?>
     </div>
 
 

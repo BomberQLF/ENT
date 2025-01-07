@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
         notes: document.querySelector('.notes-container'),
         todolist: document.querySelector('.todolist-container'),
         absences: document.querySelector('.absences-container'),
-        users: document.querySelector('.users-container'),
+        utilisateurs: document.querySelector('.all-users-container'),
         messaging: document.querySelector('.messaging-container')
     };
     console.log('backOffice.js is loaded');

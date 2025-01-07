@@ -97,7 +97,7 @@ switch ($action) {
         }
         break;
 
-    case 'update-task-state':
+    case 'update-task-stateBo':
         if (isLoggedIn()) {
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $id_tache = $_POST['id_tache'];
@@ -108,6 +108,46 @@ switch ($action) {
                 $taskUpdated = updateTaskState($id_tache, $etat_tache);
 
                 include('./Vue/backOffice.php');
+                exit;
+            }
+        } else {
+            include('./Vue/login.php');
+        }
+        break;
+
+    case 'addTaskBo':
+        if (isset($_POST['id_utilisateur'], $_POST['date_tache'], $_POST['titre'], $_POST['description'])) {
+            $id_utilisateur = intval($_POST['id_utilisateur']);
+            $date_tache = htmlspecialchars($_POST['date_tache']);
+            $titre = htmlspecialchars($_POST['titre']);
+            $description = htmlspecialchars($_POST['description']);
+
+            // Appeler la fonction d'ajout
+            $result = addTask($date_tache, $titre, $description, 0, $id_utilisateur);
+
+            if ($result) {
+                // Redirection vers le backoffice
+                include('./Vue/backOffice.php');
+                exit;
+            } else {
+                include('./Vue/login.php');
+            }
+        } else {
+            include('./Vue/login.php');
+        }
+        break;
+
+    case 'update-task-state':
+        if (isLoggedIn()) {
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $id_tache = $_POST['id_tache'];
+                $etat_tache = isset($_POST['etat_tache']) ? 1 : 0;
+
+                $taskModified = updateTask($_POST['date_tache'], $_POST['titre'], $_POST['description'], $id_tache);
+
+                $taskUpdated = updateTaskState($id_tache, $etat_tache);
+
+                include('./Vue/todoList.php');
                 exit;
             }
         } else {
@@ -162,8 +202,27 @@ switch ($action) {
     case 'notesPage':
         if (isLoggedIn()) {
             $orderBy = $_POST['orderBy'] ?? 'matiere';
-            $notes = showNotes($orderBy);
+            $notes = showNotes($_SESSION['id_utilisateur'], $orderBy);
             include('./Vue/notes.php');
+        }
+        break;
+
+    case 'addNote':
+        if (isAdmin()) {
+            $id_utilisateur = $_POST['id_utilisateur'];
+            $matiere = $_POST['matiere'];
+            $professeur = $_POST['professeur'];
+            $note = $_POST['note'];
+            $moyenne_classe = $_POST['moyenne_classe'];
+            $date_attribution = $_POST['date_attribution'];
+
+            if ($id_utilisateur && $matiere && $professeur && $note && $moyenne_classe && $date_attribution) {
+                addNote($id_utilisateur, $matiere, $professeur, $note, $moyenne_classe, $date_attribution);
+            }
+            header("Location: ./index.php?action=viewNotes&student=" . urlencode($_GET['student']));
+            exit;
+        } else {
+            include('./Vue/login.php');
         }
         break;
 
@@ -258,6 +317,44 @@ switch ($action) {
         }
         break;
 
+    case 'viewTasks':
+        if (isLoggedIn()) {
+            $student = $_GET['student'] ?? null;
+            if ($student) {
+                $id_utilisateur = getUserIdByFirstName($student);
+                if ($id_utilisateur) {
+                    $tasks = showTasksByStudent($id_utilisateur);
+                } else {
+                    $tasks = [];
+                }
+            } else {
+                $tasks = showTasks();
+            }
+            include('./Vue/backOffice.php');
+        } else {
+            include('./Vue/login.php');
+        }
+        break;
+
+    case 'viewNotes':
+        if (isLoggedIn()) {
+            $student = $_GET['student'] ?? null;
+            if ($student) {
+                $id_utilisateur = getUserIdByFirstName($student);
+                if ($id_utilisateur) {
+                    $noteEleves = showNotesByStudent($id_utilisateur);
+                } else {
+                    $noteEleves = [];
+                }
+            } else {
+                $noteEleves = showAllNotes();
+            }
+            include('./Vue/backOffice.php');
+        } else {
+            include('./Vue/login.php');
+        }
+        break;
+
     case 'evenement':
         if (isLoggedIn()) {
             include('./Vue/evenement.php');
@@ -311,6 +408,42 @@ switch ($action) {
             }
         } else {
             echo json_encode(['success' => false, 'message' => 'Aucune absence ou retard sélectionné ou fichier manquant.']);
+        }
+        break;
+
+    case 'modifyUserBo':
+        if (isAdmin()) {
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $id_utilisateur = $_POST['id_utilisateur'];
+                $nom = $_POST['nom'];
+                $prenom = $_POST['prenom'];
+                $login = $_POST['login'];
+                $telephone = $_POST['telephone'];
+                $tp = $_POST['tp'];
+                $admin = $_POST['admin'];
+
+                $userModified = userBackOffice($id_utilisateur, $nom, $prenom, $login, $telephone, $tp, $admin);
+
+                if ($userModified) {
+                    include('./Vue/backOffice.php');
+                } else {
+                    include('./Vue/login.php');
+                }
+            }
+        } else {
+            include('./Vue/login.php');
+        }
+        break;
+
+    case 'deleteUser':
+        if (isAdmin()) {
+            $id_utilisateur = $_GET['id'];
+            if ($id_utilisateur) {
+                deleteUsers($id_utilisateur);
+                include('./Vue/backOffice.php');
+            }
+        } else {
+            include('./Vue/login.php');
         }
         break;
     default:

@@ -1,7 +1,7 @@
 <?php
 function connect_db(): PDO
 {
-    $db = new PDO('mysql:host=localhost;dbname=ent;', 'root', '');
+    $db = new PDO('mysql:host=localhost;dbname=ent;', 'root', 'root');
     return $db;
 }
 
@@ -192,4 +192,35 @@ function updateAbsencesRetardsStatus($ids, $filePath) {
     $query = "UPDATE absences_retards SET statut = 'justifiée', fichier_justification = ? WHERE id_absence_retard IN ($placeholders)";
     $stmt = $pdo->prepare($query);
     $stmt->execute(array_merge([$filePath], $ids));
+}
+
+function showUsers(): array 
+{
+    $pdo = connect_db();
+    $query = $pdo->prepare("SELECT * FROM utilisateurs");
+    $query->execute();
+    $users = $query->fetchAll(PDO::FETCH_ASSOC);
+    return $users;
+}
+function deleteUsers($id_utilisateur): void
+{
+    $pdo = connect_db();
+    $query = $pdo->prepare('DELETE FROM utilisateurs WHERE id_utilisateur = :id_utilisateur');
+    $query->bindParam(':id_utilisateur', $id_utilisateur, PDO::PARAM_INT);
+    $query->execute();
+}
+function userBackOffice($id_utilisateur, $nom, $prenom, $login, $telephone, $tp, $admin) {
+    $pdo = connect_db();
+
+    $requete = $pdo->prepare("UPDATE utilisateurs SET nom = :nom, prenom = :prenom, login = :login, telephone = :telephone, tp = :tp, admin = :admin WHERE id_utilisateur = :id_utilisateur");
+
+    $requete->bindParam(':nom', $nom, PDO::PARAM_STR);
+    $requete->bindParam(':prenom', $prenom, PDO::PARAM_STR);
+    $requete->bindParam(':login', $login, PDO::PARAM_STR);
+    $requete->bindParam(':telephone', $telephone, PDO::PARAM_STR);
+    $requete->bindParam(':tp', $tp, PDO::PARAM_STR);
+    $requete->bindParam(':admin', $admin, PDO::PARAM_INT);
+    $requete->bindParam(':id_utilisateur', $id_utilisateur, PDO::PARAM_INT);
+
+    return $requete->execute();
 }
