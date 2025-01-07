@@ -1,0 +1,362 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.page-content {
+    display: flex;
+    gap: 7rem;
+}
+
+.suivi {
+    text-decoration: none;
+    color: #7a7a7a;
+}
+
+.upper-page-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 2rem 0 1rem 4rem;
+}
+
+#profil {
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    color: white;
+}
+
+.right-side {
+    padding: 0.4rem 3rem;
+    background-color: #3e567e;
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+}
+
+/* PAGE ABSENCES ET RETARDS ========================================================================= */
+.abcences-container {
+    width: 100%;
+    padding: 20px 100px 20px 100px;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    background-color: var(--main-color);
+    color: white;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.header select {
+    padding: 3px;
+    width: 200px;
+    font-size: 1rem;
+    border-radius: 8px;
+}
+
+.stats {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+    background-color: white;
+    border-radius: 0px 0px 8px 8px;
+    padding: 20px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.stat {
+    background-color: #777E90;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    color: white;
+}
+
+h2 {
+    font-size: 1.2rem;
+    background: white;
+    padding: 10px;
+    border-radius: 8px 8px 0px 0px;
+}
+
+.Partie-absences {
+    display: block;
+}
+
+.Partie-retards {
+    display: none;
+}
+
+.stat h3 {
+    font-size: 1.2em;
+    margin-bottom: 5px;
+}
+
+.stat p {
+    font-size: 1.4em;
+    font-weight: bold;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+table th,
+table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #ccc;
+    background-color: white;
+}
+
+table th {
+    background-color: white;
+}
+
+.barre-justification {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+.barre-justification p {
+    font-size: 0.9em;
+    color: #666;
+}
+
+.barre-justification button, .bouttonversaccueil {
+    padding: 10px 50px;
+    font-size: 16px;
+    color: white;
+    background-color: var(--hover-color);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.barre-justification button:hover , .bouttonversaccueil:hover {
+    background-color: var(--main-color);
+}
+
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+/* RESPONSIVE ============================================================= */
+
+@media screen and (max-width: 1200px) {
+
+    .stats {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .stat {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .barre-justification {
+        flex-direction: column;
+    }
+
+}
+
+@media screen and (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .header select {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    table th,
+    table td {
+        padding: 10px;
+    }
+
+    .abcences-container {
+        padding: 20px;
+    }
+}
+
+/* ========================= Page Justification des absences et retards======================================================= */
+.justifier-absences {
+    max-width: 800px;
+    margin: 0 auto;
+    color: black;
+    background-color: #F7F7F7;
+}
+
+.justifier-absences p {
+    font-size: 1rem;
+    display: flex;
+    text-align: start;
+}
+
+.upload-box {
+    border: 2px dashed #556F9B;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 20px auto;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 500px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.upload-icon {
+    font-size: 3rem;
+    color: white;
+    margin-bottom: 10px;
+    background-color: #556F9B;
+    padding: 10px 20px;
+    border-radius: 50px;
+}
+
+.upload-box p {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+}
+
+.upload-box small {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.file-input {
+    margin-top: 10px;
+}
+
+.file-name {
+    color: green;
+    font-size: 1rem;
+    margin-top: 10px;
+}
+
+.bouttonbarre {
+    padding: 10px 50px;
+    font-size: 16px;
+    color: white;
+    background-color: var(--hover-color);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+}
+
+.justifier-absences-section {
+    width: 100%;
+    background-color: #F7F7F7;
+}
+/* ========================= Page Justification des absences et retards======================================================= */
+.justifier-absences {
+    max-width: 800px;
+    margin: 0 auto;
+    color: black;
+    background-color: #F7F7F7;
+}
+
+.justifier-absences p {
+    font-size: 1rem;
+    display: flex;
+    text-align: start;
+}
+
+.upload-box {
+    border: 2px dashed #556F9B;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 20px auto;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 500px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.upload-icon {
+    font-size: 3rem;
+    color: white;
+    margin-bottom: 10px;
+    background-color: #556F9B;
+    padding: 10px 20px;
+    border-radius: 50px;
+}
+
+.upload-box p {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+}
+
+.upload-box small {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.file-input {
+    margin-top: 10px;
+}
+
+.file-name {
+    color: green;
+    font-size: 1rem;
+    margin-top: 10px;
+}
+
+.bouttonbarre {
+    padding: 10px 50px;
+    font-size: 16px;
+    color: white;
+    background-color: var(--hover-color);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+}
+
+.justifier-absences-section {
+    width: 100%;
+    background-color: #F7F7F7;
+}

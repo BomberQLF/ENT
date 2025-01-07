@@ -362,6 +362,54 @@ switch ($action) {
             include('./Vue/login.php');
         }
         break;
+        
+    // =======================================================================================================
+    case 'absence':
+        if (isLoggedIn()) {
+            $absences = getabsences($_SESSION['id_utilisateur']);
+            $retards = getretards($_SESSION['id_utilisateur']);
+            include('./Vue/absence.php');
+        } else {
+            include('./Vue/login.php');
+        }
+        break;
+
+    case 'show_justification_form':
+        if (isset($_POST['selected_absences_retards']) && !empty($_POST['selected_absences_retards'])) {
+            $selected = $_POST['selected_absences_retards'];
+            $absencesRetards = getSelectedAbsencesRetards($selected);
+            $type = isset($_POST['type']) && $_POST['type'] === 'retard' ? 'retard' : 'absence';
+            include ('./Vue/justification_form.php');
+        } else {
+            $_SESSION['error'] = "Aucune absence ou retard sélectionné.";
+            header('Location: index.php?action=absence');
+        }
+        break;
+        
+    case 'process_justification':
+        if (isset($_POST['selected_absences_retards']) && !empty($_POST['selected_absences_retards']) && isset($_FILES['file'])) {
+            $selected = explode(',', $_POST['selected_absences_retards']);
+            $file = $_FILES['file'];
+            $allowedTypes = ['application/pdf', 'image/png', 'image/jpeg'];
+            $uploadDir = 'image/uploads/justificatif/';
+    
+            if (in_array($file['type'], $allowedTypes)) {
+                $fileName = uniqid() . '_' . basename($file['name']);
+                $filePath = $uploadDir . $fileName;
+    
+                if (move_uploaded_file($file['tmp_name'], $filePath)) {
+                    updateAbsencesRetardsStatus($selected, $filePath);
+                    echo json_encode(['success' => true]);
+                } else {
+                    echo json_encode(['success' => false, 'message' => 'Erreur lors du téléchargement du fichier.']);
+                }
+            } else {
+                echo json_encode(['success' => false, 'message' => 'Type de fichier non autorisé.']);
+            }
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Aucune absence ou retard sélectionné ou fichier manquant.']);
+        }
+        break;
 
     case 'modifyUserBo':
         if (isAdmin()) {
@@ -398,7 +446,6 @@ switch ($action) {
             include('./Vue/login.php');
         }
         break;
-
     default:
         include('./Vue/login.php');
         break;

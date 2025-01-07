@@ -157,6 +157,43 @@ function showAverage($id_utilisateur)
     $average = array_sum(array_column($notes, 'note')) / count($notes);
     return $average;
 }
+
+// FONCTION POUR LES ABSENCES ET LES RETARDS ==============================================
+function getabsences($id_utilisateur)
+{
+    $pdo = connect_db();
+    $query = $pdo->prepare("SELECT * FROM absences_retards WHERE id_utilisateur = :id_utilisateur AND absence = 1 ORDER BY date DESC");
+    $query->bindParam(':id_utilisateur', $id_utilisateur, PDO::PARAM_INT);
+    $query->execute();
+    $absences = $query->fetchAll(PDO::FETCH_ASSOC);
+    return $absences;
+}
+function getretards($id_utilisateur)
+{
+    $pdo = connect_db();
+    $query = $pdo->prepare("SELECT * FROM absences_retards WHERE id_utilisateur = :id_utilisateur AND absence = 0 ORDER BY date DESC");
+    $query->bindParam(':id_utilisateur', $id_utilisateur, PDO::PARAM_INT);
+    $query->execute();
+    $retards = $query->fetchAll(PDO::FETCH_ASSOC);
+    return $retards;
+
+}
+function getSelectedAbsencesRetards($ids) {
+    $pdo = connect_db();
+    $placeholders = implode(',', array_fill(0, count($ids), '?'));
+    $query = "SELECT * FROM absences_retards WHERE id_absence_retard IN ($placeholders)";
+    $stmt = $pdo->prepare($query);
+    $stmt->execute($ids);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+function updateAbsencesRetardsStatus($ids, $filePath) {
+    $pdo = connect_db();
+    $placeholders = implode(',', array_fill(0, count($ids), '?'));
+    $query = "UPDATE absences_retards SET statut = 'justifiée', fichier_justification = ? WHERE id_absence_retard IN ($placeholders)";
+    $stmt = $pdo->prepare($query);
+    $stmt->execute(array_merge([$filePath], $ids));
+}
+
 function showUsers(): array 
 {
     $pdo = connect_db();
