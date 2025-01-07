@@ -140,7 +140,7 @@ table th {
     color: #666;
 }
 
-.barre-justification button {
+.barre-justification button, .bouttonversaccueil {
     padding: 10px 50px;
     font-size: 16px;
     color: white;
@@ -150,9 +150,10 @@ table th {
     cursor: pointer;
     font-weight: bold;
     transition: all 0.3s ease;
+    text-decoration: none;
 }
 
-.barre-justification button:hover {
+.barre-justification button:hover , .bouttonversaccueil:hover {
     background-color: var(--main-color);
 }
 
@@ -268,6 +269,85 @@ table th {
     cursor: pointer;
     font-weight: bold;
     transition: all 0.3s ease;
+}
+
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+}
+
+.justifier-absences-section {
+    width: 100%;
+    background-color: #F7F7F7;
+}
+/* ========================= Page Justification des absences et retards======================================================= */
+.justifier-absences {
+    max-width: 800px;
+    margin: 0 auto;
+    color: black;
+    background-color: #F7F7F7;
+}
+
+.justifier-absences p {
+    font-size: 1rem;
+    display: flex;
+    text-align: start;
+}
+
+.upload-box {
+    border: 2px dashed #556F9B;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 20px auto;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 500px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.upload-icon {
+    font-size: 3rem;
+    color: white;
+    margin-bottom: 10px;
+    background-color: #556F9B;
+    padding: 10px 20px;
+    border-radius: 50px;
+}
+
+.upload-box p {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+}
+
+.upload-box small {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.file-input {
+    margin-top: 10px;
+}
+
+.file-name {
+    color: green;
+    font-size: 1rem;
+    margin-top: 10px;
+}
+
+.bouttonbarre {
+    padding: 10px 50px;
+    font-size: 16px;
+    color: white;
+    background-color: var(--hover-color);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    text-decoration: none;
 }
 
 .navigation {

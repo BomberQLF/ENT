@@ -157,6 +157,7 @@ function showAverage($id_utilisateur)
     $average = array_sum(array_column($notes, 'note')) / count($notes);
     return $average;
 }
+// FONCTION POUR LES ABSENCES ET LES RETARDS ==============================================
 function getabsences($id_utilisateur)
 {
     $pdo = connect_db();
@@ -175,4 +176,19 @@ function getretards($id_utilisateur)
     $retards = $query->fetchAll(PDO::FETCH_ASSOC);
     return $retards;
 
+}
+function getSelectedAbsencesRetards($ids) {
+    $pdo = connect_db();
+    $placeholders = implode(',', array_fill(0, count($ids), '?'));
+    $query = "SELECT * FROM absences_retards WHERE id_absence_retard IN ($placeholders)";
+    $stmt = $pdo->prepare($query);
+    $stmt->execute($ids);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+function updateAbsencesRetardsStatus($ids, $filePath) {
+    $pdo = connect_db();
+    $placeholders = implode(',', array_fill(0, count($ids), '?'));
+    $query = "UPDATE absences_retards SET statut = 'justifiée', fichier_justification = ? WHERE id_absence_retard IN ($placeholders)";
+    $stmt = $pdo->prepare($query);
+    $stmt->execute(array_merge([$filePath], $ids));
 }
