@@ -158,36 +158,6 @@ function showAverage($id_utilisateur)
     return $average;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // FONCTION POUR LES ABSENCES ET LES RETARDS ==============================================
 function getabsences($id_utilisateur)
 {
