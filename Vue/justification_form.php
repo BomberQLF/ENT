@@ -301,26 +301,6 @@
     </section>
     <script src="./Javascript/index.js"></script>
     <script>
-        // document.addEventListener('DOMContentLoaded', function () {
-        //     const form = document.querySelector('form');
-        //     form.addEventListener('submit', function (event) {
-        //         event.preventDefault();
-        //         const formData = new FormData(form);
-        //         fetch(form.action, {
-        //             method: 'POST',
-        //             body: formData
-        //         }).then(response => response.json())
-        //             .then(data => {
-        //                 if (data.success) {
-        //                     document.querySelector('.justifier-absences-section').style.display = 'none';
-        //                     document.querySelector('.justifier-retards-section').style.display = 'none';
-        //                     document.querySelector('.finilisationjustification').style.display = 'flex';
-        //                 } else {
-        //                     alert('Erreur lors de l\'envoi de la justification.');
-        //                 }
-        //             })
-        //     });
-        // });
         document.addEventListener('DOMContentLoaded', function() {
             const forms = document.querySelectorAll('form');
             forms.forEach(form => {
