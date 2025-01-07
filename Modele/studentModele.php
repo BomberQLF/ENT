@@ -157,6 +157,37 @@ function showAverage($id_utilisateur)
     $average = array_sum(array_column($notes, 'note')) / count($notes);
     return $average;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // FONCTION POUR LES ABSENCES ET LES RETARDS ==============================================
 function getabsences($id_utilisateur)
 {

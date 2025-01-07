@@ -265,7 +265,8 @@ switch ($action) {
             include('./Vue/login.php');
         }
         break;
-
+        
+    // =======================================================================================================
     case 'absence':
         if (isLoggedIn()) {
             $absences = getabsences($_SESSION['id_utilisateur']);
@@ -276,7 +277,6 @@ switch ($action) {
         }
         break;
 
-    // =======================================================================================================
     case 'show_justification_form':
         if (isset($_POST['selected_absences_retards']) && !empty($_POST['selected_absences_retards'])) {
             $selected = $_POST['selected_absences_retards'];
