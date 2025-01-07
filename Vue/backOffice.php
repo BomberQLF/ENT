@@ -158,73 +158,91 @@
         </select>
     </form>
 
-    <div class="notes-wrapper">
-        <div class="notes-title">
-            <p>Matières</p>
-            <p>Professeur</p>
-            <p>Note</p>
-            <p>Moyenne de classe</p>
-            <p>Date</p>
-        </div>
-        <?php if (!empty($noteEleves) && is_array($noteEleves)): ?>
-    <?php foreach ($noteEleves as $note): ?>
-        <form action="./index.php?action=modifyNotes" method="POST">
-            <div class="notes-contenu">
-                <a href="index.php?action=deleteNote&id=<?= $note['id_note']; ?>" class="delete-note">
-                    <i class="fa fa-trash"></i>
-                </a>
-                <input type="hidden" name="id_note" value="<?= htmlspecialchars($note['id_note']) ?>">
-
-                <label class="hideLabel" for="matiere"></label>
-                <input type="text" name="matiere" id="matiere" value="<?= htmlspecialchars($note['matiere']) ?>">
-
-                <label class="hideLabel" for="professeur"></label>
-                <input type="text" name="professeur" id="professeur"
-                    value="<?= htmlspecialchars($note['professeur']) ?>">
-
-                <label class="hideLabel" for="note"></label>
-                <input type="text" name="note" id="note" value="<?= htmlspecialchars($note['note']) ?>">
-
-                <label class="hideLabel" for="moyenne_classe"></label>
-                <input type="text" name="moyenne_classe" id="moyenne_classe"
-                    value="<?= htmlspecialchars($note['moyenne_classe']) ?>">
-
-                <label class="hideLabel" for="date_attribution"></label>
-                <input type="date" name="date_attribution" id="date_attribution"
-                    value="<?= htmlspecialchars($note['date_attribution']) ?>">
-                <div class="btn-container">
-                    <input type="submit" class="backoffice-btn">
-                </div>
-            </div>
-        </form>
-    <?php endforeach; ?>
-<?php else: ?>
-    <p>Aucune note trouvée.</p>
-<?php endif; ?>
+    <div class="notes-table-wrapper">
+    <?php if (!empty($noteEleves) && is_array($noteEleves)): ?>
+        <table class="notes-table">
+            <thead>
+                <tr>
+                    <th>Action</th>
+                    <th>Matières</th>
+                    <th>Professeur</th>
+                    <th>Note</th>
+                    <th>Moyenne de classe</th>
+                    <th>Date</th>
+                    <th>Enregistrer</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($noteEleves as $note): ?>
+                    <tr>
+                        <td>
+                            <a href="index.php?action=deleteNote&id=<?= $note['id_note']; ?>" class="delete-note">
+                                <i class="fa fa-trash"></i>
+                            </a>
+                        </td>
+                        <form action="./index.php?action=modifyNotes" method="POST">
+                            <input type="hidden" name="id_note" value="<?= htmlspecialchars($note['id_note']) ?>">
+                            <td>
+                                <input type="text" name="matiere" id="matiere" value="<?= htmlspecialchars($note['matiere']) ?>">
+                            </td>
+                            <td>
+                                <input type="text" name="professeur" id="professeur" value="<?= htmlspecialchars($note['professeur']) ?>">
+                            </td>
+                            <td>
+                                <input type="text" name="note" id="note" value="<?= htmlspecialchars($note['note']) ?>">
+                            </td>
+                            <td>
+                                <input type="text" name="moyenne_classe" id="moyenne_classe" value="<?= htmlspecialchars($note['moyenne_classe']) ?>">
+                            </td>
+                            <td>
+                                <input type="date" name="date_attribution" id="date_attribution" value="<?= htmlspecialchars($note['date_attribution']) ?>">
+                            </td>
+                            <td>
+                                <input type="submit" class="backoffice-btn" value="Enregistrer">
+                            </td>
+                        </form>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    <?php else: ?>
+        <p>Aucune note trouvée.</p>
+    <?php endif; ?>
+</div>
 
 <!-- Formulaire pour ajouter une nouvelle note -->
 <?php if (isset($_GET['student']) && $_GET['student'] !== ''): ?>
-    <form action="./index.php?action=addNote" method="POST" class="add-note-form" style="padding:2rem;">
-        <input type="hidden" name="id_utilisateur" value="<?= htmlspecialchars(getUserIdByFirstName($_GET['student'])) ?>">
-        <label for="matiere">Matière :</label>
-        <input type="text" name="matiere" id="matiere" required>
-
-        <label for="professeur">Professeur :</label>
-        <input type="text" name="professeur" id="professeur" required>
-
-        <label for="note">Note :</label>
-        <input type="text" name="note" id="note" required>
-
-        <label for="moyenne_classe">Moyenne de classe :</label>
-        <input type="text" name="moyenne_classe" id="moyenne_classe" required>
-
-        <label for="date_attribution">Date :</label>
-        <input type="date" name="date_attribution" id="date_attribution" required>
-
-        <button type="submit" style="padding:1rem;" class="backoffice-btn">Ajouter une note</button>
-    </form>
+    <div class="notes-horizontal-table-wrapper">
+        <form action="./index.php?action=addNote" method="POST" class="add-note-form">
+            <table class="notes-horizontal-table">
+                <thead>
+                    <tr>
+                        <th>Matière</th>
+                        <th>Professeur</th>
+                        <th>Note</th>
+                        <th>Moyenne de classe</th>
+                        <th>Date</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="text" name="matiere" id="matiere" required></td>
+                        <td><input type="text" name="professeur" id="professeur" required></td>
+                        <td><input type="text" name="note" id="note" required></td>
+                        <td><input type="text" name="moyenne_classe" id="moyenne_classe" required></td>
+                        <td><input type="date" name="date_attribution" id="date_attribution" required></td>
+                        <td>
+                            <input type="hidden" name="id_utilisateur" value="<?= htmlspecialchars(getUserIdByFirstName($_GET['student'])) ?>">
+                            <button type="submit" class="backoffice-btn">Ajouter</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
 <?php else: ?>
-    <p style="padding:1rem;">Veuillez sélectionner un élève pour ajouter une note.</p>
+    <p class="notes-horizontal-table-wrapper" style="padding:1rem;">Veuillez sélectionner un élève pour ajouter une note.</p>
 <?php endif; ?>
     </div>
 </div>

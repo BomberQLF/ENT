@@ -134,25 +134,29 @@
             <span><?= "Moyenne : " . " " . $average . "/20" ?></span>
         </div>
 
-        <div class="notes-wrapper">
-            <div class="notes-title">
-                <p>Matières</p>
-                <p>Professeur</p>
-                <p>Note</p>
-                <p>Moyenne de classe</p>
-                <p>Date</p>
-            </div>
-            <?php $noteEleves = showNotes($_SESSION['id_utilisateur']); ?>
-            <?php foreach ($noteEleves as $note): ?>
-                <div class="notes-contenu">
-                    <p style="width: 5rem;"><?= htmlspecialchars($note['matiere']) ?></p>
-                    <p><?= htmlspecialchars($note['professeur']) ?></p>
-                    <p><?= htmlspecialchars($note['note']) ?></p>
-                    <p><?= htmlspecialchars($note['moyenne_classe']) ?></p>
-                    <p><?= htmlspecialchars($note['date_attribution']) ?></p>
-                </div>
-            <?php endforeach; ?>
-        </div>
+        <table class="notes-table">
+            <thead>
+                <tr>
+                    <th>Matières</th>
+                    <th>Professeur</th>
+                    <th>Note</th>
+                    <th>Moyenne de classe</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php $noteEleves = showNotes($_SESSION['id_utilisateur']); ?>
+                <?php foreach ($noteEleves as $note): ?>
+                    <tr>
+                        <td><?= htmlspecialchars($note['matiere']) ?></td>
+                        <td><?= htmlspecialchars($note['professeur']) ?></td>
+                        <td><?= htmlspecialchars($note['note']) ?></td>
+                        <td><?= htmlspecialchars($note['moyenne_classe']) ?></td>
+                        <td><?= htmlspecialchars($note['date_attribution']) ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
     </div>
 
 </body>
