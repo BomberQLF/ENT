@@ -229,19 +229,19 @@ switch ($action) {
     case 'upload_Photo':
         if (isset($_FILES['photo_profil'])) {
             if (isset($_SESSION['login'])) {
-                $login = $_SESSION['login'];
+                $login = $_SESSION['id_utilisateur'];
                 // on récupère les informations de l'utilisateur connecté
-                $user = isLoggedIn();
+                // $user = isLoggedIn();
 
                 // Si l'utilisateur est connecté
-                if ($user) {
+                if ($login) {
                     // On récupère l'id de l'utilisateur
                     // On créer le chemin du fichier dans lequel l'image sera uploader
                     $target_dir = "image/uploads/";
                     // On récupère l'extension du fichier
                     $imageFileType = strtolower(pathinfo($_FILES['photo_profil']['name'], PATHINFO_EXTENSION));
                     // On créer le chemin complet du fichier
-                    $target_file = $target_dir . "profil_" . $user . "." . $imageFileType;
+                    $target_file = $target_dir . "profil_" . $login . "." . $imageFileType;
                     // On initialise la variable $uploadOk à 1
                     $uploadOk = 1;
 
@@ -266,7 +266,7 @@ switch ($action) {
                     // Si tout est ok, uploade le fichier
                     if ($uploadOk && move_uploaded_file($_FILES['photo_profil']['tmp_name'], $target_file)) {
                         // On appelle la fonction updateUserPhoto pour mettre à jour la photo de profil de l'utilisateur
-                        updateUserPhoto($user, $target_file);
+                        updateUserPhoto($login, $target_file);
                         $_SESSION['modifusermsg'] = "La photo de profil a été mise à jour avec succès.";
 
                     }

@@ -21,8 +21,6 @@
             ;
         }
 
-
-        /* ======================================== */
         .finilisationjustification {
             width: 100%;
             height: 90vh;
@@ -81,10 +79,8 @@
                 </ul>
             </li>
 
-            <li><a href="#" class="navbar-item"><i class="fa-solid fa-calendar-days"></i>Planning et réservation</a>
-                <ul class="submenu">
-                    <li><a href="index.php?action=emploiDuTemps&week=0">Emploi du temps</a></li>
-                </ul>
+            <li><a href="./index.php?action=emploiDuTemps&week=0" class="navbar-item"><i
+                        class="fa-solid fa-calendar-days"></i>Emploi du temps</a>
             </li>
             <li><a href="#" class="navbar-item"><i class="fa-solid fa-school"></i>Vie étudiante</a>
                 <ul class="submenu">
@@ -103,10 +99,7 @@
                 <?php echo " <span>Bienvenue {$_SESSION['prenom']}</span>
                 <div class='profile-circle'>
                 <img src='{$_SESSION['photo_profil']}' alt='photo de profil' class='photoprofil'>
-                
-                </div>
-
-                " ?>
+                </div>" ?>
             </a>
             <button id="openPopup" aria-label="Se déconnecter"><i class="fa-solid fa-right-from-bracket"></i></button>
 
@@ -118,7 +111,7 @@
             <div class="popup-content">
                 <button class="closepopup" aria-label="Femrer la popup">X</button>
                 <p>Se déconnecter de votre session</p>
-                <a href="./index.php?action='logout'" class="popupButtondeco">Se déconnecter</a>
+                <a href="./index.php?action=logout" class="popupButtondeco">Se déconnecter</a>
             </div>
         </div>
 
@@ -126,32 +119,28 @@
 
         <div class="side-menu" id="sideMenu">
             <ul>
-                <li><a href="#"><i class="fa-solid fa-house"></i>Accueil</a></li>
+                <li><a href="./index.php?action=accueil"><i class="fa-solid fa-house"></i>Accueil</a></li>
 
                 <li class="has-submenu">
                     <a href=""><i class="fa-solid fa-graduation-cap"></i>Mon suivi</a>
                     <ul class="submenu">
-                        <li><a href="#">Notes</a></li>
+                        <li><a href="./index.php?action=notesPage">Notes</a></li>
                         <li><a href="./index.php?action=todoListPage">To do list</a></li>
-                        <li><a href="#">Absences et retards</a></li>
+                        <li><a href="./index.php?action=absence">Absences et retards</a></li>
                     </ul>
                 </li>
 
-                <li class="has-submenu">
-                    <a href=""><i class="fa-solid fa-calendar-days"></i>Planning et réservation</a>
-                    <ul class="submenu">
-                        <li><a href="index.php?action=emploiDuTemps&week=0">Emploi du temps</a></li>
-                        <li><a href="#">Réservation salles et matériels</a></li>
-                    </ul>
+                <li>
+                    <a href="./index.php?action=emploiDuTemps&week=0"><i class="fa-solid fa-calendar-days"></i>Emploi du
+                        temps</a>
                 </li>
                 <li class="has-submenu">
                     <a href=""><i class="fa-solid fa-school"></i>Vie étudiante</a>
                     <ul class="submenu">
                         <li><a href="./index.php?action=menuCrous">Crous et mon IZLY</a></li>
-                        <li><a href="#">Événements</a></li>
+                        <li><a href="./index.php?action=evenement">Événements</a></li>
                     </ul>
                 </li>
-                <li><a href="#"><i class="fa-solid fa-comment"></i>Messagerie</a></li>
                 <?php if (isAdmin()): ?>
                     <li><a href="./index.php?action=backoffice" class="navbar-item">Administration</a></li>
                 <?php endif; ?>
@@ -301,10 +290,10 @@
     </section>
     <script src="./Javascript/index.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const forms = document.querySelectorAll('form');
             forms.forEach(form => {
-                form.addEventListener('submit', function(event) {
+                form.addEventListener('submit', function (event) {
                     // permet d'empêcher le rechargement de la page
                     event.preventDefault();
                     const formData = new FormData(form);
@@ -314,16 +303,16 @@
                         body: formData
                         // on récupère la réponse de la requête
                     }).then(response => response.json())
-                    .then(data => {
-                        // si la justification a bien été envoyée on cache les sections de justification et on affiche la section de confirmation
-                        if (data.success) {
-                            document.querySelector('.justifier-absences-section').style.display = 'none';
-                            document.querySelector('.justifier-retards-section').style.display = 'none';
-                            document.querySelector('.finilisationjustification').style.display = 'flex';
-                        } else {
-                            alert('Erreur lors de l\'envoi de la justification');
-                        }
-                    })
+                        .then(data => {
+                            // si la justification a bien été envoyée on cache les sections de justification et on affiche la section de confirmation
+                            if (data.success) {
+                                document.querySelector('.justifier-absences-section').style.display = 'none';
+                                document.querySelector('.justifier-retards-section').style.display = 'none';
+                                document.querySelector('.finilisationjustification').style.display = 'flex';
+                            } else {
+                                alert('Erreur lors de l\'envoi de la justification');
+                            }
+                        })
                 });
             });
         });

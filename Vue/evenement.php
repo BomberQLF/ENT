@@ -28,15 +28,12 @@
                 <ul class="submenu">
                     <li><a href="./index.php?action=notesPage">Notes</a></li>
                     <li><a href="./index.php?action=todoListPage">To do list</a></li>
-                    <li><a href="#">Absences et retards</a></li>
+                    <li><a href="./index.php?action=absence">Absences et retards</a></li>
                 </ul>
             </li>
 
-            <li><a href="#" class="navbar-item"><i class="fa-solid fa-calendar-days"></i>Planning et réservation</a>
-                <ul class="submenu">
-                    <li><a href="index.php?action=emploiDuTemps&week=0">Emploi du temps</a></li>
-                    <li><a href="#">Réservation salles et matériels</a></li>
-                </ul>
+            <li><a href="./index.php?action=emploiDuTemps&week=0" class="navbar-item"><i
+                        class="fa-solid fa-calendar-days"></i>Emploi du temps</a>
             </li>
             <li><a href="#" class="navbar-item"><i class="fa-solid fa-school"></i>Vie étudiante</a>
                 <ul class="submenu">
@@ -44,8 +41,9 @@
                     <li><a href="./index.php?action=evenement">Événements</a></li>
                 </ul>
             </li>
-            <li><a href="#" class="navbar-item"><i class="fa-solid fa-comment"></i>Messagerie</a></li>
-            <li><a href="./index.php?action=backoffice" class="navbar-item">Administration</a></li>
+            <?php if (isAdmin()): ?>
+                <li><a href="./index.php?action=backoffice" class="navbar-item">Administration</a></li>
+            <?php endif; ?>
         </ul>
 
 
@@ -66,7 +64,7 @@
             <div class="popup-content">
                 <button class="closepopup" aria-label="Femrer la popup">X</button>
                 <p>Se déconnecter de votre session</p>
-                <a href="./index.php?action='logout'" class="popupButtondeco">Se déconnecter</a>
+                <a href="./index.php?action=logout" class="popupButtondeco">Se déconnecter</a>
             </div>
         </div>
 
@@ -79,28 +77,26 @@
                 <li class="has-submenu">
                     <a href=""><i class="fa-solid fa-graduation-cap"></i>Mon suivi</a>
                     <ul class="submenu">
-                        <li><a href="#">Notes</a></li>
+                        <li><a href="./index.php?action=notesPage">Notes</a></li>
                         <li><a href="./index.php?action=todoListPage">To do list</a></li>
-                        <li><a href="#">Absences et retards</a></li>
+                        <li><a href="./index.php?action=absence">Absences et retards</a></li>
                     </ul>
                 </li>
 
-                <li class="has-submenu">
-                    <a href=""><i class="fa-solid fa-calendar-days"></i>Planning et réservation</a>
-                    <ul class="submenu">
-                        <li><a href="index.php?action=emploiDuTemps&week=0">Emploi du temps</a></li>
-                        <li><a href="#">Réservation salles et matériels</a></li>
-                    </ul>
+                <li>
+                    <a href="./index.php?action=emploiDuTemps&week=0"><i class="fa-solid fa-calendar-days"></i>Emploi du
+                        temps</a>
                 </li>
                 <li class="has-submenu">
                     <a href=""><i class="fa-solid fa-school"></i>Vie étudiante</a>
                     <ul class="submenu">
                         <li><a href="./index.php?action=menuCrous">Crous et mon IZLY</a></li>
-                        <li><a href="#">Événements</a></li>
+                        <li><a href="./index.php?action=evenement">Événements</a></li>
                     </ul>
                 </li>
-                <li><a href="#"><i class="fa-solid fa-comment"></i>Messagerie</a></li>
-                <li><a href="./index.php?action=backoffice" class="navbar-item">Administration</a></li>
+                <?php if (isAdmin()): ?>
+                    <li><a href="./index.php?action=backoffice" class="navbar-item">Administration</a></li>
+                <?php endif; ?>
             </ul>
         </div>
 
@@ -180,7 +176,8 @@
                         <div class="event-info">
                             <h4>Halloween</h4>
                             <p>31/10 - Paris</p>
-                            <p>Soirée costumes, spectacles et ambiance effrayant. Des surprises terrifiantes vous attendent à Paris.</p>
+                            <p>Soirée costumes, spectacles et ambiance effrayant. Des surprises terrifiantes vous
+                                attendent à Paris.</p>
                         </div>
                     </button>
                     <button class="event-card" onclick="showDetails(2)">
@@ -198,7 +195,8 @@
                         <div class="event-info">
                             <h4>Comment se vendre ?</h4>
                             <p>29/11 - Sciences Po Paris</p>
-                            <p>Astuces pour réussir entretiens et présentations. Découvrez les clés pour vous mettre en valeur.</p>
+                            <p>Astuces pour réussir entretiens et présentations. Découvrez les clés pour vous mettre en
+                                valeur.</p>
                         </div>
                     </button>
                 </div>
@@ -239,7 +237,7 @@
                             <p>En ligne</p>
                             <p>Explorez les projets d’Unicef pour aider les enfants.</p>
                         </div>
-                    </butt>
+                        </butt>
                 </div>
             </div>
         </section>
@@ -247,7 +245,8 @@
 
     <!-- page des details -->
     <div id="detailPage">
-        <button class="back-button" onclick="goBack()" aria-label="retourner sur la page événements"><i class="fa-solid fa-arrow-left"></i></button>
+        <button class="back-button" onclick="goBack()" aria-label="retourner sur la page événements"><i
+                class="fa-solid fa-arrow-left"></i></button>
         <div class="upper-page-container">
             <div class="left-side">
                 <a href="./index.php?action=accueil" class="suivi">Accueil </a><a href="./index.php?action=evenement"
@@ -287,7 +286,7 @@
     </div>
     <footer>
 
-</footer>
+    </footer>
 
     <script src="./Javascript/index.js"></script>
     <script src="./Javascript/evenement.js"></script>
