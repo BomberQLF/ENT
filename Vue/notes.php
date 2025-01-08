@@ -154,6 +154,7 @@
         </table>
     </div>
 
+    <script src="./Javascript/index.js"></script>
 </body>
 
 </html>

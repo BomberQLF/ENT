@@ -12,7 +12,7 @@
 </head>
 
 <body>
-<nav>
+    <nav>
         <a href="#header-website" class="skip-link">Aller au contenu</a>
 
         <a href="./index.php?action=accueil" class="navbar-home" aria-label="menu"><i class="fa-solid fa-house"></i></a>
@@ -255,7 +255,6 @@
             </div>
             <div class="navigation">
                 <a href="?action=emploiDuTemps&week=<?= $currentWeek - 1 ?>"><</a>
-
                         <div class="daybasdiv">
                             <?php
                             $daysOfWeekFR = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi'];
