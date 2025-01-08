@@ -39,7 +39,6 @@
             <li><a href="#" class="navbar-item"><i class="fa-solid fa-calendar-days"></i>Planning et réservation</a>
                 <ul class="submenu">
                     <li><a href="index.php?action=emploiDuTemps&week=0">Emploi du temps</a></li>
-                    <li><a href="#">Réservation salles et matériels</a></li>
                 </ul>
             </li>
             <li><a href="#" class="navbar-item"><i class="fa-solid fa-school"></i>Vie étudiante</a>
@@ -48,7 +47,6 @@
                     <li><a href="#">Événements</a></li>
                 </ul>
             </li>
-            <li><a href="#" class="navbar-item"><i class="fa-solid fa-comment"></i>Messagerie</a></li>
             <?php if (isAdmin()): ?>
                 <li><a href="./index.php?action=backoffice" class="navbar-item">Administration</a></li>
             <?php endif; ?>
@@ -98,7 +96,6 @@
                     <a href=""><i class="fa-solid fa-calendar-days"></i>Planning et réservation</a>
                     <ul class="submenu">
                         <li><a href="index.php?action=emploiDuTemps&week=0">Emploi du temps</a></li>
-                        <li><a href="#">Réservation salles et matériels</a></li>
                     </ul>
                 </li>
                 <li class="has-submenu">
@@ -108,7 +105,6 @@
                         <li><a href="#">Événements</a></li>
                     </ul>
                 </li>
-                <li><a href="#"><i class="fa-solid fa-comment"></i>Messagerie</a></li>
                 <?php if (isAdmin()): ?>
                     <li><a href="./index.php?action=backoffice" class="navbar-item">Administration</a></li>
                 <?php endif; ?>
