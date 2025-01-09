@@ -14,6 +14,10 @@ switch ($action) {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $loginSuccessful = handleLogin($_POST);
             if ($loginSuccessful) {
+                $absences = getabsences($_SESSION['id_utilisateur']);
+                $retards = getretards($_SESSION['id_utilisateur']);
+                $noteEleves = showNotesaccueil($_SESSION['id_utilisateur']);
+                $tasks = showTasksByStudent($_SESSION['id_utilisateur']);
                 include('./Vue/accueil.php');
             } else {
                 $error = 'Identifiants invalides';
@@ -375,7 +379,7 @@ switch ($action) {
             include('./Vue/login.php');
         }
         break;
-        
+
     // =======================================================================================================
     case 'absence':
         if (isLoggedIn()) {
@@ -392,24 +396,24 @@ switch ($action) {
             $selected = $_POST['selected_absences_retards'];
             $absencesRetards = getSelectedAbsencesRetards($selected);
             $type = isset($_POST['type']) && $_POST['type'] === 'retard' ? 'retard' : 'absence';
-            include ('./Vue/justification_form.php');
+            include('./Vue/justification_form.php');
         } else {
             $_SESSION['error'] = "Aucune absence ou retard sélectionné.";
             header('Location: index.php?action=absence');
         }
         break;
-        
+
     case 'process_justification':
         if (isset($_POST['selected_absences_retards']) && !empty($_POST['selected_absences_retards']) && isset($_FILES['file'])) {
             $selected = explode(',', $_POST['selected_absences_retards']);
             $file = $_FILES['file'];
             $allowedTypes = ['application/pdf', 'image/png', 'image/jpeg'];
             $uploadDir = 'image/uploads/justificatif/';
-    
+
             if (in_array($file['type'], $allowedTypes)) {
                 $fileName = uniqid() . '_' . basename($file['name']);
                 $filePath = $uploadDir . $fileName;
-    
+
                 if (move_uploaded_file($file['tmp_name'], $filePath)) {
                     updateAbsencesRetardsStatus($selected, $filePath);
                     echo json_encode(['success' => true]);
