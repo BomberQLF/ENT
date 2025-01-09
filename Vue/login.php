@@ -12,7 +12,6 @@
     <div class="login-container">
         <div class="choice-login-container">
             <h1>Bienvenue sur l'ENT Gustave Eiffel</h1>
-            <p>Veuillez choisir votre statut</p>
         </div>
         <div class="form-login-container">
             <form action="/ENT/index.php?action=login" method="POST">

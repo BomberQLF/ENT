@@ -458,17 +458,14 @@ switch ($action) {
         if (isset($_POST['id_absence_retard'])) {
             $idAbsenceRetard = $_POST['id_absence_retard'];
 
-            // Récupération des valeurs dynamiques
             $matiere = $_POST['matiere_' . $idAbsenceRetard];
             $professeur = $_POST['professeur_' . $idAbsenceRetard];
             $date = $_POST['date_' . $idAbsenceRetard];
             $duree = $_POST['duree_' . $idAbsenceRetard];
             $statut = $_POST['statut_' . $idAbsenceRetard];
 
-            // Appeler la fonction pour mettre à jour
             if (updateAbsenceRetard($idAbsenceRetard, $matiere, $professeur, $date, $duree, $statut, 1)) {
-                // Affiche un message de succès ou redirige
-                include('./Vue/backOffice.php');
+                -include('./Vue/backOffice.php');
                 echo "Mise à jour réussie !";
             } else {
                 echo "Échec de la mise à jour.";
@@ -479,23 +476,21 @@ switch ($action) {
         break;
 
     // Action pour mettre à jour un retard
-    case 'updateRetard' :
+    case 'updateRetard':
         if (isset($_POST['id_absence_retard'])) {
-                $idRetard = $_POST['id_absence_retard'];
-                $matiere = $_POST['matiere_' . $idRetard];
-                $professeur = $_POST['professeur_' . $idRetard];
-                $date = $_POST['date_' . $idRetard];
-                $duree = $_POST['duree_' . $idRetard];
-                $statut = $_POST['statut_' . $idRetard];
-    
-                // Appeler la fonction de mise à jour pour chaque retard
-                updateRetard($idRetard, $matiere, $professeur, $date, $duree, $statut);
-                echo "Les retards ont été mis à jour avec succès.";
+            $idRetard = $_POST['id_absence_retard'];
+            $matiere = $_POST['matiere_' . $idRetard];
+            $professeur = $_POST['professeur_' . $idRetard];
+            $date = $_POST['date_' . $idRetard];
+            $duree = $_POST['duree_' . $idRetard];
+            $statut = $_POST['statut_' . $idRetard];
 
-            }
-        // Revenir à la liste après la mise à jour
+            updateRetard($idRetard, $matiere, $professeur, $date, $duree, $statut);
+            echo "Les retards ont été mis à jour avec succès.";
+
+        }
         include('./Vue/backOffice.php');
-        break;    
+        break;
 
     case 'deleteUser':
         if (isAdmin()) {
