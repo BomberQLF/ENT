@@ -270,7 +270,7 @@
                             <th>Matières</th>
                             <th>Professeur</th>
                             <th>Note</th>
-                            <th>Date</th>
+                            <th class="thdate">Date</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -280,7 +280,7 @@
                                 <td><?= htmlspecialchars($note['matiere']) ?></td>
                                 <td><?= htmlspecialchars($note['professeur']) ?></td>
                                 <td><?= htmlspecialchars($note['note']) ?></td>
-                                <td><?= htmlspecialchars($note['date_attribution']) ?></td>
+                                <td class="thdate"><?= htmlspecialchars($note['date_attribution']) ?></td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>
