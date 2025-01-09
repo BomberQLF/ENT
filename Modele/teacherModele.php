@@ -91,67 +91,12 @@ function isTaskOwnedByUser($id_tache, $id_utilisateur)
     return $query->fetchColumn() > 0;
 }
 
-// functions.php
-
-// Fonction pour mettre à jour un retard
-// function updateRetard($idRetard, $matiere, $professeur, $date, $duree, $statut)
-// {
-//     $pdo = connect_db();
-
-//     $query = $pdo->prepare("UPDATE retards SET 
-//     matiere = :matiere, 
-//     professeur = :professeur, 
-//     date = :date, 
-//     duree_minutes = :duree, 
-//     statut = :statut 
-//   WHERE id_absence_retard = :id_absence_retard");
-
-
-//     // Liaison des paramètres
-//     $query->bindParam(':matiere', $matiere, PDO::PARAM_STR);
-//     $query->bindParam(':professeur', $professeur, PDO::PARAM_STR);
-//     $query->bindParam(':date', $date, PDO::PARAM_STR);
-//     $query->bindParam(':duree', $duree, PDO::PARAM_INT);
-//     $query->bindParam(':statut', $statut, PDO::PARAM_STR);
-//     $query->bindParam(':id_absence_retard', $idRetard, PDO::PARAM_INT);
-
-//     return $query->execute();
-// }
-
-// // Fonction pour mettre à jour une absence
-// function updateAbsence($idAbsence, $matiere, $professeur, $date, $duree, $statut)
-// {
-
-//     $pdo = connect_db();
-
-//     $query = $pdo->prepare("UPDATE absences SET 
-//     matiere = :matiere, 
-//     professeur = :professeur, 
-//     date = :date, 
-//     duree_minutes = :duree, 
-//     statut = :statut 
-//   WHERE id_absence_retard = :id_absence_retard");
-
-//     // Liaison des paramètres
-//     $query->bindParam(':matiere', $matiere, PDO::PARAM_STR);
-//     $query->bindParam(':professeur', $professeur, PDO::PARAM_STR);
-//     $query->bindParam(':date', $date, PDO::PARAM_STR);
-//     $query->bindParam(':duree', $duree, PDO::PARAM_INT);
-//     $query->bindParam(':statut', $statut, PDO::PARAM_STR);
-//     $query->bindParam(':id_absence_retard', $idAbsence, PDO::PARAM_INT);
-
-//     return $query->execute();
-// }
-
-// Fonction pour mettre à jour une absence ou un retard
 function updateAbsenceRetard($idAbsenceRetard, $matiere, $professeur, $date, $duree, $statut, $absence)
 {
     $pdo = connect_db();
 
-    // La table est maintenant absences_retards
     $table = 'absences_retards';
 
-    // Préparer la requête pour mettre à jour
     $query = $pdo->prepare("UPDATE $table SET 
         matiere = :matiere, 
         professeur = :professeur, 
@@ -161,26 +106,22 @@ function updateAbsenceRetard($idAbsenceRetard, $matiere, $professeur, $date, $du
         absence = :absence
         WHERE id_absence_retard = :id_absence_retard");
 
-    // Liaison des paramètres
     $query->bindParam(':matiere', $matiere, PDO::PARAM_STR);
     $query->bindParam(':professeur', $professeur, PDO::PARAM_STR);
     $query->bindParam(':date', $date, PDO::PARAM_STR);
     $query->bindParam(':duree_minutes', $duree, PDO::PARAM_INT);
     $query->bindParam(':statut', $statut, PDO::PARAM_STR);
-    $query->bindParam(':absence', $absence, PDO::PARAM_INT); // Si 0 c'est un retard, sinon c'est une absence
+    $query->bindParam(':absence', $absence, PDO::PARAM_INT); 
     $query->bindParam(':id_absence_retard', $idAbsenceRetard, PDO::PARAM_INT);
 
-    // Exécuter la requête
     return $query->execute();
 }
 
 function updateRetard($idRetard, $matiere, $professeur, $date, $duree, $statut) {
     $pdo = connect_db();
 
-    // La table des retards
     $table = 'absences_retards';
 
-    // Préparer la requête SQL
     $query = $pdo->prepare("UPDATE $table SET 
         matiere = :matiere,
         professeur = :professeur,
@@ -189,7 +130,6 @@ function updateRetard($idRetard, $matiere, $professeur, $date, $duree, $statut) 
         statut = :statut
         WHERE id_absence_retard = :id_retard AND absence = 0");
 
-    // Lier les paramètres
     $query->bindParam(':matiere', $matiere, PDO::PARAM_STR);
     $query->bindParam(':professeur', $professeur, PDO::PARAM_STR);
     $query->bindParam(':date', $date, PDO::PARAM_STR);
@@ -197,6 +137,5 @@ function updateRetard($idRetard, $matiere, $professeur, $date, $duree, $statut) 
     $query->bindParam(':statut', $statut, PDO::PARAM_STR);
     $query->bindParam(':id_retard', $idRetard, PDO::PARAM_INT);
 
-    // Exécuter la requête et retourner le résultat
     return $query->execute();
 }
