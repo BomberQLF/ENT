@@ -362,7 +362,7 @@ switch ($action) {
             include('./Vue/login.php');
         }
         break;
-        
+
     // =======================================================================================================
     case 'absence':
         if (isLoggedIn()) {
@@ -379,24 +379,24 @@ switch ($action) {
             $selected = $_POST['selected_absences_retards'];
             $absencesRetards = getSelectedAbsencesRetards($selected);
             $type = isset($_POST['type']) && $_POST['type'] === 'retard' ? 'retard' : 'absence';
-            include ('./Vue/justification_form.php');
+            include('./Vue/justification_form.php');
         } else {
             $_SESSION['error'] = "Aucune absence ou retard sélectionné.";
             header('Location: index.php?action=absence');
         }
         break;
-        
+
     case 'process_justification':
         if (isset($_POST['selected_absences_retards']) && !empty($_POST['selected_absences_retards']) && isset($_FILES['file'])) {
             $selected = explode(',', $_POST['selected_absences_retards']);
             $file = $_FILES['file'];
             $allowedTypes = ['application/pdf', 'image/png', 'image/jpeg'];
             $uploadDir = 'image/uploads/justificatif/';
-    
+
             if (in_array($file['type'], $allowedTypes)) {
                 $fileName = uniqid() . '_' . basename($file['name']);
                 $filePath = $uploadDir . $fileName;
-    
+
                 if (move_uploaded_file($file['tmp_name'], $filePath)) {
                     updateAbsencesRetardsStatus($selected, $filePath);
                     echo json_encode(['success' => true]);
@@ -434,6 +434,68 @@ switch ($action) {
             include('./Vue/login.php');
         }
         break;
+
+    case 'viewAbsences':
+        if (isLoggedIn()) {
+            $student = $_GET['student'] ?? null;
+            if ($student) {
+                $id_utilisateur = getUserIdByFirstName($student);
+                if ($id_utilisateur) {
+                    $absences = getabsences($id_utilisateur);
+                } else {
+                    $absences = [];
+                }
+            } else {
+                $absences = [];
+            }
+            include('./Vue/backOffice.php');
+        } else {
+            include('./Vue/login.php');
+        }
+        break;
+
+    case 'updateAbsence':
+        if (isset($_POST['id_absence_retard'])) {
+            $idAbsenceRetard = $_POST['id_absence_retard'];
+
+            // Récupération des valeurs dynamiques
+            $matiere = $_POST['matiere_' . $idAbsenceRetard];
+            $professeur = $_POST['professeur_' . $idAbsenceRetard];
+            $date = $_POST['date_' . $idAbsenceRetard];
+            $duree = $_POST['duree_' . $idAbsenceRetard];
+            $statut = $_POST['statut_' . $idAbsenceRetard];
+
+            // Appeler la fonction pour mettre à jour
+            if (updateAbsenceRetard($idAbsenceRetard, $matiere, $professeur, $date, $duree, $statut, 1)) {
+                // Affiche un message de succès ou redirige
+                include('./Vue/backOffice.php');
+                echo "Mise à jour réussie !";
+            } else {
+                echo "Échec de la mise à jour.";
+            }
+        } else {
+            echo "Aucun ID d'absence transmis.";
+        }
+        break;
+
+    // Action pour mettre à jour un retard
+    case 'updateRetard' :
+        if (isset($_POST['id_absence_retard'])) {
+                $idRetard = $_POST['id_absence_retard'];
+                $matiere = $_POST['matiere_' . $idRetard];
+                $professeur = $_POST['professeur_' . $idRetard];
+                $date = $_POST['date_' . $idRetard];
+                $duree = $_POST['duree_' . $idRetard];
+                $statut = $_POST['statut_' . $idRetard];
+    
+                // Appeler la fonction de mise à jour pour chaque retard
+                updateRetard($idRetard, $matiere, $professeur, $date, $duree, $statut);
+                echo "Les retards ont été mis à jour avec succès.";
+
+            }
+        // Revenir à la liste après la mise à jour
+        include('./Vue/backOffice.php');
+        break;    
 
     case 'deleteUser':
         if (isAdmin()) {

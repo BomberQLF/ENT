@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="./Style/todoList.css">
     <script src="./Javascript/index.js"></script>
     <script src="./Javascript/backOffice.js"></script>
+    <script src="./Javascript/absence.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" />
 
     <title>Back Office</title>
@@ -378,6 +379,170 @@
     <?php endforeach;?>
     </div>
 
+
+<div class="absences-container hidden">
+    <div class="contenudebase">
+    <!-- Formulaire de sélection pour filtrer les absences -->
+<form action="./index.php" method="GET" class="filter-form">
+    <input type="hidden" name="action" value="viewAbsences">
+    <label for="student">Filtrer par élève :</label>
+    <select name="student" id="student" onchange="this.form.submit()">
+        <option value="">Tous les élèves</option>
+        <?php 
+        $students = showUsers(); // Récupère la liste des élèves
+        foreach ($students as $student): ?>
+            <option value="<?= htmlspecialchars($student['id_utilisateur']) ?>"
+                <?= (isset($_GET['student']) && $_GET['student'] == $student['id_utilisateur']) ? 'selected' : '' ?>>
+                <?= htmlspecialchars($student['prenom']) ?>
+            </option>
+        <?php endforeach; ?>
+    </select>
+</form>
+
+<!-- Back-office : Absences -->
+<div class="absences-table-wrapper">
+    <?php if (isset($_GET['student']) && $_GET['student'] !== ''): ?>
+        <?php $absences = getabsences($_GET['student']); ?>
+        <?php if (!empty($absences) && is_array($absences)): ?>
+            <form method="POST" action="index.php?action=updateAbsence">
+    <table>
+        <thead>
+            <tr>
+                <th>Matière</th>
+                <th>Professeur</th>
+                <th>Date</th>
+                <th>Durée</th>
+                <th>Statut</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            echo "<h2 class=retard_absence_title>Absences</h2>";
+
+            // Afficher toutes les absences
+            foreach ($absences as $absence) {
+                echo '<tr>
+                        <td><input type="text" name="matiere_'.$absence['id_absence_retard'].'" value="'.htmlspecialchars($absence['matiere']).'"></td>
+                        <td><input type="text" name="professeur_'.$absence['id_absence_retard'].'" value="'.htmlspecialchars($absence['professeur']).'"></td>
+                        <td><input type="date" name="date_'.$absence['id_absence_retard'].'" value="'.htmlspecialchars($absence['date']).'"></td>
+                        <td><input type="number" name="duree_'.$absence['id_absence_retard'].'" value="'.htmlspecialchars($absence['duree_minutes']).'"></td>
+                        <td>
+                            <select name="statut_'.$absence['id_absence_retard'].'">
+                                <option value="justifiée" '.($absence['statut'] === 'justifiée' ? 'selected' : '').'>Justifiée</option>
+                                <option value="injustifiée" '.($absence['statut'] === 'injustifiée' ? 'selected' : '').'>Injustifiée</option>
+                            </select>
+                        </td>
+                        <td>
+                            <button type="submit" name="id_absence_retard" value="'.$absence['id_absence_retard'].'">Sauvegarder</button>
+                        </td>
+                    </tr>';
+            }
+            ?>
+        </tbody>
+    </table>
+</form>
+        <?php else: ?>
+            <p>Aucune absence trouvée.</p>
+        <?php endif; ?>
+    <?php else: ?>
+        <p>Veuillez sélectionner un élève pour afficher les absences.</p>
+    <?php endif; ?>
+</div>
+
+<!-- Back-office : Retards -->
+<div class="retards-table-wrapper">
+    <?php if (isset($_GET['student']) && $_GET['student'] !== ''): ?>
+        <?php $retards = getRetards($_GET['student']); ?>
+        <?php if (!empty($retards) && is_array($retards)): ?>
+            <form method="POST" action="index.php?action=updateRetard">
+    <table>
+        <thead>
+            <tr>
+                <th>Matière</th>
+                <th>Professeur</th>
+                <th>Total</th>
+                <th>Date</th>
+                <th>Statut</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            // Sépare les retards justifiés et injustifiés
+            $retardsAJustifier = [];
+            $retardsJustifiees = [];
+            foreach ($retards as $retard) {
+                if (trim(strtolower($retard['statut'])) === 'injustifié') {
+                    $retardsAJustifier[] = $retard;
+                } elseif (trim(strtolower($retard['statut'])) === 'justifiée') {
+                    $retardsJustifiees[] = $retard;
+                }
+            }
+
+            echo "<h2 class=retard_absence_title>Retards</h2>";
+
+            foreach ($retards as $retard): ?>
+                <tr>
+                    <td>
+                        <input 
+                            type="text" 
+                            name="matiere_<?php echo htmlspecialchars($retard['id_absence_retard'] ?? ''); ?>" 
+                            value="<?php echo htmlspecialchars($retard['matiere'] ?? ''); ?>">
+                    </td>
+                    <td>
+                        <input 
+                            type="text" 
+                            name="professeur_<?php echo htmlspecialchars($retard['id_absence_retard'] ?? ''); ?>" 
+                            value="<?php echo htmlspecialchars($retard['professeur'] ?? ''); ?>">
+                    </td>
+                    <td>
+                        <input 
+                            type="number" 
+                            name="duree_<?php echo htmlspecialchars($retard['id_absence_retard'] ?? ''); ?>" 
+                            value="<?php echo htmlspecialchars($retard['duree_minutes'] ?? ''); ?>">
+                    </td>
+                    <td>
+                        <input 
+                            type="date" 
+                            name="date_<?php echo htmlspecialchars($retard['id_absence_retard'] ?? ''); ?>" 
+                            value="<?php echo htmlspecialchars($retard['date'] ?? ''); ?>">
+                    </td>
+                    <td>
+                        <select 
+                            name="statut_<?php echo htmlspecialchars($retard['id_absence_retard'] ?? ''); ?>">
+                            <option 
+                                value="justifiée" 
+                                <?php echo ($retard['statut'] ?? '') === 'justifiée' ? 'selected' : ''; ?>>
+                                Justifiée
+                            </option>
+                            <option 
+                                value="injustifiée" 
+                                <?php echo ($retard['statut'] ?? '') === 'injustifiée' ? 'selected' : ''; ?>>
+                                Injustifiée
+                            </option>
+                        </select>
+                    </td>
+                    <td>
+                        <button 
+                            type="submit" 
+                            name="id_absence_retard" 
+                            value="<?php echo htmlspecialchars($retard['id_absence_retard'] ?? ''); ?>">
+                            Mettre à jour
+                        </button>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+</form>
+        <?php else: ?>
+            <p>Aucun retard trouvé.</p>
+        <?php endif; ?>
+    <?php else: ?>
+        <p>Veuillez sélectionner un élève pour afficher les retards.</p>
+    <?php endif; ?>
+</div>
 
     <script src="./Javascript/todolist.js"></script>
 </body>
