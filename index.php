@@ -31,7 +31,13 @@ switch ($action) {
         break;
 
     case 'menuCrous':
-        isLoggedIn() ? include('./Vue/menuCrous.php') : include('./Vue/login.php');
+        if (isLoggedIn()) {
+            $showPopup = isset($_GET['showPopup']) && $_GET['showPopup'] === 'true';
+            include('./Vue/menuCrous.php');
+        } else {
+            include('./Vue/login.php');
+        }
+        // isLoggedIn() ? include('./Vue/menuCrous.php') : include('./Vue/login.php');
         break;
 
     case 'accueil':

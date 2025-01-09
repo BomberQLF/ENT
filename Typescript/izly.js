@@ -33,6 +33,20 @@ document.addEventListener("DOMContentLoaded", function () {
             saveCard.style.display = "block";
         }
     };
+
+    const getURLParameter = (name) => {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(name);
+    };
+
+    if (getURLParameter("action") === "menuCrous" && getURLParameter("showPopup") === "true") {
+        izlySecond.style.display = "block";
+        izlyFirst.style.display = "none";
+    } else {
+        izlySecond.style.display = "none";
+        izlyFirst.style.display = "block";
+    }
+    
     carte.addEventListener("change", updateDisplay);
     carteEnregistree.addEventListener("change", updateDisplay);
     updateDisplay();

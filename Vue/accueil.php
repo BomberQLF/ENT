@@ -112,139 +112,7 @@
     </div>
 
     <div class="accueil-container">
-        <div class="tachescontainer">
-            <div class="content-text">
-                <h2>Vos prochaines tâches à faire</h2>
-                <a href="./index.php?action=todoListPage">Voir toutes les tâches</a>
-            </div>
-            <div class="listdestaches">
-                <div class="tachediv">
-                    <p style="font-weight: bold;">titre tache</p>
-                    <p>date en lettre</p>
-                    <p>debut description tache</p>
-                </div>
-                <div class="tachediv">
-                    <p style="font-weight: bold;">titre tache</p>
-                    <p>date en lettre</p>
-                    <p>debut description tache</p>
-                </div>
-                <div class="tachediv">
-                    <p style="font-weight: bold;">titre tache</p>
-                    <p>date en lettre</p>
-                    <p>debut description tache</p>
-                </div>
-            </div>
-        </div>
-        <div class="absenceretardcontainer">
-            <div class="content-text">
-                <h2>Vos absences et retards</h2>
-                <a href="./index.php?action=absence">Justifier</a>
-            </div>
-            <div class="cards-container">
-                <div class="card">
-                    <p>Absences à justifier</p>
-                    <span>03</span>
-                </div>
-                <div class="card">
-                    <p>Retards à justifier</p>
-                    <span>02</span>
-                </div>
-            </div>
-        </div>
-        <div class="eventcontainer">
-            <div class="content-text">
-                <h2>Les derniers événements universitaire</h2>
-                <a href="./index.php?action=evenement">Voir les autres événements</a>
-            </div>
-            <div class="listeeventcard">
-                <div class="eventcard">
-                    <img src="./image/imageSite/evenement/village_noel.jpg" alt="">
-                    <h3>Village de Noël</h3>
-                    <p>Le village de Noël vous rappellera l’esprit de Noël...</p>
-                </div>
-                <div class="eventcard">
-                    <img src="./image/imageSite/evenement/hallowen.jpg" alt="">
-                    <h3>Halloween</h3>
-                    <p>C’est bientôt l’heure, préparez vos déguisements...</p>
-                </div>
-                <div class="eventcard">
-                    <img src="./image/imageSite/evenement/conference.jpg" alt="">
-                    <h3>Conférence</h3>
-                    <p>Retrouvez Mme Gaëlle Charpentier pour une ...</p>
-                </div>
-            </div>
-        </div>
-        <div class="menucrouscontainer">
-            <div class="menu">
-                <h2>MENU DU CROUS</h2>
-                <button id="esiee">▶ ESIEE</button>
-                <button id="copernic" class="active">▶ COPERNIC</button>
-            </div>
-            <div class="menu-contenu" id="menu-copernic" style="display: block;">
-                <div>
-                    <h3 class="menu-titre">Entrée</h3>
-                    <p>Tomates</p>
-                </div>
-                <div>
-                    <h3 class="menu-titre">Plat</h3>
-                    <p>Pierogi</p>
-                </div>
-                <div>
-                    <h3 class="menu-titre">Dessert</h3>
-                    <p>Tarte aux pommes</p>
-                </div>
-            </div>
-            <div class="menu-contenu" id="menu-esiee">
-                <div>
-                    <h3 class="menu-titre">Entrée</h3>
-                    <p>Tomates</p>
-                </div>
-                <div>
-                    <h3 class="menu-titre">Plat</h3>
-                    <p>Steack haché</p>
-                </div>
-                <div>
-                    <h3 class="menu-titre">Dessert</h3>
-                    <p>Beignet à la fraise</p>
-                </div>
-            </div>
-        </div>
-        <div class="crousizly">
-            <h2>Compte Izly</h2>
-            <div class="progress-circle">
-                <div class="inner-circle">+ 5,00 €</div>
-                <p class="datesolde">Solde du 11/11/24</p>
-                <button id="buttonMenucrous">Ajouter des fonds</button>
-                <!-- href="index.php?action=menuCrous" -->
-            </div>
-        </div>
-        <div class="notecontainer">
-            <div class="content-text">
-                <h2>Mes dernières notes</h2>
-                <a href="./index.php?action=notesPage">Voir toutes les notes</a>
-            </div>
-            <div class="table-scroll">
-                <table class="notes-table">
-                    <thead>
-                        <tr>
-                            <th>Matières</th>
-                            <th>Professeur</th>
-                            <th>Note</th>
-                            <th>Date</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>matiere</td>
-                            <td>professeur</td>
-                            <td>note</td>
-                            <td>date</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <div class="emploidutempsdiv">
+        <div class="emploidutempsdiv" id="header-website">
             <div class="content-text">
                 <a class="emploiea" href="./index.php?action=emploiDuTemps&week=0">Voir Votre emploi du temps</a>
             </div>
@@ -316,6 +184,137 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="tachescontainer">
+            <div class="content-text">
+                <h2>Vos prochaines tâches à faire</h2>
+                <a href="./index.php?action=todoListPage">Voir toutes les tâches</a>
+            </div>
+            <div class="listdestaches">
+                <div class="tachediv">
+                    <p style="font-weight: bold;">titre tache</p>
+                    <p>date en lettre</p>
+                    <p>debut description tache</p>
+                </div>
+                <div class="tachediv">
+                    <p style="font-weight: bold;">titre tache</p>
+                    <p>date en lettre</p>
+                    <p>debut description tache</p>
+                </div>
+                <div class="tachediv">
+                    <p style="font-weight: bold;">titre tache</p>
+                    <p>date en lettre</p>
+                    <p>debut description tache</p>
+                </div>
+            </div>
+        </div>
+        <div class="absenceretardcontainer">
+            <div class="content-text">
+                <h2>Vos absences et retards</h2>
+                <a href="./index.php?action=absence">Justifier</a>
+            </div>
+            <div class="cards-container">
+                <div class="card">
+                    <p>Absences à justifier</p>
+                    <span>03</span>
+                </div>
+                <div class="card">
+                    <p>Retards à justifier</p>
+                    <span>02</span>
+                </div>
+            </div>
+        </div>
+        <div class="eventcontainer">
+            <div class="content-text">
+                <h2>Les derniers événements universitaire</h2>
+                <a href="./index.php?action=evenement">Voir les autres événements</a>
+            </div>
+            <div class="listeeventcard">
+                <div class="eventcard">
+                    <img src="./image/imageSite/evenement/village_noel.jpg" alt="">
+                    <h3>Village de Noël</h3>
+                    <p>Le village de Noël vous rappellera l’esprit de Noël...</p>
+                </div>
+                <div class="eventcard">
+                    <img src="./image/imageSite/evenement/hallowen.jpg" alt="">
+                    <h3>Halloween</h3>
+                    <p>C’est bientôt l’heure, préparez vos déguisements...</p>
+                </div>
+                <div class="eventcard">
+                    <img src="./image/imageSite/evenement/conference.jpg" alt="">
+                    <h3>Conférence</h3>
+                    <p>Retrouvez Mme Gaëlle Charpentier pour une ...</p>
+                </div>
+            </div>
+        </div>
+        <div class="notecontainer">
+            <div class="content-text">
+                <h2>Mes dernières notes</h2>
+                <a href="./index.php?action=notesPage">Voir toutes les notes</a>
+            </div>
+            <div class="table-scroll">
+                <table class="notes-table">
+                    <thead>
+                        <tr>
+                            <th>Matières</th>
+                            <th>Professeur</th>
+                            <th>Note</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>matiere</td>
+                            <td>professeur</td>
+                            <td>note</td>
+                            <td>date</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="menucrouscontainer">
+            <div class="menu">
+                <h2>MENU DU CROUS</h2>
+                <button id="esiee">▶ ESIEE</button>
+                <button id="copernic" class="active">▶ COPERNIC</button>
+            </div>
+            <div class="menu-contenu" id="menu-copernic" style="display: block;">
+                <div>
+                    <h3 class="menu-titre">Entrée</h3>
+                    <p>Tomates</p>
+                </div>
+                <div>
+                    <h3 class="menu-titre">Plat</h3>
+                    <p>Pierogi</p>
+                </div>
+                <div>
+                    <h3 class="menu-titre">Dessert</h3>
+                    <p>Tarte aux pommes</p>
+                </div>
+            </div>
+            <div class="menu-contenu" id="menu-esiee">
+                <div>
+                    <h3 class="menu-titre">Entrée</h3>
+                    <p>Tomates</p>
+                </div>
+                <div>
+                    <h3 class="menu-titre">Plat</h3>
+                    <p>Steack haché</p>
+                </div>
+                <div>
+                    <h3 class="menu-titre">Dessert</h3>
+                    <p>Beignet à la fraise</p>
+                </div>
+            </div>
+        </div>
+        <div class="crousizly">
+            <h2>Compte Izly</h2>
+            <div class="progress-circle">
+                <div class="inner-circle">+ 5,00 €</div>
+                <p class="datesolde">Solde du 11/11/24</p>
+                <a id="buttonMenucrous" href="index.php?action=menuCrous&showPopup=true">Ajouter des fonds</a>
             </div>
         </div>
     </div>

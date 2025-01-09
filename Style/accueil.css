@@ -76,7 +76,7 @@ h2 {
 .notecontainer a {
   margin-bottom: 15px;
   margin-top: 0px;
-  background-color: #557abf;
+  background-color: var(--main-color);
   color: white;
   padding: 5px 10px;
   border-radius: 50px;
@@ -84,13 +84,14 @@ h2 {
   text-decoration: none;
   text-align: center;
   font-weight: bold;
+  transition: all 0.3s;
 }
 
 .absenceretardcontainer a:hover,
 .tachescontainer a:hover,
 .eventcontainer a:hover,
 .notecontainer a:hover {
-  background-color: #3f5a8a;
+  background-color: #557abf;
 }
 
 .cards-container {
@@ -100,7 +101,7 @@ h2 {
 }
 
 .card {
-  background-color: #557abf;
+  background-color: var(--main-color);
   color: white;
   padding: 20px;
   border-radius: 8px;
@@ -294,23 +295,23 @@ h2 {
 }
 
 #buttonMenucrous {
-  background-color: #5063b1;
+  background-color: var(--main-color);
   color: white;
-  border: none;
   border-radius: 50px;
   padding: 5px;
   font-size: 1rem;
-  cursor: pointer;
   margin-top: 10px;
   position: relative;
   z-index: 100;
-  top: 60%;
+  top: 67%;
   left: 5%;
   bottom: 31%;
+  text-decoration: none;
+  transition: all 0.3s;
 }
 
 #buttonMenucrous:hover {
-  background-color: #3b4f91;
+  background-color: #5063b1;
 }
 
 .datesolde {
@@ -388,20 +389,19 @@ h2 {
 
 .emploiea {
   margin-left: auto;
-  background-color: #557abf;
+  background-color: var(--main-color);
   color: white;
   padding: 5px 10px;
   border-radius: 50px;
   font-size: 1rem;
   text-decoration: none;
   font-weight: bold;
+  transition: all 0.3s;
 }
 
 .emploiea:hover {
-  background-color: #3f5a8a;
+  background-color: #557abf;
 }
-
-.emploidutempspetit {}
 
 .titre {
   text-align: center;
