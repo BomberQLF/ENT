@@ -452,6 +452,63 @@ switch ($action) {
         }
         break;
 
+    case 'viewAbsences':
+        if (isLoggedIn()) {
+            $student = $_GET['student'] ?? null;
+            if ($student) {
+                $id_utilisateur = getUserIdByFirstName($student);
+                if ($id_utilisateur) {
+                    $absences = getabsences($id_utilisateur);
+                } else {
+                    $absences = [];
+                }
+            } else {
+                $absences = [];
+            }
+            include('./Vue/backOffice.php');
+        } else {
+            include('./Vue/login.php');
+        }
+        break;
+
+    case 'updateAbsence':
+        if (isset($_POST['id_absence_retard'])) {
+            $idAbsenceRetard = $_POST['id_absence_retard'];
+
+            $matiere = $_POST['matiere_' . $idAbsenceRetard];
+            $professeur = $_POST['professeur_' . $idAbsenceRetard];
+            $date = $_POST['date_' . $idAbsenceRetard];
+            $duree = $_POST['duree_' . $idAbsenceRetard];
+            $statut = $_POST['statut_' . $idAbsenceRetard];
+
+            if (updateAbsenceRetard($idAbsenceRetard, $matiere, $professeur, $date, $duree, $statut, 1)) {
+                -include('./Vue/backOffice.php');
+                echo "Mise à jour réussie !";
+            } else {
+                echo "Échec de la mise à jour.";
+            }
+        } else {
+            echo "Aucun ID d'absence transmis.";
+        }
+        break;
+
+    // Action pour mettre à jour un retard
+    case 'updateRetard':
+        if (isset($_POST['id_absence_retard'])) {
+            $idRetard = $_POST['id_absence_retard'];
+            $matiere = $_POST['matiere_' . $idRetard];
+            $professeur = $_POST['professeur_' . $idRetard];
+            $date = $_POST['date_' . $idRetard];
+            $duree = $_POST['duree_' . $idRetard];
+            $statut = $_POST['statut_' . $idRetard];
+
+            updateRetard($idRetard, $matiere, $professeur, $date, $duree, $statut);
+            echo "Les retards ont été mis à jour avec succès.";
+
+        }
+        include('./Vue/backOffice.php');
+        break;
+
     case 'deleteUser':
         if (isAdmin()) {
             $id_utilisateur = $_GET['id'];

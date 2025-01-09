@@ -22,13 +22,13 @@ function updateNotes($id_note, $matiere, $note, $professeur, $moyenne_classe, $d
 
 function deleteNote($id_note): bool
 {
-    $pdo = connect_db(); 
-    $query = $pdo->prepare("DELETE FROM notes WHERE id_note = :id_note"); 
+    $pdo = connect_db();
+    $query = $pdo->prepare("DELETE FROM notes WHERE id_note = :id_note");
     $query->bindParam(":id_note", $id_note, PDO::PARAM_INT);
-    return $query->execute(); 
+    return $query->execute();
 }
 
-function showAllNotes(): array 
+function showAllNotes(): array
 {
     $pdo = connect_db();
     $query = $pdo->prepare("SELECT * FROM notes");
@@ -54,7 +54,7 @@ function getUserIdByFirstName($prenom): ?int
     $query->execute();
     $result = $query->fetch(PDO::FETCH_ASSOC);
 
-    return $result['id_utilisateur'] ?? null; 
+    return $result['id_utilisateur'] ?? null;
 }
 
 function addNote($id_utilisateur, $matiere, $professeur, $note, $moyenne_classe, $date_attribution): bool
@@ -83,9 +83,59 @@ function showTasksByStudent($id_utilisateur)
     return $query->fetchAll(PDO::FETCH_ASSOC);
 }
 
-function isTaskOwnedByUser($id_tache, $id_utilisateur) {
+function isTaskOwnedByUser($id_tache, $id_utilisateur)
+{
     global $pdo;
     $query = $pdo->prepare("SELECT COUNT(*) FROM tasks WHERE id_tache = :id_tache AND id_utilisateur = :id_utilisateur");
     $query->execute(['id_tache' => $id_tache, 'id_utilisateur' => $id_utilisateur]);
     return $query->fetchColumn() > 0;
+}
+
+function updateAbsenceRetard($idAbsenceRetard, $matiere, $professeur, $date, $duree, $statut, $absence)
+{
+    $pdo = connect_db();
+
+    $table = 'absences_retards';
+
+    $query = $pdo->prepare("UPDATE $table SET 
+        matiere = :matiere, 
+        professeur = :professeur, 
+        date = :date, 
+        duree_minutes = :duree_minutes, 
+        statut = :statut, 
+        absence = :absence
+        WHERE id_absence_retard = :id_absence_retard");
+
+    $query->bindParam(':matiere', $matiere, PDO::PARAM_STR);
+    $query->bindParam(':professeur', $professeur, PDO::PARAM_STR);
+    $query->bindParam(':date', $date, PDO::PARAM_STR);
+    $query->bindParam(':duree_minutes', $duree, PDO::PARAM_INT);
+    $query->bindParam(':statut', $statut, PDO::PARAM_STR);
+    $query->bindParam(':absence', $absence, PDO::PARAM_INT); 
+    $query->bindParam(':id_absence_retard', $idAbsenceRetard, PDO::PARAM_INT);
+
+    return $query->execute();
+}
+
+function updateRetard($idRetard, $matiere, $professeur, $date, $duree, $statut) {
+    $pdo = connect_db();
+
+    $table = 'absences_retards';
+
+    $query = $pdo->prepare("UPDATE $table SET 
+        matiere = :matiere,
+        professeur = :professeur,
+        date = :date,
+        duree_minutes = :duree_minutes,
+        statut = :statut
+        WHERE id_absence_retard = :id_retard AND absence = 0");
+
+    $query->bindParam(':matiere', $matiere, PDO::PARAM_STR);
+    $query->bindParam(':professeur', $professeur, PDO::PARAM_STR);
+    $query->bindParam(':date', $date, PDO::PARAM_STR);
+    $query->bindParam(':duree_minutes', $duree, PDO::PARAM_INT);
+    $query->bindParam(':statut', $statut, PDO::PARAM_STR);
+    $query->bindParam(':id_retard', $idRetard, PDO::PARAM_INT);
+
+    return $query->execute();
 }
