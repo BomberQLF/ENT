@@ -36,8 +36,6 @@ body {
   padding: 2rem 4rem;
   border: 1px solid #000000;
   margin: 20px 0 0 4rem;
-  width: 751px;
-  height: 690px;
 }
 .todolist-header {
   display: flex;
@@ -163,8 +161,8 @@ body {
 }
 #add-todo-container {
   position: absolute;
-  bottom: 7%;
-  right: 48%;
+  bottom: 10%;
+  right: 63%;
 }
 #add-todo-container:hover {
   cursor: pointer;
@@ -273,7 +271,7 @@ body {
 }
 .page-container {
   display: flex;
-  gap: 5rem;
+  justify-content: space-between;
 }
 .button-container button:hover {
   background-color: #0056b3;
