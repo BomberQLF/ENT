@@ -118,3 +118,16 @@ function goBack() {
     mainPage.style.display = "block";
     detailPage.style.display = "none";
 }
+// on lis l'url pour afficher le bon evenement
+function getQueryParam(param) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(param);
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    const eventIndex = getQueryParam("event");
+    //si l'url contient event on affiche l'evenement correspondant
+    if (eventIndex !== null && events[eventIndex]) {
+        showDetails(eventIndex);
+    }
+});

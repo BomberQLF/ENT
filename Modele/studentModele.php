@@ -1,7 +1,7 @@
 <?php
 function connect_db(): PDO
 {
-    $db = new PDO('mysql:host=localhost;dbname=ent;', 'root', 'root');
+    $db = new PDO('mysql:host=localhost;dbname=ent;', 'root', '');
     return $db;
 }
 
@@ -118,12 +118,12 @@ function modifUser($nom, $telephone, $login, $id_utilisateur) {
     $_SESSION['login'] = $login;
     $_SESSION['telephone'] = $telephone;
 }
-function updateUserPhoto($user, $target_file)
+function updateUserPhoto($login, $target_file)
 {
     $db = connect_db();
     $stmt = $db->prepare("UPDATE utilisateurs SET photo_profil = :photo_profil WHERE id_utilisateur = :id_utilisateur");
     $stmt->bindParam(':photo_profil', $target_file, PDO::PARAM_STR);
-    $stmt->bindParam(':id_utilisateur', $user, PDO::PARAM_INT);
+    $stmt->bindParam(':id_utilisateur', $login, PDO::PARAM_INT);
     $stmt->execute();
 
     $_SESSION['photo_profil'] = $target_file;
@@ -143,6 +143,15 @@ function showNotes($id_utilisateur, $orderBy = 'matiere')
     $query->execute();
     $notes = $query->fetchAll(PDO::FETCH_ASSOC);
 
+    return $notes;
+}
+function showNotesaccueil($id_utilisateur)
+{
+    $pdo = connect_db();
+    $query = $pdo->prepare("SELECT * FROM notes WHERE id_utilisateur = :id_utilisateur ORDER BY date_attribution DESC LIMIT 3");
+    $query->bindParam(":id_utilisateur", $id_utilisateur, PDO::PARAM_INT);
+    $query->execute();
+    $notes = $query->fetchAll(PDO::FETCH_ASSOC);
     return $notes;
 }
 

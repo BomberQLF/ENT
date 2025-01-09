@@ -29,22 +29,22 @@
                 <ul class="submenu">
                     <li><a href="./index.php?action=notesPage">Notes</a></li>
                     <li><a href="./index.php?action=todoListPage">To do list</a></li>
-                    <li><a href="#">Absences et retards</a></li>
+                    <li><a href="./index.php?action=absence">Absences et retards</a></li>
                 </ul>
             </li>
 
-            <li><a href="#" class="navbar-item"><i class="fa-solid fa-calendar-days"></i>Planning et réservation</a>
-                <ul class="submenu">
-                    <li><a href="index.php?action=emploiDuTemps&week=0">Emploi du temps</a></li>
-                </ul>
+            <li><a href="./index.php?action=emploiDuTemps&week=0" class="navbar-item"><i
+                        class="fa-solid fa-calendar-days"></i>Emploi du temps</a>
             </li>
             <li><a href="#" class="navbar-item"><i class="fa-solid fa-school"></i>Vie étudiante</a>
                 <ul class="submenu">
                     <li><a href="./index.php?action=menuCrous">Crous et mon IZLY</a></li>
-                    <li><a href="#">Événements</a></li>
+                    <li><a href="./index.php?action=evenement">Événements</a></li>
                 </ul>
             </li>
-            <li><a href="./index.php?action=backoffice" class="navbar-item">Administration</a></li>
+            <?php if (isAdmin()): ?>
+                <li><a href="./index.php?action=backoffice" class="navbar-item">Administration</a></li>
+            <?php endif; ?>
         </ul>
 
 
@@ -53,10 +53,7 @@
                 <?php echo " <span>Bienvenue {$_SESSION['prenom']}</span>
                 <div class='profile-circle'>
                 <img src='{$_SESSION['photo_profil']}' alt='photo de profil' class='photoprofil'>
-                
-                </div>
-
-                " ?>
+                </div>" ?>
             </a>
             <button id="openPopup" aria-label="Se déconnecter"><i class="fa-solid fa-right-from-bracket"></i></button>
 
@@ -68,7 +65,7 @@
             <div class="popup-content">
                 <button class="closepopup" aria-label="Femrer la popup">X</button>
                 <p>Se déconnecter de votre session</p>
-                <a href="./index.php?action='logout'" class="popupButtondeco">Se déconnecter</a>
+                <a href="./index.php?action=logout" class="popupButtondeco">Se déconnecter</a>
             </div>
         </div>
 
@@ -81,26 +78,26 @@
                 <li class="has-submenu">
                     <a href=""><i class="fa-solid fa-graduation-cap"></i>Mon suivi</a>
                     <ul class="submenu">
-                        <li><a href="#">Notes</a></li>
+                        <li><a href="./index.php?action=notesPage">Notes</a></li>
                         <li><a href="./index.php?action=todoListPage">To do list</a></li>
-                        <li><a href="#">Absences et retards</a></li>
+                        <li><a href="./index.php?action=absence">Absences et retards</a></li>
                     </ul>
                 </li>
 
-                <li class="has-submenu">
-                    <a href=""><i class="fa-solid fa-calendar-days"></i>Planning et réservation</a>
-                    <ul class="submenu">
-                        <li><a href="index.php?action=emploiDuTemps&week=0">Emploi du temps</a></li>
-                    </ul>
+                <li>
+                    <a href="./index.php?action=emploiDuTemps&week=0"><i class="fa-solid fa-calendar-days"></i>Emploi du
+                        temps</a>
                 </li>
                 <li class="has-submenu">
                     <a href=""><i class="fa-solid fa-school"></i>Vie étudiante</a>
                     <ul class="submenu">
                         <li><a href="./index.php?action=menuCrous">Crous et mon IZLY</a></li>
-                        <li><a href="#">Événements</a></li>
+                        <li><a href="./index.php?action=evenement">Événements</a></li>
                     </ul>
                 </li>
-                <li><a href="./index.php?action=backoffice" class="navbar-item">Administration</a></li>
+                <?php if (isAdmin()): ?>
+                    <li><a href="./index.php?action=backoffice" class="navbar-item">Administration</a></li>
+                <?php endif; ?>
             </ul>
         </div>
 
@@ -258,7 +255,6 @@
             </div>
             <div class="navigation">
                 <a href="?action=emploiDuTemps&week=<?= $currentWeek - 1 ?>"><</a>
-
                         <div class="daybasdiv">
                             <?php
                             $daysOfWeekFR = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi'];

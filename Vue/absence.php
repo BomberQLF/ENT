@@ -8,22 +8,6 @@
     <link rel="stylesheet" href="./Style/navbar.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" />
     <link rel="stylesheet" href="./Style/absences.css">
-    <style>
-        .contenudebase {
-            display: block;
-        }
-        .justifier-absences-section {
-            display: none;
-        }
-        .justifier-retards-section {
-            display: none;
-        }
-        .error {
-            text-align: center;
-            font-weight: bold;
-            color: red;
-        }
-    </style>
 </head>
 
 <body>
@@ -44,14 +28,12 @@
                 <ul class="submenu">
                     <li><a href="./index.php?action=notesPage">Notes</a></li>
                     <li><a href="./index.php?action=todoListPage">To do list</a></li>
-                    <li><a href="#">Absences et retards</a></li>
+                    <li><a href="./index.php?action=absence">Absences et retards</a></li>
                 </ul>
             </li>
 
-            <li><a href="#" class="navbar-item"><i class="fa-solid fa-calendar-days"></i>Planning et réservation</a>
-                <ul class="submenu">
-                    <li><a href="index.php?action=emploiDuTemps&week=0">Emploi du temps</a></li>
-                </ul>
+            <li><a href="./index.php?action=emploiDuTemps&week=0" class="navbar-item"><i
+                        class="fa-solid fa-calendar-days"></i>Emploi du temps</a>
             </li>
             <li><a href="#" class="navbar-item"><i class="fa-solid fa-school"></i>Vie étudiante</a>
                 <ul class="submenu">
@@ -82,7 +64,7 @@
             <div class="popup-content">
                 <button class="closepopup" aria-label="Femrer la popup">X</button>
                 <p>Se déconnecter de votre session</p>
-                <a href="./index.php?action='logout'" class="popupButtondeco">Se déconnecter</a>
+                <a href="./index.php?action=logout" class="popupButtondeco">Se déconnecter</a>
             </div>
         </div>
 
@@ -95,23 +77,21 @@
                 <li class="has-submenu">
                     <a href=""><i class="fa-solid fa-graduation-cap"></i>Mon suivi</a>
                     <ul class="submenu">
-                        <li><a href="#">Notes</a></li>
+                        <li><a href="./index.php?action=notesPage">Notes</a></li>
                         <li><a href="./index.php?action=todoListPage">To do list</a></li>
-                        <li><a href="#">Absences et retards</a></li>
+                        <li><a href="./index.php?action=absence">Absences et retards</a></li>
                     </ul>
                 </li>
 
-                <li class="has-submenu">
-                    <a href=""><i class="fa-solid fa-calendar-days"></i>Planning et réservation</a>
-                    <ul class="submenu">
-                        <li><a href="index.php?action=emploiDuTemps&week=0">Emploi du temps</a></li>
-                    </ul>
+                <li>
+                    <a href="./index.php?action=emploiDuTemps&week=0"><i class="fa-solid fa-calendar-days"></i>Emploi du
+                        temps</a>
                 </li>
                 <li class="has-submenu">
                     <a href=""><i class="fa-solid fa-school"></i>Vie étudiante</a>
                     <ul class="submenu">
                         <li><a href="./index.php?action=menuCrous">Crous et mon IZLY</a></li>
-                        <li><a href="#">Événements</a></li>
+                        <li><a href="./index.php?action=evenement">Événements</a></li>
                     </ul>
                 </li>
                 <?php if (isAdmin()): ?>
@@ -133,9 +113,9 @@
         </div>
 
         <?php if (isset($_SESSION['error'])) {
-        echo "<p class='error'>{$_SESSION['error']}</p>";
-        unset($_SESSION['error']); // Supprime le message après affichage
-    } ?>
+            echo "<p class='error'>{$_SESSION['error']}</p>";
+            unset($_SESSION['error']); // Supprime le message après affichage
+        } ?>
         <section class="abcences-container" id="header-website">
             <div class="header">
                 <label for="absence-select">Choisissez entre absence ou retard :</label>
@@ -196,7 +176,7 @@
                     </div>
                 </div>
                 <form method="POST" action="index.php?action=show_justification_form">
-                <div class="table-container">
+                    <div class="table-container">
                         <table>
                             <thead>
                                 <tr>
@@ -225,7 +205,7 @@
                                     $date = new DateTime($absence['date']);
                                     $formattedDate = $date->format('d/m/Y');
                                     echo '<tr>
-                                            <td><input type="checkbox" name="selected_absences_retards[]" value="'.$absence['id_absence_retard'] . '"></td>
+                                            <td><input type="checkbox" name="selected_absences_retards[]" value="' . $absence['id_absence_retard'] . '"></td>
                                             <td>' . $absence['matiere'] . '</td>
                                             <td>' . $absence['professeur'] . '</td>
                                             <td>' . $absence['duree_minutes'] . " h" . '</td>
@@ -249,13 +229,15 @@
                                 ?>
                             </tbody>
                         </table>
-                </div>
-                <div class="barre-justification">
-                    <p>Sélectionnez vos absences afin de justifier plusieurs absences en même temps.<br><span
-                            style="color:red;">Attention : si vous sélectionnez plusieurs absences à la fois, il est attendu
-                            que vous fournissiez un justificatif unique couvrant l’ensemble de ces absences.</span></p>
-                    <button type="submit" name="type" value="absence">Justification</button>
-                </div>
+                    </div>
+                    <div class="barre-justification">
+                        <p>Sélectionnez vos absences afin de justifier plusieurs absences en même temps.<br><span
+                                style="color:red;">Attention : si vous sélectionnez plusieurs absences à la fois, il est
+                                attendu
+                                que vous fournissiez un justificatif unique couvrant l’ensemble de ces absences.</span>
+                        </p>
+                        <button type="submit" name="type" value="absence">Justification</button>
+                    </div>
                 </form>
             </div>
             <!-- Div retards -->
@@ -312,48 +294,48 @@
                     </div>
                 </div>
                 <form method="POST" action="index.php?action=show_justification_form">
-                <div class="table-container">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th></th>
-                                <th>Matière</th>
-                                <th>Professeur</th>
-                                <th>Total</th>
-                                <th>Date</th>
-                                <th>Statut</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            // Sépare les absences injustifié et les absences justifiées
-                            $retardsAJustifier = [];
-                            $retardsJustifiees = [];
-                            foreach ($retards as $retard) {
-                                if (trim(strtolower($retard['statut'])) === 'injustifié') {
-                                    $retardsAJustifier[] = $retard;
-                                } elseif (trim(strtolower($retard['statut'])) === 'justifiée') {
-                                    $retardsJustifiees[] = $retard;
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Matière</th>
+                                    <th>Professeur</th>
+                                    <th>Total</th>
+                                    <th>Date</th>
+                                    <th>Statut</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                // Sépare les absences injustifié et les absences justifiées
+                                $retardsAJustifier = [];
+                                $retardsJustifiees = [];
+                                foreach ($retards as $retard) {
+                                    if (trim(strtolower($retard['statut'])) === 'injustifié') {
+                                        $retardsAJustifier[] = $retard;
+                                    } elseif (trim(strtolower($retard['statut'])) === 'justifiée') {
+                                        $retardsJustifiees[] = $retard;
+                                    }
                                 }
-                            }
-                            // Afficher les absences à justifier
-                            foreach ($retardsAJustifier as $retard) {
-                                $date = new DateTime($retard['date']);
-                                $formattedDate = $date->format('d/m/Y');
-                                echo '<tr>
-                                        <td><input type="checkbox" name="selected_absences_retards[]" value="'.$retard['id_absence_retard'] . '"></td>
+                                // Afficher les absences à justifier
+                                foreach ($retardsAJustifier as $retard) {
+                                    $date = new DateTime($retard['date']);
+                                    $formattedDate = $date->format('d/m/Y');
+                                    echo '<tr>
+                                        <td><input type="checkbox" name="selected_absences_retards[]" value="' . $retard['id_absence_retard'] . '"></td>
                                         <td>' . $retard['matiere'] . '</td>
                                         <td>' . $retard['professeur'] . '</td>
                                         <td>' . $retard['duree_minutes'] . " h" . '</td>
                                         <td>' . $formattedDate . '</td>
                                         <td>' . $retard['statut'] . '</td>
                                     </tr>';
-                            }
-                            // Afficher les absences justifiées après celles à justifier
-                            foreach ($retardsJustifiees as $retard) {
-                                $date = new DateTime($retard['date']);
-                                $formattedDate = $date->format('d/m/Y');
-                                echo '<tr>
+                                }
+                                // Afficher les absences justifiées après celles à justifier
+                                foreach ($retardsJustifiees as $retard) {
+                                    $date = new DateTime($retard['date']);
+                                    $formattedDate = $date->format('d/m/Y');
+                                    echo '<tr>
                                         <td><input type="checkbox" disabled></td>
                                         <td>' . $retard['matiere'] . '</td>
                                         <td>' . $retard['professeur'] . '</td>
@@ -361,17 +343,19 @@
                                         <td>' . $formattedDate . '</td>
                                         <td>' . $retard['statut'] . '</td>
                                     </tr>';
-                            }
-                            ?>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="barre-justification">
-                    <p>Sélectionnez vos retards afin de justifier plusieurs retards en même temps.<br><span
-                            style="color:red;">Attention : si vous sélectionnez plusieurs retards à la fois, il est attendu
-                            que vous fournissiez un justificatif unique couvrant l’ensemble de ces retards.</span></p>
-                    <button type="submit" name="type" value="retard">Justification</button>
-                </div>
+                                }
+                                ?>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="barre-justification">
+                        <p>Sélectionnez vos retards afin de justifier plusieurs retards en même temps.<br><span
+                                style="color:red;">Attention : si vous sélectionnez plusieurs retards à la fois, il est
+                                attendu
+                                que vous fournissiez un justificatif unique couvrant l’ensemble de ces retards.</span>
+                        </p>
+                        <button type="submit" name="type" value="retard">Justification</button>
+                    </div>
                 </form>
             </div>
         </section>

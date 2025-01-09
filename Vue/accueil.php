@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./Style/navbar.css">
     <link rel="stylesheet" href="./Style/emploiDuTemps.css">
-    <link rel="stylesheet" href=".Style/accueil.css">
+    <link rel="stylesheet" href="./Style/accueil.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" />
     <title>Accueil - ENT</title>
 </head>
@@ -33,10 +33,8 @@
                 </ul>
             </li>
 
-            <li><a href="#" class="navbar-item"><i class="fa-solid fa-calendar-days"></i>Planning et réservation</a>
-                <ul class="submenu">
-                    <li><a href="index.php?action=emploiDuTemps&week=0">Emploi du temps</a></li>
-                </ul>
+            <li><a href="./index.php?action=emploiDuTemps&week=0" class="navbar-item"><i
+                        class="fa-solid fa-calendar-days"></i>Emploi du temps</a>
             </li>
             <li><a href="#" class="navbar-item"><i class="fa-solid fa-school"></i>Vie étudiante</a>
                 <ul class="submenu">
@@ -55,10 +53,7 @@
                 <?php echo " <span>Bienvenue {$_SESSION['prenom']}</span>
                 <div class='profile-circle'>
                 <img src='{$_SESSION['photo_profil']}' alt='photo de profil' class='photoprofil'>
-                
-                </div>
-
-                " ?>
+                </div>" ?>
             </a>
             <button id="openPopup" aria-label="Se déconnecter"><i class="fa-solid fa-right-from-bracket"></i></button>
 
@@ -70,7 +65,7 @@
             <div class="popup-content">
                 <button class="closepopup" aria-label="Femrer la popup">X</button>
                 <p>Se déconnecter de votre session</p>
-                <a href="./index.php?action='logout'" class="popupButtondeco">Se déconnecter</a>
+                <a href="./index.php?action=logout" class="popupButtondeco">Se déconnecter</a>
             </div>
         </div>
 
@@ -78,28 +73,26 @@
 
         <div class="side-menu" id="sideMenu">
             <ul>
-                <li><a href="#"><i class="fa-solid fa-house"></i>Accueil</a></li>
+                <li><a href="./index.php?action=accueil"><i class="fa-solid fa-house"></i>Accueil</a></li>
 
                 <li class="has-submenu">
                     <a href=""><i class="fa-solid fa-graduation-cap"></i>Mon suivi</a>
                     <ul class="submenu">
-                        <li><a href="#">Notes</a></li>
+                        <li><a href="./index.php?action=notesPage">Notes</a></li>
                         <li><a href="./index.php?action=todoListPage">To do list</a></li>
-                        <li><a href="#">Absences et retards</a></li>
+                        <li><a href="./index.php?action=absence">Absences et retards</a></li>
                     </ul>
                 </li>
 
-                <li class="has-submenu">
-                    <a href=""><i class="fa-solid fa-calendar-days"></i>Planning et réservation</a>
-                    <ul class="submenu">
-                        <li><a href="index.php?action=emploiDuTemps&week=0">Emploi du temps</a></li>
-                    </ul>
+                <li>
+                    <a href="./index.php?action=emploiDuTemps&week=0"><i class="fa-solid fa-calendar-days"></i>Emploi du
+                        temps</a>
                 </li>
                 <li class="has-submenu">
                     <a href=""><i class="fa-solid fa-school"></i>Vie étudiante</a>
                     <ul class="submenu">
                         <li><a href="./index.php?action=menuCrous">Crous et mon IZLY</a></li>
-                        <li><a href="#">Événements</a></li>
+                        <li><a href="./index.php?action=evenement">Événements</a></li>
                     </ul>
                 </li>
                 <?php if (isAdmin()): ?>
@@ -118,8 +111,229 @@
         </div>
     </div>
 
-    <script src="./Javascript/index.js">
-    </script>
+    <div class="accueil-container">
+        <div class="emploidutempsdiv" id="header-website">
+            <div class="content-text">
+                <a class="emploiea" href="./index.php?action=emploiDuTemps&week=0">Voir Votre emploi du temps</a>
+            </div>
+            <p class="titre">Janvier 2025</p>
+            <div class="jouremploietemps">
+                <span><i class="fa-solid fa-play fa-rotate-180"></i></span>
+                <span>08</span>
+                <span>09</span>
+                <span>10</span>
+                <span style="background-color: #4E6182; color: white;">11</span>
+                <span>12</span>
+                <span>13</span>
+                <span>14</span>
+                <span><i class="fa-solid fa-play"></i></span>
+            </div>
+            <div class="emploiedutempscouleur">
+                <div class="time-column-accueil">
+                    <div class="time-slot-accueil">8:15</div>
+                    <div class="time-slot-accueil">9:15</div>
+                    <div class="time-slot-accueil">10:15</div>
+                    <div class="time-slot-accueil">11:15</div>
+                    <div class="time-slot-accueil">12:15</div>
+                    <div class="time-slot-accueil">13:15</div>
+                    <div class="time-slot-accueil">14:15</div>
+                    <div class="time-slot-accueil">15:15</div>
+                    <div class="time-slot-accueil">16:15</div>
+                    <div class="time-slot-accueil">17:15</div>
+                    <div class="time-slot-accueil">17:45</div>
+                </div>
+                <div class="cours-div">
+                    <div class="cours-slot">
+                        <div>
+                            <h3>SAE 3.01 Integrer des interfaces - B</h3>
+                            <p>CHARPENTIER</p>
+                        </div>
+                        <div>
+                            <p>IUC 120</p>
+                            <p>8h15 - 10h15</p>
+                        </div>
+                    </div>
+                    <div class="cours-slot">
+                        <div>
+                            <h3>SAE 3.02 Produire des contenus - AB</h3>
+                            <p>HOUZIAUX</p>
+                        </div>
+                        <div>
+                            <p>IUC 157</p>
+                            <p>10h30 - 12h30</p>
+                        </div>
+                    </div>
+                    <div class="cours-slot">
+                        <div>
+                            <h3>SAE 3.01 Intégrer des interfaces - AB</h3>
+                            <p>LAOUFI</p>
+                        </div>
+                        <div>
+                            <p>IUC 123</p>
+                            <p>13h30 - 15h30</p>
+                        </div>
+                    </div>
+                    <div class="cours-slot">
+                        <div>
+                            <h3>R3.01 Anglais - B</h3>
+                            <p>LEROY</p>
+                        </div>
+                        <div>
+                            <p>IUC 126</p>
+                            <p>15h45 - 17h45</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tachescontainer">
+            <div class="content-text">
+                <h2>Vos prochaines tâches à faire</h2>
+                <a href="./index.php?action=todoListPage">Voir toutes les tâches</a>
+            </div>
+            <div class="listdestaches">
+                <?php foreach ($tasks as $task) {
+                    echo '<div class="tachediv">
+                    <p style="font-weight: bold;">' . $task['titre'] . '</p>
+                    <p>' . $task['date_tache'] . '</p>
+                    <p>' . $task['description'] . '</p>
+                </div>';
+                } ?>
+            </div>
+        </div>
+        <div class="absenceretardcontainer">
+            <div class="content-text">
+                <h2>Vos absences et retards</h2>
+                <a href="./index.php?action=absence">Justifier</a>
+            </div>
+            <div class="cards-container">
+                <div class="card">
+                    <p>Absences injustifié</p>
+                    <span>
+                        <?php
+                        $absencesAJustifier = 0;
+                        foreach ($absences as $absence) {
+                            if ($absence['statut'] === 'Injustifié') {
+                                $absencesAJustifier++;
+                            }
+                        }
+                        echo $absencesAJustifier;
+                        ?>
+                    </span>
+                </div>
+                <div class="card">
+                    <p>Retards injustifié</p>
+                    <span><?php
+                    $retardsAJustifier = 0;
+                    foreach ($retards as $retard) {
+                        if ($retard['statut'] === 'Injustifié') {
+                            $retardsAJustifier++;
+                        }
+                    }
+                    echo $retardsAJustifier;
+                    ?></span>
+                </div>
+            </div>
+        </div>
+        <div class="eventcontainer">
+            <div class="content-text">
+                <h2>Les derniers événements universitaire</h2>
+                <a class="lienaeventtous" href="./index.php?action=evenement">Voir les autres événements</a>
+            </div>
+            <div class="listeeventcard">
+                <a href="index.php?action=evenement&event=0" class="eventcard">
+                    <img src="./image/imageSite/evenement/village_noel.jpg" alt="img/lien vers l'événement de noel">
+                    <h3>Village de Noël</h3>
+                    <p>Le village de Noël vous rappellera l’esprit de Noël...</p>
+                </a>
+                <a  href="index.php?action=evenement&event=1" class="eventcard">
+                    <img src="./image/imageSite/evenement/hallowen.jpg" alt="img/lien vers l'événement halloween">
+                    <h3>Halloween</h3>
+                    <p>C’est bientôt l’heure, préparez vos déguisements...</p>
+                </a>
+                <a  href="index.php?action=evenement&event=2" class="eventcard">
+                    <img src="./image/imageSite/evenement/conference.jpg" alt="img/lien vers l'événement conférence">
+                    <h3>Conférence</h3>
+                    <p>Retrouvez Mme Gaëlle Charpentier pour une ...</p>
+                </a>
+            </div>
+        </div>
+        <div class="notecontainer">
+            <div class="content-text">
+                <h2>Mes dernières notes</h2>
+                <a href="./index.php?action=notesPage">Voir toutes les notes</a>
+            </div>
+            <div class="table-scroll">
+                <table class="notes-table">
+                    <thead>
+                        <tr>
+                            <th>Matières</th>
+                            <th>Professeur</th>
+                            <th>Note</th>
+                            <th class="thdate">Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        foreach ($noteEleves as $note): ?>
+                            <tr>
+                                <td><?= htmlspecialchars($note['matiere']) ?></td>
+                                <td><?= htmlspecialchars($note['professeur']) ?></td>
+                                <td><?= htmlspecialchars($note['note']) ?></td>
+                                <td class="thdate"><?= htmlspecialchars($note['date_attribution']) ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="menucrouscontainer">
+            <div class="menu">
+                <h2>MENU DU CROUS</h2>
+                <button id="esiee">▶ ESIEE</button>
+                <button id="copernic" class="active">▶ COPERNIC</button>
+            </div>
+            <div class="menu-contenu" id="menu-copernic" style="display: block;">
+                <div>
+                    <h3 class="menu-titre">Entrée</h3>
+                    <p>Tomates</p>
+                </div>
+                <div>
+                    <h3 class="menu-titre">Plat</h3>
+                    <p>Pierogi</p>
+                </div>
+                <div>
+                    <h3 class="menu-titre">Dessert</h3>
+                    <p>Tarte aux pommes</p>
+                </div>
+            </div>
+            <div class="menu-contenu" id="menu-esiee">
+                <div>
+                    <h3 class="menu-titre">Entrée</h3>
+                    <p>Tomates</p>
+                </div>
+                <div>
+                    <h3 class="menu-titre">Plat</h3>
+                    <p>Steack haché</p>
+                </div>
+                <div>
+                    <h3 class="menu-titre">Dessert</h3>
+                    <p>Beignet à la fraise</p>
+                </div>
+            </div>
+        </div>
+        <div class="crousizly">
+            <h2>Compte Izly</h2>
+            <div class="progress-circle">
+                <div class="inner-circle">+ 5,00 €</div>
+                <p class="datesolde">Solde du 11/11/24</p>
+                <a id="buttonMenucrous" href="index.php?action=menuCrous&showPopup=true">Ajouter des fonds</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="./Javascript/index.js"></script>
+    <script src="./Javascript/accueil.js"></script>
 </body>
 
 </html>

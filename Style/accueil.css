@@ -33,3 +33,579 @@
   border-top-left-radius: 12px;
   border-bottom-left-radius: 12px;
 }
+
+/* ============== Styles de la page ========================================================================= */
+
+.accueil-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr) 0.2fr 1.2fr 0.8fr;
+  grid-template-rows: 1fr 0.2fr 1fr 0.2fr 1fr 0.2fr 1fr;
+  height: 170vh;
+  margin: 20px 50px;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #F7F7F7;
+}
+
+/* ======================carte absence retards========================== */
+.absenceretardcontainer {
+  grid-area: 3 / 4 / 4 / 6;
+  background-color: white;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px;
+}
+
+.content-text {
+  display: flex;
+  justify-content: space-between;
+}
+
+h2 {
+  font-size: 1.2rem;
+  margin-top: 0px;
+}
+
+.absenceretardcontainer a,
+.tachescontainer a,
+.notecontainer a,
+.lienaeventtous {
+  margin-bottom: 15px;
+  margin-top: 0px;
+  background-color: var(--main-color);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 50px;
+  font-size: 1rem;
+  text-decoration: none;
+  text-align: center;
+  font-weight: bold;
+  transition: all 0.3s;
+}
+
+.absenceretardcontainer a:hover,
+.tachescontainer a:hover,
+.notecontainer a:hover,
+.lienaeventtous:hover {
+  background-color: #557abf;
+}
+
+.cards-container {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+}
+
+.card {
+  background-color: var(--main-color);
+  color: white;
+  padding: 20px;
+  border-radius: 8px;
+  margin: 10px;
+  width: 200px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.card p {
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+.card span {
+  font-size: 1.5rem;
+}
+
+/* ======================carte taches ========================== */
+.tachescontainer {
+  grid-area: 1 / 4 / 2 / 6;
+  background-color: white;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px;
+}
+
+.tachediv {
+  border-bottom: 1px solid black;
+  margin: 0px 20px 0px 0px;
+}
+
+.tachediv p {
+  margin: 10px;
+}
+
+.listdestaches {
+  max-height: 200px;
+  overflow: hidden;
+  scrollbar-width: thin;
+  overflow-y: scroll;
+
+}
+
+/* ====================== DIV evenement ========================== */
+
+.eventcontainer {
+  grid-area: 5 / 4 / 6 / 6;
+  background-color: white;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px;
+}
+
+.listeeventcard {
+  display: flex;
+  justify-content: center;
+}
+
+.eventcard {
+  margin: 10px;
+  width: 200px;
+  text-decoration: none;
+  color: black;
+  transition: all 0.3s;
+}
+
+.eventcard:hover {
+  transform: scale(1.05);
+}
+
+.eventcard img {
+  width: 100%;
+  border-radius: 16px;
+  height: 50%;
+}
+
+/* ======================= Div menu crous ====================================== */
+
+.menucrouscontainer {
+  grid-area: 7 / 4 / 8 / 5;
+  background-color: white;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 2fr 2fr;
+  gap: 20px;
+  margin: 20px;
+}
+
+.menu {
+  border-right: 1px solid #000;
+  font-weight: bold;
+}
+
+.menu button {
+  display: block;
+  background: none;
+  border: none;
+  padding: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.menu button.active {
+  color: black;
+  font-weight: bold;
+  transform: scale(1.1);
+  transition: all 0.3s ease;
+}
+
+.menu button:not(.active) {
+  color: grey;
+}
+
+.menu-contenu {
+  padding: 20px;
+  display: none;
+  text-align: center;
+}
+
+.menu-contenu.active {
+  display: block;
+}
+
+.menu-contenu div {
+  margin-bottom: 15px;
+}
+
+.menu-contenu p {
+  font-size: 0.625rem;
+  position: relative;
+}
+
+.menu-titre {
+  font-size: 0.75rem;
+  margin-bottom: 10px;
+  margin-top: 5px;
+  font-weight: bold;
+}
+
+/* =================== DIV IZLY CROUS====================== */
+.crousizly {
+  grid-area: 7 / 5 / 8 / 6;
+  background-color: white;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+  padding: 20px;
+  gap: 20px;
+  margin: 20px;
+}
+
+.progress-circle {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  margin: 0 auto 20px;
+}
+
+.progress-circle::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: conic-gradient(#d9d9d9 0% 75%, #5063b1 75% 100%);
+}
+
+.progress-circle::after {
+  content: '';
+  position: absolute;
+  top: 75px;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: white;
+}
+
+.progress-circle .inner-circle {
+  position: absolute;
+  top: 15%;
+  left: 15%;
+  width: 70%;
+  height: 70%;
+  background-color: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 1rem;
+  z-index: 10;
+
+}
+
+#buttonMenucrous {
+  background-color: var(--main-color);
+  color: white;
+  border-radius: 50px;
+  padding: 5px;
+  font-size: 1rem;
+  margin-top: 10px;
+  position: relative;
+  z-index: 100;
+  top: 67%;
+  left: 5%;
+  bottom: 31%;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+#buttonMenucrous:hover {
+  background-color: #5063b1;
+}
+
+.datesolde {
+  margin-top: 5px;
+  font-size: 1rem;
+  font-weight: bold;
+  top: 58%;
+  position: relative;
+  z-index: 100;
+  left: 5%;
+}
+
+/* ========================== Div notes ========================================= */
+.notecontainer {
+  grid-area: 7 / 1 / 8 / 3;
+  background-color: white;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+  margin: 20px;
+  padding: 20px;
+}
+
+.notes-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.notes-table thead th {
+  font-size: 1rem;
+  text-align: left;
+  padding: 1rem 0;
+  border-bottom: 2px solid #3e567e;
+}
+
+.notes-table tbody td {
+  font-size: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid #ccc;
+}
+
+.notes-table th,
+.notes-table td {
+  padding: 1rem;
+  text-align: left;
+}
+
+.notes-table tbody tr:nth-child(even) {
+  background-color: #e9e9e9;
+}
+
+.notes-table caption {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #3e567e;
+  text-align: left;
+}
+
+.table-scroll {
+  max-height: 170px;
+  overflow: hidden;
+  scrollbar-width: thin;
+  overflow-y: scroll;
+}
+
+/* ========================== EMPLOI DU TEMPS ========================================= */
+.emploidutempsdiv {
+  grid-area: 1 / 1 / 6 / 3;
+  background-color: white;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+  margin: 20px;
+  padding: 20px;
+}
+
+.emploiea {
+  margin-left: auto;
+  background-color: var(--main-color);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 50px;
+  font-size: 1rem;
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.3s;
+}
+
+.emploiea:hover {
+  background-color: #557abf;
+}
+
+.titre {
+  text-align: center;
+  margin: 20px;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.jouremploietemps {
+  text-align: center;
+  border-bottom: 2px solid black;
+}
+
+.jouremploietemps span {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  border-radius: 8px;
+  color: black;
+  margin: 5px;
+}
+
+.time-column-accueil {
+  padding: 0px 20px 0px 20px;
+  border-right: 3px solid black;
+  margin-top: 20px;
+  width: 100px;
+}
+
+.time-slot-accueil {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 20px;
+  font-size: 1rem;
+}
+
+.cours-div {
+  margin-top: 20px;
+  width: 100%;
+}
+
+.emploiedutempscouleur {
+  display: flex;
+  flex-direction: row;
+}
+
+.cours-slot {
+  border-radius: 16px;
+  padding: 20px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.cours-slot:first-child {
+  background-color: #4E6182;
+  height: 135px;
+  margin: 20px 20px 0px 20px;
+}
+
+.cours-slot:nth-child(2) {
+  background-color: #556F9B;
+  height: 125px;
+  margin: 10px 20px 0px 20px;
+}
+
+.cours-slot:nth-child(3) {
+  background-color: #6B778B;
+  height: 135px;
+  margin: 53px 20px 0px 20px;
+}
+
+.cours-slot:nth-child(4) {
+  background-color: #757575;
+  height: 158px;
+  margin: 10px 20px 0px 20px;
+}
+
+/* ============================================================ */
+/* RESPONSIVE Télephone */
+@media (max-width: 584px) {
+  .accueil-container {
+    display: grid;
+    grid-template-columns: repeat(2, 0.5fr);
+    grid-template-rows: 3.4fr repeat(6, 1fr);
+  }
+
+  .emploidutempsdiv {
+    grid-area: 1 / 1 / 2 / 3;
+    margin: 5px;
+  }
+
+  .tachescontainer {
+    grid-area: 2 / 1 / 3 / 3;
+    margin: 5px;
+  }
+
+  .notecontainer {
+    grid-area: 3 / 1 / 4 / 3;
+    margin: 5px;
+
+  }
+
+  .absenceretardcontainer {
+    grid-area: 4 / 1 / 5 / 3;
+    margin: 5px;
+  }
+
+  .eventcontainer {
+    grid-area: 5 / 1 / 6 / 3;
+    margin: 5px;
+  }
+
+  .menucrouscontainer {
+    grid-area: 6 / 1 / 7 / 3;
+    margin: 5px;
+  }
+
+  .crousizly {
+    grid-area: 7 / 1 / 8 / 3;
+    margin: 5px;
+  }
+
+  .time-column-accueil {
+    padding: 0px 20px 0px 0px;
+    border-right: 3px solid black;
+    margin-top: 20px;
+    width: 50px;
+  }
+
+  .cours-slot {
+    font-size: 0.75rem;
+  }
+
+  .jouremploietemps span {
+    width: 25px;
+    margin: 0px;
+  }
+
+  .notes-table .thdate {
+    display: none;
+  }
+
+  .listeeventcard {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+  /* RESPONSIVE Tablette */
+  @media (min-width: 584px) and (max-width: 1144px) {
+    .menucrouscontainer h2 {
+      font-size: 1.1rem;
+    }
+
+    .jouremploietemps span {
+      margin: 0px;
+    }
+
+    .time-column-accueil {
+      width: 80px;
+    }
+
+    .accueil-container {
+      display: grid;
+      grid-template-columns: repeat(2, 0.5fr);
+      grid-template-rows: 1fr 0.2fr 1fr 0.2fr 1fr 0.2fr 1fr 0.2fr 1fr 0.2fr repeat(2, 1fr);
+    }
+
+    .emploidutempsdiv {
+      grid-area: 1 / 1 / 2 / 3;
+    }
+
+    .notecontainer {
+      grid-area: 7 / 1 / 8 / 3;
+    }
+
+    .tachescontainer {
+      grid-area: 3 / 1 / 4 / 3;
+    }
+
+    .absenceretardcontainer {
+      grid-area: 9 / 1 / 10 / 3;
+    }
+
+    .eventcontainer {
+      grid-area: 11 / 1 / 12 / 3;
+    }
+
+    .menucrouscontainer {
+      grid-area: 12 / 1 / 13 / 2;
+    }
+
+    .crousizly {
+      grid-area: 12 / 2 / 13 / 3;
+    }
+  }
