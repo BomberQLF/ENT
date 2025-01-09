@@ -37,11 +37,18 @@ switch ($action) {
         } else {
             include('./Vue/login.php');
         }
-        // isLoggedIn() ? include('./Vue/menuCrous.php') : include('./Vue/login.php');
         break;
 
     case 'accueil':
-        isLoggedIn() ? include('./Vue/accueil.php') : include('./Vue/login.php');
+        if (isLoggedIn()) {
+            $absences = getabsences($_SESSION['id_utilisateur']);
+            $retards = getretards($_SESSION['id_utilisateur']);
+            $noteEleves = showNotesaccueil($_SESSION['id_utilisateur']);
+            $tasks = showTasksByStudent($_SESSION['id_utilisateur']);
+            include('./Vue/accueil.php');
+        } else {
+            include('./Vue/login.php');
+        }
         break;
 
     case 'todoListPage':

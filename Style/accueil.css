@@ -72,8 +72,7 @@ h2 {
 
 .absenceretardcontainer a,
 .tachescontainer a,
-.eventcontainer a,
-.notecontainer a {
+.notecontainer a,.lienaeventtous {
   margin-bottom: 15px;
   margin-top: 0px;
   background-color: var(--main-color);
@@ -89,8 +88,8 @@ h2 {
 
 .absenceretardcontainer a:hover,
 .tachescontainer a:hover,
-.eventcontainer a:hover,
-.notecontainer a:hover {
+.notecontainer a:hover,
+.lienaeventtous:hover {
   background-color: #557abf;
 }
 
@@ -164,6 +163,12 @@ h2 {
 .eventcard {
   margin: 10px;
   width: 200px;
+  text-decoration: none;
+  color: black;
+  transition: all 0.3s;
+}
+.eventcard:hover {
+  transform: scale(1.05);
 }
 
 .eventcard img {
@@ -481,4 +486,51 @@ h2 {
   background-color: #757575;
   height: 158px;
   margin: 10px 20px 0px 20px;
+}
+
+/* ============================================================ */
+/* RESPONSIVE Télephone */
+@media (max-width: 978px) {
+  .side-menu {
+    display: block;
+  }
+
+  .navbar-home {
+    display: none;
+  }
+
+  #navbarLinks {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .navbar-profile {
+    margin-left: auto;
+  }
+
+  nav {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+/* RESPONSIVE Tablette */
+@media (min-width: 978px) and (max-width: 1144px) {
+  .menucrouscontainer button {
+    font-size: 0.625rem;
+  }
+  .menucrouscontainer h2 {
+    font-size: 1.1rem;
+  }
+  .jouremploietemps span {
+    margin: 0px;
+  }
 }

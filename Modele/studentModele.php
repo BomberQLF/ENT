@@ -145,6 +145,15 @@ function showNotes($id_utilisateur, $orderBy = 'matiere')
 
     return $notes;
 }
+function showNotesaccueil($id_utilisateur)
+{
+    $pdo = connect_db();
+    $query = $pdo->prepare("SELECT * FROM notes WHERE id_utilisateur = :id_utilisateur ORDER BY date_attribution DESC LIMIT 3");
+    $query->bindParam(":id_utilisateur", $id_utilisateur, PDO::PARAM_INT);
+    $query->execute();
+    $notes = $query->fetchAll(PDO::FETCH_ASSOC);
+    return $notes;
+}
 
 function showAverage($id_utilisateur)
 {

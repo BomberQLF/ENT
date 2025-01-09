@@ -192,21 +192,13 @@
                 <a href="./index.php?action=todoListPage">Voir toutes les tâches</a>
             </div>
             <div class="listdestaches">
-                <div class="tachediv">
-                    <p style="font-weight: bold;">titre tache</p>
-                    <p>date en lettre</p>
-                    <p>debut description tache</p>
-                </div>
-                <div class="tachediv">
-                    <p style="font-weight: bold;">titre tache</p>
-                    <p>date en lettre</p>
-                    <p>debut description tache</p>
-                </div>
-                <div class="tachediv">
-                    <p style="font-weight: bold;">titre tache</p>
-                    <p>date en lettre</p>
-                    <p>debut description tache</p>
-                </div>
+                <?php foreach ($tasks as $task) {
+                    echo '<div class="tachediv">
+                    <p style="font-weight: bold;">' . $task['titre'] . '</p>
+                    <p>' . $task['date_tache'] . '</p>
+                    <p>' . $task['description'] . '</p>
+                </div>';
+                } ?>
             </div>
         </div>
         <div class="absenceretardcontainer">
@@ -216,36 +208,54 @@
             </div>
             <div class="cards-container">
                 <div class="card">
-                    <p>Absences à justifier</p>
-                    <span>03</span>
+                    <p>Absences injustifié</p>
+                    <span>
+                        <?php
+                        $absencesAJustifier = 0;
+                        foreach ($absences as $absence) {
+                            if ($absence['statut'] === 'Injustifié') {
+                                $absencesAJustifier++;
+                            }
+                        }
+                        echo $absencesAJustifier;
+                        ?>
+                    </span>
                 </div>
                 <div class="card">
-                    <p>Retards à justifier</p>
-                    <span>02</span>
+                    <p>Retards injustifié</p>
+                    <span><?php
+                    $retardsAJustifier = 0;
+                    foreach ($retards as $retard) {
+                        if ($retard['statut'] === 'Injustifié') {
+                            $retardsAJustifier++;
+                        }
+                    }
+                    echo $retardsAJustifier;
+                    ?></span>
                 </div>
             </div>
         </div>
         <div class="eventcontainer">
             <div class="content-text">
                 <h2>Les derniers événements universitaire</h2>
-                <a href="./index.php?action=evenement">Voir les autres événements</a>
+                <a class="lienaeventtous" href="./index.php?action=evenement">Voir les autres événements</a>
             </div>
             <div class="listeeventcard">
-                <div class="eventcard">
-                    <img src="./image/imageSite/evenement/village_noel.jpg" alt="">
+                <a href="index.php?action=evenement&event=0" class="eventcard">
+                    <img src="./image/imageSite/evenement/village_noel.jpg" alt="img/lien vers l'événement de noel">
                     <h3>Village de Noël</h3>
                     <p>Le village de Noël vous rappellera l’esprit de Noël...</p>
-                </div>
-                <div class="eventcard">
-                    <img src="./image/imageSite/evenement/hallowen.jpg" alt="">
+                </a>
+                <a  href="index.php?action=evenement&event=1" class="eventcard">
+                    <img src="./image/imageSite/evenement/hallowen.jpg" alt="img/lien vers l'événement halloween">
                     <h3>Halloween</h3>
                     <p>C’est bientôt l’heure, préparez vos déguisements...</p>
-                </div>
-                <div class="eventcard">
-                    <img src="./image/imageSite/evenement/conference.jpg" alt="">
+                </a>
+                <a  href="index.php?action=evenement&event=2" class="eventcard">
+                    <img src="./image/imageSite/evenement/conference.jpg" alt="img/lien vers l'événement conférence">
                     <h3>Conférence</h3>
                     <p>Retrouvez Mme Gaëlle Charpentier pour une ...</p>
-                </div>
+                </a>
             </div>
         </div>
         <div class="notecontainer">
@@ -264,12 +274,15 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>matiere</td>
-                            <td>professeur</td>
-                            <td>note</td>
-                            <td>date</td>
-                        </tr>
+                        <?php
+                        foreach ($noteEleves as $note): ?>
+                            <tr>
+                                <td><?= htmlspecialchars($note['matiere']) ?></td>
+                                <td><?= htmlspecialchars($note['professeur']) ?></td>
+                                <td><?= htmlspecialchars($note['note']) ?></td>
+                                <td><?= htmlspecialchars($note['date_attribution']) ?></td>
+                            </tr>
+                        <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>
