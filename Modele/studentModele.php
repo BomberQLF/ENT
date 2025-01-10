@@ -1,7 +1,7 @@
 <?php
 function connect_db(): PDO
 {
-    $db = new PDO('mysql:host=localhost;dbname=ent;', 'root', '');
+    $db = new PDO('mysql:host=localhost;dbname=ent;', 'root', 'root');
     return $db;
 }
 
