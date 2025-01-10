@@ -3,6 +3,10 @@
 
 Bienvenue sur le projet **ENT Universitaire**, une plateforme conçue pour faciliter la gestion des informations académiques et améliorer l'expérience des étudiants.
 
+## URL : 
+- **url du site** : https://molduch.butmmi.o2switch.site/ENT/
+- **url du backoffice** : https://molduch.butmmi.o2switch.site/ENT/index.php?action=backoffice
+
 ## Développé par :
 - **Développeurs** : Tom MURPHY, Nicolas MODLUCH
 - **Designeuses** : Anastasia GAWRYLUK, Enola TOURNEROCHE
@@ -23,7 +27,7 @@ Bienvenue sur le projet **ENT Universitaire**, une plateforme conçue pour facil
 ### Pour les administrateurs
 - **Connexion Administrateur** :
   - Identifiant : `admin`
-  - Mot de passe : `admin123`
+  - Mot de passe : `admin`
 - **Gestion des utilisateurs** :
   - Ajouter, modifier ou supprimer les tâches, notes, absences et autres données associées aux utilisateurs.
 
