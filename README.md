@@ -30,6 +30,34 @@ Bienvenue sur le projet **ENT Universitaire**, une plateforme conçue pour facil
 ### Accès au site
 - Le site est accessible à l'adresse : http://ent.molduch.butmmi.o2switch.site
 
+
+### Étapes d'installation
+
+1. **Téléchargement** :
+   - Téléchargez le fichier ZIP du projet depuis le dépôt.
+   - Décompressez-le dans un répertoire de votre choix (par exemple : `C:/wamp64/www/ent-universitaire` sous Windows avec WAMP).
+
+2. **Configuration de la base de données** :
+   - Importez le fichier SQL fourni (`ent.sql`) dans votre base de données locale :
+     1. Connectez-vous à votre outil de gestion de base de données (phpMyAdmin, Adminer, etc.).
+     2. Créez une nouvelle base de données nommée `ent_universitaire`.
+     3. Importez le fichier SQL dans cette base.
+
+3. **Configuration des paramètres de connexion** :
+   - Rendez-vous dans le fichier de configuration (par exemple `studentModel.php`) et configurez les paramètres de connexion à votre base de données :
+     ```php
+     define('DB_HOST', 'localhost');
+     define('DB_USER', 'root');
+     define('DB_PASSWORD', '(root si sur mamp)');
+     define('DB_NAME', 'ent');
+     ```
+
+4. **Démarrage du serveur** :
+   - Lancez votre serveur local (MAMP, WAMP ou autre).
+   - Accédez au projet via votre navigateur en saisissant l'URL suivante :
+     ```
+     http://localhost/ent-universitaire
+     ```
 ---
 
 **Merci de respecter le travail fourni sur ce projet.** Pour toute question ou collaboration, n'hésitez pas à nous contacter.
