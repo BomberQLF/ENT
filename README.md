@@ -9,6 +9,10 @@ Bienvenue sur le projet **ENT Universitaire**, une plateforme conçue pour facil
 
 ## Fonctionnalités
 
+## Accès au site : 
+- **url du site** : https://molduch.butmmi.o2switch.site/ENT/
+- **url du backoffice** : https://molduch.butmmi.o2switch.site/ENT/index.php?action=backoffice
+
 ### Pour les utilisateurs
 - **Connexion et Déconnexion** :
   - Utilisateur de test : `test@gmail.com`
@@ -23,13 +27,9 @@ Bienvenue sur le projet **ENT Universitaire**, une plateforme conçue pour facil
 ### Pour les administrateurs
 - **Connexion Administrateur** :
   - Identifiant : `admin`
-  - Mot de passe : `admin123`
+  - Mot de passe : `admin`
 - **Gestion des utilisateurs** :
   - Ajouter, modifier ou supprimer les tâches, notes, absences et autres données associées aux utilisateurs.
-
-### Accès au site
-- Le site est accessible à l'adresse : http://ent.molduch.butmmi.o2switch.site
-
 
 ### Étapes d'installation
 
@@ -44,7 +44,7 @@ Bienvenue sur le projet **ENT Universitaire**, une plateforme conçue pour facil
      3. Importez le fichier SQL dans cette base.
 
 3. **Configuration des paramètres de connexion** :
-   - Rendez-vous dans le fichier de configuration (par exemple `studentModel.php`) et configurez les paramètres de connexion à votre base de données :
+   - Rendez-vous dans le fichier de configuration (par exemple `studentModele.php`) et configurez les paramètres de connexion à votre base de données :
      ```php
      define('DB_HOST', 'localhost');
      define('DB_USER', 'root');
