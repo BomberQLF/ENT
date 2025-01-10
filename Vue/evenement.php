@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Événement</title>
-    <link rel="stylesheet" href="./style/navbar.css">
-    <link rel="stylesheet" href="./style/evenement.css">
+    <link rel="stylesheet" href="./Style/navbar.css">
+    <link rel="stylesheet" href="./Style/evenement.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" />
     <link rel="icon" type="image/jpg" href="./image/imageSite/logo_ent.jpg"/>
 </head>
