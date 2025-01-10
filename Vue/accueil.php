@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="./Style/accueil.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" />
     <title>Accueil - ENT</title>
+    <link rel="icon" type="image/jpg" href="./image/imageSite/logo_ent.jpg"/>
 </head>
 
 <body>

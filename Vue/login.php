@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./Style/login.css">
     <title>Login - ENT</title>
+    <link rel="icon" type="image/jpg" href="./image/imageSite/logo_ent.jpg"/>
 </head>
 
 <body class="login-body">
