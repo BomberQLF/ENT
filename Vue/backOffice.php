@@ -133,9 +133,6 @@
             <ul class="filters">
                 <li><span class="ftr">Utilisateurs</span></li>
             </ul>
-            <ul class="filters">
-                <li><span class="ftr">Messagerie</span></li>
-            </ul>
         </div>
     </div>
 

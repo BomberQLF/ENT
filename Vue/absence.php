@@ -248,7 +248,7 @@
                 <div class="stats">
                     <div class="stat">
                         <h3>Total de retards</h3>
-                        <p><?php echo count(value: $retards); ?></p>
+                        <p><?php echo count($retards); ?></p>
                     </div>
                     <div class="stat">
                         <h3>Taux de retards</h3>
