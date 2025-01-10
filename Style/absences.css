@@ -269,6 +269,10 @@ table th {
     cursor: pointer;
     font-weight: bold;
     transition: all 0.3s ease;
+    text-decoration: none;
+}
+.bouttonbarre:hover {
+    background-color: var(--main-color);
 }
 
 .navigation {
