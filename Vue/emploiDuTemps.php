@@ -4,11 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Consultez votre emploi du temps personnalisé sur l'ENT. Accédez facilement à vos cours, événements et autres informations importantes.">
+    <meta name="keywords" content="emploi du temps, ENT, cours, planning, étudiant, université, calendrier, événements">
+    <meta name="author" content="Votre Université">
+    <meta name="robots" content="index, follow">
     <link rel="stylesheet" href="./Style/navbar.css">
     <link rel="stylesheet" href="./Style/emploiDuTemps.css">
     <link rel="stylesheet" href="./Style/accueil.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" />
-    <title>Accueil - ENT</title>
+    <title>Emploi du Temps - ENT</title>
 </head>
 
 <body>
@@ -254,7 +259,8 @@
                 ?>
             </div>
             <div class="navigation">
-                <a href="?action=emploiDuTemps&week=<?= $currentWeek - 1 ?>"><</a>
+                <a href="?action=emploiDuTemps&week=<?= $currentWeek - 1 ?>">
+                    << /a>
                         <div class="daybasdiv">
                             <?php
                             $daysOfWeekFR = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi'];
